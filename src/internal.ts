@@ -7,6 +7,6 @@ export interface IRenderable {
 }
 
 export interface IWritable {
-  breadcrumb(): string;
+  content(): IRenderable[];
   print(): string;
 }

@@ -1,16 +1,17 @@
-import { TSModule } from "../module";
-
-class TestModule extends TSModule {
-
-	public breadcrumb(): string {
-		return this.constructor.name;
-	}
-}
+import { BasicModule, EmptyModule } from "./internal";
 
 test(
-  "EmptyFile",
+  "EmptyModule",
   async (): Promise<void> => {
-    const output: TestModule = new TestModule();
+    const output: EmptyModule = new EmptyModule();
+    expect(output.print()).toMatchSnapshot();
+  },
+);
+
+test(
+  "BasicModule",
+  async (): Promise<void> => {
+    const output: BasicModule = new BasicModule();
     expect(output.print()).toMatchSnapshot();
   },
 );
