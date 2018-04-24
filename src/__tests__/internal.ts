@@ -1,32 +1,39 @@
-import { IRenderable, TSModule, TSVariable, VariableState } from "../index";
+import { EVariableKind, IRenderable, Module, Variable } from "../index";
 
-export class EmptyModule extends TSModule {
+export const exportedVariable: IRenderable = Variable.new({
+  kind: EVariableKind.EXPORTED,
+  name: "exportedVariable",
+  types: ["string"],
+});
+
+export const immutableVariable: IRenderable = Variable.new({
+  assignment: "TEST",
+  kind: EVariableKind.IMMUTABLE,
+  name: "immutableVariable",
+  types: ["string", "undefined"],
+});
+
+export const mutableVariable: IRenderable = Variable.new({
+  assignment: "1",
+  kind: EVariableKind.MUTABLE,
+  name: "immutableVariable",
+  types: ["number", "null"],
+});
+
+export class EmptyModule extends Module {
 
   public content(): IRenderable[] {
 		return [];
 	}
 }
 
-export class BasicModule extends TSModule {
+export class BasicModule extends Module {
 
   public content(): IRenderable[] {
 		return [
-      new BasicVariable(),
-      new ComplexVariable(),
+      exportedVariable,
+      immutableVariable,
+      mutableVariable,
     ];
 	}
-}
-
-export class BasicVariable extends TSVariable {
-
-	public types: string[] = ["string"];
-	public name: string = "basicTest";
-}
-
-export class ComplexVariable extends TSVariable {
-
-  public default: string | undefined = "\"complex test\"";
-  public name: string = "complexTest";
-  public state: VariableState = VariableState.MUTABLE;
-  public types: string[] = ["string", "null"];
 }

@@ -1,4 +1,4 @@
-export enum VariableState {
+export enum EVariableKind {
   EXPORTED,
   IMMUTABLE,
   MUTABLE,

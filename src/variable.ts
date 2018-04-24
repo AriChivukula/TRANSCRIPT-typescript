@@ -1,24 +1,34 @@
-import { IRenderable, VariableState } from "./internal";
+import { EVariableKind, IRenderable } from "./internal";
 
-export abstract class TSVariable implements IRenderable {
+export interface IVariable {
+  assignment?: string;
+  kind: EVariableKind;
+  name: string;
+  types: string[];
+}
 
-  public default: string | undefined = undefined;
-  public abstract name: string;
-  public state: VariableState = VariableState.IMMUTABLE;
-  public abstract types: string[];
+export class Variable implements IRenderable {
+
+  public static new(props: IVariable): IRenderable {
+    return new Variable(props);
+  }
+
+  private constructor(
+    private readonly props: IVariable,
+  ) { }
 
   public render(): string {
     let builder: string = "";
-    switch (this.state) {
-      case VariableState.EXPORTED: {
+    switch (this.props.kind) {
+      case EVariableKind.EXPORTED: {
         builder += "export const ";
         break;
       }
-      case VariableState.IMMUTABLE: {
+      case EVariableKind.IMMUTABLE: {
         builder += "const ";
         break;
       }
-      case VariableState.MUTABLE: {
+      case EVariableKind.MUTABLE: {
         builder += "let ";
         break;
       }
@@ -26,17 +36,17 @@ export abstract class TSVariable implements IRenderable {
         throw Error("Unreachable");
       }
     }
-    builder += `${this.name}: `;
-    this.types.forEach(
+    builder += `${this.props.name}: `;
+    this.props.types.forEach(
       (currentValue: string, index: number): void => {
         builder += `${currentValue}`;
-        if (index + 1 !== this.types.length) {
+        if (index + 1 !== this.props.types.length) {
           builder += " | ";
         }
       },
     );
-    if (this.default !== undefined) {
-      builder += ` = ${this.default};`;
+    if (this.props.assignment !== undefined) {
+      builder += ` = "${this.props.assignment}";`;
     } else {
       builder += ";";
     }

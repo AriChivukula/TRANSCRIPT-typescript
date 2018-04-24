@@ -8,7 +8,7 @@ const header: string = `/**
  * SIGNED<<@1>>
  */`;
 
-export abstract class TSModule implements IWritable {
+export abstract class Module implements IWritable {
 
   private static getHash(content: string): string {
     const hash: Hash = createHash("SHA512");
@@ -30,7 +30,7 @@ export abstract class TSModule implements IWritable {
       );
     const fmtHeader: string = header
       .replace("@0", this.constructor.name)
-      .replace("@1", TSModule.getHash(builder));
+      .replace("@1", Module.getHash(builder));
 
     return fmtHeader + builder;
   }
