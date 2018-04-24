@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "tslint:all"
+  ],
+  "rules": {
+    "completed-docs": false,
+    "no-inferrable-types": false,
+    "prefer-function-over-method": false
+  }
+}
