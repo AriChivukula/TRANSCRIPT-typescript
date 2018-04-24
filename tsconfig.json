@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "bin",
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true
+  }
+}

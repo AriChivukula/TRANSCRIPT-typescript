@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+- node
+cache:
+  yarn: true
+  directories:
+  - node_modules
+script:
+- yarn build
+deploy:
+  provider: npm
+  email: ari@chivuku.la
+  api_key: $API_KEY
+  skip_cleanup: true
+  tag: next
+  on:
+    branch: master

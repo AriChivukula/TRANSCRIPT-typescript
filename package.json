@@ -2,9 +2,15 @@
   "name": "transcriptase",
   "version": "0.0.0",
   "description": "TypeScript Codegen",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "bin/index.js",
+  "types": "bin/index.d.ts",
   "repository": "https://github.com/arichiv/transcriptase.git",
   "author": "Ari Chivukula <ari@chivuku.la>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^2.8.3"
+  },
+  "scripts": {
+    "build" : "tsc"
+  }
 }
