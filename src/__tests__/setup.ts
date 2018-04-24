@@ -21,10 +21,12 @@ export const mutableVariable: IRenderable = Variable.new({
 });
 
 export const emptyModule: IWritable = Module.new({
+  trace: "emptyModule",
   content: [],
 });
 
 export const basicModule: IWritable = Module.new({
+  trace: "basicModule",
   content: [
     exportedVariable,
     immutableVariable,
