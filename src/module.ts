@@ -17,10 +17,6 @@ export abstract class TSModule implements IWritable {
     return hash.digest("base64");
   }
 
-  public breadcrumb(): string {
-    return this.constructor.name;
-  }
-
   public abstract content(): IRenderable[];
 
   public print(): string {
