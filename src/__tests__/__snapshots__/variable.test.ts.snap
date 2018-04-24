@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BasicVariable 1`] = `"const basicTest: string;"`;
+
+exports[`BasicVariable 2`] = `"export let complexTest: string | null = \\"complex test\\";"`;

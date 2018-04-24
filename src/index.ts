@@ -1,1 +1,2 @@
-export { TSModule } from "./module";
+export * from "./module";
+export * from "./variable";
