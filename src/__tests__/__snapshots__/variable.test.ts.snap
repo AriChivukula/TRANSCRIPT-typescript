@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BasicVariable 1`] = `"const basicTest: string;"`;
+exports[`exportedVariable 1`] = `"export const exportedVariable: string;"`;
 
-exports[`ComplexVariable 1`] = `"export let complexTest: string | null = \\"complex test\\";"`;
+exports[`immutableVariable 1`] = `"const immutableVariable: string | undefined = \\"TEST\\";"`;
+
+exports[`mutableVariable 1`] = `"let immutableVariable: number | null = \\"1\\";"`;

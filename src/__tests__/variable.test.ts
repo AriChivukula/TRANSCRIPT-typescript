@@ -1,17 +1,22 @@
-import { BasicVariable, ComplexVariable } from "./internal";
+import { exportedVariable, immutableVariable, mutableVariable } from "./setup";
 
 test(
-  "BasicVariable",
+  "exportedVariable",
   async (): Promise<void> => {
-    const output: BasicVariable = new BasicVariable();
-    expect(output.render()).toMatchSnapshot();
+    expect(exportedVariable.render()).toMatchSnapshot();
   },
 );
 
 test(
-  "ComplexVariable",
+  "immutableVariable",
   async (): Promise<void> => {
-    const output: ComplexVariable = new ComplexVariable();
-    expect(output.render()).toMatchSnapshot();
+    expect(immutableVariable.render()).toMatchSnapshot();
+  },
+);
+
+test(
+  "mutableVariable",
+  async (): Promise<void> => {
+    expect(mutableVariable.render()).toMatchSnapshot();
   },
 );

@@ -1,34 +1,58 @@
-import { IExportable, IRenderable } from "./internal";
+import { IRenderable } from "./internal";
 
-export abstract class TSVariable implements IExportable, IRenderable {
+export enum EVariableKind {
+  EXPORTED,
+  IMMUTABLE,
+  MUTABLE,
+}
 
-  public default: string | undefined = undefined;
-  public isExported: boolean = false;
-  public isMutable: boolean = false;
-  public abstract name: string;
-  public abstract types: string[];
+export interface IVariable {
+  assignment?: string;
+  kind: EVariableKind;
+  name: string;
+  types: string[];
+}
+
+export class Variable implements IRenderable {
+
+  public static new(props: IVariable): IRenderable {
+    return new Variable(props);
+  }
+
+  private constructor(
+    private readonly props: IVariable,
+  ) { }
 
   public render(): string {
     let builder: string = "";
-    if (this.isExported) {
-      builder += "export ";
+    switch (this.props.kind) {
+      case EVariableKind.EXPORTED: {
+        builder += "export const ";
+        break;
+      }
+      case EVariableKind.IMMUTABLE: {
+        builder += "const ";
+        break;
+      }
+      case EVariableKind.MUTABLE: {
+        builder += "let ";
+        break;
+      }
+      default: {
+        throw Error("Unreachable");
+      }
     }
-    if (this.isMutable) {
-      builder += "let ";
-    } else {
-      builder += "const ";
-    }
-    builder += `${this.name}: `;
-    this.types.forEach(
+    builder += `${this.props.name}: `;
+    this.props.types.forEach(
       (currentValue: string, index: number): void => {
         builder += `${currentValue}`;
-        if (index + 1 !== this.types.length) {
+        if (index + 1 !== this.props.types.length) {
           builder += " | ";
         }
       },
     );
-    if (this.default !== undefined) {
-      builder += ` = ${this.default};`;
+    if (this.props.assignment !== undefined) {
+      builder += ` = "${this.props.assignment}";`;
     } else {
       builder += ";";
     }
