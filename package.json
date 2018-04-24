@@ -35,6 +35,9 @@
     "tslint": "^5.9.1",
     "typescript": "^2.8.3"
   },
+  "bin": {
+    "typescriptace": "bin/cli.js"
+  },
   "scripts": {
     "build": "tsc && babel --minified bin/**/*.js -d bin/",
     "lint": "tslint -p .",
