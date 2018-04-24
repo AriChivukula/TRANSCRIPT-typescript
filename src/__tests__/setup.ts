@@ -1,4 +1,4 @@
-import { EVariableKind, IRenderable, Module, Variable } from "../index";
+import { EVariableKind, IRenderable, IWritable, Module, Variable } from "../index";
 
 export const exportedVariable: IRenderable = Variable.new({
   kind: EVariableKind.EXPORTED,
@@ -20,20 +20,14 @@ export const mutableVariable: IRenderable = Variable.new({
   types: ["number", "null"],
 });
 
-export class EmptyModule extends Module {
+export const emptyModule: IWritable = Module.new({
+  content: [],
+});
 
-  public content(): IRenderable[] {
-		return [];
-	}
-}
-
-export class BasicModule extends Module {
-
-  public content(): IRenderable[] {
-		return [
-      exportedVariable,
-      immutableVariable,
-      mutableVariable,
-    ];
-	}
-}
+export const basicModule: IWritable = Module.new({
+  content: [
+    exportedVariable,
+    immutableVariable,
+    mutableVariable,
+  ],
+});

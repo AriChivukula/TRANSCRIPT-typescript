@@ -8,7 +8,15 @@ const header: string = `/**
  * SIGNED<<@1>>
  */`;
 
-export abstract class Module implements IWritable {
+export interface IModule {
+  content: IRenderable[];
+}
+
+export class Module implements IWritable {
+
+  public static new(props: IModule): IWritable {
+    return new Module(props);
+  }
 
   private static getHash(content: string): string {
     const hash: Hash = createHash("SHA512");
@@ -17,11 +25,13 @@ export abstract class Module implements IWritable {
     return hash.digest("base64");
   }
 
-  public abstract content(): IRenderable[];
+  private constructor(
+    private readonly props: IModule,
+  ) { }
 
   public print(): string {
     let builder: string = "\n";
-    this.content()
+    this.props.content
       .forEach(
         (currentValue: IRenderable, index: number): void => {
           builder += currentValue.render();

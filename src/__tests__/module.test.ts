@@ -1,17 +1,15 @@
-import { BasicModule, EmptyModule } from "./internal";
+import { basicModule, emptyModule } from "./setup";
 
 test(
-  "EmptyModule",
+  "basicModule",
   async (): Promise<void> => {
-    const output: EmptyModule = new EmptyModule();
-    expect(output.print()).toMatchSnapshot();
+    expect(basicModule.print()).toMatchSnapshot();
   },
 );
 
 test(
-  "BasicModule",
+  "emptyModule",
   async (): Promise<void> => {
-    const output: BasicModule = new BasicModule();
-    expect(output.print()).toMatchSnapshot();
+    expect(emptyModule.print()).toMatchSnapshot();
   },
 );

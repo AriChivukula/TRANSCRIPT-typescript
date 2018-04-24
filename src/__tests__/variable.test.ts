@@ -1,4 +1,4 @@
-import { exportedVariable, immutableVariable, mutableVariable } from "./internal";
+import { exportedVariable, immutableVariable, mutableVariable } from "./setup";
 
 test(
   "exportedVariable",

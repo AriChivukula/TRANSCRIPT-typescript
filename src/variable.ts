@@ -1,4 +1,10 @@
-import { EVariableKind, IRenderable } from "./internal";
+import { IRenderable } from "./internal";
+
+export enum EVariableKind {
+  EXPORTED,
+  IMMUTABLE,
+  MUTABLE,
+}
 
 export interface IVariable {
   assignment?: string;
