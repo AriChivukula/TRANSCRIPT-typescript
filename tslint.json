@@ -4,6 +4,7 @@
   ],
   "rules": {
     "completed-docs": false,
+    "no-import-side-effect": false,
     "no-inferrable-types": false,
     "prefer-function-over-method": false
   }
