@@ -1,5 +1,7 @@
-export interface IExportable {
-  isExported: boolean;
+export enum VariableState {
+  EXPORTED,
+  IMMUTABLE,
+  MUTABLE,
 }
 
 export interface IRenderable {

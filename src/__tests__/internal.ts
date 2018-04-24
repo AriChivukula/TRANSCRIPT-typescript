@@ -1,4 +1,4 @@
-import { IRenderable, TSModule, TSVariable } from "../index";
+import { IRenderable, TSModule, TSVariable, VariableState } from "../index";
 
 export class EmptyModule extends TSModule {
 
@@ -26,8 +26,7 @@ export class BasicVariable extends TSVariable {
 export class ComplexVariable extends TSVariable {
 
   public default: string | undefined = "\"complex test\"";
-  public isExported: boolean = true;
-  public isMutable: boolean = true;
   public name: string = "complexTest";
+  public state: VariableState = VariableState.MUTABLE;
   public types: string[] = ["string", "null"];
 }

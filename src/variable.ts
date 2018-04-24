@@ -1,22 +1,30 @@
-import { IExportable, IRenderable } from "./internal";
+import { IRenderable, VariableState } from "./internal";
 
-export abstract class TSVariable implements IExportable, IRenderable {
+export abstract class TSVariable implements IRenderable {
 
   public default: string | undefined = undefined;
-  public isExported: boolean = false;
-  public isMutable: boolean = false;
   public abstract name: string;
+  public state: VariableState = VariableState.IMMUTABLE;
   public abstract types: string[];
 
   public render(): string {
     let builder: string = "";
-    if (this.isExported) {
-      builder += "export ";
-    }
-    if (this.isMutable) {
-      builder += "let ";
-    } else {
-      builder += "const ";
+    switch (this.state) {
+      case VariableState.EXPORTED: {
+        builder += "export const ";
+        break;
+      }
+      case VariableState.IMMUTABLE: {
+        builder += "const ";
+        break;
+      }
+      case VariableState.MUTABLE: {
+        builder += "let ";
+        break;
+      }
+      default: {
+        throw Error("Unreachable");
+      }
     }
     builder += `${this.name}: `;
     this.types.forEach(
