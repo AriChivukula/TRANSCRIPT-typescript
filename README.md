@@ -1,2 +1,2 @@
-# ts-gen
+# transcriptase
 TypeScript Codegen
