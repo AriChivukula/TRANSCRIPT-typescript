@@ -7,10 +7,25 @@
   "repository": "https://github.com/arichiv/typescriptase.git",
   "author": "Ari Chivukula <ari@chivuku.la>",
   "license": "MIT",
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "\\.test\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
   "devDependencies": {
     "typescript": "^2.8.3"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest"
   }
 }
