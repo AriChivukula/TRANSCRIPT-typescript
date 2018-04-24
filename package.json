@@ -1,0 +1,10 @@
+{
+  "name": "transcriptase",
+  "version": "0.0.0",
+  "description": "TypeScript Codegen",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "repository": "https://github.com/arichiv/transcriptase.git",
+  "author": "Ari Chivukula <ari@chivuku.la>",
+  "license": "MIT"
+}
