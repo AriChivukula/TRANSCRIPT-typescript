@@ -1,9 +1,16 @@
 {
+  "compileOnSave": true,
   "compilerOptions": {
     "declaration": true,
+    "moduleResolution": "Node",
     "outDir": "bin",
     "removeComments": true,
     "sourceMap": true,
-    "strict": true
-  }
+    "strict": true,
+    "target": "ES6"
+  },
+  "exclude": [
+    "bin/*",
+    "src/__tests__/*"
+  ]
 }

@@ -1,1 +1,1 @@
-import { TSModule } from "./module";
+export { TSModule } from "./module";
