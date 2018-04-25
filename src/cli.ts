@@ -22,7 +22,7 @@ new Glob(
     files.forEach(
       (modulePath: string) => {
         // tslint:disable-next-line
-        const codegen: object = require(`../${modulePath}`);
+        const codegen: { [index:string]: any } = require(`../${modulePath}`);
         for (const key in codegen) {
           if (codegen[key] instanceof Module) {
             // tslint:disable-next-line
