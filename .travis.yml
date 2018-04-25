@@ -13,10 +13,19 @@ script:
 - npm run test
 - npm run build
 deploy:
-  provider: npm
-  email: ari@chivuku.la
-  api_key: $API_KEY
-  skip_cleanup: true
-  tag: next
-  on:
-    branch: master
+  - provider: npm
+    email: ari@chivuku.la
+    api_key: $API_KEY
+    skip_cleanup: true
+    tag: next
+    on:
+      tags: true
+      condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+-UNSTABLE$"
+  - provider: npm
+    email: ari@chivuku.la
+    api_key: $API_KEY
+    skip_cleanup: true
+    tag: latest
+    on:
+      tags: true
+      condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+$"
