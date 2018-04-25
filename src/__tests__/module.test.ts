@@ -1,10 +1,21 @@
-import { basicModule, emptyModule } from "./setup";
+import { complexModule, contentModule, emptyModule, importModule } from "./setup";
 
 test(
-  "basicModule",
+  "complexModule",
   async (): Promise<void> => {
-    expect(basicModule.print({
-      name: "basicModule",
+    expect(complexModule.print({
+      name: "complexModule",
+      path: "src/__tests__/module.test.ts",
+    }))
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "contentModule",
+  async (): Promise<void> => {
+    expect(contentModule.print({
+      name: "contentModule",
       path: "src/__tests__/module.test.ts",
     }))
       .toMatchSnapshot();
@@ -16,6 +27,17 @@ test(
   async (): Promise<void> => {
     expect(emptyModule.print({
       name: "emptyModule",
+      path: "src/__tests__/module.test.ts",
+    }))
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "importModule",
+  async (): Promise<void> => {
+    expect(importModule.print({
+      name: "importModule",
       path: "src/__tests__/module.test.ts",
     }))
       .toMatchSnapshot();
