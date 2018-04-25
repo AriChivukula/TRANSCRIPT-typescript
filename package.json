@@ -22,22 +22,28 @@
     ]
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0-beta.46"
+    "@babel/polyfill": "^7.0.0-beta.46",
+    "glob": "^7.1.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.46",
     "@babel/core": "^7.0.0-beta.46",
     "@babel/preset-env": "^7.0.0-beta.46",
+    "@types/glob": "^5.0.35",
     "@types/jest": "^22.2.3",
     "@types/node": "^9.6.6",
     "jest": "^22.4.3",
     "ts-jest": "^22.4.4",
+    "ts-node": "^6.0.0",
     "tslint": "^5.9.1",
     "typescript": "^2.8.3"
   },
+  "bin": {
+    "typescriptase": "bin/cli.js"
+  },
   "scripts": {
-    "build": "tsc && babel --minified bin/**/*.js -d bin/",
+    "build": "tsc && babel --minified bin/**/*.js -d bin/ && chmod +x bin/cli.js",
     "lint": "tslint -p .",
-    "test": "jest"
+    "test": "jest && ts-node src/cli.ts **/setup.ts"
   }
 }

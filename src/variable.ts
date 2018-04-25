@@ -52,7 +52,7 @@ export class Variable implements IRenderable {
       },
     );
     if (this.props.assignment !== undefined) {
-      builder += ` = "${this.props.assignment}";`;
+      builder += ` = ${this.props.assignment};`;
     } else {
       builder += ";";
     }
