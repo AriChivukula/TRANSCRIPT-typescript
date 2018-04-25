@@ -1,47 +1,55 @@
 #!/usr/bin/env node
 
 import { existsSync, mkdirSync, writeFileSync } from "fs";
-import { Glob } from "glob";
+import { Glob, IGlob } from "glob";
 import { dirname, sep } from "path";
 
 import { Module } from "./index";
 
-const expectedArgLength: number = 3;
-if (process.argv.length !== expectedArgLength) {
-  throw new Error("Usage is `typescriptase GLOB`");
-}
-const moduleGlob: string = process.argv[expectedArgLength - 1];
+((): IGlob => new Glob(getFileGlob(), {}, codegenFileGlob))();
 
-new Glob(
-  moduleGlob,
-  {},
-  (err: Error | null, files: string[]): void => {
-    if (err !== null) {
-      throw err;
+function getFileGlob(): string {
+  const expectedArgLength: number = 3;
+  if (process.argv.length !== expectedArgLength) {
+    throw new Error("Usage is `typescriptase GLOB`");
+  }
+
+  return process.argv[expectedArgLength - 1];
+}
+
+function codegenFileGlob(err: Error | null, paths: string[]): void {
+  if (err !== null) {
+    throw err;
+  }
+  paths.forEach(codegenFile);
+}
+
+function codegenFile(path: string): void {
+  // tslint:disable-next-line
+  const file: { [index: string]: any } = require(`../${path}`);
+  for (const name in file) {
+    if (file[name] instanceof Module) {
+      // tslint:disable-next-line
+      codegenModule(file[name], path, name);
     }
-    files.forEach(
-      (modulePath: string) => {
-        // tslint:disable-next-line
-        const codegen: { [index:string]: any } = require(`../${modulePath}`);
-        for (const key in codegen) {
-          if (codegen[key] instanceof Module) {
-            // tslint:disable-next-line
-            const module: Module = codegen[key];
-            const dir: string = dirname(module.destination());
-            let partialDir: string = "";
-            dir.split(sep)
-              .forEach(
-                (currentValue: string, index: number) => {
-                  partialDir += `${currentValue}${sep}`;
-                  if (!existsSync(partialDir)) {
-                    mkdirSync(partialDir);
-                  }
-                },
-              );
-            writeFileSync(module.destination(), module.print(modulePath));
-          }
-        }
-      },
-    );
-  },
-);
+  }
+}
+
+function codegenModule(module: Module, path: string, name: string): void {
+  let dirBuilder: string = "";
+  dirname(module.destination())
+    .split(sep)
+    .forEach((dirPart: string, index: number) => {
+      dirBuilder += `${dirPart}${sep}`;
+      if (!existsSync(dirBuilder)) {
+        mkdirSync(dirBuilder);
+      }
+    });
+  writeFileSync(
+    module.destination(),
+    module.print({
+      name,
+      path,
+    }),
+  );
+}

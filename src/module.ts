@@ -14,6 +14,11 @@ export interface IModule {
   destination: string;
 }
 
+export interface IModuleContext {
+  name: string;
+  path: string;
+}
+
 export class Module {
 
   public static new(props: IModule): Module {
@@ -35,7 +40,7 @@ export class Module {
     return this.props.destination;
   }
 
-  public print(source: string): string {
+  public print(context: IModuleContext): string {
     let builder: string = "\n\n";
     this.props.content
       .forEach(
@@ -45,7 +50,7 @@ export class Module {
         },
       );
     const header: string = headerTemplate
-      .replace("@0", source)
+      .replace("@0", `${context.path}::${context.name}`)
       .replace("@1", Module.getHash(builder));
 
     return header + builder;

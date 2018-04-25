@@ -4,7 +4,7 @@ exports[`basicModule 1`] = `
 "/**
  * DO NOT MANUALLY EDIT; this file is fully generated.
  *
- * SOURCE<<TEST>>
+ * SOURCE<<src/__tests__/module.test.ts::basicModule>>
  * SIGNED<<qM9bD7Gme4RVDyMsy0xUeFUsClmjBtMUCyRMxGjrWyiChUt2BtrEKtGCgUtxsLT0mDAXzAc+3vdeYI7s/23q2g==>>
  */
 
@@ -18,7 +18,7 @@ exports[`emptyModule 1`] = `
 "/**
  * DO NOT MANUALLY EDIT; this file is fully generated.
  *
- * SOURCE<<TEST>>
+ * SOURCE<<src/__tests__/module.test.ts::emptyModule>>
  * SIGNED<<AWuoxM/eZa+Zy1+ouKN+Lrc/SBs640mRZm3y4E/rbAOGZuvR7CtvYjlndWAzxwLd5fQj99R6tu0YJ/9TeDcx9w==>>
  */
 
