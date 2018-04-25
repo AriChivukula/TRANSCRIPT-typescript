@@ -11,6 +11,7 @@ const headerTemplate: string = `/**
  */`;
 
 export interface IModule {
+  bespoke?: string;
   content: IRenderable[];
   destination: string;
   imports: Import[];
