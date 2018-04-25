@@ -7,7 +7,7 @@ export const exportedVariable: IRenderable = Variable.new({
 });
 
 export const immutableVariable: IRenderable = Variable.new({
-  assignment: "TEST",
+  assignment: `"TEST"`,
   kind: EVariableKind.IMMUTABLE,
   name: "immutableVariable",
   types: ["string", "undefined"],
