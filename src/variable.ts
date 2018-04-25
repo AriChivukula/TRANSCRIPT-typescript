@@ -8,6 +8,7 @@ export enum EVariableKind {
 
 export interface IVariable {
   assignment?: string;
+  bespoke?: string;
   kind: EVariableKind;
   name: string;
   type: string;
