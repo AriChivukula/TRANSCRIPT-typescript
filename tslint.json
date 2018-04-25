@@ -2,6 +2,11 @@
   "extends": [
     "tslint:all"
   ],
+  "linterOptions": {
+    "exclude": [
+      "src/__tests__/__codegen__/*"
+    ]
+  },
   "rules": {
     "completed-docs": false,
     "no-import-side-effect": false,
