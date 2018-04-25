@@ -36,7 +36,7 @@ export class Module {
   }
 
   public print(source: string): string {
-    let builder: string = "\n";
+    let builder: string = "\n\n";
     this.props.content
       .forEach(
         (currentValue: IRenderable, index: number): void => {

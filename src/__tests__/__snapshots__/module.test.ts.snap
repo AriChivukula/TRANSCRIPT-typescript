@@ -5,8 +5,9 @@ exports[`basicModule 1`] = `
  * DO NOT MANUALLY EDIT; this file is fully generated.
  *
  * SOURCE<<TEST>>
- * SIGNED<<ar/bH7z5l9g72SSLO3BEdMkyIlMav6HYcBqY41p6bk7N6wgpHHLqdqGklakJMgL94G081APyKl/R9ZbSalg9tA==>>
+ * SIGNED<<qM9bD7Gme4RVDyMsy0xUeFUsClmjBtMUCyRMxGjrWyiChUt2BtrEKtGCgUtxsLT0mDAXzAc+3vdeYI7s/23q2g==>>
  */
+
 export const exportedVariable: string;
 const immutableVariable: string | undefined = \\"TEST\\";
 let immutableVariable: number | null = 1;
@@ -18,7 +19,8 @@ exports[`emptyModule 1`] = `
  * DO NOT MANUALLY EDIT; this file is fully generated.
  *
  * SOURCE<<TEST>>
- * SIGNED<<vmiIOMqGhuXJBom/KrWFzvETfJmbSMcLkvZ6XDTcFWl7XRHJgu1tcb4eHn97TgcziEqpfD96M5qO0DV3z3S+CQ==>>
+ * SIGNED<<AWuoxM/eZa+Zy1+ouKN+Lrc/SBs640mRZm3y4E/rbAOGZuvR7CtvYjlndWAzxwLd5fQj99R6tu0YJ/9TeDcx9w==>>
  */
+
 "
 `;
