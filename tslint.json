@@ -12,6 +12,7 @@
     "no-import-side-effect": false,
     "no-inferrable-types": false,
     "no-parameter-properties": false,
+    "only-arrow-functions": [true, "allow-named-functions"],
     "prefer-function-over-method": false
   }
 }
