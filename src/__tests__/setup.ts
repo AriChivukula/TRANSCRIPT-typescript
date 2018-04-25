@@ -83,7 +83,7 @@ export const contentModule: Module = Module.new({
     immutableVariable,
     mutableVariable,
   ],
-  destination: "src/__tests__/__codegen__/basicModule.ts",
+  destination: "src/__tests__/__codegen__/contentModule.ts",
   imports: [],
 });
 
