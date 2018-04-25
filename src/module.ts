@@ -1,5 +1,6 @@
 import { createHash, Hash } from "crypto";
 
+import { Import } from "./import";
 import { IRenderable } from "./internal";
 
 const headerTemplate: string = `/**
@@ -12,6 +13,7 @@ const headerTemplate: string = `/**
 export interface IModule {
   content: IRenderable[];
   destination: string;
+  imports: Import[];
 }
 
 export interface IModuleContext {
@@ -41,14 +43,18 @@ export class Module {
   }
 
   public print(context: IModuleContext): string {
-    let builder: string = "\n\n";
-    this.props.content
-      .forEach(
-        (currentValue: IRenderable, index: number): void => {
-          builder += currentValue.render();
-          builder += "\n";
-        },
-      );
+    let builder: string = "\n";
+    builder += Import.renderMany(this.props.imports);
+    if (this.props.content.length > 0) {
+      builder += "\n";
+      this.props.content
+        .forEach(
+          (currentValue: IRenderable, index: number): void => {
+            builder += currentValue.render();
+            builder += "\n";
+          },
+        );
+    }
     const header: string = headerTemplate
       .replace("@0", `${context.path}::${context.name}`)
       .replace("@1", Module.getHash(builder));

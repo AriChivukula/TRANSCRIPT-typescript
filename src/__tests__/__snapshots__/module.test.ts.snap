@@ -1,10 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`basicModule 1`] = `
+exports[`complexModule 1`] = `
 "/**
  * DO NOT MANUALLY EDIT; this file is fully generated.
  *
- * SOURCE<<src/__tests__/module.test.ts::basicModule>>
+ * SOURCE<<src/__tests__/module.test.ts::complexModule>>
+ * SIGNED<<wcr1yMaXCCB3iEqiimBfq9YINHy6wd9H84sgGS1Pt13vc0t+dUkIdS41weC2QZ2oedIIzSZDHnllAzrg/xU4Wg==>>
+ */
+
+import { B, c } from \\"a\\";
+import * as aaa from \\"BbB\\";
+import ooo from \\"nnn\\";
+import xxx from \\"www\\";
+import * as zzz from \\"YYY\\";
+
+import { g, r, z } from \\"./a\\";
+import fff from \\"./ddd\\";
+import * as mmm from \\"./mmm\\";
+import { A, wA } from \\"./R\\";
+
+let immutableVariable: number | null | undefined = 1;
+export const exportedVariable: string;
+const immutableVariable: string | undefined = \\"TEST\\";
+"
+`;
+
+exports[`contentModule 1`] = `
+"/**
+ * DO NOT MANUALLY EDIT; this file is fully generated.
+ *
+ * SOURCE<<src/__tests__/module.test.ts::contentModule>>
  * SIGNED<<fNltSHlXsT6mEyMB/A72TS7OWFFZAOf2oPHFhADksuZb5aWjUzNZg02YbXu8WitawRZfor1yIc9YzJbIanNnog==>>
  */
 
@@ -19,8 +44,28 @@ exports[`emptyModule 1`] = `
  * DO NOT MANUALLY EDIT; this file is fully generated.
  *
  * SOURCE<<src/__tests__/module.test.ts::emptyModule>>
- * SIGNED<<AWuoxM/eZa+Zy1+ouKN+Lrc/SBs640mRZm3y4E/rbAOGZuvR7CtvYjlndWAzxwLd5fQj99R6tu0YJ/9TeDcx9w==>>
+ * SIGNED<<vmiIOMqGhuXJBom/KrWFzvETfJmbSMcLkvZ6XDTcFWl7XRHJgu1tcb4eHn97TgcziEqpfD96M5qO0DV3z3S+CQ==>>
+ */
+"
+`;
+
+exports[`importModule 1`] = `
+"/**
+ * DO NOT MANUALLY EDIT; this file is fully generated.
+ *
+ * SOURCE<<src/__tests__/module.test.ts::importModule>>
+ * SIGNED<<uXwA0tkXt3chN4024obI+D26Y3mlpTkR/97bvFB1gQuz6bdMkZBb6/99Y4J0Lhr07hCw/QcSHycAduPmmav5Jg==>>
  */
 
+import { B, c } from \\"a\\";
+import * as aaa from \\"BbB\\";
+import ooo from \\"nnn\\";
+import xxx from \\"www\\";
+import * as zzz from \\"YYY\\";
+
+import { g, r, z } from \\"./a\\";
+import fff from \\"./ddd\\";
+import * as mmm from \\"./mmm\\";
+import { A, wA } from \\"./R\\";
 "
 `;
