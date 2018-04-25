@@ -1,4 +1,4 @@
-import { EVariableKind, IRenderable, IWritable, Module, Variable } from "../index";
+import { EVariableKind, IRenderable, Module, Variable } from "../index";
 
 export const exportedVariable: IRenderable = Variable.new({
   kind: EVariableKind.EXPORTED,
@@ -7,7 +7,7 @@ export const exportedVariable: IRenderable = Variable.new({
 });
 
 export const immutableVariable: IRenderable = Variable.new({
-  assignment: "TEST",
+  assignment: "\"TEST\"",
   kind: EVariableKind.IMMUTABLE,
   name: "immutableVariable",
   types: ["string", "undefined"],
@@ -20,16 +20,16 @@ export const mutableVariable: IRenderable = Variable.new({
   types: ["number", "null"],
 });
 
-export const emptyModule: IWritable = Module.new({
-  trace: "emptyModule",
+export const emptyModule: Module = Module.new({
   content: [],
+  destination: "src/__tests__/__codegen__/emptyModule.ts",
 });
 
-export const basicModule: IWritable = Module.new({
-  trace: "basicModule",
+export const basicModule: Module = Module.new({
   content: [
     exportedVariable,
     immutableVariable,
     mutableVariable,
   ],
+  destination: "src/__tests__/__codegen__/basicModule.ts",
 });

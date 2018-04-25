@@ -4,4 +4,4 @@ exports[`exportedVariable 1`] = `"export const exportedVariable: string;"`;
 
 exports[`immutableVariable 1`] = `"const immutableVariable: string | undefined = \\"TEST\\";"`;
 
-exports[`mutableVariable 1`] = `"let immutableVariable: number | null = \\"1\\";"`;
+exports[`mutableVariable 1`] = `"let immutableVariable: number | null = 1;"`;
