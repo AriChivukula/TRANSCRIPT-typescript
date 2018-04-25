@@ -1,5 +1,6 @@
 import { createHash, Hash } from "crypto";
 
+import { Import } from "./import";
 import { IRenderable } from "./internal";
 
 const headerTemplate: string = `/**
@@ -9,27 +10,10 @@ const headerTemplate: string = `/**
  * SIGNED<<@1>>
  */`;
 
-export interface IImportAll {
-  module: string;
-  nameAll: string;
-}
-
-export interface IImportDefault {
-  module: string;
-  nameDefault: string;
-}
-
-export interface IImportSome {
-  module: string;
-  names: string[];
-}
-
-export type IImport = IImportAll | IImportDefault | IImportSome;
-
 export interface IModule {
   content: IRenderable[];
   destination: string;
-  imports: IImport[];
+  imports: Import[];
 }
 
 export interface IModuleContext {
@@ -41,34 +25,6 @@ export class Module {
 
   public static new(props: IModule): Module {
     return new Module(props);
-  }
-
-  private static buildImports(imports: IImport[]): string {
-    let builder: string = "";
-    if (imports.length < 1) {
-      return builder;
-    }
-    builder += "\n";
-    imports.forEach((imp: IImport) => {
-      if ("nameAll" in imp) {
-        builder += `import * as ${imp.nameAll} from "${imp.module}";\n`;
-      } else if ("nameDefault" in imp) {
-        builder += `import ${imp.nameDefault} from "${imp.module}";\n`;
-      } else if ("names" in imp) {
-        const name: string = imp.names
-          .sort(
-            (a: string, b: string): number =>
-              a.toLowerCase()
-                .localeCompare(b.toLowerCase()),
-          )
-          .join(", ");
-        builder += `import { ${name} } from "${imp.module}";\n`;
-      } else {
-        throw new Error(`Unexpected import type ${imp}`);
-      }
-    });
-
-    return builder;
   }
 
   private static getHash(content: string): string {
@@ -88,30 +44,7 @@ export class Module {
 
   public print(context: IModuleContext): string {
     let builder: string = "\n";
-    if (this.props.imports.length > 0) {
-      builder += Module.buildImports(
-        this.props.imports
-          .filter(
-            (imp: IImport): boolean => !imp.module.startsWith("."),
-          )
-          .sort(
-            (impA: IImport, impB: IImport): number =>
-              impA.module.toLowerCase()
-                .localeCompare(impB.module.toLowerCase()),
-          ),
-      );
-      builder += Module.buildImports(
-        this.props.imports
-          .filter(
-            (imp: IImport): boolean => imp.module.startsWith("."),
-          )
-          .sort(
-            (impA: IImport, impB: IImport): number =>
-              impA.module.toLowerCase()
-                .localeCompare(impB.module.toLowerCase()),
-          ),
-      );
-    }
+    builder += Import.renderMany(this.props.imports);
     if (this.props.content.length > 0) {
       builder += "\n";
       this.props.content

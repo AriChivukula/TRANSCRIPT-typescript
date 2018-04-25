@@ -1,57 +1,55 @@
 import {
   EVariableKind,
-  IImportAll,
-  IImportDefault,
-  IImportSome,
+  Import,
   IRenderable,
   Module,
   Variable,
 } from "../index";
 
-const importAll1: IImportAll = {
+export const importAll1: Import = Import.new({
   module: "YYY",
   nameAll: "zzz",
-};
+});
 
-const importAll2: IImportAll = {
+export const importAll2: Import = Import.new({
   module: "BbB",
   nameAll: "aaa",
-};
+});
 
-const importAll3: IImportAll = {
+export const importAll3: Import = Import.new({
   module: "./mmm",
   nameAll: "mmm",
-};
+});
 
-const importDefault1: IImportDefault = {
+export const importDefault1: Import = Import.new({
   module: "www",
   nameDefault: "xxx",
-};
+});
 
-const importDefault2: IImportDefault = {
+export const importDefault2: Import = Import.new({
   module: "./ddd",
   nameDefault: "fff",
-};
+});
 
-const importDefault3: IImportDefault = {
+export const importDefault3: Import = Import.new({
   module: "nnn",
   nameDefault: "ooo",
-};
+});
 
-const importSome1: IImportSome = {
+export const importSome1: Import = Import.new({
   module: "a",
   names: ["B", "c"],
-};
+});
 
-const importSome2: IImportSome = {
+export const importSome2: Import = Import.new({
   module: "./R",
   names: ["wA", "A"],
-};
+});
 
-const importSome3: IImportSome = {
+export const importSome3: Import = Import.new({
   module: "./a",
   names: ["g", "z", "r"],
-};
+});
 
 export const exportedVariable: IRenderable = Variable.new({
   kind: EVariableKind.EXPORTED,
