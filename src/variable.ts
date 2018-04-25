@@ -10,7 +10,7 @@ export interface IVariable {
   assignment?: string;
   kind: EVariableKind;
   name: string;
-  types: string[];
+  type: string;
 }
 
 export class Variable implements IRenderable {
@@ -42,15 +42,7 @@ export class Variable implements IRenderable {
         throw Error("Unreachable");
       }
     }
-    builder += `${this.props.name}: `;
-    this.props.types.forEach(
-      (currentValue: string, index: number): void => {
-        builder += `${currentValue}`;
-        if (index + 1 !== this.props.types.length) {
-          builder += " | ";
-        }
-      },
-    );
+    builder += `${this.props.name}: ${this.props.type}`;
     if (this.props.assignment !== undefined) {
       builder += ` = ${this.props.assignment};`;
     } else {

@@ -44,6 +44,7 @@
   "scripts": {
     "build": "tsc && babel --minified bin/**/*.js -d bin/ && chmod +x bin/cli.js",
     "lint": "tslint -p .",
+    "snap": "jest -u",
     "test": "jest && ts-node src/cli.ts **/setup.ts"
   }
 }
