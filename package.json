@@ -1,6 +1,6 @@
 {
   "name": "typescriptase",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "TypeScript Codegen",
   "main": "bin/index.js",
   "types": "bin/index.d.ts",
@@ -46,6 +46,6 @@
     "build": "tsc && babel --minified bin/__tests__/*.js -d bin/__tests__/ && babel --minified bin/*.js -d bin/ && chmod +x bin/cli.js",
     "lint": "tslint -p .",
     "snap": "jest -u",
-    "test": "jest && cd src && ts-node cli.ts src/__tests__/setup.ts"
+    "test": "jest && ts-node src/cli.ts src/__tests__/setup.ts"
   }
 }
