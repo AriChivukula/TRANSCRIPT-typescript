@@ -26,7 +26,7 @@ function codegenFileGlob(err: Error | null, paths: string[]): void {
 
 function codegenFile(path: string): void {
   // tslint:disable-next-line
-  const file: { [index: string]: any } = require(`../${path}`);
+  const file: { [index: string]: any } = require(`./${path}`);
   for (const name in file) {
     if (file[name] instanceof Module) {
       // tslint:disable-next-line
