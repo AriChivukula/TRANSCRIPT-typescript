@@ -36,6 +36,13 @@ export class Module extends Renderable {
     super();
   }
 
+  public bespokes(): string[] {
+    const bespokes: string[][] = this.props.content
+      .map((content: Composable) => content.bespokes());
+
+    return ([] as string[]).concat(...bespokes);
+  }
+
   public destination(): string {
     return this.props.destination;
   }
@@ -57,18 +64,11 @@ export class Module extends Renderable {
       .replace("@0", `${context.path}::${context.name}`)
       .replace(
         "@1",
-        this.bespokeNames()
+        this.bespokes()
           .join(", "),
       )
       .replace("@2", Module.getHash(builder));
 
     return header + builder;
-  }
-
-  private bespokeNames(): string[] {
-    const bespokes: string[][] = this.props.content
-      .map((content: Composable) => content.bespokeNames());
-
-    return ([] as string[]).concat(...bespokes);
   }
 }

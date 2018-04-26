@@ -3,7 +3,7 @@ export abstract class Renderable {
 }
 
 export abstract class Composable extends Renderable {
-  public abstract bespokeNames(): string[];
+  public abstract bespokes(): string[];
 }
 
 export interface IRenderContext {

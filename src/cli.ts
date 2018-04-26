@@ -45,11 +45,20 @@ function codegenModule(module: Module, path: string, name: string): void {
         mkdirSync(dirBuilder);
       }
     });
-  writeFileSync(
+  codegenModuleWithBespokes(
+    module.bespokes(),
     module.destination(),
     module.render({
       name,
       path,
     }),
   );
+}
+
+function codegenModuleWithBespokes(
+  bespokes: string[],
+  destination: string,
+  module: string,
+): void {
+  writeFileSync(destination, module);
 }

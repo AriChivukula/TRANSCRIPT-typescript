@@ -20,7 +20,7 @@ export class Bespoke extends Composable {
     super();
   }
 
-  public bespokeNames(): string[] {
+  public bespokes(): string[] {
     return [this.props.name];
   }
 

@@ -25,7 +25,7 @@ export class Variable extends Composable {
     super();
   }
 
-  public bespokeNames(): string[] {
+  public bespokes(): string[] {
     return [];
   }
 
