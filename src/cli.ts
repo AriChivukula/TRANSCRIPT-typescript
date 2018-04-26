@@ -9,12 +9,12 @@ import { endTemplate, Module, startTemplate } from "./index";
 ((): IGlob => new Glob(getFileGlob(), {}, codegenFileGlob))();
 
 function getFileGlob(): string {
-  const expectedArgLength: number = 3;
-  if (process.argv.length !== expectedArgLength) {
+  const minArgLength: number = 2;
+  if (process.argv.length < minArgLength) {
     throw new Error("Usage is `typescriptase GLOB`");
   }
 
-  return process.argv[expectedArgLength - 1];
+  return process.argv[process.argv.length - 1];
 }
 
 function codegenFileGlob(err: Error | null, paths: string[]): void {
