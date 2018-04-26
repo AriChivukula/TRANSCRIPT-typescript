@@ -7,6 +7,7 @@
  */
 
 /* BESPOKE START <<TEST1>> */
+"DO NOT DELETE"
 /* BESPOKE END <<TEST1>> */
 export const exportedVariable: string;
 const immutableVariable: string | undefined = "TEST";

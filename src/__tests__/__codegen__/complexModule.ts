@@ -18,11 +18,14 @@ import * as mmm from "./mmm";
 import { A, wA } from "./R";
 
 /* BESPOKE START <<TEST1>> */
+"DO NOT DELETE"
 /* BESPOKE END <<TEST1>> */
 /* BESPOKE START <<test2>> */
+// DO NOT DELETE
 /* BESPOKE END <<test2>> */
 let mutableVariable: number | null | undefined = 1;
 export const exportedVariable: string;
 /* BESPOKE START <<3tESt3>> */
+/* DO NOT DELETE */
 /* BESPOKE END <<3tESt3>> */
 const immutableVariable: string | undefined = "TEST";
