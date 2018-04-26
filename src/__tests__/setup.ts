@@ -1,96 +1,97 @@
 import {
   Bespoke,
+  Composable,
   EVariableKind,
   Import,
-  IRenderable,
   Module,
+  Renderable,
   Variable,
 } from "../index";
 
-export const bespoke1: IRenderable<Bespoke> = Bespoke.new({
+export const bespoke1: Composable = Bespoke.new({
   name: "TEST1",
 });
 
-export const bespoke2: IRenderable<Bespoke> = Bespoke.new({
+export const bespoke2: Composable = Bespoke.new({
   name: "test2",
 });
 
-export const bespoke3: IRenderable<Bespoke> = Bespoke.new({
+export const bespoke3: Composable = Bespoke.new({
   name: "3tESt3",
 });
 
-export const importAll1: IRenderable<Import> = Import.new({
+export const importAll1: Import = Import.new({
   module: "YYY",
   nameAll: "zzz",
 });
 
-export const importAll2: IRenderable<Import> = Import.new({
+export const importAll2: Import = Import.new({
   module: "BbB",
   nameAll: "aaa",
 });
 
-export const importAll3: IRenderable<Import> = Import.new({
+export const importAll3: Import = Import.new({
   module: "./mmm",
   nameAll: "mmm",
 });
 
-export const importDefault1: IRenderable<Import> = Import.new({
+export const importDefault1: Import = Import.new({
   module: "www",
   nameDefault: "xxx",
 });
 
-export const importDefault2: IRenderable<Import> = Import.new({
+export const importDefault2: Import = Import.new({
   module: "./ddd",
   nameDefault: "fff",
 });
 
-export const importDefault3: IRenderable<Import> = Import.new({
+export const importDefault3: Import = Import.new({
   module: "nnn",
   nameDefault: "ooo",
 });
 
-export const importSome1: IRenderable<Import> = Import.new({
+export const importSome1: Import = Import.new({
   module: "a",
   names: ["B", "c"],
 });
 
-export const importSome2: IRenderable<Import> = Import.new({
+export const importSome2: Import = Import.new({
   module: "./R",
   names: ["wA", "A"],
 });
 
-export const importSome3: IRenderable<Import> = Import.new({
+export const importSome3: Import = Import.new({
   module: "./a",
   names: ["g", "z", "r"],
 });
 
-export const exportedVariable: IRenderable<Variable> = Variable.new({
+export const exportedVariable: Composable = Variable.new({
   kind: EVariableKind.EXPORTED,
   name: "exportedVariable",
   type: "string",
 });
 
-export const immutableVariable: IRenderable<Variable> = Variable.new({
+export const immutableVariable: Composable = Variable.new({
   assignment: "\"TEST\"",
   kind: EVariableKind.IMMUTABLE,
   name: "immutableVariable",
   type: "string | undefined",
 });
 
-export const mutableVariable: IRenderable<Variable> = Variable.new({
+export const mutableVariable: Composable = Variable.new({
   assignment: "1",
   kind: EVariableKind.MUTABLE,
   name: "immutableVariable",
   type: "number | null | undefined",
 });
 
-export const emptyModule: IRenderable<Module> = Module.new({
+export const emptyModule: Renderable = Module.new({
   content: [],
   destination: "src/__tests__/__codegen__/emptyModule.ts",
   imports: [],
 });
 
-export const contentModule: IRenderable<Module> = Module.new({
+export const contentModule: Renderable = Module.new({
   content: [
     exportedVariable,
     immutableVariable,
@@ -100,7 +101,7 @@ export const contentModule: IRenderable<Module> = Module.new({
   imports: [],
 });
 
-export const importModule: IRenderable<Module> = Module.new({
+export const importModule: Renderable = Module.new({
   content: [],
   destination: "src/__tests__/__codegen__/importModule.ts",
   imports: [
@@ -116,7 +117,7 @@ export const importModule: IRenderable<Module> = Module.new({
   ],
 });
 
-export const complexModule: IRenderable<Module> = Module.new({
+export const complexModule: Renderable = Module.new({
   content: [
     mutableVariable,
     exportedVariable,

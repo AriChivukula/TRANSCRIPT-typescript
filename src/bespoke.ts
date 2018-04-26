@@ -1,4 +1,4 @@
-import { Composable, IRenderable, IRenderContext } from "./internal";
+import { Composable, IRenderContext } from "./internal";
 
 const startTemplate: string = "/* START BESPOKE SECTION <<@0>> */";
 
@@ -8,9 +8,9 @@ export interface IBespoke {
   name: string;
 }
 
-export class Bespoke extends Composable implements IRenderable<Bespoke> {
+export class Bespoke extends Composable {
 
-  public static new(props: IBespoke): IRenderable<Bespoke> {
+  public static new(props: IBespoke): Composable {
     return new Bespoke(props);
   }
 

@@ -1,7 +1,7 @@
 import { createHash, Hash } from "crypto";
 
 import { Import } from "./import";
-import { Composable, IRenderable, IRenderContext } from "./internal";
+import { Composable, IRenderContext, Renderable } from "./internal";
 
 const headerTemplate: string = `/**
  * DO NOT MANUALLY EDIT; this file is fully generated.
@@ -11,14 +11,14 @@ const headerTemplate: string = `/**
  */`;
 
 export interface IModule {
-  content: Array<IRenderable<Composable>>;
+  content: Composable[];
   destination: string;
-  imports: Array<IRenderable<Import>>;
+  imports: Import[];
 }
 
-export class Module implements IRenderable<Module> {
+export class Module implements Renderable {
 
-  public static new(props: IModule): IRenderable<Module> {
+  public static new(props: IModule): Renderable {
     return new Module(props);
   }
 
@@ -44,7 +44,7 @@ export class Module implements IRenderable<Module> {
       builder += "\n";
       this.props.content
         .forEach(
-          (currentValue: IRenderable<Composable>, index: number): void => {
+          (currentValue: Composable, index: number): void => {
             builder += currentValue.render(context);
             builder += "\n";
           },

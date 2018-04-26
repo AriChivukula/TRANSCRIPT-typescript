@@ -1,4 +1,4 @@
-import { IRenderable, IRenderContext } from "./internal";
+import { IRenderContext, Renderable } from "./internal";
 
 export interface IImportAll {
   module: string;
@@ -17,23 +17,22 @@ export interface IImportSome {
 
 export type TImport = IImportAll | IImportDefault | IImportSome;
 
-export class Import implements IRenderable<Import> {
+export class Import extends Renderable {
 
-  public static new(props: TImport): IRenderable<Import> {
+  public static new(props: TImport): Import {
     return new Import(props);
   }
 
   public static renderMany(
-    imports: Array<IRenderable<Import>>,
+    imports: Import[],
     context: IRenderContext,
   ): string {
-    const typedImports: Import[] = imports as Import[];
     let builder: string = "";
     if (imports.length === 0) {
       return builder;
     }
     builder += Import.renderSection(
-      typedImports
+      imports
         .filter(
           (i: Import): boolean => !i.props.module.startsWith("."),
         )
@@ -41,7 +40,7 @@ export class Import implements IRenderable<Import> {
       context,
     );
     builder += Import.renderSection(
-      typedImports
+      imports
         .filter(
           (i: Import): boolean => i.props.module.startsWith("."),
         )
@@ -70,7 +69,9 @@ export class Import implements IRenderable<Import> {
 
   private constructor(
     private readonly props: TImport,
-  ) { }
+  ) {
+    super();
+  }
 
   public render(context: IRenderContext): string {
     let builder: string = "";

@@ -1,4 +1,4 @@
-import { Composable, IRenderable, IRenderContext } from "./internal";
+import { Composable, IRenderContext } from "./internal";
 
 export enum EVariableKind {
   EXPORTED,
@@ -13,9 +13,9 @@ export interface IVariable {
   type: string;
 }
 
-export class Variable extends Composable implements IRenderable<Variable> {
+export class Variable extends Composable {
 
-  public static new(props: IVariable): IRenderable<Variable> {
+  public static new(props: IVariable): Composable {
     return new Variable(props);
   }
 
