@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/setup.ts::complexModule>>
  * BESPOKE<<TEST1, test2, 3tESt3>>
- * SIGNED<<YuPTw2qSfvtLnfVlEeKUsKiKoN/bcu5WyNYptmJRdVFvVcX3H7Y59dfsViR7fvpOHmzBvPa51FpaYWHx44v1jg==>>
+ * SIGNED<<nmkWQkEtrUFwAEDS+dGuFU6thm//ZioYADZ+ISqCZOIrQhPvlk/LFJnPO9vGmg4xpqU/NHPsi2wzRT0sqd7/GQ==>>
  */
 
 import { B, c } from "a";
@@ -21,7 +21,7 @@ import { A, wA } from "./R";
 /* BESPOKE END <<TEST1>> */
 /* BESPOKE START <<test2>> */
 /* BESPOKE END <<test2>> */
-let immutableVariable: number | null | undefined = 1;
+let mutableVariable: number | null | undefined = 1;
 export const exportedVariable: string;
 /* BESPOKE START <<3tESt3>> */
 /* BESPOKE END <<3tESt3>> */

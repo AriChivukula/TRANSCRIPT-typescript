@@ -81,7 +81,7 @@ export const immutableVariable: Composable = Variable.new({
 export const mutableVariable: Composable = Variable.new({
   assignment: "1",
   kind: EVariableKind.MUTABLE,
-  name: "immutableVariable",
+  name: "mutableVariable",
   type: "number | null | undefined",
 });
 
