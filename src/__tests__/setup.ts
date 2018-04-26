@@ -1,10 +1,23 @@
 import {
+  Bespoke,
   EVariableKind,
   Import,
   IRenderable,
   Module,
   Variable,
 } from "../index";
+
+export const bespoke1: IRenderable<Bespoke> = Bespoke.new({
+  name: "TEST1",
+});
+
+export const bespoke2: IRenderable<Bespoke> = Bespoke.new({
+  name: "test2",
+});
+
+export const bespoke3: IRenderable<Bespoke> = Bespoke.new({
+  name: "3tESt3",
+});
 
 export const importAll1: IRenderable<Import> = Import.new({
   module: "YYY",

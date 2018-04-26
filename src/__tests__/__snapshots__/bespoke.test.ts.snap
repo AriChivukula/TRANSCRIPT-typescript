@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bespoke1 1`] = `
+"/* START BESPOKE SECTION <<TEST1>> */
+/* END BESPOKE SECTION <<TEST1>> */
+"
+`;
+
+exports[`bespoke2 1`] = `
+"/* START BESPOKE SECTION <<test2>> */
+/* END BESPOKE SECTION <<test2>> */
+"
+`;
+
+exports[`bespoke3 1`] = `
+"/* START BESPOKE SECTION <<3tESt3>> */
+/* END BESPOKE SECTION <<3tESt3>> */
+"
+`;
