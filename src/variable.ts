@@ -25,6 +25,10 @@ export class Variable extends Composable {
     super();
   }
 
+  public bespokeNames(): string[] {
+    return [];
+  }
+
   public render(context: IRenderContext): string {
     let builder: string = "";
     switch (this.props.kind) {

@@ -93,9 +93,11 @@ export const emptyModule: Renderable = Module.new({
 
 export const contentModule: Renderable = Module.new({
   content: [
+    bespoke1,
     exportedVariable,
     immutableVariable,
     mutableVariable,
+    bespoke2,
   ],
   destination: "src/__tests__/__codegen__/contentModule.ts",
   imports: [],
@@ -119,8 +121,11 @@ export const importModule: Renderable = Module.new({
 
 export const complexModule: Renderable = Module.new({
   content: [
+    bespoke1,
+    bespoke2,
     mutableVariable,
     exportedVariable,
+    bespoke3,
     immutableVariable,
   ],
   destination: "src/__tests__/__codegen__/complexModule.ts",

@@ -7,7 +7,8 @@ const headerTemplate: string = `/**
  * DO NOT MANUALLY EDIT; this file is fully generated.
  *
  * SOURCE<<@0>>
- * SIGNED<<@1>>
+ * BESPOKE<<@1>>
+ * SIGNED<<@2>>
  */`;
 
 export interface IModule {
@@ -16,7 +17,7 @@ export interface IModule {
   imports: Import[];
 }
 
-export class Module implements Renderable {
+export class Module extends Renderable {
 
   public static new(props: IModule): Renderable {
     return new Module(props);
@@ -31,7 +32,9 @@ export class Module implements Renderable {
 
   private constructor(
     private readonly props: IModule,
-  ) { }
+  ) {
+    super();
+  }
 
   public destination(): string {
     return this.props.destination;
@@ -52,8 +55,20 @@ export class Module implements Renderable {
     }
     const header: string = headerTemplate
       .replace("@0", `${context.path}::${context.name}`)
-      .replace("@1", Module.getHash(builder));
+      .replace(
+        "@1",
+        this.bespokeNames()
+          .join(", "),
+      )
+      .replace("@2", Module.getHash(builder));
 
     return header + builder;
+  }
+
+  private bespokeNames(): string[] {
+    const bespokes: string[][] = this.props.content
+      .map((content: Composable) => content.bespokeNames());
+
+    return ([] as string[]).concat(...bespokes);
   }
 }
