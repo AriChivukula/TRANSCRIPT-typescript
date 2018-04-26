@@ -47,7 +47,7 @@ function codegenModule(module: Module, path: string, name: string): void {
     });
   writeFileSync(
     module.destination(),
-    module.print({
+    module.render({
       name,
       path,
     }),

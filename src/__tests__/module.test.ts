@@ -3,7 +3,7 @@ import { complexModule, contentModule, emptyModule, importModule } from "./setup
 test(
   "complexModule",
   async (): Promise<void> => {
-    expect(complexModule.print({
+    expect(complexModule.render({
       name: "complexModule",
       path: "src/__tests__/module.test.ts",
     }))
@@ -14,7 +14,7 @@ test(
 test(
   "contentModule",
   async (): Promise<void> => {
-    expect(contentModule.print({
+    expect(contentModule.render({
       name: "contentModule",
       path: "src/__tests__/module.test.ts",
     }))
@@ -25,7 +25,7 @@ test(
 test(
   "emptyModule",
   async (): Promise<void> => {
-    expect(emptyModule.print({
+    expect(emptyModule.render({
       name: "emptyModule",
       path: "src/__tests__/module.test.ts",
     }))
@@ -36,7 +36,7 @@ test(
 test(
   "importModule",
   async (): Promise<void> => {
-    expect(importModule.print({
+    expect(importModule.render({
       name: "importModule",
       path: "src/__tests__/module.test.ts",
     }))
