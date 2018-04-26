@@ -1,29 +1,25 @@
 import { createHash, Hash } from "crypto";
 
 import { Import } from "./import";
-import { IRenderable } from "./internal";
+import { Composable, IRenderContext, Renderable } from "./internal";
 
 const headerTemplate: string = `/**
  * DO NOT MANUALLY EDIT; this file is fully generated.
  *
  * SOURCE<<@0>>
- * SIGNED<<@1>>
+ * BESPOKE<<@1>>
+ * SIGNED<<@2>>
  */`;
 
 export interface IModule {
-  content: IRenderable[];
+  content: Composable[];
   destination: string;
   imports: Import[];
 }
 
-export interface IModuleContext {
-  name: string;
-  path: string;
-}
+export class Module extends Renderable {
 
-export class Module {
-
-  public static new(props: IModule): Module {
+  public static new(props: IModule): Renderable {
     return new Module(props);
   }
 
@@ -36,28 +32,42 @@ export class Module {
 
   private constructor(
     private readonly props: IModule,
-  ) { }
+  ) {
+    super();
+  }
+
+  public bespokes(): string[] {
+    const bespokes: string[][] = this.props.content
+      .map((content: Composable) => content.bespokes());
+
+    return ([] as string[]).concat(...bespokes);
+  }
 
   public destination(): string {
     return this.props.destination;
   }
 
-  public print(context: IModuleContext): string {
+  public render(context: IRenderContext): string {
     let builder: string = "\n";
-    builder += Import.renderMany(this.props.imports);
+    builder += Import.renderMany(this.props.imports, context);
     if (this.props.content.length > 0) {
       builder += "\n";
       this.props.content
         .forEach(
-          (currentValue: IRenderable, index: number): void => {
-            builder += currentValue.render();
+          (currentValue: Composable, index: number): void => {
+            builder += currentValue.render(context);
             builder += "\n";
           },
         );
     }
     const header: string = headerTemplate
       .replace("@0", `${context.path}::${context.name}`)
-      .replace("@1", Module.getHash(builder));
+      .replace(
+        "@1",
+        this.bespokes()
+          .join(", "),
+      )
+      .replace("@2", Module.getHash(builder));
 
     return header + builder;
   }

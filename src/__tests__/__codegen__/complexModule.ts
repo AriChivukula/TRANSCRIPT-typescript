@@ -2,7 +2,8 @@
  * DO NOT MANUALLY EDIT; this file is fully generated.
  *
  * SOURCE<<src/__tests__/setup.ts::complexModule>>
- * SIGNED<<wcr1yMaXCCB3iEqiimBfq9YINHy6wd9H84sgGS1Pt13vc0t+dUkIdS41weC2QZ2oedIIzSZDHnllAzrg/xU4Wg==>>
+ * BESPOKE<<TEST1, test2, 3tESt3>>
+ * SIGNED<<nmkWQkEtrUFwAEDS+dGuFU6thm//ZioYADZ+ISqCZOIrQhPvlk/LFJnPO9vGmg4xpqU/NHPsi2wzRT0sqd7/GQ==>>
  */
 
 import { B, c } from "a";
@@ -16,6 +17,15 @@ import fff from "./ddd";
 import * as mmm from "./mmm";
 import { A, wA } from "./R";
 
-let immutableVariable: number | null | undefined = 1;
+/* BESPOKE START <<TEST1>> */
+"DO NOT DELETE"
+/* BESPOKE END <<TEST1>> */
+/* BESPOKE START <<test2>> */
+// DO NOT DELETE
+/* BESPOKE END <<test2>> */
+let mutableVariable: number | null | undefined = 1;
 export const exportedVariable: string;
+/* BESPOKE START <<3tESt3>> */
+/* DO NOT DELETE */
+/* BESPOKE END <<3tESt3>> */
 const immutableVariable: string | undefined = "TEST";

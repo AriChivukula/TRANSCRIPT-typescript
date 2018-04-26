@@ -2,9 +2,15 @@
  * DO NOT MANUALLY EDIT; this file is fully generated.
  *
  * SOURCE<<src/__tests__/setup.ts::contentModule>>
- * SIGNED<<fNltSHlXsT6mEyMB/A72TS7OWFFZAOf2oPHFhADksuZb5aWjUzNZg02YbXu8WitawRZfor1yIc9YzJbIanNnog==>>
+ * BESPOKE<<TEST1, test2>>
+ * SIGNED<<NfBFCBG5Qpw9WVyjQk7VNNcIB3HEZ30PQyVyZ/qjt89MsnKFzkZRQtnLrGHWOlLzg7WunFcKApub8UpgzBq/oQ==>>
  */
 
+/* BESPOKE START <<TEST1>> */
+"DO NOT DELETE"
+/* BESPOKE END <<TEST1>> */
 export const exportedVariable: string;
 const immutableVariable: string | undefined = "TEST";
-let immutableVariable: number | null | undefined = 1;
+let mutableVariable: number | null | undefined = 1;
+/* BESPOKE START <<test2>> */
+/* BESPOKE END <<test2>> */

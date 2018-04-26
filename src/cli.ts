@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import { existsSync, mkdirSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { Glob, IGlob } from "glob";
 import { dirname, sep } from "path";
 
-import { Module } from "./index";
+import { endTemplate, Module, startTemplate } from "./index";
 
 ((): IGlob => new Glob(getFileGlob(), {}, codegenFileGlob))();
 
@@ -45,11 +45,57 @@ function codegenModule(module: Module, path: string, name: string): void {
         mkdirSync(dirBuilder);
       }
     });
-  writeFileSync(
+  codegenModuleWithBespokes(
+    module.bespokes(),
     module.destination(),
-    module.print({
+    module.render({
       name,
       path,
     }),
   );
+}
+
+function codegenModuleWithBespokes(
+  bespokes: string[],
+  destination: string,
+  module: string,
+): void {
+  let mutableModule: string = module;
+  if (existsSync(destination)) {
+    const originalModule: string = readFileSync(destination, "ascii");
+    bespokes.forEach((bespoke: string) => {
+      mutableModule = codegenModuleWithBespoke(
+        bespoke,
+        mutableModule,
+        originalModule,
+      );
+    });
+  }
+  writeFileSync(destination, mutableModule);
+}
+
+function codegenModuleWithBespoke(
+  bespoke: string,
+  module: string,
+  originalModule: string,
+): string {
+  const start: string = startTemplate.replace("@0", bespoke);
+  const end: string = endTemplate.replace("@0", bespoke);
+  const originalStartIdx: number = originalModule.indexOf(start);
+  const originalEndIdx: number = originalModule.indexOf(end);
+  if (originalStartIdx === -1 || originalEndIdx === -1) {
+    return module;
+  }
+  const customCode: string = originalModule.slice(
+    originalStartIdx + start.length,
+    originalEndIdx - 1,
+  );
+  const startIdx: number = module.indexOf(start);
+  if (startIdx === -1) {
+    return module;
+  }
+  const moduleStart: string = module.slice(0, startIdx + start.length);
+  const moduleEnd: string = module.slice(startIdx + start.length);
+
+  return moduleStart + customCode + moduleEnd;
 }

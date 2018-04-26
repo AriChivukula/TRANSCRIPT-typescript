@@ -1,10 +1,24 @@
 import {
+  Bespoke,
+  Composable,
   EVariableKind,
   Import,
-  IRenderable,
   Module,
+  Renderable,
   Variable,
 } from "../index";
+
+export const bespoke1: Composable = Bespoke.new({
+  name: "TEST1",
+});
+
+export const bespoke2: Composable = Bespoke.new({
+  name: "test2",
+});
+
+export const bespoke3: Composable = Bespoke.new({
+  name: "3tESt3",
+});
 
 export const importAll1: Import = Import.new({
   module: "YYY",
@@ -51,43 +65,45 @@ export const importSome3: Import = Import.new({
   names: ["g", "z", "r"],
 });
 
-export const exportedVariable: IRenderable = Variable.new({
+export const exportedVariable: Composable = Variable.new({
   kind: EVariableKind.EXPORTED,
   name: "exportedVariable",
   type: "string",
 });
 
-export const immutableVariable: IRenderable = Variable.new({
+export const immutableVariable: Composable = Variable.new({
   assignment: "\"TEST\"",
   kind: EVariableKind.IMMUTABLE,
   name: "immutableVariable",
   type: "string | undefined",
 });
 
-export const mutableVariable: IRenderable = Variable.new({
+export const mutableVariable: Composable = Variable.new({
   assignment: "1",
   kind: EVariableKind.MUTABLE,
-  name: "immutableVariable",
+  name: "mutableVariable",
   type: "number | null | undefined",
 });
 
-export const emptyModule: Module = Module.new({
+export const emptyModule: Renderable = Module.new({
   content: [],
   destination: "src/__tests__/__codegen__/emptyModule.ts",
   imports: [],
 });
 
-export const contentModule: Module = Module.new({
+export const contentModule: Renderable = Module.new({
   content: [
+    bespoke1,
     exportedVariable,
     immutableVariable,
     mutableVariable,
+    bespoke2,
   ],
   destination: "src/__tests__/__codegen__/contentModule.ts",
   imports: [],
 });
 
-export const importModule: Module = Module.new({
+export const importModule: Renderable = Module.new({
   content: [],
   destination: "src/__tests__/__codegen__/importModule.ts",
   imports: [
@@ -103,10 +119,13 @@ export const importModule: Module = Module.new({
   ],
 });
 
-export const complexModule: Module = Module.new({
+export const complexModule: Renderable = Module.new({
   content: [
+    bespoke1,
+    bespoke2,
     mutableVariable,
     exportedVariable,
+    bespoke3,
     immutableVariable,
   ],
   destination: "src/__tests__/__codegen__/complexModule.ts",

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bespoke1 1`] = `
+"/* BESPOKE START <<TEST1>> */
+/* BESPOKE END <<TEST1>> */"
+`;
+
+exports[`bespoke2 1`] = `
+"/* BESPOKE START <<test2>> */
+/* BESPOKE END <<test2>> */"
+`;
+
+exports[`bespoke3 1`] = `
+"/* BESPOKE START <<3tESt3>> */
+/* BESPOKE END <<3tESt3>> */"
+`;
