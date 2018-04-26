@@ -1,8 +1,8 @@
 import { Composable, IRenderContext } from "./internal";
 
-const startTemplate: string = "/* BESPOKE START <<@0>> */";
+export const startTemplate: string = "/* BESPOKE START <<@0>> */";
 
-const endTemplate: string = "/* BESPOKE END <<@0>> */";
+export const endTemplate: string = "/* BESPOKE END <<@0>> */";
 
 export interface IBespoke {
   name: string;
