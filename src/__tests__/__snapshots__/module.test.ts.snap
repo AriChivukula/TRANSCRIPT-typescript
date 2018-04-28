@@ -2,12 +2,12 @@
 
 exports[`complexModule 1`] = `
 "/**
- * DO NOT MANUALLY EDIT; this file is fully generated.
- *
- * SOURCE<<src/__tests__/module.test.ts::complexModule>>
- * BESPOKE<<TEST1, test2, 3tESt3>>
- * SIGNED<<LMY7/o13sqFzqmW1iywmaHiCJxlJA1vdE29jNkXzS6zg/DRctEbvEZGOOqfm0yrrxcHLEsXioQuyq7kRWGvdBg==>>
- */
+  * This file is partially generated; only edit bespoke sections.
+  *
+  * SOURCE<<src/__tests__/module.test.ts::complexModule>>
+  * BESPOKE<<TEST1, test2, 3tESt3>>
+  * SIGNED<<LMY7/o13sqFzqmW1iywmaHiCJxlJA1vdE29jNkXzS6zg/DRctEbvEZGOOqfm0yrrxcHLEsXioQuyq7kRWGvdBg==>>
+  */
 
 import \\"./p\\";
 import \\"aqe\\";
@@ -38,12 +38,12 @@ const immutableVariable: string | undefined = \\"TEST\\";
 
 exports[`contentModule 1`] = `
 "/**
- * DO NOT MANUALLY EDIT; this file is fully generated.
- *
- * SOURCE<<src/__tests__/module.test.ts::contentModule>>
- * BESPOKE<<TEST1, test2>>
- * SIGNED<<NfBFCBG5Qpw9WVyjQk7VNNcIB3HEZ30PQyVyZ/qjt89MsnKFzkZRQtnLrGHWOlLzg7WunFcKApub8UpgzBq/oQ==>>
- */
+  * This file is partially generated; only edit bespoke sections.
+  *
+  * SOURCE<<src/__tests__/module.test.ts::contentModule>>
+  * BESPOKE<<TEST1, test2>>
+  * SIGNED<<NfBFCBG5Qpw9WVyjQk7VNNcIB3HEZ30PQyVyZ/qjt89MsnKFzkZRQtnLrGHWOlLzg7WunFcKApub8UpgzBq/oQ==>>
+  */
 
 /* BESPOKE START <<TEST1>> */
 /* BESPOKE END <<TEST1>> */
@@ -57,10 +57,9 @@ let mutableVariable: number | null | undefined = 1;
 
 exports[`emptyModule 1`] = `
 "/**
- * DO NOT MANUALLY EDIT; this file is fully generated.
+ * This file is fully generated; do not manually edit.
  *
  * SOURCE<<src/__tests__/module.test.ts::emptyModule>>
- * BESPOKE<<>>
  * SIGNED<<vmiIOMqGhuXJBom/KrWFzvETfJmbSMcLkvZ6XDTcFWl7XRHJgu1tcb4eHn97TgcziEqpfD96M5qO0DV3z3S+CQ==>>
  */
 "
@@ -68,10 +67,9 @@ exports[`emptyModule 1`] = `
 
 exports[`importModule 1`] = `
 "/**
- * DO NOT MANUALLY EDIT; this file is fully generated.
+ * This file is fully generated; do not manually edit.
  *
  * SOURCE<<src/__tests__/module.test.ts::importModule>>
- * BESPOKE<<>>
  * SIGNED<<A+OPMs3f2biYCBEmn2gx+xm95H8M+RztVMw7uiubU6cTZT6/UHjsg1bIrG6/pxPIluYiV6zOomLcbPNsHznYxg==>>
  */
 

@@ -3,13 +3,20 @@ import { createHash, Hash } from "crypto";
 import { Import } from "./import";
 import { Composable, IRenderContext, Renderable } from "./internal";
 
-const headerTemplate: string = `/**
- * DO NOT MANUALLY EDIT; this file is fully generated.
+const headerTemplateWithoutBespoke: string = `/**
+ * This file is fully generated; do not manually edit.
  *
  * SOURCE<<@0>>
- * BESPOKE<<@1>>
- * SIGNED<<@2>>
+ * SIGNED<<@1>>
  */`;
+
+const headerTemplateWithBespoke: string = `/**
+  * This file is partially generated; only edit bespoke sections.
+  *
+  * SOURCE<<@0>>
+  * BESPOKE<<@1>>
+  * SIGNED<<@2>>
+  */`;
 
 export interface IModule {
   content: Composable[];
@@ -60,14 +67,18 @@ export class Module extends Renderable {
           },
         );
     }
-    const header: string = headerTemplate
-      .replace("@0", `${context.path}::${context.name}`)
-      .replace(
-        "@1",
-        this.bespokes()
-          .join(", "),
-      )
-      .replace("@2", Module.getHash(builder));
+    const bespokes: string[] = this.bespokes();
+    let header: string = "";
+    if (bespokes.length > 0) {
+      header = headerTemplateWithBespoke
+        .replace("@0", `${context.path}::${context.name}`)
+        .replace("@1", bespokes.join(", "))
+        .replace("@2", Module.getHash(builder));
+    } else {
+      header = headerTemplateWithoutBespoke
+        .replace("@0", `${context.path}::${context.name}`)
+        .replace("@1", Module.getHash(builder));
+    }
 
     return header + builder;
   }

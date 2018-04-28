@@ -1,8 +1,7 @@
 /**
- * DO NOT MANUALLY EDIT; this file is fully generated.
+ * This file is fully generated; do not manually edit.
  *
  * SOURCE<<src/__tests__/setup.ts::importModule>>
- * BESPOKE<<>>
  * SIGNED<<A+OPMs3f2biYCBEmn2gx+xm95H8M+RztVMw7uiubU6cTZT6/UHjsg1bIrG6/pxPIluYiV6zOomLcbPNsHznYxg==>>
  */
 
