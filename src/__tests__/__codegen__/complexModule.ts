@@ -1,10 +1,10 @@
 /**
- * DO NOT MANUALLY EDIT; this file is fully generated.
- *
- * SOURCE<<src/__tests__/setup.ts::complexModule>>
- * BESPOKE<<TEST1, test2, 3tESt3>>
- * SIGNED<<LMY7/o13sqFzqmW1iywmaHiCJxlJA1vdE29jNkXzS6zg/DRctEbvEZGOOqfm0yrrxcHLEsXioQuyq7kRWGvdBg==>>
- */
+  * This file is partially generated; only edit bespoke sections.
+  *
+  * SOURCE<<src/__tests__/setup.ts::complexModule>>
+  * BESPOKE<<TEST1, test2, 3tESt3>>
+  * SIGNED<<LMY7/o13sqFzqmW1iywmaHiCJxlJA1vdE29jNkXzS6zg/DRctEbvEZGOOqfm0yrrxcHLEsXioQuyq7kRWGvdBg==>>
+  */
 
 import "./p";
 import "aqe";

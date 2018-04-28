@@ -1,10 +1,10 @@
 /**
- * DO NOT MANUALLY EDIT; this file is fully generated.
- *
- * SOURCE<<src/__tests__/setup.ts::contentModule>>
- * BESPOKE<<TEST1, test2>>
- * SIGNED<<NfBFCBG5Qpw9WVyjQk7VNNcIB3HEZ30PQyVyZ/qjt89MsnKFzkZRQtnLrGHWOlLzg7WunFcKApub8UpgzBq/oQ==>>
- */
+  * This file is partially generated; only edit bespoke sections.
+  *
+  * SOURCE<<src/__tests__/setup.ts::contentModule>>
+  * BESPOKE<<TEST1, test2>>
+  * SIGNED<<NfBFCBG5Qpw9WVyjQk7VNNcIB3HEZ30PQyVyZ/qjt89MsnKFzkZRQtnLrGHWOlLzg7WunFcKApub8UpgzBq/oQ==>>
+  */
 
 /* BESPOKE START <<TEST1>> */
 "DO NOT DELETE"
