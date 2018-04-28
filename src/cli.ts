@@ -1,37 +1,36 @@
 #!/usr/bin/env node
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
-import { Glob, IGlob } from "glob";
 import { dirname, sep } from "path";
 
 import { endTemplate, Module, startTemplate } from "./index";
 
-((): IGlob => new Glob(getFileGlob(), {}, codegenFileGlob))();
+getFiles()
+  .forEach(codegenFile);
 
-function getFileGlob(): string {
-  const minArgLength: number = 2;
-  if (process.argv.length < minArgLength) {
+function getFiles(): string[] {
+  const commandIndex: number = process.argv
+    .findIndex((elt: string) => /cli\.(j|t)s/.test(elt));
+  if (commandIndex === -1 || process.argv.length === commandIndex + 1) {
     throw new Error("Usage is `typescriptase GLOB`");
   }
 
-  return process.argv[process.argv.length - 1];
-}
-
-function codegenFileGlob(err: Error | null, paths: string[]): void {
-  if (err !== null) {
-    throw err;
-  }
-  paths.forEach(codegenFile);
+  return process.argv.slice(commandIndex + 1);
 }
 
 function codegenFile(path: string): void {
-  // tslint:disable-next-line
-  const file: { [index: string]: any } = require(`${process.cwd()}/${path}`);
-  for (const name in file) {
-    if (file[name] instanceof Module) {
-      // tslint:disable-next-line
-      codegenModule(file[name], path, name);
+  try {
+    // tslint:disable-next-line
+    const file: { [index: string]: any } = require(`${process.cwd()}/${path}`);
+    for (const name in file) {
+      if (file[name] instanceof Module) {
+        // tslint:disable-next-line
+        codegenModule(file[name], path, name);
+      }
     }
+  } catch (err) {
+    // tslint:disable-next-line
+    console.log(err);
   }
 }
 
