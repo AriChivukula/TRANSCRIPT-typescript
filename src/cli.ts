@@ -10,7 +10,7 @@ getFiles()
 
 function getFiles(): string[] {
   const commandIndex: number = process.argv
-    .findIndex((elt: string) => /cli\.(j|t)s/.test(elt));
+    .findIndex((elt: string) => /typescriptase/.test(elt));
   if (commandIndex === -1 || process.argv.length === commandIndex + 1) {
     throw new Error("Usage is `typescriptase GLOB`");
   }
