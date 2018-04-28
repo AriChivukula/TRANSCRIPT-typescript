@@ -11,12 +11,12 @@ const headerTemplateWithoutBespoke: string = `/**
  */`;
 
 const headerTemplateWithBespoke: string = `/**
-  * This file is partially generated; only edit bespoke sections.
-  *
-  * SOURCE<<@0>>
-  * BESPOKE<<@1>>
-  * SIGNED<<@2>>
-  */`;
+ * This file is partially generated; only edit bespoke sections.
+ *
+ * SOURCE<<@0>>
+ * BESPOKE<<@1>>
+ * SIGNED<<@2>>
+ */`;
 
 export interface IModule {
   content: Composable[];
