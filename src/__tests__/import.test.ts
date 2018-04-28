@@ -5,6 +5,9 @@ import {
   importDefault1,
   importDefault2,
   importDefault3,
+  importRaw1,
+  importRaw2,
+  importRaw3,
   importSome1,
   importSome2,
   importSome3,
@@ -70,6 +73,39 @@ test(
   async (): Promise<void> => {
     expect(importDefault3.render({
       name: "importDefault3",
+      path: "src/__tests__/import.test.ts",
+    }))
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "importRaw1",
+  async (): Promise<void> => {
+    expect(importRaw1.render({
+      name: "importRaw1",
+      path: "src/__tests__/import.test.ts",
+    }))
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "importRaw2",
+  async (): Promise<void> => {
+    expect(importRaw2.render({
+      name: "importRaw2",
+      path: "src/__tests__/import.test.ts",
+    }))
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "importRaw3",
+  async (): Promise<void> => {
+    expect(importRaw3.render({
+      name: "importRaw3",
       path: "src/__tests__/import.test.ts",
     }))
       .toMatchSnapshot();

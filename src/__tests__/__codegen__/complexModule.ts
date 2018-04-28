@@ -3,8 +3,12 @@
  *
  * SOURCE<<src/__tests__/setup.ts::complexModule>>
  * BESPOKE<<TEST1, test2, 3tESt3>>
- * SIGNED<<nmkWQkEtrUFwAEDS+dGuFU6thm//ZioYADZ+ISqCZOIrQhPvlk/LFJnPO9vGmg4xpqU/NHPsi2wzRT0sqd7/GQ==>>
+ * SIGNED<<LMY7/o13sqFzqmW1iywmaHiCJxlJA1vdE29jNkXzS6zg/DRctEbvEZGOOqfm0yrrxcHLEsXioQuyq7kRWGvdBg==>>
  */
+
+import "./p";
+import "aqe";
+import "ZZZ";
 
 import { B, c } from "a";
 import * as aaa from "BbB";

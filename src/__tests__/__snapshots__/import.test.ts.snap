@@ -30,6 +30,21 @@ exports[`importDefault3 1`] = `
 "
 `;
 
+exports[`importRaw1 1`] = `
+"import \\"ZZZ\\";
+"
+`;
+
+exports[`importRaw2 1`] = `
+"import \\"./p\\";
+"
+`;
+
+exports[`importRaw3 1`] = `
+"import \\"aqe\\";
+"
+`;
+
 exports[`importSome1 1`] = `
 "import { B, c } from \\"a\\";
 "

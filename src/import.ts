@@ -10,12 +10,16 @@ export interface IImportDefault {
   nameDefault: string;
 }
 
+export interface IImportRaw {
+  module: string;
+}
+
 export interface IImportSome {
   module: string;
   names: string[];
 }
 
-export type TImport = IImportAll | IImportDefault | IImportSome;
+export type TImport = IImportAll | IImportDefault | IImportRaw | IImportSome;
 
 export class Import extends Renderable {
 
@@ -34,6 +38,17 @@ export class Import extends Renderable {
     builder += Import.renderSection(
       imports
         .filter(
+          (i: Import): boolean => Object.keys(i.props).length === 1,
+        )
+        .sort((a: Import, b: Import) => Import.sort(a, b)),
+      context,
+    );
+    builder += Import.renderSection(
+      imports
+        .filter(
+          (i: Import): boolean => Object.keys(i.props).length > 1,
+        )
+        .filter(
           (i: Import): boolean => !i.props.module.startsWith("."),
         )
         .sort((a: Import, b: Import) => Import.sort(a, b)),
@@ -41,6 +56,9 @@ export class Import extends Renderable {
     );
     builder += Import.renderSection(
       imports
+        .filter(
+          (i: Import): boolean => Object.keys(i.props).length > 1,
+        )
         .filter(
           (i: Import): boolean => i.props.module.startsWith("."),
         )
@@ -89,7 +107,7 @@ export class Import extends Renderable {
         .join(", ");
       builder += `import { ${name} } from "${this.props.module}";\n`;
     } else {
-      throw new Error(`Unexpected import type ${this.props}`);
+      builder += `import "${this.props.module}";\n`;
     }
 
     return builder;

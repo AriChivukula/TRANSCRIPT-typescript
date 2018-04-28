@@ -50,6 +50,18 @@ export const importDefault3: Import = Import.new({
   nameDefault: "ooo",
 });
 
+export const importRaw1: Import = Import.new({
+  module: "ZZZ",
+});
+
+export const importRaw2: Import = Import.new({
+  module: "./p",
+});
+
+export const importRaw3: Import = Import.new({
+  module: "aqe",
+});
+
 export const importSome1: Import = Import.new({
   module: "a",
   names: ["B", "c"],
@@ -113,6 +125,9 @@ export const importModule: Renderable = Module.new({
     importDefault1,
     importDefault2,
     importDefault3,
+    importRaw1,
+    importRaw2,
+    importRaw3,
     importSome1,
     importSome2,
     importSome3,
@@ -130,6 +145,7 @@ export const complexModule: Renderable = Module.new({
   ],
   destination: "src/__tests__/__codegen__/complexModule.ts",
   imports: [
+    importRaw1,
     importSome3,
     importSome2,
     importSome1,
@@ -137,6 +153,8 @@ export const complexModule: Renderable = Module.new({
     importDefault2,
     importDefault1,
     importAll3,
+    importRaw2,
+    importRaw3,
     importAll2,
     importAll1,
   ],
