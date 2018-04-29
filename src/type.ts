@@ -1,4 +1,4 @@
-import { IContext, IRenderable } from "./internal";
+import { IContext, Renderable } from "./internal";
 
 export interface IType {
   assignment: string;
@@ -6,7 +6,7 @@ export interface IType {
   name: string;
 }
 
-export class Type implements IRenderable {
+export class Type extends Renderable {
 
   public static new(props: IType): Type {
     return new Type(props);
@@ -14,7 +14,9 @@ export class Type implements IRenderable {
 
   private constructor(
     private readonly props: IType,
-  ) {}
+  ) {
+    super();
+  }
 
   public bespokes(): string[] {
     return [];

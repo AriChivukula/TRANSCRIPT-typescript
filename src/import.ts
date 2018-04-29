@@ -1,4 +1,4 @@
-import { IContext, IRenderable } from "./internal";
+import { IContext, Renderable } from "./internal";
 
 export enum EImportKind {
   GLOBAL,
@@ -27,7 +27,7 @@ export interface IImportSome {
 
 export type TImport = IImportAll | IImportDefault | IImportRaw | IImportSome;
 
-export class Import implements IRenderable {
+export class Import extends Renderable {
 
   public static new(props: TImport): Import {
     return new Import(props);
@@ -35,7 +35,9 @@ export class Import implements IRenderable {
 
   private constructor(
     private readonly props: TImport,
-  ) {}
+  ) {
+    super();
+  }
 
   public bespokes(): string[] {
     return [];

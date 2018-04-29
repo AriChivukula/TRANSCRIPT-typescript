@@ -1,4 +1,4 @@
-import { IContext, IRenderable } from "./internal";
+import { IContext, Renderable } from "./internal";
 
 export enum EVariableKind {
   EXPORTED,
@@ -13,7 +13,7 @@ export interface IVariable {
   type: string;
 }
 
-export class Variable implements IRenderable {
+export class Variable extends Renderable {
 
   public static new(props: IVariable): Variable {
     return new Variable(props);
@@ -21,7 +21,9 @@ export class Variable implements IRenderable {
 
   private constructor(
     private readonly props: IVariable,
-  ) {}
+  ) {
+    super();
+  }
 
   public bespokes(): string[] {
     return [];

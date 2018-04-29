@@ -1,7 +1,7 @@
 import { createHash, Hash } from "crypto";
 
 import { EImportKind, Import } from "./import";
-import { IContext, IRenderable } from "./internal";
+import { IContext, Renderable } from "./internal";
 
 const headerTemplateWithoutBespoke: string = `/**
  * This file is fully generated; do not manually edit.
@@ -19,11 +19,11 @@ const headerTemplateWithBespoke: string = `/**
  */`;
 
 export interface IModule {
-  content: IRenderable[];
+  content: Renderable[];
   destination: string;
 }
 
-export class Module {
+export class Module extends Renderable {
 
   public static new(props: IModule): Module {
     return new Module(props);
@@ -90,7 +90,7 @@ export class Module {
 
   private static renderNonImports(
     context: IContext,
-    nonImports: IRenderable[],
+    nonImports: Renderable[],
   ): string {
     let builder: string = "";
     if (nonImports.length === 0) {
@@ -99,7 +99,7 @@ export class Module {
 
     nonImports
       .forEach(
-        (currentValue: IRenderable): void => {
+        (currentValue: Renderable): void => {
           builder += currentValue.render(context);
         },
       );
@@ -109,12 +109,14 @@ export class Module {
 
   private constructor(
     private readonly props: IModule,
-  ) {}
+  ) {
+    super();
+  }
 
   public bespokes(): string[] {
     const bespokes: string[][] = this.props.content
       .map(
-        (content: IRenderable) => content.bespokes(),
+        (content: Renderable) => content.bespokes(),
       );
 
     return ([] as string[]).concat(...bespokes);
@@ -129,7 +131,7 @@ export class Module {
 
     const imports: Import[] = this.props.content
       .filter(
-        (i: IRenderable): i is Import => i instanceof Import,
+        (i: Renderable): i is Import => i instanceof Import,
       )
       .sort(
         (a: Import, b: Import) => a.sortKey()
@@ -140,9 +142,9 @@ export class Module {
       builder += "\n";
     }
 
-    const nonImports: IRenderable[] = this.props.content
+    const nonImports: Renderable[] = this.props.content
       .filter(
-        (i: IRenderable): boolean => !(i instanceof Import),
+        (i: Renderable): boolean => !(i instanceof Import),
       );
     builder += Module.renderNonImports(context, nonImports);
     if (builder.length === 0) {
@@ -163,5 +165,9 @@ export class Module {
     }
 
     return header + builder;
+  }
+
+  public sortKey(): string {
+    throw new Error("This should never be called");
   }
 }

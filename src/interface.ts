@@ -1,4 +1,4 @@
-import { IContext, IRenderable } from "./internal";
+import { IContext, Renderable } from "./internal";
 
 export interface IInterface {
   exported: boolean;
@@ -6,7 +6,7 @@ export interface IInterface {
   types: { [index: string]: string};
 }
 
-export class Interface implements IRenderable {
+export class Interface extends Renderable {
 
   public static new(props: IInterface): Interface {
     return new Interface(props);
@@ -14,7 +14,9 @@ export class Interface implements IRenderable {
 
   private constructor(
     private readonly props: IInterface,
-  ) {}
+  ) {
+    super();
+  }
 
   public bespokes(): string[] {
     return [];

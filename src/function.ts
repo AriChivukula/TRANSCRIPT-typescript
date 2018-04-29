@@ -1,15 +1,15 @@
-import { IContext, IRenderable } from "./internal";
+import { IContext, Renderable } from "./internal";
 
 export interface IFunction {
   async: boolean;
-  content: IRenderable[];
+  content: Renderable[];
   exported: boolean;
   inputs: { [index: string]: string};
   name: string;
   output: string;
 }
 
-export class Function implements IRenderable {
+export class Function extends Renderable {
 
   public static new(props: IFunction): Function {
     return new Function(props);
@@ -17,11 +17,13 @@ export class Function implements IRenderable {
 
   private constructor(
     private readonly props: IFunction,
-  ) {}
+  ) {
+    super();
+  }
 
   public bespokes(): string[] {
     const bespokes: string[][] = this.props.content
-      .map((content: IRenderable) => content.bespokes());
+      .map((content: Renderable) => content.bespokes());
 
     return ([] as string[]).concat(...bespokes);
   }
@@ -41,7 +43,7 @@ export class Function implements IRenderable {
     builder += `): ${this.props.output} {\n`;
     this.props.content
       .forEach(
-        (content: IRenderable): void => {
+        (content: Renderable): void => {
           const line: string = content
             .render(context)
             .trim()

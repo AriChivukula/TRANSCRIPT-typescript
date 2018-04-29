@@ -3,9 +3,11 @@ export interface IContext {
   path: string;
 }
 
-export interface IRenderable {
+export abstract class Renderable {
 
-  bespokes(): string[];
-  render(ctx: IContext): string;
-  sortKey(): string;
+  public abstract bespokes(): string[];
+
+  public abstract render(ctx: IContext): string;
+
+  public abstract sortKey(): string;
 }
