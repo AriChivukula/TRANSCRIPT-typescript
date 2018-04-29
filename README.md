@@ -1,2 +1,1 @@
-# typescriptase
-TypeScript Codegen
+# TypeScript Codegen
