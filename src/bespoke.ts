@@ -24,7 +24,11 @@ export class Bespoke extends Renderable {
     return [this.props.name];
   }
 
-  public render(context: IContext): string {
+  public identifiers(): string[] {
+    return [this.props.name];
+  }
+
+  protected renderImpl(context: IContext): string {
     let builder: string = "\n";
     builder += startTemplate.replace("@0", this.props.name);
     builder += "\n";
@@ -32,9 +36,5 @@ export class Bespoke extends Renderable {
     builder += "\n";
 
     return builder;
-  }
-
-  public sortKey(): string {
-    return this.props.name;
   }
 }

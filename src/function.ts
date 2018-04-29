@@ -28,7 +28,11 @@ export class Function extends Renderable {
     return ([] as string[]).concat(...bespokes);
   }
 
-  public render(context: IContext): string {
+  public identifiers(): string[] {
+    return [this.props.name];
+  }
+
+  protected renderImpl(context: IContext): string {
     let builder: string = "\n";
     if (this.props.exported) {
       builder += "export ";
@@ -54,9 +58,5 @@ export class Function extends Renderable {
     builder += "}\n";
 
     return builder;
-  }
-
-  public sortKey(): string {
-    return this.props.name;
   }
 }

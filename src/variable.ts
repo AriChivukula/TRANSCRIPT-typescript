@@ -29,7 +29,11 @@ export class Variable extends Renderable {
     return [];
   }
 
-  public render(context: IContext): string {
+  public identifiers(): string[] {
+    return [this.props.name];
+  }
+
+  protected renderImpl(context: IContext): string {
     let builder: string = "\n";
     switch (this.props.kind) {
       case EVariableKind.EXPORTED: {
@@ -56,9 +60,5 @@ export class Variable extends Renderable {
     }
 
     return `${builder}\n`;
-  }
-
-  public sortKey(): string {
-    return this.props.name;
   }
 }

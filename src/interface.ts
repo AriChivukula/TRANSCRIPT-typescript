@@ -22,7 +22,11 @@ export class Interface extends Renderable {
     return [];
   }
 
-  public render(context: IContext): string {
+  public identifiers(): string[] {
+    return [this.props.name];
+  }
+
+  protected renderImpl(context: IContext): string {
     let builder: string = "\n";
     if (this.props.exported) {
       builder += "export ";
@@ -34,9 +38,5 @@ export class Interface extends Renderable {
     builder += "}\n";
 
     return builder;
-  }
-
-  public sortKey(): string {
-    return this.props.name;
   }
 }

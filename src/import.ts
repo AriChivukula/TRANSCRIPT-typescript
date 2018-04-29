@@ -43,6 +43,10 @@ export class Import extends Renderable {
     return [];
   }
 
+  public identifiers(): string[] {
+    return [this.props.module];
+  }
+
   public kind(): EImportKind {
     if (Object.keys(this.props).length === 1) {
       return EImportKind.RAW;
@@ -53,7 +57,7 @@ export class Import extends Renderable {
     }
   }
 
-  public render(context: IContext): string {
+  protected renderImpl(context: IContext): string {
     let builder: string = "";
     if ("nameAll" in this.props) {
       builder += `import * as ${this.props.nameAll} from "${this.props.module}";`;
@@ -76,9 +80,5 @@ export class Import extends Renderable {
     }
 
     return `${builder}`;
-  }
-
-  public sortKey(): string {
-    return this.props.module;
   }
 }

@@ -7,7 +7,11 @@ export abstract class Renderable {
 
   public abstract bespokes(): string[];
 
-  public abstract render(ctx: IContext): string;
+  public abstract identifiers(): string[];
 
-  public abstract sortKey(): string;
+  public render(context: IContext): string {
+    return this.renderImpl(context);
+  }
+
+  protected abstract renderImpl(context: IContext): string;
 }

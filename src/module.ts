@@ -126,7 +126,16 @@ export class Module extends Renderable {
     return this.props.destination;
   }
 
-  public render(context: IContext): string {
+  public identifiers(): string[] {
+    const identifiers: string[][] = this.props.content
+      .map(
+        (content: Renderable) => content.identifiers(),
+      );
+
+    return ([] as string[]).concat(...identifiers);
+  }
+
+  protected renderImpl(context: IContext): string {
     let builder: string = "";
 
     const imports: Import[] = this.props.content
@@ -134,8 +143,8 @@ export class Module extends Renderable {
         (i: Renderable): i is Import => i instanceof Import,
       )
       .sort(
-        (a: Import, b: Import) => a.sortKey()
-          .localeCompare(b.sortKey()),
+        (a: Import, b: Import) => a.identifiers()[0]
+          .localeCompare(b.identifiers()[0]),
       );
     builder += Module.renderImports(context, imports);
     if (builder.length === 0) {
@@ -165,9 +174,5 @@ export class Module extends Renderable {
     }
 
     return header + builder;
-  }
-
-  public sortKey(): string {
-    throw new Error("This should never be called");
   }
 }
