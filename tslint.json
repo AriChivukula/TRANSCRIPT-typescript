@@ -8,12 +8,13 @@
     ]
   },
   "rules": {
+    "ban-types": false,
     "completed-docs": false,
     "max-classes-per-file": false,
     "no-import-side-effect": false,
     "no-inferrable-types": false,
     "no-parameter-properties": false,
-    "only-arrow-functions": [true, "allow-named-functions"],
+    "only-arrow-functions": false,
     "prefer-function-over-method": false
   }
 }

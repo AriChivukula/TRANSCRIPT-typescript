@@ -1,29 +1,27 @@
 import {
   Bespoke,
-  Composable,
   EVariableKind,
   Function,
   Import,
   Interface,
   Module,
-  Renderable,
   Type,
   Variable,
 } from "../index";
 
-export const bespoke1: Composable = Bespoke.new({
+export const bespoke1: Bespoke = Bespoke.new({
   name: "TEST1",
 });
 
-export const bespoke2: Composable = Bespoke.new({
+export const bespoke2: Bespoke = Bespoke.new({
   name: "test2",
 });
 
-export const bespoke3: Composable = Bespoke.new({
+export const bespoke3: Bespoke = Bespoke.new({
   name: "3tESt3",
 });
 
-export const function1: Composable = Function.new({
+export const function1: Function = Function.new({
   async: false,
   content: [],
   exported: false,
@@ -32,7 +30,7 @@ export const function1: Composable = Function.new({
   output: "void",
 });
 
-export const function2: Composable = Function.new({
+export const function2: Function = Function.new({
   async: true,
   content: [],
   exported: true,
@@ -41,7 +39,7 @@ export const function2: Composable = Function.new({
   output: "Promise<string>",
 });
 
-export const function3: Composable = Function.new({
+export const function3: Function = Function.new({
   async: true,
   content: [
     Bespoke.new({
@@ -114,13 +112,13 @@ export const importSome3: Import = Import.new({
   names: ["g", "z", "r"],
 });
 
-export const interface1: Composable = Interface.new({
+export const interface1: Interface = Interface.new({
   exported: false,
   name: "If1",
   types: {},
 });
 
-export const interface2: Composable = Interface.new({
+export const interface2: Interface = Interface.new({
   exported: true,
   name: "If2",
   types: {
@@ -128,7 +126,7 @@ export const interface2: Composable = Interface.new({
   },
 });
 
-export const interface3: Composable = Interface.new({
+export const interface3: Interface = Interface.new({
   exported: true,
   name: "If3",
   types: {
@@ -137,51 +135,50 @@ export const interface3: Composable = Interface.new({
   },
 });
 
-export const type1: Composable = Type.new({
+export const type1: Type = Type.new({
   assignment: "number",
   exported: false,
   name: "Ty1",
 });
 
-export const type2: Composable = Type.new({
+export const type2: Type = Type.new({
   assignment: "string | null",
   exported: true,
   name: "Ty2",
 });
 
-export const type3: Composable = Type.new({
+export const type3: Type = Type.new({
   assignment: "Ty2 | Ty1",
   exported: true,
   name: "Ty3",
 });
 
-export const exportedVariable: Composable = Variable.new({
+export const exportedVariable: Variable = Variable.new({
   kind: EVariableKind.EXPORTED,
   name: "exportedVariable",
   type: "string",
 });
 
-export const immutableVariable: Composable = Variable.new({
+export const immutableVariable: Variable = Variable.new({
   assignment: "\"TEST\"",
   kind: EVariableKind.IMMUTABLE,
   name: "immutableVariable",
   type: "string | undefined",
 });
 
-export const mutableVariable: Composable = Variable.new({
+export const mutableVariable: Variable = Variable.new({
   assignment: "1",
   kind: EVariableKind.MUTABLE,
   name: "mutableVariable",
   type: "number | null | undefined",
 });
 
-export const emptyModule: Renderable = Module.new({
+export const emptyModule: Module = Module.new({
   content: [],
   destination: "src/__tests__/__codegen__/emptyModule.ts",
-  imports: [],
 });
 
-export const contentModule: Renderable = Module.new({
+export const contentModule: Module = Module.new({
   content: [
     type1,
     bespoke1,
@@ -199,13 +196,10 @@ export const contentModule: Renderable = Module.new({
     type3,
   ],
   destination: "src/__tests__/__codegen__/contentModule.ts",
-  imports: [],
 });
 
-export const importModule: Renderable = Module.new({
-  content: [],
-  destination: "src/__tests__/__codegen__/importModule.ts",
-  imports: [
+export const importModule: Module = Module.new({
+  content: [
     importAll1,
     importAll2,
     importAll3,
@@ -219,10 +213,23 @@ export const importModule: Renderable = Module.new({
     importSome2,
     importSome3,
   ],
+  destination: "src/__tests__/__codegen__/importModule.ts",
 });
 
-export const complexModule: Renderable = Module.new({
+export const complexModule: Module = Module.new({
   content: [
+    importRaw1,
+    importSome3,
+    importSome2,
+    importSome1,
+    importDefault3,
+    importDefault2,
+    importDefault1,
+    importAll3,
+    importRaw2,
+    importRaw3,
+    importAll2,
+    importAll1,
     interface1,
     function3,
     bespoke1,
@@ -240,18 +247,4 @@ export const complexModule: Renderable = Module.new({
     function1,
   ],
   destination: "src/__tests__/__codegen__/complexModule.ts",
-  imports: [
-    importRaw1,
-    importSome3,
-    importSome2,
-    importSome1,
-    importDefault3,
-    importDefault2,
-    importDefault1,
-    importAll3,
-    importRaw2,
-    importRaw3,
-    importAll2,
-    importAll1,
-  ],
 });

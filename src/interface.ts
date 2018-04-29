@@ -1,4 +1,4 @@
-import { Composable, IRenderContext } from "./internal";
+import { IContext, IRenderable } from "./internal";
 
 export interface IInterface {
   exported: boolean;
@@ -6,23 +6,21 @@ export interface IInterface {
   types: { [index: string]: string};
 }
 
-export class Interface extends Composable {
+export class Interface implements IRenderable {
 
-  public static new(props: IInterface): Composable {
+  public static new(props: IInterface): Interface {
     return new Interface(props);
   }
 
   private constructor(
     private readonly props: IInterface,
-  ) {
-    super();
-  }
+  ) {}
 
   public bespokes(): string[] {
     return [];
   }
 
-  public render(context: IRenderContext): string {
+  public render(context: IContext): string {
     let builder: string = "\n";
     if (this.props.exported) {
       builder += "export ";
@@ -34,5 +32,9 @@ export class Interface extends Composable {
     builder += "}\n";
 
     return builder;
+  }
+
+  public sortKey(): string {
+    return this.props.name;
   }
 }

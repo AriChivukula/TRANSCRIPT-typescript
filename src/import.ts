@@ -1,4 +1,10 @@
-import { IRenderContext, Renderable } from "./internal";
+import { IContext, IRenderable } from "./internal";
+
+export enum EImportKind {
+  GLOBAL,
+  LOCAL,
+  RAW,
+}
 
 export interface IImportAll {
   module: string;
@@ -21,78 +27,31 @@ export interface IImportSome {
 
 export type TImport = IImportAll | IImportDefault | IImportRaw | IImportSome;
 
-export class Import extends Renderable {
+export class Import implements IRenderable {
 
   public static new(props: TImport): Import {
     return new Import(props);
   }
 
-  public static renderMany(
-    imports: Import[],
-    context: IRenderContext,
-  ): string {
-    let builder: string = "";
-    if (imports.length === 0) {
-      return builder;
-    }
-    builder += "\n";
-    builder += Import.renderSection(
-      imports
-        .filter(
-          (i: Import): boolean => Object.keys(i.props).length === 1,
-        )
-        .sort((a: Import, b: Import) => Import.sort(a, b)),
-      context,
-    );
-    builder += Import.renderSection(
-      imports
-        .filter(
-          (i: Import): boolean => Object.keys(i.props).length > 1,
-        )
-        .filter(
-          (i: Import): boolean => !i.props.module.startsWith("."),
-        )
-        .sort((a: Import, b: Import) => Import.sort(a, b)),
-      context,
-    );
-    builder += Import.renderSection(
-      imports
-        .filter(
-          (i: Import): boolean => Object.keys(i.props).length > 1,
-        )
-        .filter(
-          (i: Import): boolean => i.props.module.startsWith("."),
-        )
-        .sort((a: Import, b: Import) => Import.sort(a, b)),
-      context,
-    );
-
-    return builder;
-  }
-
-  private static renderSection(imports: Import[], context: IRenderContext): string {
-    let builder: string = "";
-    if (imports.length === 0) {
-      return builder;
-    }
-    builder += "\n";
-    imports.forEach((i: Import) => builder += `${i.render(context)}\n`);
-
-    return builder;
-  }
-
-  private static sort(a: Import, b: Import): number {
-    return a.props.module.toLowerCase()
-      .localeCompare(b.props.module.toLowerCase());
-  }
-
   private constructor(
     private readonly props: TImport,
-  ) {
-    super();
+  ) {}
+
+  public bespokes(): string[] {
+    return [];
   }
 
-  public render(context: IRenderContext): string {
+  public kind(): EImportKind {
+    if (Object.keys(this.props).length === 1) {
+      return EImportKind.RAW;
+    } else if (this.props.module.startsWith(".")) {
+      return EImportKind.LOCAL;
+    } else {
+      return EImportKind.GLOBAL;
+    }
+  }
+
+  public render(context: IContext): string {
     let builder: string = "";
     if ("nameAll" in this.props) {
       builder += `import * as ${this.props.nameAll} from "${this.props.module}";`;
@@ -115,5 +74,9 @@ export class Import extends Renderable {
     }
 
     return `${builder}`;
+  }
+
+  public sortKey(): string {
+    return this.props.module;
   }
 }

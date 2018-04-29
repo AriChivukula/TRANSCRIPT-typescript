@@ -1,34 +1,32 @@
-import { Composable, IRenderContext } from "./internal";
+import { IContext, IRenderable } from "./internal";
 
 export interface IFunction {
   async: boolean;
-  content: Composable[];
+  content: IRenderable[];
   exported: boolean;
   inputs: { [index: string]: string};
   name: string;
   output: string;
 }
 
-export class Function extends Composable {
+export class Function implements IRenderable {
 
-  public static new(props: IFunction): Composable {
+  public static new(props: IFunction): Function {
     return new Function(props);
   }
 
   private constructor(
     private readonly props: IFunction,
-  ) {
-    super();
-  }
+  ) {}
 
   public bespokes(): string[] {
     const bespokes: string[][] = this.props.content
-      .map((content: Composable) => content.bespokes());
+      .map((content: IRenderable) => content.bespokes());
 
     return ([] as string[]).concat(...bespokes);
   }
 
-  public render(context: IRenderContext): string {
+  public render(context: IContext): string {
     let builder: string = "\n";
     if (this.props.exported) {
       builder += "export ";
@@ -43,7 +41,7 @@ export class Function extends Composable {
     builder += `): ${this.props.output} {\n`;
     this.props.content
       .forEach(
-        (content: Composable): void => {
+        (content: IRenderable): void => {
           const line: string = content
             .render(context)
             .trim()
@@ -54,5 +52,9 @@ export class Function extends Composable {
     builder += "}\n";
 
     return builder;
+  }
+
+  public sortKey(): string {
+    return this.props.name;
   }
 }

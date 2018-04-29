@@ -1,12 +1,11 @@
-export abstract class Renderable {
-  public abstract render(ctx: IRenderContext): string;
-}
-
-export abstract class Composable extends Renderable {
-  public abstract bespokes(): string[];
-}
-
-export interface IRenderContext {
+export interface IContext {
   name: string;
   path: string;
+}
+
+export interface IRenderable {
+
+  bespokes(): string[];
+  render(ctx: IContext): string;
+  sortKey(): string;
 }

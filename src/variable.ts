@@ -1,4 +1,4 @@
-import { Composable, IRenderContext } from "./internal";
+import { IContext, IRenderable } from "./internal";
 
 export enum EVariableKind {
   EXPORTED,
@@ -13,23 +13,21 @@ export interface IVariable {
   type: string;
 }
 
-export class Variable extends Composable {
+export class Variable implements IRenderable {
 
-  public static new(props: IVariable): Composable {
+  public static new(props: IVariable): Variable {
     return new Variable(props);
   }
 
   private constructor(
     private readonly props: IVariable,
-  ) {
-    super();
-  }
+  ) {}
 
   public bespokes(): string[] {
     return [];
   }
 
-  public render(context: IRenderContext): string {
+  public render(context: IContext): string {
     let builder: string = "\n";
     switch (this.props.kind) {
       case EVariableKind.EXPORTED: {
@@ -56,5 +54,9 @@ export class Variable extends Composable {
     }
 
     return `${builder}\n`;
+  }
+
+  public sortKey(): string {
+    return this.props.name;
   }
 }
