@@ -56,8 +56,10 @@ export class Module extends Renderable {
 
   public render(context: IRenderContext): string {
     let builder: string = Import.renderMany(this.props.imports, context);
-    if (this.props.content.length > 0) {
+    if (builder.length === 0) {
       builder += "\n";
+    }
+    if (this.props.content.length > 0) {
       this.props.content
         .forEach(
           (currentValue: Composable, index: number): void => {

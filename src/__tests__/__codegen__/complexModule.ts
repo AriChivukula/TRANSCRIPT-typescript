@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/setup.ts::complexModule>>
  * BESPOKE<<fn1, TEST1, test2, 3tESt3>>
- * SIGNED<</Ym975X1/1tR6/m7H/uOi5zKh3xwezJx8xufPCcmz9FVu4pAmDohRouqFHdIJG6TuaU4uU5YbPZMnswferFbOg==>>
+ * SIGNED<<4grbYedtWOF/IH9xjJJiQLRm1fmi+4WYQc8C28QkcNZn52ESBtBL71faSqj4HMjjFW5R7ubrC3CmG+KokUPwQg==>>
  */
 
 import "./p";
@@ -30,7 +30,6 @@ import {
   A,
   wA,
 } from "./R";
-
 
 export async function function2(
   var1: string,
