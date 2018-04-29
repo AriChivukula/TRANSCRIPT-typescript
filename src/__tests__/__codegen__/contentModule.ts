@@ -3,8 +3,10 @@
  *
  * SOURCE<<src/__tests__/setup.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn1>>
- * SIGNED<<cAXPVQ7DXIfytdoukTTcA+Gs3AN/PUCu7hyQ30AZMHynoiakouhnS0uOj4LCbZYZOgjPIxre8CpdJpnpnQUv3Q==>>
+ * SIGNED<<jMcjUKe3TFsI61W8gVPGds/crklku3hF/TbsV6X1O1zhMsEo9I2Z8jBfYGIABe7FTyCxLhBYpLJKQZYRTKmvCw==>>
  */
+
+type Ty1 = number;
 
 /* BESPOKE START <<TEST1>> */
 "DO NOT DELETE"
@@ -19,11 +21,13 @@ function function1(
 
 export const exportedVariable: string;
 
+export type Ty2 = string | null;
+
 export async function function2(
 ): Promise<string> {
 }
 
-export interface If1 {
+export interface If3 {
   test: null | string;
   test2: If2;
 }
@@ -44,6 +48,8 @@ export async function function2(
   /* BESPOKE END <<fn1>> */
 }
 
-export interface If1 {
+export interface If2 {
   item: string;
 }
+
+export type Ty3 = Ty2 | Ty1;
