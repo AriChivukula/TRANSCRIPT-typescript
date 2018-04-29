@@ -1,7 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`exportedVariable 1`] = `"export const exportedVariable: string;"`;
+exports[`exportedVariable 1`] = `
+"
+export const exportedVariable: string;
+"
+`;
 
-exports[`immutableVariable 1`] = `"const immutableVariable: string | undefined = \\"TEST\\";"`;
+exports[`immutableVariable 1`] = `
+"
+const immutableVariable: string | undefined = \\"TEST\\";
+"
+`;
 
-exports[`mutableVariable 1`] = `"let mutableVariable: number | null | undefined = 1;"`;
+exports[`mutableVariable 1`] = `
+"
+let mutableVariable: number | null | undefined = 1;
+"
+`;

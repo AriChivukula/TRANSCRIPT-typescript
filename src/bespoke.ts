@@ -25,10 +25,11 @@ export class Bespoke extends Composable {
   }
 
   public render(context: IRenderContext): string {
-    let builder: string = "";
+    let builder: string = "\n";
     builder += startTemplate.replace("@0", this.props.name);
     builder += "\n";
     builder += endTemplate.replace("@0", this.props.name);
+    builder += "\n";
 
     return builder;
   }

@@ -30,7 +30,7 @@ export class Variable extends Composable {
   }
 
   public render(context: IRenderContext): string {
-    let builder: string = "";
+    let builder: string = "\n";
     switch (this.props.kind) {
       case EVariableKind.EXPORTED: {
         builder += "export const ";
@@ -55,6 +55,6 @@ export class Variable extends Composable {
       builder += ";";
     }
 
-    return builder;
+    return `${builder}\n`;
   }
 }

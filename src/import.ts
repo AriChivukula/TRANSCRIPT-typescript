@@ -94,22 +94,25 @@ export class Import extends Renderable {
   public render(context: IRenderContext): string {
     let builder: string = "";
     if ("nameAll" in this.props) {
-      builder += `import * as ${this.props.nameAll} from "${this.props.module}";\n`;
+      builder += `import * as ${this.props.nameAll} from "${this.props.module}";`;
     } else if ("nameDefault" in this.props) {
-      builder += `import ${this.props.nameDefault} from "${this.props.module}";\n`;
+      builder += `import ${this.props.nameDefault} from "${this.props.module}";`;
     } else if ("names" in this.props) {
-      const name: string = this.props.names
+      builder += "import {\n";
+      this.props.names
         .sort(
           (a: string, b: string): number =>
             a.toLowerCase()
               .localeCompare(b.toLowerCase()),
         )
-        .join(", ");
-      builder += `import { ${name} } from "${this.props.module}";\n`;
+        .forEach(
+          (name: string): void => { builder += `  ${name},\n`; },
+        );
+      builder += `} from "${this.props.module}";`;
     } else {
-      builder += `import "${this.props.module}";\n`;
+      builder += `import "${this.props.module}";`;
     }
 
-    return builder;
+    return `${builder}\n`;
   }
 }

@@ -19,18 +19,22 @@ function getFiles(): string[] {
 }
 
 function codegenFile(path: string): void {
+  // tslint:disable-next-line
+  let file: { [index: string]: any };
   try {
     // tslint:disable-next-line
-    const file: { [index: string]: any } = require(`${process.cwd()}/${path}`);
-    for (const name in file) {
-      if (file[name] instanceof Module) {
-        // tslint:disable-next-line
-        codegenModule(file[name], path, name);
-      }
-    }
+    file = require(`${process.cwd()}/${path}`);
   } catch (err) {
     // tslint:disable-next-line
     console.log(err);
+
+    return;
+  }
+  for (const name in file) {
+    if (file[name] instanceof Module) {
+      // tslint:disable-next-line
+      codegenModule(file[name], path, name);
+    }
   }
 }
 
@@ -80,21 +84,31 @@ function codegenModuleWithBespoke(
 ): string {
   const start: string = startTemplate.replace("@0", bespoke);
   const end: string = endTemplate.replace("@0", bespoke);
-  const originalStartIdx: number = originalModule.indexOf(start);
-  const originalEndIdx: number = originalModule.indexOf(end);
+  const originalLines: string[] = originalModule.split("\n");
+  const originalStartIdx: number = originalLines.findIndex(
+    (line: string): boolean => line.indexOf(start) !== -1,
+  );
+  const originalEndIdx: number = originalLines.findIndex(
+    (line: string): boolean => line.indexOf(end) !== -1,
+  );
   if (originalStartIdx === -1 || originalEndIdx === -1) {
     return module;
   }
-  const customCode: string = originalModule.slice(
-    originalStartIdx + start.length,
-    originalEndIdx - 1,
+  const customCode: string[] = originalLines.slice(
+    originalStartIdx + 1,
+    originalEndIdx,
   );
-  const startIdx: number = module.indexOf(start);
-  if (startIdx === -1) {
-    return module;
-  }
-  const moduleStart: string = module.slice(0, startIdx + start.length);
-  const moduleEnd: string = module.slice(startIdx + start.length);
+  const lines: string[] = originalModule.split("\n");
+  const startIdx: number = lines.findIndex(
+    (line: string): boolean => line.indexOf(start) !== -1,
+  );
+  const endIdx: number = lines.findIndex(
+    (line: string): boolean => line.indexOf(end) !== -1,
+  );
+  const moduleStart: string[] = lines.slice(0, startIdx  + 1);
+  const moduleEnd: string[] = lines.slice(endIdx);
 
-  return moduleStart + customCode + moduleEnd;
+  return ([] as string[])
+    .concat(moduleStart, customCode, moduleEnd)
+    .join("\n");
 }
