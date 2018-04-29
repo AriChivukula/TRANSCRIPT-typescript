@@ -4,6 +4,7 @@ import {
   EVariableKind,
   Function,
   Import,
+  Interface,
   Module,
   Renderable,
   Variable,
@@ -112,6 +113,29 @@ export const importSome3: Import = Import.new({
   names: ["g", "z", "r"],
 });
 
+export const interface1: Composable = Interface.new({
+  exported: false,
+  name: "If1",
+  types: {},
+});
+
+export const interface2: Composable = Interface.new({
+  exported: true,
+  name: "If1",
+  types: {
+    item: "string",
+  },
+});
+
+export const interface3: Composable = Interface.new({
+  exported: true,
+  name: "If1",
+  types: {
+    test: "null | string",
+    test2: "If2",
+  },
+});
+
 export const exportedVariable: Composable = Variable.new({
   kind: EVariableKind.EXPORTED,
   name: "exportedVariable",
@@ -141,13 +165,16 @@ export const emptyModule: Renderable = Module.new({
 export const contentModule: Renderable = Module.new({
   content: [
     bespoke1,
+    interface1,
     function1,
     exportedVariable,
     function2,
+    interface3,
     immutableVariable,
     mutableVariable,
     bespoke2,
     function3,
+    interface2,
   ],
   destination: "src/__tests__/__codegen__/contentModule.ts",
   imports: [],
@@ -174,14 +201,17 @@ export const importModule: Renderable = Module.new({
 
 export const complexModule: Renderable = Module.new({
   content: [
+    interface1,
     function3,
     bespoke1,
     bespoke2,
     mutableVariable,
+    interface2,
     function2,
     exportedVariable,
     bespoke3,
     immutableVariable,
+    interface3,
     function1,
   ],
   destination: "src/__tests__/__codegen__/complexModule.ts",

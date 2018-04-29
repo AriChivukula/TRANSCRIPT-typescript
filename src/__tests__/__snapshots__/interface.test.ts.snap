@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`interface1 1`] = `
+"
+interface If1 {
+}
+"
+`;
+
+exports[`interface2 1`] = `
+"
+export interface If1 {
+  item: string;
+}
+"
+`;
+
+exports[`interface3 1`] = `
+"
+export interface If1 {
+  test: null | string;
+  test2: If2;
+}
+"
+`;

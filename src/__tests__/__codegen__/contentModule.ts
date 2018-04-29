@@ -3,12 +3,15 @@
  *
  * SOURCE<<src/__tests__/setup.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn1>>
- * SIGNED<<kcc8RBURHKkXTFsA++1Y2T5CA6tqnTVwdQaKBPMhbxhHHJHqVEIwiUph0DRyhfJU70MapfquynjUxvPoasmB/w==>>
+ * SIGNED<<cAXPVQ7DXIfytdoukTTcA+Gs3AN/PUCu7hyQ30AZMHynoiakouhnS0uOj4LCbZYZOgjPIxre8CpdJpnpnQUv3Q==>>
  */
 
 /* BESPOKE START <<TEST1>> */
 "DO NOT DELETE"
 /* BESPOKE END <<TEST1>> */
+
+interface If1 {
+}
 
 function function1(
 ): void {
@@ -18,6 +21,11 @@ export const exportedVariable: string;
 
 export async function function2(
 ): Promise<string> {
+}
+
+export interface If1 {
+  test: null | string;
+  test2: If2;
 }
 
 const immutableVariable: string | undefined = "TEST";
@@ -34,4 +42,8 @@ export async function function2(
   /* BESPOKE START <<fn1>> */
   "DO NOT DELETE"
   /* BESPOKE END <<fn1>> */
+}
+
+export interface If1 {
+  item: string;
 }
