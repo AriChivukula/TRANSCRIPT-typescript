@@ -94,9 +94,9 @@ export class Import extends Renderable {
   public render(context: IRenderContext): string {
     let builder: string = "";
     if ("nameAll" in this.props) {
-      builder += `import * as ${this.props.nameAll} from "${this.props.module}";\n`;
+      builder += `import * as ${this.props.nameAll} from "${this.props.module}";`;
     } else if ("nameDefault" in this.props) {
-      builder += `import ${this.props.nameDefault} from "${this.props.module}";\n`;
+      builder += `import ${this.props.nameDefault} from "${this.props.module}";`;
     } else if ("names" in this.props) {
       builder += "import {\n";
       this.props.names
@@ -106,13 +106,13 @@ export class Import extends Renderable {
               .localeCompare(b.toLowerCase()),
         )
         .forEach(
-          (name: string): void => { builder += `  ${name},\n`},
+          (name: string): void => { builder += `  ${name},\n`; },
         );
-      builder += `} from "${this.props.module}";\n`;
+      builder += `} from "${this.props.module}";`;
     } else {
-      builder += `import "${this.props.module}";\n`;
+      builder += `import "${this.props.module}";`;
     }
 
-    return builder;
+    return `${builder}\n`;
   }
 }

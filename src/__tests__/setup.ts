@@ -2,6 +2,7 @@ import {
   Bespoke,
   Composable,
   EVariableKind,
+  Function,
   Import,
   Module,
   Renderable,
@@ -18,6 +19,40 @@ export const bespoke2: Composable = Bespoke.new({
 
 export const bespoke3: Composable = Bespoke.new({
   name: "3tESt3",
+});
+
+export const function1: Composable = Function.new({
+  async: false,
+  content: [],
+  exported: false,
+  inputs: {},
+  name: "function1",
+  output: "void",
+});
+
+export const function2: Composable = Function.new({
+  async: true,
+  content: [],
+  exported: true,
+  inputs: {},
+  name: "function2",
+  output: "Promise<string>",
+});
+
+export const function3: Composable = Function.new({
+  async: true,
+  content: [
+    Bespoke.new({
+      name: "fn1",
+    }),
+  ],
+  exported: true,
+  inputs: {
+    var1: "string",
+    var2: "object",
+  },
+  name: "function2",
+  output: "Promise<string[]>",
 });
 
 export const importAll1: Import = Import.new({
@@ -106,10 +141,13 @@ export const emptyModule: Renderable = Module.new({
 export const contentModule: Renderable = Module.new({
   content: [
     bespoke1,
+    function1,
     exportedVariable,
+    function2,
     immutableVariable,
     mutableVariable,
     bespoke2,
+    function3,
   ],
   destination: "src/__tests__/__codegen__/contentModule.ts",
   imports: [],
@@ -136,12 +174,15 @@ export const importModule: Renderable = Module.new({
 
 export const complexModule: Renderable = Module.new({
   content: [
+    function3,
     bespoke1,
     bespoke2,
     mutableVariable,
+    function2,
     exportedVariable,
     bespoke3,
     immutableVariable,
+    function1,
   ],
   destination: "src/__tests__/__codegen__/complexModule.ts",
   imports: [

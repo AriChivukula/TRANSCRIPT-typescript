@@ -2,8 +2,8 @@
  * This file is partially generated; only edit bespoke sections.
  *
  * SOURCE<<src/__tests__/setup.ts::complexModule>>
- * BESPOKE<<TEST1, test2, 3tESt3>>
- * SIGNED<<agj9jqKdZOjYSNKIF5t6SqEYdoUsB/l5KND7BG344VYBtn4lcyTWaDrrYEhox9kmprWk2dO0b16p0LHB09WRrA==>>
+ * BESPOKE<<fn1, TEST1, test2, 3tESt3>>
+ * SIGNED<<DHEE5mPKh2qbAmIj3CHqHqqnxAL1sJ92DJKfaGxWZZ/Xu4gl0I+H7wc4cdHFEnML+Hh1vzNCaGQASRleII83Dg==>>
  */
 
 import "./p";
@@ -31,6 +31,14 @@ import {
   wA,
 } from "./R";
 
+export async function function2(
+  var1: string,
+  var2: object,
+): Promise<string[]> {
+  /* BESPOKE START <<fn1>> */
+  "DO NOT DELETE"
+  /* BESPOKE END <<fn1>> */
+}
 /* BESPOKE START <<TEST1>> */
 "DO NOT DELETE"
 /* BESPOKE END <<TEST1>> */
@@ -38,8 +46,14 @@ import {
 // DO NOT DELETE
 /* BESPOKE END <<test2>> */
 let mutableVariable: number | null | undefined = 1;
+export async function function2(
+): Promise<string> {
+}
 export const exportedVariable: string;
 /* BESPOKE START <<3tESt3>> */
 /* DO NOT DELETE */
 /* BESPOKE END <<3tESt3>> */
 const immutableVariable: string | undefined = "TEST";
+function function1(
+): void {
+}
