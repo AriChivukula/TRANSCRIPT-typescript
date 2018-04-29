@@ -98,7 +98,7 @@ function codegenModuleWithBespoke(
     originalStartIdx + 1,
     originalEndIdx,
   );
-  const lines: string[] = originalModule.split("\n");
+  const lines: string[] = module.split("\n");
   const startIdx: number = lines.findIndex(
     (line: string): boolean => line.indexOf(start) !== -1,
   );

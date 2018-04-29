@@ -55,18 +55,20 @@ export class Module extends Renderable {
   }
 
   public render(context: IRenderContext): string {
-    let builder: string = "\n";
-    builder += Import.renderMany(this.props.imports, context);
+    let builder: string = Import.renderMany(this.props.imports, context);
     if (this.props.content.length > 0) {
       builder += "\n";
       this.props.content
         .forEach(
           (currentValue: Composable, index: number): void => {
             builder += currentValue.render(context);
-            builder += "\n";
           },
         );
     }
+    if (builder.length === 0) {
+      builder += "\n";
+    }
+
     const bespokes: string[] = this.bespokes();
     let header: string = "";
     if (bespokes.length > 0) {

@@ -35,6 +35,7 @@ export class Import extends Renderable {
     if (imports.length === 0) {
       return builder;
     }
+    builder += "\n";
     builder += Import.renderSection(
       imports
         .filter(
@@ -75,7 +76,7 @@ export class Import extends Renderable {
       return builder;
     }
     builder += "\n";
-    imports.forEach((i: Import) => builder += i.render(context));
+    imports.forEach((i: Import) => builder += `${i.render(context)}\n`);
 
     return builder;
   }
@@ -113,6 +114,6 @@ export class Import extends Renderable {
       builder += `import "${this.props.module}";`;
     }
 
-    return `${builder}\n`;
+    return `${builder}`;
   }
 }

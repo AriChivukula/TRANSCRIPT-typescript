@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/setup.ts::complexModule>>
  * BESPOKE<<fn1, TEST1, test2, 3tESt3>>
- * SIGNED<<DHEE5mPKh2qbAmIj3CHqHqqnxAL1sJ92DJKfaGxWZZ/Xu4gl0I+H7wc4cdHFEnML+Hh1vzNCaGQASRleII83Dg==>>
+ * SIGNED<</Ym975X1/1tR6/m7H/uOi5zKh3xwezJx8xufPCcmz9FVu4pAmDohRouqFHdIJG6TuaU4uU5YbPZMnswferFbOg==>>
  */
 
 import "./p";
@@ -31,6 +31,7 @@ import {
   wA,
 } from "./R";
 
+
 export async function function2(
   var1: string,
   var2: object,
@@ -39,21 +40,29 @@ export async function function2(
   "DO NOT DELETE"
   /* BESPOKE END <<fn1>> */
 }
+
 /* BESPOKE START <<TEST1>> */
 "DO NOT DELETE"
 /* BESPOKE END <<TEST1>> */
+
 /* BESPOKE START <<test2>> */
 // DO NOT DELETE
 /* BESPOKE END <<test2>> */
+
 let mutableVariable: number | null | undefined = 1;
+
 export async function function2(
 ): Promise<string> {
 }
+
 export const exportedVariable: string;
+
 /* BESPOKE START <<3tESt3>> */
 /* DO NOT DELETE */
 /* BESPOKE END <<3tESt3>> */
+
 const immutableVariable: string | undefined = "TEST";
+
 function function1(
 ): void {
 }
