@@ -3,23 +3,33 @@
  *
  * SOURCE<<src/__tests__/setup.ts::complexModule>>
  * BESPOKE<<TEST1, test2, 3tESt3>>
- * SIGNED<<LMY7/o13sqFzqmW1iywmaHiCJxlJA1vdE29jNkXzS6zg/DRctEbvEZGOOqfm0yrrxcHLEsXioQuyq7kRWGvdBg==>>
+ * SIGNED<<agj9jqKdZOjYSNKIF5t6SqEYdoUsB/l5KND7BG344VYBtn4lcyTWaDrrYEhox9kmprWk2dO0b16p0LHB09WRrA==>>
  */
 
 import "./p";
 import "aqe";
 import "ZZZ";
 
-import { B, c } from "a";
+import {
+  B,
+  c,
+} from "a";
 import * as aaa from "BbB";
 import ooo from "nnn";
 import xxx from "www";
 import * as zzz from "YYY";
 
-import { g, r, z } from "./a";
+import {
+  g,
+  r,
+  z,
+} from "./a";
 import fff from "./ddd";
 import * as mmm from "./mmm";
-import { A, wA } from "./R";
+import {
+  A,
+  wA,
+} from "./R";
 
 /* BESPOKE START <<TEST1>> */
 "DO NOT DELETE"

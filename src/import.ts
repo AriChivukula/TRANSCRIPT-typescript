@@ -98,14 +98,17 @@ export class Import extends Renderable {
     } else if ("nameDefault" in this.props) {
       builder += `import ${this.props.nameDefault} from "${this.props.module}";\n`;
     } else if ("names" in this.props) {
-      const name: string = this.props.names
+      builder += "import {\n";
+      this.props.names
         .sort(
           (a: string, b: string): number =>
             a.toLowerCase()
               .localeCompare(b.toLowerCase()),
         )
-        .join(", ");
-      builder += `import { ${name} } from "${this.props.module}";\n`;
+        .forEach(
+          (name: string): void => { builder += `  ${name},\n`},
+        );
+      builder += `} from "${this.props.module}";\n`;
     } else {
       builder += `import "${this.props.module}";\n`;
     }
