@@ -19,18 +19,22 @@ function getFiles(): string[] {
 }
 
 function codegenFile(path: string): void {
+  // tslint:disable-next-line
+  let file: { [index: string]: any };
   try {
     // tslint:disable-next-line
-    const file: { [index: string]: any } = require(`${process.cwd()}/${path}`);
-    for (const name in file) {
-      if (file[name] instanceof Module) {
-        // tslint:disable-next-line
-        codegenModule(file[name], path, name);
-      }
-    }
+    file = require(`${process.cwd()}/${path}`);
   } catch (err) {
     // tslint:disable-next-line
     console.log(err);
+
+    return;
+  }
+  for (const name in file) {
+    if (file[name] instanceof Module) {
+      // tslint:disable-next-line
+      codegenModule(file[name], path, name);
+    }
   }
 }
 
