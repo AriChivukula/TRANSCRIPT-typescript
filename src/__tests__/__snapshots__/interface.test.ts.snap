@@ -9,7 +9,7 @@ interface If1 {
 
 exports[`interface2 1`] = `
 "
-export interface If1 {
+export interface If2 {
   item: string;
 }
 "
@@ -17,7 +17,7 @@ export interface If1 {
 
 exports[`interface3 1`] = `
 "
-export interface If1 {
+export interface If3 {
   test: null | string;
   test2: If2;
 }

@@ -7,6 +7,7 @@ import {
   Interface,
   Module,
   Renderable,
+  Type,
   Variable,
 } from "../index";
 
@@ -121,7 +122,7 @@ export const interface1: Composable = Interface.new({
 
 export const interface2: Composable = Interface.new({
   exported: true,
-  name: "If1",
+  name: "If2",
   types: {
     item: "string",
   },
@@ -129,11 +130,29 @@ export const interface2: Composable = Interface.new({
 
 export const interface3: Composable = Interface.new({
   exported: true,
-  name: "If1",
+  name: "If3",
   types: {
     test: "null | string",
     test2: "If2",
   },
+});
+
+export const type1: Composable = Type.new({
+  assignment: "number",
+  exported: false,
+  name: "Ty1",
+});
+
+export const type2: Composable = Type.new({
+  assignment: "string | null",
+  exported: true,
+  name: "Ty2",
+});
+
+export const type3: Composable = Type.new({
+  assignment: "Ty2 | Ty1",
+  exported: true,
+  name: "Ty3",
 });
 
 export const exportedVariable: Composable = Variable.new({
@@ -164,10 +183,12 @@ export const emptyModule: Renderable = Module.new({
 
 export const contentModule: Renderable = Module.new({
   content: [
+    type1,
     bespoke1,
     interface1,
     function1,
     exportedVariable,
+    type2,
     function2,
     interface3,
     immutableVariable,
@@ -175,6 +196,7 @@ export const contentModule: Renderable = Module.new({
     bespoke2,
     function3,
     interface2,
+    type3,
   ],
   destination: "src/__tests__/__codegen__/contentModule.ts",
   imports: [],
@@ -207,6 +229,9 @@ export const complexModule: Renderable = Module.new({
     bespoke2,
     mutableVariable,
     interface2,
+    type1,
+    type2,
+    type3,
     function2,
     exportedVariable,
     bespoke3,

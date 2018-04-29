@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/setup.ts::complexModule>>
  * BESPOKE<<fn1, TEST1, test2, 3tESt3>>
- * SIGNED<<yb3RU4lE43Wfeh/WnEofHHM8X91RLd15hm72OmD3k/uObWBsyyZyvCqRuy/X12Y2xu5/BvmuMbvxiOwvZVci3Q==>>
+ * SIGNED<<UpI5L3VhpdDlA9utT1u7GP3lJxBvfuPbGa6ciBevBH1ZJ8DL+92f2K9yOqrQxIt1R8CT0pT2dwRT9u3y5dlpjw==>>
  */
 
 import "./p";
@@ -53,9 +53,15 @@ export async function function2(
 
 let mutableVariable: number | null | undefined = 1;
 
-export interface If1 {
+export interface If2 {
   item: string;
 }
+
+type Ty1 = number;
+
+export type Ty2 = string | null;
+
+export type Ty3 = Ty2 | Ty1;
 
 export async function function2(
 ): Promise<string> {
@@ -69,7 +75,7 @@ export const exportedVariable: string;
 
 const immutableVariable: string | undefined = "TEST";
 
-export interface If1 {
+export interface If3 {
   test: null | string;
   test2: If2;
 }
