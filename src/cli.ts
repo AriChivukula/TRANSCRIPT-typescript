@@ -6,6 +6,7 @@ import * as yargs from "yargs";
 
 import { endTemplate, Module, startTemplate } from "./index";
 
+// tslint:disable-next-line
 yargs
   .usage(
     "$0",
@@ -16,7 +17,7 @@ yargs
         {
           boolean: true,
           describe: "Verify Only",
-        }
+        },
       )
       .option(
         "files",
@@ -24,14 +25,20 @@ yargs
           array: true,
           demandOption: true,
           describe: "Files",
-        }
+        },
       ),
     (argv: yargs.Arguments): void => {
-      argv.files.forEach((path: string) => codegenFile(path, argv.v));
+      // tslint:disable-next-line
+      argv.files.forEach(
+        (path: string): void => {
+          // tslint:disable-next-line
+          codegenFile(path, argv.v);
+        },
+      );
     },
   )
   .help()
-  .argv
+  .argv;
 
 function codegenFile(
   path: string,
