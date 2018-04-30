@@ -1,6 +1,7 @@
 import {
   Bespoke,
   Class,
+  EMethodKind,
   EPropertyKind,
   Function,
   Import,
@@ -140,14 +141,12 @@ export const interface3: Interface = Interface.new({
 
 export const method1: Method = Method.new({
   async: true,
-  content: [
-    bespoke2,
-  ],
+  content: [],
   inputs: {
     var1: "string",
     var2: "object",
   },
-  kind: EPropertyKind.PUBLIC,
+  kind: EMethodKind.PUBLIC,
   name: "method1",
   output: "Promise<string[]>",
   static: false,
@@ -156,7 +155,7 @@ export const method1: Method = Method.new({
 export const method2: Method = Method.new({
   async: false,
   inputs: {},
-  kind: EPropertyKind.PROTECTED,
+  kind: EMethodKind.PROTECTED,
   name: "method2",
   output: "void",
   static: true,
@@ -170,7 +169,7 @@ export const method3: Method = Method.new({
     }),
   ],
   inputs: {},
-  kind: EPropertyKind.PRIVATE,
+  kind: EMethodKind.PRIVATE,
   name: "method3",
   output: "void",
   static: true,

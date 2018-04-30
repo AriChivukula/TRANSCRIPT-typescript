@@ -30,7 +30,12 @@ export class Class extends Renderable {
   }
 
   public identifiers(): string[] {
-    return [this.props.name];
+    const identifiers: string[][] = this.props.content
+      .map(
+        (content: Renderable) => content.identifiers(),
+      );
+
+    return ([] as string[]).concat(...identifiers, [this.props.name]);
   }
 
   protected render(
