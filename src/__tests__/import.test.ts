@@ -16,7 +16,7 @@ import {
 test(
   "importAll1",
   async (): Promise<void> => {
-    expect(importAll1.render({
+    expect(importAll1.renderAndVerify({
       name: "importAll1",
       path: "src/__tests__/import.test.ts",
     }))
@@ -27,7 +27,7 @@ test(
 test(
   "importAll2",
   async (): Promise<void> => {
-    expect(importAll2.render({
+    expect(importAll2.renderAndVerify({
       name: "importAll2",
       path: "src/__tests__/import.test.ts",
     }))
@@ -38,7 +38,7 @@ test(
 test(
   "importAll3",
   async (): Promise<void> => {
-    expect(importAll3.render({
+    expect(importAll3.renderAndVerify({
       name: "importAll3",
       path: "src/__tests__/import.test.ts",
     }))
@@ -49,7 +49,7 @@ test(
 test(
   "importDefault1",
   async (): Promise<void> => {
-    expect(importDefault1.render({
+    expect(importDefault1.renderAndVerify({
       name: "importDefault1",
       path: "src/__tests__/import.test.ts",
     }))
@@ -60,7 +60,7 @@ test(
 test(
   "importDefault2",
   async (): Promise<void> => {
-    expect(importDefault2.render({
+    expect(importDefault2.renderAndVerify({
       name: "importDefault2",
       path: "src/__tests__/import.test.ts",
     }))
@@ -71,7 +71,7 @@ test(
 test(
   "importDefault3",
   async (): Promise<void> => {
-    expect(importDefault3.render({
+    expect(importDefault3.renderAndVerify({
       name: "importDefault3",
       path: "src/__tests__/import.test.ts",
     }))
@@ -82,7 +82,7 @@ test(
 test(
   "importRaw1",
   async (): Promise<void> => {
-    expect(importRaw1.render({
+    expect(importRaw1.renderAndVerify({
       name: "importRaw1",
       path: "src/__tests__/import.test.ts",
     }))
@@ -93,7 +93,7 @@ test(
 test(
   "importRaw2",
   async (): Promise<void> => {
-    expect(importRaw2.render({
+    expect(importRaw2.renderAndVerify({
       name: "importRaw2",
       path: "src/__tests__/import.test.ts",
     }))
@@ -104,7 +104,7 @@ test(
 test(
   "importRaw3",
   async (): Promise<void> => {
-    expect(importRaw3.render({
+    expect(importRaw3.renderAndVerify({
       name: "importRaw3",
       path: "src/__tests__/import.test.ts",
     }))
@@ -115,7 +115,7 @@ test(
 test(
   "importSome1",
   async (): Promise<void> => {
-    expect(importSome1.render({
+    expect(importSome1.renderAndVerify({
       name: "importSome1",
       path: "src/__tests__/import.test.ts",
     }))
@@ -126,7 +126,7 @@ test(
 test(
   "importSome2",
   async (): Promise<void> => {
-    expect(importSome2.render({
+    expect(importSome2.renderAndVerify({
       name: "importSome2",
       path: "src/__tests__/import.test.ts",
     }))
@@ -137,7 +137,7 @@ test(
 test(
   "importSome3",
   async (): Promise<void> => {
-    expect(importSome3.render({
+    expect(importSome3.renderAndVerify({
       name: "importSome3",
       path: "src/__tests__/import.test.ts",
     }))

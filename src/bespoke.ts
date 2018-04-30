@@ -28,7 +28,7 @@ export class Bespoke extends Renderable {
     return [this.props.name];
   }
 
-  protected renderImpl(context: IContext): string {
+  protected render(context: IContext): string {
     let builder: string = "\n";
     builder += startTemplate.replace("@0", this.props.name);
     builder += "\n";
@@ -36,5 +36,8 @@ export class Bespoke extends Renderable {
     builder += "\n";
 
     return builder;
+  }
+
+  protected verify(context: IContext): void {
   }
 }

@@ -57,7 +57,7 @@ export class Import extends Renderable {
     }
   }
 
-  protected renderImpl(context: IContext): string {
+  protected render(context: IContext): string {
     let builder: string = "";
     if ("withAllAs" in this.props) {
       builder += `import * as ${this.props.withAllAs} from "${this.props.name}";`;
@@ -80,5 +80,8 @@ export class Import extends Renderable {
     }
 
     return `${builder}`;
+  }
+
+  protected verify(context: IContext): void {
   }
 }

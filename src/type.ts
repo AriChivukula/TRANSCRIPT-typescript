@@ -26,7 +26,7 @@ export class Type extends Renderable {
     return [this.props.name];
   }
 
-  protected renderImpl(context: IContext): string {
+  protected render(context: IContext): string {
     let builder: string = "\n";
     if (this.props.exported) {
       builder += "export ";
@@ -34,5 +34,8 @@ export class Type extends Renderable {
     builder += `type ${this.props.name} = ${this.props.assignment};\n`;
 
     return builder;
+  }
+
+  protected verify(context: IContext): void {
   }
 }

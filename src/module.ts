@@ -82,7 +82,7 @@ export class Module extends Renderable {
 
     builder += "\n";
     imports.forEach(
-      (i: Import) => builder += `${i.render(context)}\n`,
+      (i: Import) => builder += `${i.renderAndVerify(context)}\n`,
     );
 
     return builder;
@@ -100,7 +100,7 @@ export class Module extends Renderable {
     nonImports
       .forEach(
         (currentValue: Renderable): void => {
-          builder += currentValue.render(context);
+          builder += currentValue.renderAndVerify(context);
         },
       );
 
@@ -135,7 +135,7 @@ export class Module extends Renderable {
     return ([] as string[]).concat(...identifiers);
   }
 
-  protected renderImpl(context: IContext): string {
+  protected render(context: IContext): string {
     let builder: string = "";
 
     const imports: Import[] = this.props.content
@@ -174,5 +174,26 @@ export class Module extends Renderable {
     }
 
     return header + builder;
+  }
+
+  protected verify(context: IContext): void {
+    this.verifyUniqueBespoke();
+    this.verifyUniqueIdentifiers();
+  }
+
+  private verifyUniqueBespoke(): void {
+    const bespokeArray: string[] = this.bespokes();
+    const bespokeSet: Set<string> = new Set(bespokeArray);
+    if (bespokeSet.size < bespokeArray.length) {
+      throw new Error("Duplicated Bespoke Sections");
+    }
+  }
+
+  private verifyUniqueIdentifiers(): void {
+    const identifierArray: string[] = this.identifiers();
+    const identifierSet: Set<string> = new Set(identifierArray);
+    if (identifierSet.size < identifierArray.length) {
+      throw new Error("Duplicated Identifier Names");
+    }
   }
 }

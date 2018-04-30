@@ -11,6 +11,7 @@
     "ban-types": false,
     "completed-docs": false,
     "max-classes-per-file": false,
+    "no-empty": false,
     "no-import-side-effect": false,
     "no-inferrable-types": false,
     "no-parameter-properties": false,

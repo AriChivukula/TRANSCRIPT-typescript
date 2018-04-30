@@ -28,7 +28,7 @@ export class Variable extends Renderable {
     return [this.props.name];
   }
 
-  protected renderImpl(context: IContext): string {
+  protected render(context: IContext): string {
     let builder: string = "\n";
     if (this.props.exported) {
       builder += "export ";
@@ -46,5 +46,8 @@ export class Variable extends Renderable {
     }
 
     return `${builder}\n`;
+  }
+
+  protected verify(context: IContext): void {
   }
 }

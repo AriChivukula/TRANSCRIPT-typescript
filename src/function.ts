@@ -32,7 +32,7 @@ export class Function extends Renderable {
     return [this.props.name];
   }
 
-  protected renderImpl(context: IContext): string {
+  protected render(context: IContext): string {
     let builder: string = "\n";
     if (this.props.exported) {
       builder += "export ";
@@ -49,7 +49,7 @@ export class Function extends Renderable {
       .forEach(
         (content: Renderable): void => {
           const line: string = content
-            .render(context)
+            .renderAndVerify(context)
             .trim()
             .replace("\n", "\n  ");
           builder += `  ${line}\n`;
@@ -58,5 +58,8 @@ export class Function extends Renderable {
     builder += "}\n";
 
     return builder;
+  }
+
+  protected verify(context: IContext): void {
   }
 }
