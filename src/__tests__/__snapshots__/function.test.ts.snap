@@ -18,12 +18,12 @@ export async function function2(
 
 exports[`function3 1`] = `
 "
-export async function function2(
+export async function function3(
   var1: string,
   var2: object,
 ): Promise<string[]> {
-  /* BESPOKE START <<fn1>> */
-  /* BESPOKE END <<fn1>> */
+  /* BESPOKE START <<fn3>> */
+  /* BESPOKE END <<fn3>> */
 }
 "
 `;

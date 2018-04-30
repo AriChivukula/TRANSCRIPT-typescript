@@ -1,10 +1,10 @@
-import { exportedVariable, immutableVariable, mutableVariable } from "./setup";
+import { variable1, variable2, variable3 } from "./setup";
 
 test(
-  "exportedVariable",
+  "variable1",
   async (): Promise<void> => {
-    expect(exportedVariable.render({
-      name: "exportedVariable",
+    expect(variable1.render({
+      name: "variable1",
       path: "src/__tests__/variable.test.ts",
     }))
       .toMatchSnapshot();
@@ -12,10 +12,10 @@ test(
 );
 
 test(
-  "immutableVariable",
+  "variable2",
   async (): Promise<void> => {
-    expect(immutableVariable.render({
-      name: "immutableVariable",
+    expect(variable2.render({
+      name: "variable2",
       path: "src/__tests__/variable.test.ts",
     }))
       .toMatchSnapshot();
@@ -23,10 +23,10 @@ test(
 );
 
 test(
-  "mutableVariable",
+  "variable3",
   async (): Promise<void> => {
-    expect(mutableVariable.render({
-      name: "mutableVariable",
+    expect(variable3.render({
+      name: "variable3",
       path: "src/__tests__/variable.test.ts",
     }))
       .toMatchSnapshot();

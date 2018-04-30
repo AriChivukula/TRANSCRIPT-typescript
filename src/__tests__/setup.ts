@@ -43,7 +43,7 @@ export const function3: Function = Function.new({
   async: true,
   content: [
     Bespoke.new({
-      name: "fn1",
+      name: "fn3",
     }),
   ],
   exported: true,
@@ -51,7 +51,7 @@ export const function3: Function = Function.new({
     var1: "string",
     var2: "object",
   },
-  name: "function2",
+  name: "function3",
   output: "Promise<string[]>",
 });
 
@@ -153,23 +153,23 @@ export const type3: Type = Type.new({
   name: "Ty3",
 });
 
-export const exportedVariable: Variable = Variable.new({
+export const variable1: Variable = Variable.new({
   kind: EVariableKind.EXPORTED,
-  name: "exportedVariable",
+  name: "variable1",
   type: "string",
 });
 
-export const immutableVariable: Variable = Variable.new({
+export const variable2: Variable = Variable.new({
   assignment: "\"TEST\"",
   kind: EVariableKind.IMMUTABLE,
-  name: "immutableVariable",
+  name: "variable2",
   type: "string | undefined",
 });
 
-export const mutableVariable: Variable = Variable.new({
+export const variable3: Variable = Variable.new({
   assignment: "1",
   kind: EVariableKind.MUTABLE,
-  name: "mutableVariable",
+  name: "variable3",
   type: "number | null | undefined",
 });
 
@@ -184,12 +184,12 @@ export const contentModule: Module = Module.new({
     bespoke1,
     interface1,
     function1,
-    exportedVariable,
+    variable1,
     type2,
     function2,
     interface3,
-    immutableVariable,
-    mutableVariable,
+    variable2,
+    variable3,
     bespoke2,
     function3,
     interface2,
@@ -234,15 +234,15 @@ export const complexModule: Module = Module.new({
     function3,
     bespoke1,
     bespoke2,
-    mutableVariable,
+    variable3,
     interface2,
     type1,
     type2,
     type3,
     function2,
-    exportedVariable,
+    variable1,
     bespoke3,
-    immutableVariable,
+    variable2,
     interface3,
     function1,
   ],
