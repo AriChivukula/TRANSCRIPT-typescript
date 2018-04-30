@@ -3,12 +3,18 @@
  *
  * SOURCE<<src/__tests__/examples.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<1TP6H0TaiCctpXSX+iA0tQ9jYRhDgyuYnyzJ2P4tL9cr1l7FPPJXe+hyRpAyBGDWbXMw7cmoZRh2HMqueyw5Pw==>>
+ * SIGNED<<zhsCidbLPne+WFN3JHc0h36bpTbHKri2iI9v536fIDNEWMvYBkW3awQ1XIux859XOmPj6NN20TxJS78QkBtqBA==>>
  */
 
 export abstract class MyClass1 {
 
   public property1: string = "MYVAR";
+
+  public async method1(
+    var1: string,
+    var2: object,
+  ): Promise<string[]> {
+  }
 }
 
 type Ty1 = number;

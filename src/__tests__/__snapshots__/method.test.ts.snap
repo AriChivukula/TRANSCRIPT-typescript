@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`method1 1`] = `
+"public async method1(
+  var1: string,
+  var2: object,
+): Promise<string[]> {
+}
+"
+`;
+
+exports[`method2 1`] = `
+"protected static abstract method2(
+): void;
+"
+`;
+
+exports[`method3 1`] = `
+"private static async method3(
+): void {
+  /* BESPOKE START <<method3Bespoke>> */
+  /* BESPOKE END <<method3Bespoke>> */
+}
+"
+`;

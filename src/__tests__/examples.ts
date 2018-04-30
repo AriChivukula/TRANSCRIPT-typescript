@@ -1,10 +1,12 @@
 import {
   Bespoke,
   Class,
+  EMethodKind,
   EPropertyKind,
   Function,
   Import,
   Interface,
+  Method,
   Module,
   Property,
   Type,
@@ -137,6 +139,42 @@ export const interface3: Interface = Interface.new({
   },
 });
 
+export const method1: Method = Method.new({
+  async: true,
+  content: [],
+  inputs: {
+    var1: "string",
+    var2: "object",
+  },
+  kind: EMethodKind.PUBLIC,
+  name: "method1",
+  output: "Promise<string[]>",
+  static: false,
+});
+
+export const method2: Method = Method.new({
+  async: false,
+  inputs: {},
+  kind: EMethodKind.PROTECTED,
+  name: "method2",
+  output: "void",
+  static: true,
+});
+
+export const method3: Method = Method.new({
+  async: true,
+  content: [
+    Bespoke.new({
+      name: "method3Bespoke",
+    }),
+  ],
+  inputs: {},
+  kind: EMethodKind.PRIVATE,
+  name: "method3",
+  output: "void",
+  static: true,
+});
+
 export const property1: Property = Property.new({
   assignment: "\"MYVAR\"",
   kind: EPropertyKind.PUBLIC,
@@ -212,6 +250,7 @@ export const class1: Class = Class.new({
   abstract: true,
   content: [
     property1,
+    method1,
   ],
   exported: true,
   name: "MyClass1",
@@ -222,6 +261,7 @@ export const class2: Class = Class.new({
   content: [
     bespoke1,
     property2,
+    method2,
   ],
   exported: true,
   extends: "MyClass1",
@@ -231,8 +271,8 @@ export const class2: Class = Class.new({
 export const class3: Class = Class.new({
   abstract: false,
   content: [
-    bespoke2,
     property3,
+    method3,
   ],
   exported: false,
   extends: "MyClass1",

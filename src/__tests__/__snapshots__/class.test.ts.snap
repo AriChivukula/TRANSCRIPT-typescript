@@ -4,6 +4,12 @@ exports[`class1 1`] = `
 "export abstract class MyClass1 {
 
   public property1: string = \\"MYVAR\\";
+
+  public async method1(
+    var1: string,
+    var2: object,
+  ): Promise<string[]> {
+  }
 }
 "
 `;
@@ -15,6 +21,9 @@ exports[`class2 1`] = `
   /* BESPOKE END <<TEST1>> */
 
   protected readonly property2: number;
+
+  protected static abstract method2(
+  ): void;
 }
 "
 `;
@@ -22,10 +31,13 @@ exports[`class2 1`] = `
 exports[`class3 1`] = `
 "class MyClass3 extends MyClass1 implements MyInterface1, MyInterface2 {
 
-  /* BESPOKE START <<test2>> */
-  /* BESPOKE END <<test2>> */
-
   private static property3: string | null;
+
+  private static async method3(
+  ): void {
+    /* BESPOKE START <<method3Bespoke>> */
+    /* BESPOKE END <<method3Bespoke>> */
+  }
 }
 "
 `;
