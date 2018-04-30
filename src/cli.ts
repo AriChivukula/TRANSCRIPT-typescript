@@ -51,7 +51,7 @@ function codegenFile(
     file = require(`${process.cwd()}/${path}`);
   } catch (err) {
     // tslint:disable-next-line
-    console.log(err);
+    console.log(`Error loading ${path}`);
 
     return;
   }
@@ -103,18 +103,21 @@ function codegenModuleWithBespokes(
         bespoke,
         mutableModule,
         originalModule,
-        inspectOnly,
       );
     });
   }
-  writeFileSync(destination, mutableModule);
+  if (inspectOnly) {
+    // tslint:disable-next-line
+    console.log(`Skipping writing ${destination}`);
+  } else {
+    writeFileSync(destination, mutableModule);
+  }
 }
 
 function codegenModuleWithBespoke(
   bespoke: string,
   module: string,
   originalModule: string,
-  inspectOnly: boolean,
 ): string {
   const start: string = startTemplate.replace("@0", bespoke);
   const end: string = endTemplate.replace("@0", bespoke);
