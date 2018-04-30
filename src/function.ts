@@ -56,7 +56,7 @@ export class Function extends Renderable {
     this.props.content
       .forEach(
         (content: Renderable): void => {
-          content.print(context, builder);
+          content.run(context, builder);
         },
       );
     builder

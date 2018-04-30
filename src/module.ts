@@ -75,7 +75,7 @@ export class Module extends Renderable {
   ): void {
     imports.forEach(
       (i: Import) => {
-        i.print(context, builder);
+        i.run(context, builder);
       },
     );
   }
@@ -88,7 +88,7 @@ export class Module extends Renderable {
     nonImports
       .forEach(
         (r: Renderable): void => {
-          r.print(context, builder);
+          r.run(context, builder);
         },
       );
   }

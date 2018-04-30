@@ -13,16 +13,19 @@ export abstract class Renderable {
 
   public print(
     context: IContext,
-    builder?: Builder,
   ): string {
-    this.verify(context);
-    let localBuilder: Builder = Builder.new();
-    if (builder !== undefined) {
-      localBuilder = builder;
-    }
-    this.render(context, localBuilder);
+    const builder: Builder = Builder.new();
+    this.run(context, builder);
 
-    return localBuilder.print();
+    return builder.print();
+  }
+
+  public run(
+    context: IContext,
+    builder: Builder,
+  ): void {
+    this.verify(context);
+    this.render(context, builder);
   }
 
   protected abstract render(
