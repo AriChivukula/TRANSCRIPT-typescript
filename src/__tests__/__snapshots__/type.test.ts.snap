@@ -1,19 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`type1 1`] = `
-"
-type Ty1 = number;
+"type Ty1 = number;
 "
 `;
 
 exports[`type2 1`] = `
-"
-export type Ty2 = string | null;
+"export type Ty2 = string | null;
 "
 `;
 
 exports[`type3 1`] = `
-"
-export type Ty3 = Ty2 | Ty1;
+"export type Ty3 = Ty2 | Ty1;
 "
 `;

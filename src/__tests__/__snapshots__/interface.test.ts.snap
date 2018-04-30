@@ -1,23 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`interface1 1`] = `
-"
-interface If1 {
+"interface If1 {
 }
 "
 `;
 
 exports[`interface2 1`] = `
-"
-export interface If2 {
+"export interface If2 {
   item: string;
 }
 "
 `;
 
 exports[`interface3 1`] = `
-"
-export interface If3 {
+"export interface If3 {
   test: null | string;
   test2: If2;
 }
