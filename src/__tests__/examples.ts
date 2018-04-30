@@ -1,6 +1,5 @@
 import {
   Bespoke,
-  EVariableKind,
   Function,
   Import,
   Interface,
@@ -154,21 +153,24 @@ export const type3: Type = Type.new({
 });
 
 export const variable1: Variable = Variable.new({
-  kind: EVariableKind.EXPORTED,
+  exported: true,
+  mutable: false,
   name: "variable1",
   type: "string",
 });
 
 export const variable2: Variable = Variable.new({
   assignment: "\"TEST\"",
-  kind: EVariableKind.IMMUTABLE,
+  exported: false,
+  mutable: false,
   name: "variable2",
   type: "string | undefined",
 });
 
 export const variable3: Variable = Variable.new({
   assignment: "1",
-  kind: EVariableKind.MUTABLE,
+  exported: false,
+  mutable: true,
   name: "variable3",
   type: "number | null | undefined",
 });

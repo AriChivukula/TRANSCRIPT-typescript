@@ -1,14 +1,9 @@
 import { IContext, Renderable } from "./internal";
 
-export enum EVariableKind {
-  EXPORTED,
-  IMMUTABLE,
-  MUTABLE,
-}
-
 export interface IVariable {
   assignment?: string;
-  kind: EVariableKind;
+  exported: boolean;
+  mutable: boolean;
   name: string;
   type: string;
 }
@@ -35,22 +30,13 @@ export class Variable extends Renderable {
 
   protected renderImpl(context: IContext): string {
     let builder: string = "\n";
-    switch (this.props.kind) {
-      case EVariableKind.EXPORTED: {
-        builder += "export const ";
-        break;
-      }
-      case EVariableKind.IMMUTABLE: {
-        builder += "const ";
-        break;
-      }
-      case EVariableKind.MUTABLE: {
-        builder += "let ";
-        break;
-      }
-      default: {
-        throw Error("Unreachable");
-      }
+    if (this.props.exported) {
+      builder += "export ";
+    }
+    if (this.props.mutable) {
+      builder += "let ";
+    } else {
+      builder += "const ";
     }
     builder += `${this.props.name}: ${this.props.type}`;
     if (this.props.assignment !== undefined) {
