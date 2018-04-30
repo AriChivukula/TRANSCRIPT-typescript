@@ -2,6 +2,7 @@ import "@babel/polyfill";
 
 export * from "./bespoke";
 export * from "./builder";
+export * from "./class";
 export * from "./function";
 export * from "./import";
 export * from "./interface";
