@@ -83,6 +83,39 @@ test(
 );
 
 test(
+  "Indentation",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .addLine("a")
+        .indent()
+        .addLine("b")
+        .indent()
+        .ensureOnNewlineAfterEmptyline()
+        .addLine("c")
+        .unindent()
+        .unindent()
+        .addLine("d")
+        .render(),
+    )
+      .toEqual("a\n  b\n\n    c\nd\n");
+  },
+);
+
+test(
+  "EmptyError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .add(""),
+    )
+      .toThrow();
+  },
+);
+
+test(
   "TrimError",
   async (): Promise<void> => {
     expect(
@@ -113,6 +146,45 @@ test(
       () => Builder
         .new()
         .addLine("a\nb"),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "UnindentError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .addLine("a")
+        .unindent(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "IndentError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .addLine("a")
+        .indent()
+        .render(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "IndentNewlineError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .indent(),
     )
       .toThrow();
   },

@@ -26,19 +26,8 @@ export class Builder {
     return new Builder();
   }
 
-  private static verify(content: string): void {
-    if (content.trim() !== content) {
-      throw new Error("Unexpected whitespace");
-    }
-    if (content.includes("\n")) {
-      throw new Error("Unexpected newline");
-    }
-    if (content.includes("\t")) {
-      throw new Error("Unexpected tab");
-    }
-  }
-
   private built: string = "";
+  private indentation: number = 0;
 
   private constructor() {}
 
@@ -58,12 +47,25 @@ export class Builder {
     return this.ensureOnNewlineImpl(2);
   }
 
+  public indent(): Builder {
+    return this.indentImpl(1);
+  }
+
   public render(): string {
+    this.verify(undefined, true);
+
     return this.built;
   }
 
+  public unindent(): Builder {
+    return this.indentImpl(-1);
+  }
+
   private addImpl(content: string, newLineAfter: boolean): Builder {
-    Builder.verify(content);
+    this.verify(content);
+    if (this.built.length > 0 && this.built.endsWith("\n")) {
+      this.built += "  ".repeat(this.indentation);
+    }
     this.built += content;
     if (newLineAfter) {
       this.built += "\n";
@@ -84,5 +86,42 @@ export class Builder {
     this.built += "\n".repeat(newLinesWanted - newLinesFound);
 
     return this;
+  }
+
+  private indentImpl(delta: number): Builder {
+    this.indentation += delta;
+    this.verify(undefined, false, true);
+
+    return this;
+  }
+
+  private verify(
+    content?: string,
+    rendering: boolean = false,
+    indenting: boolean = false,
+  ): void {
+    if (content !== undefined) {
+      if (content === "") {
+        throw new Error("Unexpected empty string");
+      }
+      if (content.trim() !== content) {
+        throw new Error("Unexpected whitespace");
+      }
+      if (content.includes("\n")) {
+        throw new Error("Unexpected newline");
+      }
+      if (content.includes("\t")) {
+        throw new Error("Unexpected tab");
+      }
+    }
+    if (this.indentation < 0) {
+      throw new Error("Cannot unindent past 0");
+    }
+    if (rendering && this.indentation !== 0) {
+      throw new Error("Cannot render without zeroed indentation");
+    }
+    if (indenting && !this.built.endsWith("\n")) {
+      throw new Error("Cannot change indentation without being on newline");
+    }
   }
 }
