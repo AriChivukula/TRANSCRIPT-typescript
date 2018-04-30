@@ -1,5 +1,6 @@
 import {
   Bespoke,
+  Class,
   Function,
   Import,
   Interface,
@@ -18,6 +19,34 @@ export const bespoke2: Bespoke = Bespoke.new({
 
 export const bespoke3: Bespoke = Bespoke.new({
   name: "3tESt3",
+});
+
+export const class1: Class = Class.new({
+  abstract: true,
+  content: [],
+  exported: true,
+  name: "MyClass1",
+});
+
+export const class2: Class = Class.new({
+  abstract: false,
+  content: [
+    bespoke1,
+  ],
+  exported: true,
+  extends: "MyClass1",
+  name: "MyClass2",
+});
+
+export const class3: Class = Class.new({
+  abstract: false,
+  content: [
+    bespoke2,
+  ],
+  exported: false,
+  extends: "MyClass1",
+  implements: ["MyInterface1", "MyInterface2"],
+  name: "MyClass3",
 });
 
 export const function1: Function = Function.new({
@@ -182,6 +211,7 @@ export const emptyModule: Module = Module.new({
 
 export const contentModule: Module = Module.new({
   content: [
+    class1,
     type1,
     bespoke1,
     interface1,
@@ -224,6 +254,7 @@ export const complexModule: Module = Module.new({
     importSome3,
     importSome2,
     importSome1,
+    class2,
     importDefault3,
     importDefault2,
     importDefault1,
@@ -234,13 +265,12 @@ export const complexModule: Module = Module.new({
     importAll1,
     interface1,
     function3,
-    bespoke1,
-    bespoke2,
     variable3,
     interface2,
     type1,
     type2,
     type3,
+    class3,
     function2,
     variable1,
     bespoke3,

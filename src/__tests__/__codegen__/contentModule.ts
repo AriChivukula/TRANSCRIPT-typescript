@@ -3,8 +3,11 @@
  *
  * SOURCE<<src/__tests__/examples.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<B/dHqHc+bYpobJNcoYq1rlGhdk0UL8ILQy+j0amS+3xTgnr8qYhvWCD81wQTBs12V1HRTJ3LPzFSaeUoqWWoCA==>>
+ * SIGNED<<1hq/OkDIP7nLhiZSGn5QgnR6x0mgWJGlgOLfIQ0BMwO/Sye62bp1pC+N4aT81oeIs5GldWc2ZlzcS17rw0EuDA==>>
  */
+
+export abstract class MyClass1 {
+}
 
 type Ty1 = number;
 
