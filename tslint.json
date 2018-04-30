@@ -14,6 +14,7 @@
     "no-empty": false,
     "no-import-side-effect": false,
     "no-inferrable-types": false,
+    "no-magic-numbers": false,
     "no-parameter-properties": false,
     "only-arrow-functions": false,
     "prefer-function-over-method": false
