@@ -3,10 +3,12 @@
  *
  * SOURCE<<src/__tests__/examples.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<1hq/OkDIP7nLhiZSGn5QgnR6x0mgWJGlgOLfIQ0BMwO/Sye62bp1pC+N4aT81oeIs5GldWc2ZlzcS17rw0EuDA==>>
+ * SIGNED<<1TP6H0TaiCctpXSX+iA0tQ9jYRhDgyuYnyzJ2P4tL9cr1l7FPPJXe+hyRpAyBGDWbXMw7cmoZRh2HMqueyw5Pw==>>
  */
 
 export abstract class MyClass1 {
+
+  public property1: string = "MYVAR";
 }
 
 type Ty1 = number;

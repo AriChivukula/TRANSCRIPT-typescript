@@ -16,6 +16,7 @@
 * [Import](https://github.com/arichiv/typescriptase/blob/master/src/import.ts)
 * [Interface](https://github.com/arichiv/typescriptase/blob/master/src/interface.ts)
 * [Module](https://github.com/arichiv/typescriptase/blob/master/src/module.ts)
+* [Property](https://github.com/arichiv/typescriptase/blob/master/src/property.ts)
 * [Type](https://github.com/arichiv/typescriptase/blob/master/src/type.ts)
 * [Variable](https://github.com/arichiv/typescriptase/blob/master/src/variable.ts)
 

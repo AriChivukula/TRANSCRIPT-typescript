@@ -1,10 +1,12 @@
 import {
   Bespoke,
   Class,
+  EPropertyKind,
   Function,
   Import,
   Interface,
   Module,
+  Property,
   Type,
   Variable,
 } from "../index";
@@ -19,34 +21,6 @@ export const bespoke2: Bespoke = Bespoke.new({
 
 export const bespoke3: Bespoke = Bespoke.new({
   name: "3tESt3",
-});
-
-export const class1: Class = Class.new({
-  abstract: true,
-  content: [],
-  exported: true,
-  name: "MyClass1",
-});
-
-export const class2: Class = Class.new({
-  abstract: false,
-  content: [
-    bespoke1,
-  ],
-  exported: true,
-  extends: "MyClass1",
-  name: "MyClass2",
-});
-
-export const class3: Class = Class.new({
-  abstract: false,
-  content: [
-    bespoke2,
-  ],
-  exported: false,
-  extends: "MyClass1",
-  implements: ["MyInterface1", "MyInterface2"],
-  name: "MyClass3",
 });
 
 export const function1: Function = Function.new({
@@ -163,6 +137,31 @@ export const interface3: Interface = Interface.new({
   },
 });
 
+export const property1: Property = Property.new({
+  assignment: "\"MYVAR\"",
+  kind: EPropertyKind.PUBLIC,
+  name: "property1",
+  readonly: false,
+  static: false,
+  type: "string",
+});
+
+export const property2: Property = Property.new({
+  kind: EPropertyKind.PROTECTED,
+  name: "property2",
+  readonly: true,
+  static: false,
+  type: "number",
+});
+
+export const property3: Property = Property.new({
+  kind: EPropertyKind.PRIVATE,
+  name: "property3",
+  readonly: false,
+  static: true,
+  type: "string | null",
+});
+
 export const type1: Type = Type.new({
   assignment: "number",
   exported: false,
@@ -207,6 +206,38 @@ export const variable3: Variable = Variable.new({
 export const emptyModule: Module = Module.new({
   content: [],
   destination: "src/__tests__/__codegen__/emptyModule.ts",
+});
+
+export const class1: Class = Class.new({
+  abstract: true,
+  content: [
+    property1,
+  ],
+  exported: true,
+  name: "MyClass1",
+});
+
+export const class2: Class = Class.new({
+  abstract: false,
+  content: [
+    bespoke1,
+    property2,
+  ],
+  exported: true,
+  extends: "MyClass1",
+  name: "MyClass2",
+});
+
+export const class3: Class = Class.new({
+  abstract: false,
+  content: [
+    bespoke2,
+    property3,
+  ],
+  exported: false,
+  extends: "MyClass1",
+  implements: ["MyInterface1", "MyInterface2"],
+  name: "MyClass3",
 });
 
 export const contentModule: Module = Module.new({

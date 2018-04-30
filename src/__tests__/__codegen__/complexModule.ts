@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::complexModule>>
  * BESPOKE<<TEST1, fn3, test2, 3tESt3>>
- * SIGNED<<8uBGhJt3PWb03SNMlhpxvP6IzrO6xUgji3HR5OpCh8VUkyl0QPW2EjYc4Ynbxl6oG68UGAbWB5s2zy1NLLoGEQ==>>
+ * SIGNED<<h1x4IV1kop8bMhnkRWSvZ8RPHIwREH8HSsMiYyr6qTnfoqTayDtyt5yPEw+EnzZ2/YugJv4oJRd+MY5vzupSnA==>>
  */
 
 import "./p";
@@ -32,9 +32,12 @@ import {
 } from "./R";
 
 export class MyClass2 extends MyClass1 {
+
   /* BESPOKE START <<TEST1>> */
   "DO NOT DELETE"
   /* BESPOKE END <<TEST1>> */
+
+  protected readonly property2: number;
 }
 
 interface If1 {
@@ -61,9 +64,12 @@ export type Ty2 = string | null;
 export type Ty3 = Ty2 | Ty1;
 
 class MyClass3 extends MyClass1 implements MyInterface1, MyInterface2 {
+
   /* BESPOKE START <<test2>> */
   // DO NOT DELETE
   /* BESPOKE END <<test2>> */
+
+  private static property3: string | null;
 }
 
 export async function function2(

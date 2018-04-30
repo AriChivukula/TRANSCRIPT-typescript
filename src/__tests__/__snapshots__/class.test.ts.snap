@@ -2,22 +2,30 @@
 
 exports[`class1 1`] = `
 "export abstract class MyClass1 {
+
+  public property1: string = \\"MYVAR\\";
 }
 "
 `;
 
 exports[`class2 1`] = `
 "export class MyClass2 extends MyClass1 {
+
   /* BESPOKE START <<TEST1>> */
   /* BESPOKE END <<TEST1>> */
+
+  protected readonly property2: number;
 }
 "
 `;
 
 exports[`class3 1`] = `
 "class MyClass3 extends MyClass1 implements MyInterface1, MyInterface2 {
+
   /* BESPOKE START <<test2>> */
   /* BESPOKE END <<test2>> */
+
+  private static property3: string | null;
 }
 "
 `;
