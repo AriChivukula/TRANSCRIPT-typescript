@@ -56,6 +56,7 @@ export class Class extends Renderable {
     this.props.content
       .forEach(
         (content: Renderable): void => {
+          builder.ensureOnNewlineAfterEmptyline();
           content.run(context, builder);
         },
       );

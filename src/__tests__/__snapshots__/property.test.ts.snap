@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`property1 1`] = `
+"public property1: string = \\"MYVAR\\";
+"
+`;
+
+exports[`property2 1`] = `
+"protected readonly property2: number;
+"
+`;
+
+exports[`property3 1`] = `
+"private static property3: string | null;
+"
+`;
