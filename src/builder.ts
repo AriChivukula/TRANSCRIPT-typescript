@@ -99,9 +99,6 @@ export class Builder {
       if (content === "") {
         throw new Error("Unexpected empty string");
       }
-      if (content.trimLeft() !== content) {
-        throw new Error("Unexpected whitespace");
-      }
       if (content.includes("\n")) {
         throw new Error("Unexpected newline");
       }

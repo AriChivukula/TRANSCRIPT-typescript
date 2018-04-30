@@ -130,18 +130,6 @@ test(
 );
 
 test(
-  "TrimError",
-  async (): Promise<void> => {
-    expect(
-      () => Builder
-        .new()
-        .addLine(" a"),
-    )
-      .toThrow();
-  },
-);
-
-test(
   "TabError",
   async (): Promise<void> => {
     expect(

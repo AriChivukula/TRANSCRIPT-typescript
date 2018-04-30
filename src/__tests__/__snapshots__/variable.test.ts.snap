@@ -6,13 +6,11 @@ exports[`variable1 1`] = `
 `;
 
 exports[`variable2 1`] = `
-"
-const variable2: string | undefined = \\"TEST\\";
+"const variable2: string | undefined = \\"TEST\\";
 "
 `;
 
 exports[`variable3 1`] = `
-"
-let variable3: number | null | undefined = 1;
+"let variable3: number | null | undefined = 1;
 "
 `;
