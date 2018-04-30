@@ -1,29 +1,7 @@
-export interface IContext {
-  name: string;
-  path: string;
-}
-
-export abstract class Renderable {
-
-  public abstract bespokes(): string[];
-
-  public abstract identifiers(): string[];
-
-  public renderAndVerify(context: IContext): string {
-    this.verify(context);
-
-    return this.render(context);
-  }
-
-  protected abstract render(context: IContext): string;
-
-  protected abstract verify(context: IContext): void;
-}
-
 enum EBuilderVerifyMode {
   CONTENT,
   INDENT,
-  RENDER,
+  PRINT,
 }
 
 export class Builder {
@@ -57,8 +35,8 @@ export class Builder {
     return this.indentImpl(1);
   }
 
-  public render(): string {
-    this.verify(EBuilderVerifyMode.RENDER);
+  public print(): string {
+    this.verify(EBuilderVerifyMode.PRINT);
 
     return this.built;
   }
@@ -130,9 +108,9 @@ export class Builder {
         throw new Error("Cannot unindent past 0");
       }
     }
-    if (mode === EBuilderVerifyMode.RENDER) {
+    if (mode === EBuilderVerifyMode.PRINT) {
       if (this.indentation !== 0) {
-        throw new Error("Cannot render without zeroed indentation");
+        throw new Error("Cannot print without zeroed indentation");
       }
     }
   }

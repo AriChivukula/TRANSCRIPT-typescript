@@ -1,4 +1,4 @@
-import { Builder } from "../internal";
+import { Builder } from "../index";
 
 test(
   "Empty",
@@ -6,7 +6,7 @@ test(
     expect(
       Builder
         .new()
-        .render(),
+        .print(),
     )
       .toEqual("");
   },
@@ -19,7 +19,7 @@ test(
       Builder
         .new()
         .add("a")
-        .render(),
+        .print(),
     )
       .toEqual("a");
   },
@@ -32,7 +32,7 @@ test(
       Builder
         .new()
         .addLine("a")
-        .render(),
+        .print(),
     )
       .toEqual("a\n");
   },
@@ -46,7 +46,7 @@ test(
         .new()
         .add("a")
         .ensureOnNewline()
-        .render(),
+        .print(),
     )
       .toEqual("a\n");
     expect(
@@ -54,7 +54,7 @@ test(
         .new()
         .addLine("a")
         .ensureOnNewline()
-        .render(),
+        .print(),
     )
       .toEqual("a\n");
   },
@@ -68,7 +68,7 @@ test(
         .new()
         .add("a")
         .ensureOnNewlineAfterEmptyline()
-        .render(),
+        .print(),
     )
       .toEqual("a\n\n");
     expect(
@@ -76,7 +76,7 @@ test(
         .new()
         .addLine("a")
         .ensureOnNewlineAfterEmptyline()
-        .render(),
+        .print(),
     )
       .toEqual("a\n\n");
   },
@@ -97,7 +97,7 @@ test(
         .unindent()
         .unindent()
         .addLine("d")
-        .render(),
+        .print(),
     )
       .toEqual("a\n  b\n\n    c\nd\n");
   },
@@ -172,7 +172,7 @@ test(
         .new()
         .addLine("a")
         .indent()
-        .render(),
+        .print(),
     )
       .toThrow();
   },

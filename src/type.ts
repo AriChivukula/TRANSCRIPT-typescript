@@ -1,4 +1,5 @@
-import { IContext, Renderable } from "./internal";
+import { Builder } from "./builder";
+import { IContext, Renderable } from "./renderable";
 
 export interface IType {
   assignment: string;
@@ -26,7 +27,10 @@ export class Type extends Renderable {
     return [this.props.name];
   }
 
-  protected render(context: IContext): string {
+  protected render(
+    context: IContext,
+    builder: Builder,
+  ): string {
     let builder: string = "\n";
     if (this.props.exported) {
       builder += "export ";

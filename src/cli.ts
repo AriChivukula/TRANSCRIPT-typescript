@@ -81,7 +81,7 @@ function codegenModule(
   codegenModuleWithBespokes(
     module.bespokes(),
     module.destination(),
-    module.renderAndVerify({
+    module.print({
       name,
       path,
     }),

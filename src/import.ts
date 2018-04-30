@@ -1,4 +1,5 @@
-import { IContext, Renderable } from "./internal";
+import { Builder } from "./builder";
+import { IContext, Renderable } from "./renderable";
 
 export enum EImportKind {
   GLOBAL,
@@ -57,7 +58,10 @@ export class Import extends Renderable {
     }
   }
 
-  protected render(context: IContext): string {
+  protected render(
+    context: IContext,
+    builder: Builder,
+  ): string {
     let builder: string = "";
     if ("withAllAs" in this.props) {
       builder += `import * as ${this.props.withAllAs} from "${this.props.name}";`;

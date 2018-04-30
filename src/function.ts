@@ -1,4 +1,5 @@
-import { IContext, Renderable } from "./internal";
+import { Builder } from "./builder";
+import { IContext, Renderable } from "./renderable";
 
 export interface IFunction {
   async: boolean;
@@ -32,7 +33,10 @@ export class Function extends Renderable {
     return [this.props.name];
   }
 
-  protected render(context: IContext): string {
+  protected render(
+    context: IContext,
+    builder: Builder,
+  ): string {
     let builder: string = "\n";
     if (this.props.exported) {
       builder += "export ";
@@ -49,7 +53,7 @@ export class Function extends Renderable {
       .forEach(
         (content: Renderable): void => {
           const line: string = content
-            .renderAndVerify(context)
+            .print(context)
             .trim()
             .replace("\n", "\n  ");
           builder += `  ${line}\n`;

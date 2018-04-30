@@ -1,7 +1,8 @@
 import { createHash, Hash } from "crypto";
 
+import { Builder } from "./builder";
 import { EImportKind, Import } from "./import";
-import { IContext, Renderable } from "./internal";
+import { IContext, Renderable } from "./renderable";
 
 const headerTemplateWithoutBespoke: string = `/**
  * This file is fully generated; do not manually edit.
@@ -82,7 +83,7 @@ export class Module extends Renderable {
 
     builder += "\n";
     imports.forEach(
-      (i: Import) => builder += `${i.renderAndVerify(context)}\n`,
+      (i: Import) => builder += `${i.print(context)}\n`,
     );
 
     return builder;
@@ -100,7 +101,7 @@ export class Module extends Renderable {
     nonImports
       .forEach(
         (currentValue: Renderable): void => {
-          builder += currentValue.renderAndVerify(context);
+          builder += currentValue.print(context);
         },
       );
 
@@ -135,7 +136,10 @@ export class Module extends Renderable {
     return ([] as string[]).concat(...identifiers);
   }
 
-  protected render(context: IContext): string {
+  protected render(
+    context: IContext,
+    builder: Builder,
+  ): string {
     let builder: string = "";
 
     const imports: Import[] = this.props.content

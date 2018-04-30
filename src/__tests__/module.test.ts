@@ -3,7 +3,7 @@ import { complexModule, contentModule, emptyModule, importModule } from "./examp
 test(
   "complexModule",
   async (): Promise<void> => {
-    expect(complexModule.renderAndVerify({
+    expect(complexModule.print({
       name: "complexModule",
       path: "src/__tests__/module.test.ts",
     }))
@@ -14,7 +14,7 @@ test(
 test(
   "contentModule",
   async (): Promise<void> => {
-    expect(contentModule.renderAndVerify({
+    expect(contentModule.print({
       name: "contentModule",
       path: "src/__tests__/module.test.ts",
     }))
@@ -25,7 +25,7 @@ test(
 test(
   "emptyModule",
   async (): Promise<void> => {
-    expect(emptyModule.renderAndVerify({
+    expect(emptyModule.print({
       name: "emptyModule",
       path: "src/__tests__/module.test.ts",
     }))
@@ -36,7 +36,7 @@ test(
 test(
   "importModule",
   async (): Promise<void> => {
-    expect(importModule.renderAndVerify({
+    expect(importModule.print({
       name: "importModule",
       path: "src/__tests__/module.test.ts",
     }))

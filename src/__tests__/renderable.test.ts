@@ -13,7 +13,7 @@ test(
           ],
           destination: "",
         })
-        .renderAndVerify({
+        .print({
           name: "",
           path: "",
         }),
@@ -34,7 +34,7 @@ test(
           ],
           destination: "",
         })
-        .renderAndVerify({
+        .print({
           name: "",
           path: "",
         }),

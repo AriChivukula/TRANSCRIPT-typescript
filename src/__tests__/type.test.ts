@@ -3,7 +3,7 @@ import { type1, type2, type3 } from "./examples";
 test(
   "type1",
   async (): Promise<void> => {
-    expect(type1.renderAndVerify({
+    expect(type1.print({
       name: "type1",
       path: "src/__tests__/type.test.ts",
     }))
@@ -14,7 +14,7 @@ test(
 test(
   "type2",
   async (): Promise<void> => {
-    expect(type2.renderAndVerify({
+    expect(type2.print({
       name: "type2",
       path: "src/__tests__/type.test.ts",
     }))
@@ -25,7 +25,7 @@ test(
 test(
   "type3",
   async (): Promise<void> => {
-    expect(type3.renderAndVerify({
+    expect(type3.print({
       name: "type3",
       path: "src/__tests__/type.test.ts",
     }))
