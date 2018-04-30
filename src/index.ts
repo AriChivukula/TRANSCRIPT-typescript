@@ -6,6 +6,7 @@ export * from "./class";
 export * from "./function";
 export * from "./import";
 export * from "./interface";
+export * from "./method";
 export * from "./module";
 export * from "./property";
 export * from "./renderable";
