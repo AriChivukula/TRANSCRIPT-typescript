@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<w98fTvI6lA77DnSZRjzgEfBJyz7lA1txRjigT8LHRQ2U39SVXFeM6uZf093LVeJqbxh7eMfSi1V0CYn9On4UWw==>>
+ * SIGNED<<B/dHqHc+bYpobJNcoYq1rlGhdk0UL8ILQy+j0amS+3xTgnr8qYhvWCD81wQTBs12V1HRTJ3LPzFSaeUoqWWoCA==>>
  */
 
 type Ty1 = number;

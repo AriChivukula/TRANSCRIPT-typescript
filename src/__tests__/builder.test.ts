@@ -35,7 +35,7 @@ test(
         .addHeader("\na\t")
         .print(),
     )
-      .toEqual("\na\tb");
+      .toEqual("\na\t\n\nb");
   },
 );
 
@@ -82,9 +82,10 @@ test(
         .new()
         .add("a")
         .ensureOnNewlineAfterEmptyline()
+        .addLine("b")
         .print(),
     )
-      .toEqual("a\n\n");
+      .toEqual("a\n\nb\n");
     expect(
       Builder
         .new()
@@ -92,7 +93,7 @@ test(
         .ensureOnNewlineAfterEmptyline()
         .print(),
     )
-      .toEqual("a\n\n");
+      .toEqual("a\n");
   },
 );
 

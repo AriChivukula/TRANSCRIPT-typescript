@@ -50,6 +50,7 @@ export class Module extends Renderable {
           (i: Import): boolean => i.kind() === EImportKind.RAW,
         ),
     );
+    builder.ensureOnNewlineAfterEmptyline();
     Module.renderImportSection(
       context,
       builder,
@@ -58,6 +59,7 @@ export class Module extends Renderable {
           (i: Import): boolean => i.kind() === EImportKind.GLOBAL,
         ),
     );
+    builder.ensureOnNewlineAfterEmptyline();
     Module.renderImportSection(
       context,
       builder,
@@ -66,6 +68,7 @@ export class Module extends Renderable {
           (i: Import): boolean => i.kind() === EImportKind.LOCAL,
         ),
     );
+    builder.ensureOnNewlineAfterEmptyline();
   }
 
   private static renderImportSection(
@@ -88,6 +91,7 @@ export class Module extends Renderable {
     nonImports
       .forEach(
         (r: Renderable): void => {
+          builder.ensureOnNewlineAfterEmptyline();
           r.run(context, builder);
         },
       );

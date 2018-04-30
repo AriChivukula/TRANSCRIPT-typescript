@@ -12,7 +12,7 @@ export class Builder {
   }
 
   private built: string = "";
-  private headerWasSet: boolean = false;
+  private header: string | undefined;
   private indentation: number = 0;
 
   private constructor() {}
@@ -23,7 +23,7 @@ export class Builder {
 
   public addHeader(header: string): Builder {
     this.verify(EBuilderVerifyMode.HEADER);
-    this.built = `${header}${this.built}`;
+    this.header = header;
 
     return this;
   }
@@ -46,8 +46,17 @@ export class Builder {
 
   public print(): string {
     this.verify(EBuilderVerifyMode.PRINT);
+    const b: Builder = Builder.new();
+    if (this.header !== undefined) {
+      b.built = this.header;
+    }
+    b.ensureOnNewlineAfterEmptyline();
+    b.built += this.built;
+    while (b.built.endsWith("\n\n")) {
+      b.built = b.built.slice(0, b.built.length - 1);
+    }
 
-    return this.built;
+    return b.built;
   }
 
   public unindent(): Builder {
@@ -68,6 +77,9 @@ export class Builder {
   }
 
   private ensureOnNewlineImpl(newLinesWanted: number): Builder {
+    if (this.built.length === 0) {
+      return this;
+    }
     let newLinesFound: number = 0;
     for (let idx: number = 0; idx < newLinesWanted; idx++) {
       if (this.built.charAt(this.built.length - idx - 1) === "\n") {
@@ -107,10 +119,9 @@ export class Builder {
       }
     }
     if (mode === EBuilderVerifyMode.HEADER) {
-      if (this.headerWasSet) {
+      if (this.header !== undefined) {
         throw new Error("Cannot set header twice");
       }
-      this.headerWasSet = true;
     }
     if (mode === EBuilderVerifyMode.INDENT) {
       if (!this.built.endsWith("\n")) {
