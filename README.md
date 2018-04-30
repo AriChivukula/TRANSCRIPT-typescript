@@ -16,4 +16,4 @@
 * [Type](https://github.com/arichiv/typescriptase/blob/readme/src/type.ts)
 * [Variable](https://github.com/arichiv/typescriptase/blob/readme/src/variable.ts)
 
-## [Examples](https://github.com/arichiv/typescriptase/blob/readme/src/__tests__/setup.ts)
+## [Examples](https://github.com/arichiv/typescriptase/blob/readme/src/__tests__/examples.ts)

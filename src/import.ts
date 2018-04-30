@@ -1,22 +1,28 @@
-import { IRenderContext, Renderable } from "./internal";
+import { IContext, Renderable } from "./internal";
+
+export enum EImportKind {
+  GLOBAL,
+  LOCAL,
+  RAW,
+}
 
 export interface IImportAll {
-  module: string;
-  nameAll: string;
+  name: string;
+  withAllAs: string;
 }
 
 export interface IImportDefault {
-  module: string;
-  nameDefault: string;
+  name: string;
+  withDefaultAs: string;
 }
 
 export interface IImportRaw {
-  module: string;
+  name: string;
 }
 
 export interface IImportSome {
-  module: string;
-  names: string[];
+  name: string;
+  with: string[];
 }
 
 export type TImport = IImportAll | IImportDefault | IImportRaw | IImportSome;
@@ -27,80 +33,39 @@ export class Import extends Renderable {
     return new Import(props);
   }
 
-  public static renderMany(
-    imports: Import[],
-    context: IRenderContext,
-  ): string {
-    let builder: string = "";
-    if (imports.length === 0) {
-      return builder;
-    }
-    builder += "\n";
-    builder += Import.renderSection(
-      imports
-        .filter(
-          (i: Import): boolean => Object.keys(i.props).length === 1,
-        )
-        .sort((a: Import, b: Import) => Import.sort(a, b)),
-      context,
-    );
-    builder += Import.renderSection(
-      imports
-        .filter(
-          (i: Import): boolean => Object.keys(i.props).length > 1,
-        )
-        .filter(
-          (i: Import): boolean => !i.props.module.startsWith("."),
-        )
-        .sort((a: Import, b: Import) => Import.sort(a, b)),
-      context,
-    );
-    builder += Import.renderSection(
-      imports
-        .filter(
-          (i: Import): boolean => Object.keys(i.props).length > 1,
-        )
-        .filter(
-          (i: Import): boolean => i.props.module.startsWith("."),
-        )
-        .sort((a: Import, b: Import) => Import.sort(a, b)),
-      context,
-    );
-
-    return builder;
-  }
-
-  private static renderSection(imports: Import[], context: IRenderContext): string {
-    let builder: string = "";
-    if (imports.length === 0) {
-      return builder;
-    }
-    builder += "\n";
-    imports.forEach((i: Import) => builder += `${i.render(context)}\n`);
-
-    return builder;
-  }
-
-  private static sort(a: Import, b: Import): number {
-    return a.props.module.toLowerCase()
-      .localeCompare(b.props.module.toLowerCase());
-  }
-
   private constructor(
     private readonly props: TImport,
   ) {
     super();
   }
 
-  public render(context: IRenderContext): string {
+  public bespokes(): string[] {
+    return [];
+  }
+
+  public identifiers(): string[] {
+    return [this.props.name];
+  }
+
+  public kind(): EImportKind {
+    if (Object.keys(this.props).length === 1) {
+      return EImportKind.RAW;
+    } else if (this.props.name.startsWith(".")) {
+      return EImportKind.LOCAL;
+    } else {
+      return EImportKind.GLOBAL;
+    }
+  }
+
+  protected renderImpl(context: IContext): string {
     let builder: string = "";
-    if ("nameAll" in this.props) {
-      builder += `import * as ${this.props.nameAll} from "${this.props.module}";`;
-    } else if ("nameDefault" in this.props) {
-      builder += `import ${this.props.nameDefault} from "${this.props.module}";`;
-    } else if ("names" in this.props) {
+    if ("withAllAs" in this.props) {
+      builder += `import * as ${this.props.withAllAs} from "${this.props.name}";`;
+    } else if ("withDefaultAs" in this.props) {
+      builder += `import ${this.props.withDefaultAs} from "${this.props.name}";`;
+    } else if ("with" in this.props) {
       builder += "import {\n";
-      this.props.names
+      this.props.with
         .sort(
           (a: string, b: string): number =>
             a.toLowerCase()
@@ -109,9 +74,9 @@ export class Import extends Renderable {
         .forEach(
           (name: string): void => { builder += `  ${name},\n`; },
         );
-      builder += `} from "${this.props.module}";`;
+      builder += `} from "${this.props.name}";`;
     } else {
-      builder += `import "${this.props.module}";`;
+      builder += `import "${this.props.name}";`;
     }
 
     return `${builder}`;

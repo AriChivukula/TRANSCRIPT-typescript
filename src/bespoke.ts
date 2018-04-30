@@ -1,4 +1,4 @@
-import { Composable, IRenderContext } from "./internal";
+import { IContext, Renderable } from "./internal";
 
 export const startTemplate: string = "/* BESPOKE START <<@0>> */";
 
@@ -8,9 +8,9 @@ export interface IBespoke {
   name: string;
 }
 
-export class Bespoke extends Composable {
+export class Bespoke extends Renderable {
 
-  public static new(props: IBespoke): Composable {
+  public static new(props: IBespoke): Bespoke {
     return new Bespoke(props);
   }
 
@@ -24,7 +24,11 @@ export class Bespoke extends Composable {
     return [this.props.name];
   }
 
-  public render(context: IRenderContext): string {
+  public identifiers(): string[] {
+    return [this.props.name];
+  }
+
+  protected renderImpl(context: IContext): string {
     let builder: string = "\n";
     builder += startTemplate.replace("@0", this.props.name);
     builder += "\n";

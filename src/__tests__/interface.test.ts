@@ -1,4 +1,4 @@
-import { interface1, interface2, interface3 } from "./setup";
+import { interface1, interface2, interface3 } from "./examples";
 
 test(
   "interface1",

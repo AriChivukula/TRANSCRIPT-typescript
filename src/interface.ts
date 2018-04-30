@@ -1,4 +1,4 @@
-import { Composable, IRenderContext } from "./internal";
+import { IContext, Renderable } from "./internal";
 
 export interface IInterface {
   exported: boolean;
@@ -6,9 +6,9 @@ export interface IInterface {
   types: { [index: string]: string};
 }
 
-export class Interface extends Composable {
+export class Interface extends Renderable {
 
-  public static new(props: IInterface): Composable {
+  public static new(props: IInterface): Interface {
     return new Interface(props);
   }
 
@@ -22,7 +22,11 @@ export class Interface extends Composable {
     return [];
   }
 
-  public render(context: IRenderContext): string {
+  public identifiers(): string[] {
+    return [this.props.name];
+  }
+
+  protected renderImpl(context: IContext): string {
     let builder: string = "\n";
     if (this.props.exported) {
       builder += "export ";

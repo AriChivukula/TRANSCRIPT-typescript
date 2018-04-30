@@ -1,7 +1,7 @@
 import { createHash, Hash } from "crypto";
 
-import { Import } from "./import";
-import { Composable, IRenderContext, Renderable } from "./internal";
+import { EImportKind, Import } from "./import";
+import { IContext, Renderable } from "./internal";
 
 const headerTemplateWithoutBespoke: string = `/**
  * This file is fully generated; do not manually edit.
@@ -19,14 +19,13 @@ const headerTemplateWithBespoke: string = `/**
  */`;
 
 export interface IModule {
-  content: Composable[];
+  content: Renderable[];
   destination: string;
-  imports: Import[];
 }
 
 export class Module extends Renderable {
 
-  public static new(props: IModule): Renderable {
+  public static new(props: IModule): Module {
     return new Module(props);
   }
 
@@ -37,6 +36,77 @@ export class Module extends Renderable {
     return hash.digest("base64");
   }
 
+  private static renderImports(
+    context: IContext,
+    imports: Import[],
+  ): string {
+    let builder: string = "";
+    if (imports.length === 0) {
+      return builder;
+    }
+
+    builder += "\n";
+    builder += Module.renderImportSection(
+      context,
+      imports
+        .filter(
+          (i: Import): boolean => i.kind() === EImportKind.RAW,
+        ),
+    );
+    builder += Module.renderImportSection(
+      context,
+      imports
+        .filter(
+          (i: Import): boolean => i.kind() === EImportKind.GLOBAL,
+        ),
+    );
+    builder += Module.renderImportSection(
+      context,
+      imports
+        .filter(
+          (i: Import): boolean => i.kind() === EImportKind.LOCAL,
+        ),
+    );
+
+    return builder;
+  }
+
+  private static renderImportSection(
+    context: IContext,
+    imports: Import[],
+  ): string {
+    let builder: string = "";
+    if (imports.length === 0) {
+      return builder;
+    }
+
+    builder += "\n";
+    imports.forEach(
+      (i: Import) => builder += `${i.render(context)}\n`,
+    );
+
+    return builder;
+  }
+
+  private static renderNonImports(
+    context: IContext,
+    nonImports: Renderable[],
+  ): string {
+    let builder: string = "";
+    if (nonImports.length === 0) {
+      return builder;
+    }
+
+    nonImports
+      .forEach(
+        (currentValue: Renderable): void => {
+          builder += currentValue.render(context);
+        },
+      );
+
+    return builder;
+  }
+
   private constructor(
     private readonly props: IModule,
   ) {
@@ -45,7 +115,9 @@ export class Module extends Renderable {
 
   public bespokes(): string[] {
     const bespokes: string[][] = this.props.content
-      .map((content: Composable) => content.bespokes());
+      .map(
+        (content: Renderable) => content.bespokes(),
+      );
 
     return ([] as string[]).concat(...bespokes);
   }
@@ -54,19 +126,36 @@ export class Module extends Renderable {
     return this.props.destination;
   }
 
-  public render(context: IRenderContext): string {
-    let builder: string = Import.renderMany(this.props.imports, context);
+  public identifiers(): string[] {
+    const identifiers: string[][] = this.props.content
+      .map(
+        (content: Renderable) => content.identifiers(),
+      );
+
+    return ([] as string[]).concat(...identifiers);
+  }
+
+  protected renderImpl(context: IContext): string {
+    let builder: string = "";
+
+    const imports: Import[] = this.props.content
+      .filter(
+        (i: Renderable): i is Import => i instanceof Import,
+      )
+      .sort(
+        (a: Import, b: Import) => a.identifiers()[0]
+          .localeCompare(b.identifiers()[0]),
+      );
+    builder += Module.renderImports(context, imports);
     if (builder.length === 0) {
       builder += "\n";
     }
-    if (this.props.content.length > 0) {
-      this.props.content
-        .forEach(
-          (currentValue: Composable, index: number): void => {
-            builder += currentValue.render(context);
-          },
-        );
-    }
+
+    const nonImports: Renderable[] = this.props.content
+      .filter(
+        (i: Renderable): boolean => !(i instanceof Import),
+      );
+    builder += Module.renderNonImports(context, nonImports);
     if (builder.length === 0) {
       builder += "\n";
     }

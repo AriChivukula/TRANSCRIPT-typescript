@@ -1,4 +1,4 @@
-import { bespoke1, bespoke2, bespoke3 } from "./setup";
+import { bespoke1, bespoke2, bespoke3 } from "./examples";
 
 test(
   "bespoke1",

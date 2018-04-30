@@ -1,29 +1,26 @@
 import {
   Bespoke,
-  Composable,
-  EVariableKind,
   Function,
   Import,
   Interface,
   Module,
-  Renderable,
   Type,
   Variable,
 } from "../index";
 
-export const bespoke1: Composable = Bespoke.new({
+export const bespoke1: Bespoke = Bespoke.new({
   name: "TEST1",
 });
 
-export const bespoke2: Composable = Bespoke.new({
+export const bespoke2: Bespoke = Bespoke.new({
   name: "test2",
 });
 
-export const bespoke3: Composable = Bespoke.new({
+export const bespoke3: Bespoke = Bespoke.new({
   name: "3tESt3",
 });
 
-export const function1: Composable = Function.new({
+export const function1: Function = Function.new({
   async: false,
   content: [],
   exported: false,
@@ -32,7 +29,7 @@ export const function1: Composable = Function.new({
   output: "void",
 });
 
-export const function2: Composable = Function.new({
+export const function2: Function = Function.new({
   async: true,
   content: [],
   exported: true,
@@ -41,11 +38,11 @@ export const function2: Composable = Function.new({
   output: "Promise<string>",
 });
 
-export const function3: Composable = Function.new({
+export const function3: Function = Function.new({
   async: true,
   content: [
     Bespoke.new({
-      name: "fn1",
+      name: "fn3",
     }),
   ],
   exported: true,
@@ -53,74 +50,74 @@ export const function3: Composable = Function.new({
     var1: "string",
     var2: "object",
   },
-  name: "function2",
+  name: "function3",
   output: "Promise<string[]>",
 });
 
 export const importAll1: Import = Import.new({
-  module: "YYY",
-  nameAll: "zzz",
+  name: "YYY",
+  withAllAs: "zzz",
 });
 
 export const importAll2: Import = Import.new({
-  module: "BbB",
-  nameAll: "aaa",
+  name: "BbB",
+  withAllAs: "aaa",
 });
 
 export const importAll3: Import = Import.new({
-  module: "./mmm",
-  nameAll: "mmm",
+  name: "./mmm",
+  withAllAs: "mmm",
 });
 
 export const importDefault1: Import = Import.new({
-  module: "www",
-  nameDefault: "xxx",
+  name: "www",
+  withDefaultAs: "xxx",
 });
 
 export const importDefault2: Import = Import.new({
-  module: "./ddd",
-  nameDefault: "fff",
+  name: "./ddd",
+  withDefaultAs: "fff",
 });
 
 export const importDefault3: Import = Import.new({
-  module: "nnn",
-  nameDefault: "ooo",
+  name: "nnn",
+  withDefaultAs: "ooo",
 });
 
 export const importRaw1: Import = Import.new({
-  module: "ZZZ",
+  name: "ZZZ",
 });
 
 export const importRaw2: Import = Import.new({
-  module: "./p",
+  name: "./p",
 });
 
 export const importRaw3: Import = Import.new({
-  module: "aqe",
+  name: "aqe",
 });
 
 export const importSome1: Import = Import.new({
-  module: "a",
-  names: ["B", "c"],
+  name: "a",
+  with: ["B", "c"],
 });
 
 export const importSome2: Import = Import.new({
-  module: "./R",
-  names: ["wA", "A"],
+  name: "./R",
+  with: ["wA", "A"],
 });
 
 export const importSome3: Import = Import.new({
-  module: "./a",
-  names: ["g", "z", "r"],
+  name: "./a",
+  with: ["g", "z", "r"],
 });
 
-export const interface1: Composable = Interface.new({
+export const interface1: Interface = Interface.new({
   exported: false,
   name: "If1",
   types: {},
 });
 
-export const interface2: Composable = Interface.new({
+export const interface2: Interface = Interface.new({
   exported: true,
   name: "If2",
   types: {
@@ -128,7 +125,7 @@ export const interface2: Composable = Interface.new({
   },
 });
 
-export const interface3: Composable = Interface.new({
+export const interface3: Interface = Interface.new({
   exported: true,
   name: "If3",
   types: {
@@ -137,75 +134,74 @@ export const interface3: Composable = Interface.new({
   },
 });
 
-export const type1: Composable = Type.new({
+export const type1: Type = Type.new({
   assignment: "number",
   exported: false,
   name: "Ty1",
 });
 
-export const type2: Composable = Type.new({
+export const type2: Type = Type.new({
   assignment: "string | null",
   exported: true,
   name: "Ty2",
 });
 
-export const type3: Composable = Type.new({
+export const type3: Type = Type.new({
   assignment: "Ty2 | Ty1",
   exported: true,
   name: "Ty3",
 });
 
-export const exportedVariable: Composable = Variable.new({
-  kind: EVariableKind.EXPORTED,
-  name: "exportedVariable",
+export const variable1: Variable = Variable.new({
+  exported: true,
+  mutable: false,
+  name: "variable1",
   type: "string",
 });
 
-export const immutableVariable: Composable = Variable.new({
+export const variable2: Variable = Variable.new({
   assignment: "\"TEST\"",
-  kind: EVariableKind.IMMUTABLE,
-  name: "immutableVariable",
+  exported: false,
+  mutable: false,
+  name: "variable2",
   type: "string | undefined",
 });
 
-export const mutableVariable: Composable = Variable.new({
+export const variable3: Variable = Variable.new({
   assignment: "1",
-  kind: EVariableKind.MUTABLE,
-  name: "mutableVariable",
+  exported: false,
+  mutable: true,
+  name: "variable3",
   type: "number | null | undefined",
 });
 
-export const emptyModule: Renderable = Module.new({
+export const emptyModule: Module = Module.new({
   content: [],
   destination: "src/__tests__/__codegen__/emptyModule.ts",
-  imports: [],
 });
 
-export const contentModule: Renderable = Module.new({
+export const contentModule: Module = Module.new({
   content: [
     type1,
     bespoke1,
     interface1,
     function1,
-    exportedVariable,
+    variable1,
     type2,
     function2,
     interface3,
-    immutableVariable,
-    mutableVariable,
+    variable2,
+    variable3,
     bespoke2,
     function3,
     interface2,
     type3,
   ],
   destination: "src/__tests__/__codegen__/contentModule.ts",
-  imports: [],
 });
 
-export const importModule: Renderable = Module.new({
-  content: [],
-  destination: "src/__tests__/__codegen__/importModule.ts",
-  imports: [
+export const importModule: Module = Module.new({
+  content: [
     importAll1,
     importAll2,
     importAll3,
@@ -219,39 +215,38 @@ export const importModule: Renderable = Module.new({
     importSome2,
     importSome3,
   ],
+  destination: "src/__tests__/__codegen__/importModule.ts",
 });
 
-export const complexModule: Renderable = Module.new({
+export const complexModule: Module = Module.new({
   content: [
+    importRaw1,
+    importSome3,
+    importSome2,
+    importSome1,
+    importDefault3,
+    importDefault2,
+    importDefault1,
+    importAll3,
+    importRaw2,
+    importRaw3,
+    importAll2,
+    importAll1,
     interface1,
     function3,
     bespoke1,
     bespoke2,
-    mutableVariable,
+    variable3,
     interface2,
     type1,
     type2,
     type3,
     function2,
-    exportedVariable,
+    variable1,
     bespoke3,
-    immutableVariable,
+    variable2,
     interface3,
     function1,
   ],
   destination: "src/__tests__/__codegen__/complexModule.ts",
-  imports: [
-    importRaw1,
-    importSome3,
-    importSome2,
-    importSome1,
-    importDefault3,
-    importDefault2,
-    importDefault1,
-    importAll3,
-    importRaw2,
-    importRaw3,
-    importAll2,
-    importAll1,
-  ],
 });

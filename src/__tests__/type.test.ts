@@ -1,4 +1,4 @@
-import { type1, type2, type3 } from "./setup";
+import { type1, type2, type3 } from "./examples";
 
 test(
   "type1",

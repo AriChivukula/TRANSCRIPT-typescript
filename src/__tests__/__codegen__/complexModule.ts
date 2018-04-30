@@ -1,9 +1,9 @@
 /**
  * This file is partially generated; only edit bespoke sections.
  *
- * SOURCE<<src/__tests__/setup.ts::complexModule>>
- * BESPOKE<<fn1, TEST1, test2, 3tESt3>>
- * SIGNED<<UpI5L3VhpdDlA9utT1u7GP3lJxBvfuPbGa6ciBevBH1ZJ8DL+92f2K9yOqrQxIt1R8CT0pT2dwRT9u3y5dlpjw==>>
+ * SOURCE<<src/__tests__/examples.ts::complexModule>>
+ * BESPOKE<<fn3, TEST1, test2, 3tESt3>>
+ * SIGNED<<I+Mm22cqEJ5c0Gjz0Pc4FwjX89d42hmck2yZUKQnQU2NgZOdiZvZZkBdZ0w7cIa2FSLPYJ2NNg1VNJ0TKg7ACg==>>
  */
 
 import "./p";
@@ -34,13 +34,12 @@ import {
 interface If1 {
 }
 
-export async function function2(
+export async function function3(
   var1: string,
   var2: object,
 ): Promise<string[]> {
-  /* BESPOKE START <<fn1>> */
-  "DO NOT DELETE"
-  /* BESPOKE END <<fn1>> */
+  /* BESPOKE START <<fn3>> */
+  /* BESPOKE END <<fn3>> */
 }
 
 /* BESPOKE START <<TEST1>> */
@@ -51,7 +50,7 @@ export async function function2(
 // DO NOT DELETE
 /* BESPOKE END <<test2>> */
 
-let mutableVariable: number | null | undefined = 1;
+let variable3: number | null | undefined = 1;
 
 export interface If2 {
   item: string;
@@ -67,13 +66,13 @@ export async function function2(
 ): Promise<string> {
 }
 
-export const exportedVariable: string;
+export const variable1: string;
 
 /* BESPOKE START <<3tESt3>> */
 /* DO NOT DELETE */
 /* BESPOKE END <<3tESt3>> */
 
-const immutableVariable: string | undefined = "TEST";
+const variable2: string | undefined = "TEST";
 
 export interface If3 {
   test: null | string;
