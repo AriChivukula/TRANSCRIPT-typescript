@@ -28,7 +28,7 @@ export abstract class Renderable {
   protected abstract render(
     context: IContext,
     builder: Builder,
-  ): string;
+  ): void;
 
   protected abstract verify(context: IContext): void;
 }

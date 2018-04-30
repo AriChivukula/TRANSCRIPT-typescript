@@ -30,82 +30,67 @@ export class Module extends Renderable {
     return new Module(props);
   }
 
-  private static getHash(content: string): string {
+  private static getHash(builder: Builder): string {
     const hash: Hash = createHash("SHA512");
-    hash.update(content);
+    hash.update(builder.print());
 
     return hash.digest("base64");
   }
 
   private static renderImports(
     context: IContext,
+    builder: Builder,
     imports: Import[],
-  ): string {
-    let builder: string = "";
-    if (imports.length === 0) {
-      return builder;
-    }
-
-    builder += "\n";
-    builder += Module.renderImportSection(
+  ): void {
+    Module.renderImportSection(
       context,
+      builder,
       imports
         .filter(
           (i: Import): boolean => i.kind() === EImportKind.RAW,
         ),
     );
-    builder += Module.renderImportSection(
+    Module.renderImportSection(
       context,
+      builder,
       imports
         .filter(
           (i: Import): boolean => i.kind() === EImportKind.GLOBAL,
         ),
     );
-    builder += Module.renderImportSection(
+    Module.renderImportSection(
       context,
+      builder,
       imports
         .filter(
           (i: Import): boolean => i.kind() === EImportKind.LOCAL,
         ),
     );
-
-    return builder;
   }
 
   private static renderImportSection(
     context: IContext,
+    builder: Builder,
     imports: Import[],
-  ): string {
-    let builder: string = "";
-    if (imports.length === 0) {
-      return builder;
-    }
-
-    builder += "\n";
+  ): void {
     imports.forEach(
-      (i: Import) => builder += `${i.print(context)}\n`,
+      (i: Import) => {
+        i.print(context, builder);
+      },
     );
-
-    return builder;
   }
 
   private static renderNonImports(
     context: IContext,
+    builder: Builder,
     nonImports: Renderable[],
-  ): string {
-    let builder: string = "";
-    if (nonImports.length === 0) {
-      return builder;
-    }
-
+  ): void {
     nonImports
       .forEach(
-        (currentValue: Renderable): void => {
-          builder += currentValue.print(context);
+        (r: Renderable): void => {
+          r.print(context, builder);
         },
       );
-
-    return builder;
   }
 
   private constructor(
@@ -139,9 +124,7 @@ export class Module extends Renderable {
   protected render(
     context: IContext,
     builder: Builder,
-  ): string {
-    let builder: string = "";
-
+  ): void {
     const imports: Import[] = this.props.content
       .filter(
         (i: Renderable): i is Import => i instanceof Import,
@@ -150,19 +133,13 @@ export class Module extends Renderable {
         (a: Import, b: Import) => a.identifiers()[0]
           .localeCompare(b.identifiers()[0]),
       );
-    builder += Module.renderImports(context, imports);
-    if (builder.length === 0) {
-      builder += "\n";
-    }
+    Module.renderImports(context, builder, imports);
 
     const nonImports: Renderable[] = this.props.content
       .filter(
         (i: Renderable): boolean => !(i instanceof Import),
       );
-    builder += Module.renderNonImports(context, nonImports);
-    if (builder.length === 0) {
-      builder += "\n";
-    }
+    Module.renderNonImports(context, builder, nonImports);
 
     const bespokes: string[] = this.bespokes();
     let header: string = "";
@@ -176,8 +153,7 @@ export class Module extends Renderable {
         .replace("@0", `${context.path}::${context.name}`)
         .replace("@1", Module.getHash(builder));
     }
-
-    return header + builder;
+    builder.addHeader(header);
   }
 
   protected verify(context: IContext): void {

@@ -61,14 +61,15 @@ export class Import extends Renderable {
   protected render(
     context: IContext,
     builder: Builder,
-  ): string {
-    let builder: string = "";
+  ): void {
     if ("withAllAs" in this.props) {
-      builder += `import * as ${this.props.withAllAs} from "${this.props.name}";`;
+      builder.addLine(`import * as ${this.props.withAllAs} from "${this.props.name}";`);
     } else if ("withDefaultAs" in this.props) {
-      builder += `import ${this.props.withDefaultAs} from "${this.props.name}";`;
+      builder.addLine(`import ${this.props.withDefaultAs} from "${this.props.name}";`);
     } else if ("with" in this.props) {
-      builder += "import {\n";
+      builder
+        .addLine("import {")
+        .indent();
       this.props.with
         .sort(
           (a: string, b: string): number =>
@@ -76,14 +77,14 @@ export class Import extends Renderable {
               .localeCompare(b.toLowerCase()),
         )
         .forEach(
-          (name: string): void => { builder += `  ${name},\n`; },
+          (name: string): void => { builder.addLine(`${name},`); },
         );
-      builder += `} from "${this.props.name}";`;
+      builder
+        .unindent()
+        .addLine(`} from "${this.props.name}";`);
     } else {
-      builder += `import "${this.props.name}";`;
+      builder.addLine(`import "${this.props.name}";`);
     }
-
-    return `${builder}`;
   }
 
   protected verify(context: IContext): void {

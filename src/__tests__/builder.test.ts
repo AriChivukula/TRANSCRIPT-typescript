@@ -26,6 +26,20 @@ test(
 );
 
 test(
+  "AddHeader",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .add("b")
+        .addHeader("\na\t")
+        .print(),
+    )
+      .toEqual("\na\tb");
+  },
+);
+
+test(
   "AddLine",
   async (): Promise<void> => {
     expect(
@@ -185,6 +199,19 @@ test(
       () => Builder
         .new()
         .indent(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "AddHeaderError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .addHeader("\na\t")
+        .addHeader("\na\t"),
     )
       .toThrow();
   },

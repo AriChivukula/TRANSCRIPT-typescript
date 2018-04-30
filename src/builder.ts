@@ -1,5 +1,6 @@
 enum EBuilderVerifyMode {
   CONTENT,
+  HEADER,
   INDENT,
   PRINT,
 }
@@ -11,12 +12,20 @@ export class Builder {
   }
 
   private built: string = "";
+  private headerWasSet: boolean = false;
   private indentation: number = 0;
 
   private constructor() {}
 
   public add(content: string): Builder {
     return this.addImpl(content, false);
+  }
+
+  public addHeader(header: string): Builder {
+    this.verify(EBuilderVerifyMode.HEADER);
+    this.built = `${header}${this.built}`;
+
+    return this;
   }
 
   public addLine(content: string): Builder {
@@ -90,7 +99,7 @@ export class Builder {
       if (content === "") {
         throw new Error("Unexpected empty string");
       }
-      if (content.trim() !== content) {
+      if (content.trimLeft() !== content) {
         throw new Error("Unexpected whitespace");
       }
       if (content.includes("\n")) {
@@ -99,6 +108,12 @@ export class Builder {
       if (content.includes("\t")) {
         throw new Error("Unexpected tab");
       }
+    }
+    if (mode === EBuilderVerifyMode.HEADER) {
+      if (this.headerWasSet) {
+        throw new Error("Cannot set header twice");
+      }
+      this.headerWasSet = true;
     }
     if (mode === EBuilderVerifyMode.INDENT) {
       if (!this.built.endsWith("\n")) {

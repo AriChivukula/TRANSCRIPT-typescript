@@ -32,14 +32,10 @@ export class Bespoke extends Renderable {
   protected render(
     context: IContext,
     builder: Builder,
-  ): string {
-    let builder: string = "\n";
-    builder += startTemplate.replace("@0", this.props.name);
-    builder += "\n";
-    builder += endTemplate.replace("@0", this.props.name);
-    builder += "\n";
-
-    return builder;
+  ): void {
+    builder
+      .addLine(startTemplate.replace("@0", this.props.name))
+      .addLine(endTemplate.replace("@0", this.props.name));
   }
 
   protected verify(context: IContext): void {

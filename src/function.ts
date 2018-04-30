@@ -36,32 +36,32 @@ export class Function extends Renderable {
   protected render(
     context: IContext,
     builder: Builder,
-  ): string {
-    let builder: string = "\n";
+  ): void {
     if (this.props.exported) {
-      builder += "export ";
+      builder.add("export ");
     }
     if (this.props.async) {
-      builder += "async ";
+      builder.add("async ");
     }
-    builder += `function ${this.props.name}(\n`;
+    builder
+      .addLine(`function ${this.props.name}(`)
+      .indent();
     for (const name of Object.keys(this.props.inputs)) {
-      builder += `  ${name}: ${this.props.inputs[name]},\n`;
+      builder.addLine(`${name}: ${this.props.inputs[name]},`);
     }
-    builder += `): ${this.props.output} {\n`;
+    builder
+      .unindent()
+      .addLine(`): ${this.props.output} {`)
+      .indent();
     this.props.content
       .forEach(
         (content: Renderable): void => {
-          const line: string = content
-            .print(context)
-            .trim()
-            .replace("\n", "\n  ");
-          builder += `  ${line}\n`;
+          content.print(context, builder);
         },
       );
-    builder += "}\n";
-
-    return builder;
+    builder
+      .unindent()
+      .addLine("}");
   }
 
   protected verify(context: IContext): void {

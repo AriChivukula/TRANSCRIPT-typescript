@@ -30,18 +30,19 @@ export class Interface extends Renderable {
   protected render(
     context: IContext,
     builder: Builder,
-  ): string {
-    let builder: string = "\n";
+  ): void {
     if (this.props.exported) {
-      builder += "export ";
+      builder.add("export ");
     }
-    builder += `interface ${this.props.name} {\n`;
+    builder
+      .addLine(`interface ${this.props.name} {`)
+      .indent();
     for (const name of Object.keys(this.props.types)) {
-      builder += `  ${name}: ${this.props.types[name]};\n`;
+      builder.addLine(`${name}: ${this.props.types[name]};`);
     }
-    builder += "}\n";
-
-    return builder;
+    builder
+      .unindent()
+      .addLine("}");
   }
 
   protected verify(context: IContext): void {

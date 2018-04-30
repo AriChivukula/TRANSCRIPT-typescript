@@ -30,14 +30,11 @@ export class Type extends Renderable {
   protected render(
     context: IContext,
     builder: Builder,
-  ): string {
-    let builder: string = "\n";
+  ): void {
     if (this.props.exported) {
-      builder += "export ";
+      builder.add("export ");
     }
-    builder += `type ${this.props.name} = ${this.props.assignment};\n`;
-
-    return builder;
+    builder.addLine(`type ${this.props.name} = ${this.props.assignment};`);
   }
 
   protected verify(context: IContext): void {

@@ -32,24 +32,21 @@ export class Variable extends Renderable {
   protected render(
     context: IContext,
     builder: Builder,
-  ): string {
-    let builder: string = "\n";
+  ): void {
     if (this.props.exported) {
-      builder += "export ";
+      builder.add("export ");
     }
     if (this.props.mutable) {
-      builder += "let ";
+      builder.add("let ");
     } else {
-      builder += "const ";
+      builder.add("const ");
     }
-    builder += `${this.props.name}: ${this.props.type}`;
+    builder.add(`${this.props.name}: ${this.props.type}`);
     if (this.props.assignment !== undefined) {
-      builder += ` = ${this.props.assignment};`;
+      builder.addLine(` = ${this.props.assignment};`);
     } else {
-      builder += ";";
+      builder.addLine(";");
     }
-
-    return `${builder}\n`;
   }
 
   protected verify(context: IContext): void {
