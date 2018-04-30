@@ -1,7 +1,7 @@
 /**
  * This file is partially generated; only edit bespoke sections.
  *
- * SOURCE<<src/__tests__/setup.ts::complexModule>>
+ * SOURCE<<src/__tests__/examples.ts::complexModule>>
  * BESPOKE<<fn3, TEST1, test2, 3tESt3>>
  * SIGNED<<I+Mm22cqEJ5c0Gjz0Pc4FwjX89d42hmck2yZUKQnQU2NgZOdiZvZZkBdZ0w7cIa2FSLPYJ2NNg1VNJ0TKg7ACg==>>
  */

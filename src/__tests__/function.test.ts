@@ -1,4 +1,4 @@
-import { function1, function2, function3 } from "./setup";
+import { function1, function2, function3 } from "./examples";
 
 test(
   "function1",

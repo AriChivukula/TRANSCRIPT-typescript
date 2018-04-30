@@ -1,7 +1,7 @@
 /**
  * This file is partially generated; only edit bespoke sections.
  *
- * SOURCE<<src/__tests__/setup.ts::contentModule>>
+ * SOURCE<<src/__tests__/examples.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
  * SIGNED<<w98fTvI6lA77DnSZRjzgEfBJyz7lA1txRjigT8LHRQ2U39SVXFeM6uZf093LVeJqbxh7eMfSi1V0CYn9On4UWw==>>
  */

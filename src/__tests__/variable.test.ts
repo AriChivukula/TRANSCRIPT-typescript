@@ -1,4 +1,4 @@
-import { variable1, variable2, variable3 } from "./setup";
+import { variable1, variable2, variable3 } from "./examples";
 
 test(
   "variable1",

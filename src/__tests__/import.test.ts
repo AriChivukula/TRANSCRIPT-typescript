@@ -11,7 +11,7 @@ import {
   importSome1,
   importSome2,
   importSome3,
-} from "./setup";
+} from "./examples";
 
 test(
   "importAll1",

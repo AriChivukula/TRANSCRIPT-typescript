@@ -1,4 +1,4 @@
-import { complexModule, contentModule, emptyModule, importModule } from "./setup";
+import { complexModule, contentModule, emptyModule, importModule } from "./examples";
 
 test(
   "complexModule",
