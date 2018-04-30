@@ -2,23 +2,48 @@
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, sep } from "path";
+import * as yargs from "yargs";
 
 import { endTemplate, Module, startTemplate } from "./index";
 
-getFiles()
-  .forEach(codegenFile);
+// tslint:disable-next-line
+yargs
+  .usage(
+    "$0",
+    "Typescript Codegen",
+    (y: yargs.Argv): yargs.Argv => y
+      .option(
+        "v",
+        {
+          boolean: true,
+          describe: "Verify Only",
+        },
+      )
+      .option(
+        "files",
+        {
+          array: true,
+          demandOption: true,
+          describe: "Files",
+        },
+      ),
+    (argv: yargs.Arguments): void => {
+      // tslint:disable-next-line
+      argv.files.forEach(
+        (path: string): void => {
+          // tslint:disable-next-line
+          codegenFile(path, argv.v);
+        },
+      );
+    },
+  )
+  .help()
+  .argv;
 
-function getFiles(): string[] {
-  const commandIndex: number = process.argv
-    .findIndex((elt: string) => /typescriptase/.test(elt));
-  if (commandIndex === -1 || process.argv.length === commandIndex + 1) {
-    throw new Error("Usage is `typescriptase GLOB`");
-  }
-
-  return process.argv.slice(commandIndex + 1);
-}
-
-function codegenFile(path: string): void {
+function codegenFile(
+  path: string,
+  inspectOnly: boolean,
+): void {
   // tslint:disable-next-line
   let file: { [index: string]: any };
   try {
@@ -26,19 +51,24 @@ function codegenFile(path: string): void {
     file = require(`${process.cwd()}/${path}`);
   } catch (err) {
     // tslint:disable-next-line
-    console.log(err);
+    console.log(`Error loading ${path}`);
 
     return;
   }
   for (const name in file) {
     if (file[name] instanceof Module) {
       // tslint:disable-next-line
-      codegenModule(file[name], path, name);
+      codegenModule(file[name], path, name, inspectOnly);
     }
   }
 }
 
-function codegenModule(module: Module, path: string, name: string): void {
+function codegenModule(
+  module: Module,
+  path: string,
+  name: string,
+  inspectOnly: boolean,
+): void {
   let dirBuilder: string = "";
   dirname(module.destination())
     .split(sep)
@@ -55,6 +85,7 @@ function codegenModule(module: Module, path: string, name: string): void {
       name,
       path,
     }),
+    inspectOnly,
   );
 }
 
@@ -62,6 +93,7 @@ function codegenModuleWithBespokes(
   bespokes: string[],
   destination: string,
   module: string,
+  inspectOnly: boolean,
 ): void {
   let mutableModule: string = module;
   if (existsSync(destination)) {
@@ -74,7 +106,12 @@ function codegenModuleWithBespokes(
       );
     });
   }
-  writeFileSync(destination, mutableModule);
+  if (inspectOnly) {
+    // tslint:disable-next-line
+    console.log(`Skipping writing ${destination}`);
+  } else {
+    writeFileSync(destination, mutableModule);
+  }
 }
 
 function codegenModuleWithBespoke(
