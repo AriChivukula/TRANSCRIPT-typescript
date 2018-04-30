@@ -1,24 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`function1 1`] = `
-"
-function function1(
+"function function1(
 ): void {
 }
 "
 `;
 
 exports[`function2 1`] = `
-"
-export async function function2(
+"export async function function2(
 ): Promise<string> {
 }
 "
 `;
 
 exports[`function3 1`] = `
-"
-export async function function3(
+"export async function function3(
   var1: string,
   var2: object,
 ): Promise<string[]> {

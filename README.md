@@ -8,12 +8,12 @@
 
 ## API
 
-* [Bespoke](https://github.com/arichiv/typescriptase/blob/readme/src/bespoke.ts)
-* [Function](https://github.com/arichiv/typescriptase/blob/readme/src/function.ts)
-* [Import](https://github.com/arichiv/typescriptase/blob/readme/src/import.ts)
-* [Interface](https://github.com/arichiv/typescriptase/blob/readme/src/interface.ts)
-* [Module](https://github.com/arichiv/typescriptase/blob/readme/src/module.ts)
-* [Type](https://github.com/arichiv/typescriptase/blob/readme/src/type.ts)
-* [Variable](https://github.com/arichiv/typescriptase/blob/readme/src/variable.ts)
+* [Bespoke](https://github.com/arichiv/typescriptase/blob/master/src/bespoke.ts)
+* [Function](https://github.com/arichiv/typescriptase/blob/master/src/function.ts)
+* [Import](https://github.com/arichiv/typescriptase/blob/master/src/import.ts)
+* [Interface](https://github.com/arichiv/typescriptase/blob/master/src/interface.ts)
+* [Module](https://github.com/arichiv/typescriptase/blob/master/src/module.ts)
+* [Type](https://github.com/arichiv/typescriptase/blob/master/src/type.ts)
+* [Variable](https://github.com/arichiv/typescriptase/blob/master/src/variable.ts)
 
-## [Examples](https://github.com/arichiv/typescriptase/blob/readme/src/__tests__/examples.ts)
+## [Examples](https://github.com/arichiv/typescriptase/blob/master/src/__tests__/examples.ts)

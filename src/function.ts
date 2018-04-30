@@ -1,4 +1,5 @@
-import { IContext, Renderable } from "./internal";
+import { Builder } from "./builder";
+import { IContext, Renderable } from "./renderable";
 
 export interface IFunction {
   async: boolean;
@@ -32,31 +33,37 @@ export class Function extends Renderable {
     return [this.props.name];
   }
 
-  protected renderImpl(context: IContext): string {
-    let builder: string = "\n";
+  protected render(
+    context: IContext,
+    builder: Builder,
+  ): void {
     if (this.props.exported) {
-      builder += "export ";
+      builder.add("export ");
     }
     if (this.props.async) {
-      builder += "async ";
+      builder.add("async ");
     }
-    builder += `function ${this.props.name}(\n`;
+    builder
+      .addLine(`function ${this.props.name}(`)
+      .indent();
     for (const name of Object.keys(this.props.inputs)) {
-      builder += `  ${name}: ${this.props.inputs[name]},\n`;
+      builder.addLine(`${name}: ${this.props.inputs[name]},`);
     }
-    builder += `): ${this.props.output} {\n`;
+    builder
+      .unindent()
+      .addLine(`): ${this.props.output} {`)
+      .indent();
     this.props.content
       .forEach(
         (content: Renderable): void => {
-          const line: string = content
-            .render(context)
-            .trim()
-            .replace("\n", "\n  ");
-          builder += `  ${line}\n`;
+          content.run(context, builder);
         },
       );
-    builder += "}\n";
+    builder
+      .unindent()
+      .addLine("}");
+  }
 
-    return builder;
+  protected verify(context: IContext): void {
   }
 }

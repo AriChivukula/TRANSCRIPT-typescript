@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::complexModule>>
  * BESPOKE<<fn3, TEST1, test2, 3tESt3>>
- * SIGNED<<I+Mm22cqEJ5c0Gjz0Pc4FwjX89d42hmck2yZUKQnQU2NgZOdiZvZZkBdZ0w7cIa2FSLPYJ2NNg1VNJ0TKg7ACg==>>
+ * SIGNED<<rE7F/NueOsD1FTTBHDZhNA8L2H1o8sRKO3cPZGLX0EJmTm1ZhMsozfC4RfnYZ4/exohn7czH1uhH0rrEbPDJOA==>>
  */
 
 import "./p";

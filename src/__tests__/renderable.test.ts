@@ -13,7 +13,7 @@ test(
           ],
           destination: "",
         })
-        .render({
+        .print({
           name: "",
           path: "",
         }),
@@ -34,7 +34,7 @@ test(
           ],
           destination: "",
         })
-        .render({
+        .print({
           name: "",
           path: "",
         }),

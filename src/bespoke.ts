@@ -1,4 +1,5 @@
-import { IContext, Renderable } from "./internal";
+import { Builder } from "./builder";
+import { IContext, Renderable } from "./renderable";
 
 export const startTemplate: string = "/* BESPOKE START <<@0>> */";
 
@@ -28,13 +29,15 @@ export class Bespoke extends Renderable {
     return [this.props.name];
   }
 
-  protected renderImpl(context: IContext): string {
-    let builder: string = "\n";
-    builder += startTemplate.replace("@0", this.props.name);
-    builder += "\n";
-    builder += endTemplate.replace("@0", this.props.name);
-    builder += "\n";
+  protected render(
+    context: IContext,
+    builder: Builder,
+  ): void {
+    builder
+      .addLine(startTemplate.replace("@0", this.props.name))
+      .addLine(endTemplate.replace("@0", this.props.name));
+  }
 
-    return builder;
+  protected verify(context: IContext): void {
   }
 }

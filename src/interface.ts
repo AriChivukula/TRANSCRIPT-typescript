@@ -1,4 +1,5 @@
-import { IContext, Renderable } from "./internal";
+import { Builder } from "./builder";
+import { IContext, Renderable } from "./renderable";
 
 export interface IInterface {
   exported: boolean;
@@ -26,17 +27,24 @@ export class Interface extends Renderable {
     return [this.props.name];
   }
 
-  protected renderImpl(context: IContext): string {
-    let builder: string = "\n";
+  protected render(
+    context: IContext,
+    builder: Builder,
+  ): void {
     if (this.props.exported) {
-      builder += "export ";
+      builder.add("export ");
     }
-    builder += `interface ${this.props.name} {\n`;
+    builder
+      .addLine(`interface ${this.props.name} {`)
+      .indent();
     for (const name of Object.keys(this.props.types)) {
-      builder += `  ${name}: ${this.props.types[name]};\n`;
+      builder.addLine(`${name}: ${this.props.types[name]};`);
     }
-    builder += "}\n";
+    builder
+      .unindent()
+      .addLine("}");
+  }
 
-    return builder;
+  protected verify(context: IContext): void {
   }
 }

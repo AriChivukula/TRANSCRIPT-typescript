@@ -1,19 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`variable1 1`] = `
-"
-export const variable1: string;
+"export const variable1: string;
 "
 `;
 
 exports[`variable2 1`] = `
-"
-const variable2: string | undefined = \\"TEST\\";
+"const variable2: string | undefined = \\"TEST\\";
 "
 `;
 
 exports[`variable3 1`] = `
-"
-let variable3: number | null | undefined = 1;
+"let variable3: number | null | undefined = 1;
 "
 `;
