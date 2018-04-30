@@ -2,8 +2,8 @@
  * This file is partially generated; only edit bespoke sections.
  *
  * SOURCE<<src/__tests__/examples.ts::complexModule>>
- * BESPOKE<<fn3, TEST1, test2, 3tESt3>>
- * SIGNED<<rE7F/NueOsD1FTTBHDZhNA8L2H1o8sRKO3cPZGLX0EJmTm1ZhMsozfC4RfnYZ4/exohn7czH1uhH0rrEbPDJOA==>>
+ * BESPOKE<<TEST1, fn3, test2, 3tESt3>>
+ * SIGNED<<8uBGhJt3PWb03SNMlhpxvP6IzrO6xUgji3HR5OpCh8VUkyl0QPW2EjYc4Ynbxl6oG68UGAbWB5s2zy1NLLoGEQ==>>
  */
 
 import "./p";
@@ -31,6 +31,12 @@ import {
   wA,
 } from "./R";
 
+export class MyClass2 extends MyClass1 {
+  /* BESPOKE START <<TEST1>> */
+  "DO NOT DELETE"
+  /* BESPOKE END <<TEST1>> */
+}
+
 interface If1 {
 }
 
@@ -41,14 +47,6 @@ export async function function3(
   /* BESPOKE START <<fn3>> */
   /* BESPOKE END <<fn3>> */
 }
-
-/* BESPOKE START <<TEST1>> */
-"DO NOT DELETE"
-/* BESPOKE END <<TEST1>> */
-
-/* BESPOKE START <<test2>> */
-// DO NOT DELETE
-/* BESPOKE END <<test2>> */
 
 let variable3: number | null | undefined = 1;
 
@@ -61,6 +59,12 @@ type Ty1 = number;
 export type Ty2 = string | null;
 
 export type Ty3 = Ty2 | Ty1;
+
+class MyClass3 extends MyClass1 implements MyInterface1, MyInterface2 {
+  /* BESPOKE START <<test2>> */
+  // DO NOT DELETE
+  /* BESPOKE END <<test2>> */
+}
 
 export async function function2(
 ): Promise<string> {
