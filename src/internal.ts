@@ -20,6 +20,12 @@ export abstract class Renderable {
   protected abstract verify(context: IContext): void;
 }
 
+enum EBuilderVerifyMode {
+  CONTENT,
+  INDENT,
+  RENDER,
+}
+
 export class Builder {
 
   public static new(): Builder {
@@ -52,7 +58,7 @@ export class Builder {
   }
 
   public render(): string {
-    this.verify(undefined, true);
+    this.verify(EBuilderVerifyMode.RENDER);
 
     return this.built;
   }
@@ -62,7 +68,7 @@ export class Builder {
   }
 
   private addImpl(content: string, newLineAfter: boolean): Builder {
-    this.verify(content);
+    this.verify(EBuilderVerifyMode.CONTENT, content);
     if (this.built.length > 0 && this.built.endsWith("\n")) {
       this.built += "  ".repeat(this.indentation);
     }
@@ -90,17 +96,19 @@ export class Builder {
 
   private indentImpl(delta: number): Builder {
     this.indentation += delta;
-    this.verify(undefined, false, true);
+    this.verify(EBuilderVerifyMode.INDENT);
 
     return this;
   }
 
   private verify(
+    mode: EBuilderVerifyMode,
     content?: string,
-    rendering: boolean = false,
-    indenting: boolean = false,
   ): void {
-    if (content !== undefined) {
+    if (mode === EBuilderVerifyMode.CONTENT) {
+      if (content === undefined) {
+        throw new Error("Unreachable");
+      }
       if (content === "") {
         throw new Error("Unexpected empty string");
       }
@@ -114,14 +122,18 @@ export class Builder {
         throw new Error("Unexpected tab");
       }
     }
-    if (this.indentation < 0) {
-      throw new Error("Cannot unindent past 0");
+    if (mode === EBuilderVerifyMode.INDENT) {
+      if (!this.built.endsWith("\n")) {
+        throw new Error("Cannot change indentation without being on newline");
+      }
+      if (this.indentation < 0) {
+        throw new Error("Cannot unindent past 0");
+      }
     }
-    if (rendering && this.indentation !== 0) {
-      throw new Error("Cannot render without zeroed indentation");
-    }
-    if (indenting && !this.built.endsWith("\n")) {
-      throw new Error("Cannot change indentation without being on newline");
+    if (mode === EBuilderVerifyMode.RENDER) {
+      if (this.indentation !== 0) {
+        throw new Error("Cannot render without zeroed indentation");
+      }
     }
   }
 }
