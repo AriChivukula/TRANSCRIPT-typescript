@@ -7,22 +7,22 @@ export enum EImportKind {
 }
 
 export interface IImportAll {
-  module: string;
-  nameAll: string;
+  name: string;
+  withAllAs: string;
 }
 
 export interface IImportDefault {
-  module: string;
-  nameDefault: string;
+  name: string;
+  withDefaultAs: string;
 }
 
 export interface IImportRaw {
-  module: string;
+  name: string;
 }
 
 export interface IImportSome {
-  module: string;
-  names: string[];
+  name: string;
+  with: string[];
 }
 
 export type TImport = IImportAll | IImportDefault | IImportRaw | IImportSome;
@@ -44,13 +44,13 @@ export class Import extends Renderable {
   }
 
   public identifiers(): string[] {
-    return [this.props.module];
+    return [this.props.name];
   }
 
   public kind(): EImportKind {
     if (Object.keys(this.props).length === 1) {
       return EImportKind.RAW;
-    } else if (this.props.module.startsWith(".")) {
+    } else if (this.props.name.startsWith(".")) {
       return EImportKind.LOCAL;
     } else {
       return EImportKind.GLOBAL;
@@ -59,13 +59,13 @@ export class Import extends Renderable {
 
   protected renderImpl(context: IContext): string {
     let builder: string = "";
-    if ("nameAll" in this.props) {
-      builder += `import * as ${this.props.nameAll} from "${this.props.module}";`;
-    } else if ("nameDefault" in this.props) {
-      builder += `import ${this.props.nameDefault} from "${this.props.module}";`;
-    } else if ("names" in this.props) {
+    if ("withAllAs" in this.props) {
+      builder += `import * as ${this.props.withAllAs} from "${this.props.name}";`;
+    } else if ("withDefaultAs" in this.props) {
+      builder += `import ${this.props.withDefaultAs} from "${this.props.name}";`;
+    } else if ("with" in this.props) {
       builder += "import {\n";
-      this.props.names
+      this.props.with
         .sort(
           (a: string, b: string): number =>
             a.toLowerCase()
@@ -74,9 +74,9 @@ export class Import extends Renderable {
         .forEach(
           (name: string): void => { builder += `  ${name},\n`; },
         );
-      builder += `} from "${this.props.module}";`;
+      builder += `} from "${this.props.name}";`;
     } else {
-      builder += `import "${this.props.module}";`;
+      builder += `import "${this.props.name}";`;
     }
 
     return `${builder}`;

@@ -56,60 +56,60 @@ export const function3: Function = Function.new({
 });
 
 export const importAll1: Import = Import.new({
-  module: "YYY",
-  nameAll: "zzz",
+  name: "YYY",
+  withAllAs: "zzz",
 });
 
 export const importAll2: Import = Import.new({
-  module: "BbB",
-  nameAll: "aaa",
+  name: "BbB",
+  withAllAs: "aaa",
 });
 
 export const importAll3: Import = Import.new({
-  module: "./mmm",
-  nameAll: "mmm",
+  name: "./mmm",
+  withAllAs: "mmm",
 });
 
 export const importDefault1: Import = Import.new({
-  module: "www",
-  nameDefault: "xxx",
+  name: "www",
+  withDefaultAs: "xxx",
 });
 
 export const importDefault2: Import = Import.new({
-  module: "./ddd",
-  nameDefault: "fff",
+  name: "./ddd",
+  withDefaultAs: "fff",
 });
 
 export const importDefault3: Import = Import.new({
-  module: "nnn",
-  nameDefault: "ooo",
+  name: "nnn",
+  withDefaultAs: "ooo",
 });
 
 export const importRaw1: Import = Import.new({
-  module: "ZZZ",
+  name: "ZZZ",
 });
 
 export const importRaw2: Import = Import.new({
-  module: "./p",
+  name: "./p",
 });
 
 export const importRaw3: Import = Import.new({
-  module: "aqe",
+  name: "aqe",
 });
 
 export const importSome1: Import = Import.new({
-  module: "a",
-  names: ["B", "c"],
+  name: "a",
+  with: ["B", "c"],
 });
 
 export const importSome2: Import = Import.new({
-  module: "./R",
-  names: ["wA", "A"],
+  name: "./R",
+  with: ["wA", "A"],
 });
 
 export const importSome3: Import = Import.new({
-  module: "./a",
-  names: ["g", "z", "r"],
+  name: "./a",
+  with: ["g", "z", "r"],
 });
 
 export const interface1: Interface = Interface.new({
