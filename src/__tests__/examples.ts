@@ -200,21 +200,18 @@ export const property3: Property = Property.new({
   type: "string | null",
 });
 
-export const type1: Type = Type.new({
+export const type1: Type = Type.newInternal({
   assignment: "number",
-  exported: false,
   name: "Ty1",
 });
 
-export const type2: Type = Type.new({
+export const type2: Type = Type.newExported({
   assignment: "string | null",
-  exported: true,
   name: "Ty2",
 });
 
-export const type3: Type = Type.new({
+export const type3: Type = Type.newExported({
   assignment: "Ty2 | Ty1",
-  exported: true,
   name: "Ty3",
 });
 
