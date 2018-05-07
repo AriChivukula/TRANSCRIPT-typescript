@@ -118,22 +118,19 @@ export const importSome3: Import = Import.new({
   with: ["g", "z", "r"],
 });
 
-export const interface1: Interface = Interface.new({
-  exported: false,
+export const interface1: Interface = Interface.newInternal({
   name: "If1",
   types: {},
 });
 
-export const interface2: Interface = Interface.new({
-  exported: true,
+export const interface2: Interface = Interface.newExported({
   name: "If2",
   types: {
     item: "string",
   },
 });
 
-export const interface3: Interface = Interface.new({
-  exported: true,
+export const interface3: Interface = Interface.newExported({
   name: "If3",
   types: {
     test: "null | string",
