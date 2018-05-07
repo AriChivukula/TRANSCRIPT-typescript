@@ -2,21 +2,29 @@ import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
 
 export interface IVariable {
-  assignment?: string;
-  exported: boolean;
-  mutable: boolean;
-  name: string;
-  type: string;
+  readonly assignment?: string;
+  readonly name: string;
+  readonly type: string;
 }
 
 export class Variable extends Renderable {
 
-  public static new(props: IVariable): Variable {
-    return new Variable(props);
+  public static newExported(props: IVariable): Variable {
+    return new Variable(props, true, false);
+  }
+
+  public static newImmutable(props: IVariable): Variable {
+    return new Variable(props, false, false);
+  }
+
+  public static newMutable(props: IVariable): Variable {
+    return new Variable(props, false, true);
   }
 
   private constructor(
     private readonly props: IVariable,
+    private readonly exported: boolean,
+    private readonly mutable: boolean,
   ) {
     super();
   }
@@ -33,10 +41,10 @@ export class Variable extends Renderable {
     context: IContext,
     builder: Builder,
   ): void {
-    if (this.props.exported) {
+    if (this.exported) {
       builder.add("export ");
     }
-    if (this.props.mutable) {
+    if (this.mutable) {
       builder.add("let ");
     } else {
       builder.add("const ");

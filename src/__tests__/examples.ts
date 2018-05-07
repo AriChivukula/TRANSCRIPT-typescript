@@ -218,25 +218,19 @@ export const type3: Type = Type.new({
   name: "Ty3",
 });
 
-export const variable1: Variable = Variable.new({
-  exported: true,
-  mutable: false,
+export const variable1: Variable = Variable.newExported({
   name: "variable1",
   type: "string",
 });
 
-export const variable2: Variable = Variable.new({
+export const variable2: Variable = Variable.newImmutable({
   assignment: "\"TEST\"",
-  exported: false,
-  mutable: false,
   name: "variable2",
   type: "string | undefined",
 });
 
-export const variable3: Variable = Variable.new({
+export const variable3: Variable = Variable.newMutable({
   assignment: "1",
-  exported: false,
-  mutable: true,
   name: "variable3",
   type: "number | null | undefined",
 });
