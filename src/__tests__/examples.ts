@@ -1,14 +1,15 @@
 import {
   Bespoke,
   Class,
-  EMethodKind,
   Function,
   Import,
   Interface,
-  Method,
   Module,
+  PrivateMethod,
   PrivateProperty,
+  ProtectedMethod,
   ProtectedProperty,
+  PublicMethod,
   PublicProperty,
   Type,
   Variable,
@@ -140,40 +141,31 @@ export const interface3: Interface = Interface.new({
   },
 });
 
-export const method1: Method = Method.new({
-  async: true,
+export const method1: PublicMethod = PublicMethod.newAsyncInstance({
   content: [],
   inputs: {
     var1: "string",
     var2: "object",
   },
-  kind: EMethodKind.PUBLIC,
   name: "method1",
   output: "Promise<string[]>",
-  static: false,
 });
 
-export const method2: Method = Method.new({
-  async: false,
+export const method2: ProtectedMethod = ProtectedMethod.newSyncStatic({
   inputs: {},
-  kind: EMethodKind.PROTECTED,
   name: "method2",
   output: "void",
-  static: true,
 });
 
-export const method3: Method = Method.new({
-  async: true,
+export const method3: PrivateMethod = PrivateMethod.newAsyncStatic({
   content: [
     Bespoke.new({
       name: "method3Bespoke",
     }),
   ],
   inputs: {},
-  kind: EMethodKind.PRIVATE,
   name: "method3",
   output: "void",
-  static: true,
 });
 
 export const property1: PublicProperty = PublicProperty.newMutableInstance({
