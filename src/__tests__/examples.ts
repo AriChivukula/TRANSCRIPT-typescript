@@ -2,13 +2,14 @@ import {
   Bespoke,
   Class,
   EMethodKind,
-  EPropertyKind,
   Function,
   Import,
   Interface,
   Method,
   Module,
-  Property,
+  PrivateProperty,
+  ProtectedProperty,
+  PublicProperty,
   Type,
   Variable,
 } from "../index";
@@ -175,28 +176,19 @@ export const method3: Method = Method.new({
   static: true,
 });
 
-export const property1: Property = Property.new({
+export const property1: PublicProperty = PublicProperty.newMutableInstance({
   assignment: "\"MYVAR\"",
-  kind: EPropertyKind.PUBLIC,
   name: "property1",
-  readonly: false,
-  static: false,
   type: "string",
 });
 
-export const property2: Property = Property.new({
-  kind: EPropertyKind.PROTECTED,
+export const property2: ProtectedProperty = ProtectedProperty.newImmutableInstance({
   name: "property2",
-  readonly: true,
-  static: false,
   type: "number",
 });
 
-export const property3: Property = Property.new({
-  kind: EPropertyKind.PRIVATE,
+export const property3: PrivateProperty = PrivateProperty.newMutableStatic({
   name: "property3",
-  readonly: false,
-  static: true,
   type: "string | null",
 });
 
