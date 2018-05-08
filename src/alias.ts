@@ -1,23 +1,23 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
 
-export interface IType {
+export interface IAlias {
   readonly assignment: string;
   readonly name: string;
 }
 
-export class Type extends Renderable {
+export class Alias extends Renderable {
 
-  public static newExported(props: IType): Type {
-    return new Type(props, true);
+  public static newExported(props: IAlias): Alias {
+    return new Alias(props, true);
   }
 
-  public static newInternal(props: IType): Type {
-    return new Type(props, false);
+  public static newInternal(props: IAlias): Alias {
+    return new Alias(props, false);
   }
 
   private constructor(
-    private readonly props: IType,
+    private readonly props: IAlias,
     private readonly exported: boolean,
   ) {
     super();

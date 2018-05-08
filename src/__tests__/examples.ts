@@ -1,4 +1,5 @@
 import {
+  Alias,
   Bespoke,
   Class,
   Function,
@@ -11,7 +12,6 @@ import {
   ProtectedProperty,
   PublicMethod,
   PublicProperty,
-  Type,
   Variable,
 } from "../index";
 
@@ -175,17 +175,17 @@ export const property3: PrivateProperty = PrivateProperty.newMutableStatic({
   type: "string | null",
 });
 
-export const type1: Type = Type.newInternal({
+export const alias1: Alias = Alias.newInternal({
   assignment: "number",
   name: "Ty1",
 });
 
-export const type2: Type = Type.newExported({
+export const alias2: Alias = Alias.newExported({
   assignment: "string | null",
   name: "Ty2",
 });
 
-export const type3: Type = Type.newExported({
+export const alias3: Alias = Alias.newExported({
   assignment: "Ty2 | Ty1",
   name: "Ty3",
 });
@@ -243,12 +243,12 @@ export const class3: Class = Class.newConcreteInternal({
 export const contentModule: Module = Module.new({
   content: [
     class1,
-    type1,
+    alias1,
     bespoke1,
     interface1,
     function1,
     variable1,
-    type2,
+    alias2,
     function2,
     interface3,
     variable2,
@@ -256,7 +256,7 @@ export const contentModule: Module = Module.new({
     bespoke2,
     function3,
     interface2,
-    type3,
+    alias3,
   ],
   destination: "src/__tests__/__codegen__/contentModule.ts",
 });
@@ -298,9 +298,9 @@ export const complexModule: Module = Module.new({
     function3,
     variable3,
     interface2,
-    type1,
-    type2,
-    type3,
+    alias1,
+    alias2,
+    alias3,
     class3,
     function2,
     variable1,
