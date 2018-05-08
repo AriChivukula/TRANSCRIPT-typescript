@@ -2,22 +2,34 @@ import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
 
 export interface IFunction {
-  async: boolean;
-  content: Renderable[];
-  exported: boolean;
-  inputs: { [index: string]: string};
-  name: string;
-  output: string;
+  readonly content: Renderable[];
+  readonly inputs: { [index: string]: string};
+  readonly name: string;
+  readonly output: string;
 }
 
 export class Function extends Renderable {
 
-  public static new(props: IFunction): Function {
-    return new Function(props);
+  public static newAsyncExported(props: IFunction): Function {
+    return new Function(props, true, true);
+  }
+
+  public static newAsyncInternal(props: IFunction): Function {
+    return new Function(props, true, false);
+  }
+
+  public static newSyncExported(props: IFunction): Function {
+    return new Function(props, false, true);
+  }
+
+  public static newSyncInternal(props: IFunction): Function {
+    return new Function(props, false, false);
   }
 
   private constructor(
     private readonly props: IFunction,
+    private readonly async: boolean,
+    private readonly exported: boolean,
   ) {
     super();
   }
@@ -37,10 +49,10 @@ export class Function extends Renderable {
     context: IContext,
     builder: Builder,
   ): void {
-    if (this.props.exported) {
+    if (this.exported) {
       builder.add("export ");
     }
-    if (this.props.async) {
+    if (this.async) {
       builder.add("async ");
     }
     builder

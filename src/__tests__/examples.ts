@@ -27,32 +27,26 @@ export const bespoke3: Bespoke = Bespoke.new({
   name: "3tESt3",
 });
 
-export const function1: Function = Function.new({
-  async: false,
+export const function1: Function = Function.newSyncInternal({
   content: [],
-  exported: false,
   inputs: {},
   name: "function1",
   output: "void",
 });
 
-export const function2: Function = Function.new({
-  async: true,
+export const function2: Function = Function.newAsyncExported({
   content: [],
-  exported: true,
   inputs: {},
   name: "function2",
   output: "Promise<string>",
 });
 
-export const function3: Function = Function.new({
-  async: true,
+export const function3: Function = Function.newAsyncExported({
   content: [
     Bespoke.new({
       name: "fn3",
     }),
   ],
-  exported: true,
   inputs: {
     var1: "string",
     var2: "object",
