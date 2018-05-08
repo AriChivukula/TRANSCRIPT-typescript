@@ -1,14 +1,11 @@
 import {
   Alias,
-  AnonymousType,
-  ArgumentType,
   Bespoke,
   Class,
   Function,
   Import,
   Interface,
   Module,
-  NamedType,
   PrivateInstanceProperty,
   PrivateMethod,
   PrivateStaticProperty,
@@ -18,6 +15,7 @@ import {
   PublicInstanceProperty,
   PublicMethod,
   PublicStaticProperty,
+  Type,
   Variable,
 } from "../index";
 
@@ -37,7 +35,7 @@ export const function1: Function = Function.newSyncInternal({
   content: [],
   inTypes: [],
   name: "function1",
-  outType: AnonymousType.new({ type: "void" }),
+  outType: Type.Anonymous.new({ type: "void" }),
   templates: ["T"],
 });
 
@@ -45,7 +43,7 @@ export const function2: Function = Function.newAsyncExported({
   content: [],
   inTypes: [],
   name: "function2",
-  outType: AnonymousType.new({ type: "Promise<string>" }),
+  outType: Type.Anonymous.new({ type: "Promise<string>" }),
   templates: ["T", "V"],
 });
 
@@ -56,11 +54,11 @@ export const function3: Function = Function.newAsyncExported({
     }),
   ],
   inTypes: [
-    ArgumentType.new({ name: "var1", type: "string" }),
-    ArgumentType.new({ name: "var2", type: "object", default: "{}" }),
+    Type.Argument.new({ name: "var1", type: "string" }),
+    Type.Argument.new({ name: "var2", type: "object", default: "{}" }),
   ],
   name: "function3",
-  outType: AnonymousType.new({ type: "Promise<string[]>" }),
+  outType: Type.Anonymous.new({ type: "Promise<string[]>" }),
 });
 
 export const importAll1: Import = Import.new({
@@ -130,33 +128,33 @@ export const interface2: Interface = Interface.newExported({
   name: "If2",
   templates: ["T", "V"],
   types: [
-    NamedType.newRequired({ name: "item", type: "string" }),
+    Type.Named.newRequired({ name: "item", type: "string" }),
   ],
 });
 
 export const interface3: Interface = Interface.newExported({
   name: "If3",
   types: [
-    NamedType.newRequired({ name: "test", types: ["null", "string"] }),
-    NamedType.newRequired({ name: "test2", type: "If2" }),
+    Type.Named.newRequired({ name: "test", types: ["null", "string"] }),
+    Type.Named.newRequired({ name: "test2", type: "If2" }),
   ],
 });
 
 export const method1: PublicMethod = PublicMethod.newAsyncInstance({
   content: [],
   inTypes: [
-    ArgumentType.new({ name: "var1", type: "string" }),
-    ArgumentType.new({ name: "var2", type: "object", default: "{}" }),
+    Type.Argument.new({ name: "var1", type: "string" }),
+    Type.Argument.new({ name: "var2", type: "object", default: "{}" }),
   ],
   name: "method1",
-  outType: AnonymousType.new({ type: "Promise<string[]>" }),
+  outType: Type.Anonymous.new({ type: "Promise<string[]>" }),
   templates: ["T"],
 });
 
 export const method2: ProtectedMethod = ProtectedMethod.newSyncStatic({
   inTypes: [],
   name: "method2",
-  outType: AnonymousType.new({ type: "void" }),
+  outType: Type.Anonymous.new({ type: "void" }),
   templates: ["T", "V"],
 });
 
@@ -168,78 +166,78 @@ export const method3: PrivateMethod = PrivateMethod.newAsyncStatic({
   ],
   inTypes: [],
   name: "method3",
-  outType: AnonymousType.new({ type: "void" }),
+  outType: Type.Anonymous.new({ type: "void" }),
 });
 
 export const propertyInstance1: PublicInstanceProperty = PublicInstanceProperty.newMutable({
   assignment: "\"MYVAR\"",
-  type: NamedType.newRequired({ name: "propertyInstance1", type: "string" }),
+  type: Type.Named.newRequired({ name: "propertyInstance1", type: "string" }),
 });
 
 export const propertyInstance2: ProtectedInstanceProperty = ProtectedInstanceProperty.newImmutable({
-  type: NamedType.newRequired({ name: "propertyInstance2", type: "number" }),
+  type: Type.Named.newRequired({ name: "propertyInstance2", type: "number" }),
 });
 
 export const propertyInstance3: PrivateInstanceProperty = PrivateInstanceProperty.newMutable({
-  type: NamedType.newRequired({ name: "propertyInstance3", types: ["string", "null"] }),
+  type: Type.Named.newRequired({ name: "propertyInstance3", types: ["string", "null"] }),
 });
 
 export const propertyStatic1: PublicStaticProperty = PublicStaticProperty.newMutable({
   assignment: "\"MYVAR\"",
-  type: NamedType.newRequired({ name: "propertyStatic1", type: "string" }),
+  type: Type.Named.newRequired({ name: "propertyStatic1", type: "string" }),
 });
 
 export const propertyStatic2: ProtectedStaticProperty = ProtectedStaticProperty.newImmutable({
-  type: NamedType.newRequired({ name: "propertyStatic2", type: "number" }),
+  type: Type.Named.newRequired({ name: "propertyStatic2", type: "number" }),
 });
 
 export const propertyStatic3: PrivateStaticProperty = PrivateStaticProperty.newMutable({
-  type: NamedType.newRequired({ name: "propertyStatic3", types: ["string", "null"] }),
+  type: Type.Named.newRequired({ name: "propertyStatic3", types: ["string", "null"] }),
 });
 
 export const alias1: Alias = Alias.newInternal({
   name: "Ty1",
   templates: ["T"],
-  type: AnonymousType.new({ type: "number" }),
+  type: Type.Anonymous.new({ type: "number" }),
 });
 
 export const alias2: Alias = Alias.newExported({
   name: "Ty2",
   templates: ["T", "V"],
-  type: AnonymousType.new({ types: ["string", "null"] }),
+  type: Type.Anonymous.new({ types: ["string", "null"] }),
 });
 
 export const alias3: Alias = Alias.newExported({
   name: "Ty3",
-  type: AnonymousType.new({ types: ["Ty2", "Ty1"] }),
+  type: Type.Anonymous.new({ types: ["Ty2", "Ty1"] }),
 });
 
-export const type1: NamedType = NamedType.newOptional({
+export const type1: Type.Named = Type.Named.newOptional({
   name: "test1",
   type: "string",
 });
 
-export const type2: NamedType = NamedType.newRequired({
+export const type2: Type.Named = Type.Named.newRequired({
   name: "test1",
   types: ["string", "number"],
 });
 
-export const type3: AnonymousType = AnonymousType.new({
+export const type3: Type.Anonymous = Type.Anonymous.new({
   type: "number",
 });
 
 export const variable1: Variable = Variable.newExported({
-  type: NamedType.newRequired({ name: "variable1", type: "string" }),
+  type: Type.Named.newRequired({ name: "variable1", type: "string" }),
 });
 
 export const variable2: Variable = Variable.newImmutable({
   assignment: "\"TEST\"",
-  type: NamedType.newRequired({ name: "variable2", types: ["string", "undefined"] }),
+  type: Type.Named.newRequired({ name: "variable2", types: ["string", "undefined"] }),
 });
 
 export const variable3: Variable = Variable.newMutable({
   assignment: "1",
-  type: NamedType.newRequired({ name: "variable3", types: ["number", "null", "undefined"] }),
+  type: Type.Named.newRequired({ name: "variable3", types: ["number", "null", "undefined"] }),
 });
 
 export const emptyModule: Module = Module.new({

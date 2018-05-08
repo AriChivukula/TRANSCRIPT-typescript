@@ -1,6 +1,6 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
-import { AnonymousType, ArgumentType } from "./type";
+import { Type } from "./type";
 
 export enum EMethodKind {
   PRIVATE = "private",
@@ -10,9 +10,9 @@ export enum EMethodKind {
 
 export interface IMethod {
   readonly content?: Renderable[];
-  readonly inTypes: ArgumentType[];
+  readonly inTypes: Type.Argument[];
   readonly name: string;
-  readonly outType: AnonymousType;
+  readonly outType: Type.Anonymous;
   readonly templates?: string[];
 }
 
@@ -63,7 +63,7 @@ export abstract class Method extends Renderable {
       .addLine("(")
       .indent();
     this.props.inTypes.forEach(
-      (type: ArgumentType): void => {
+      (type: Type.Argument): void => {
         type.run(context, builder);
         builder.addLine(",");
       },

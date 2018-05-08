@@ -1,10 +1,10 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
-import { NamedType } from "./type";
+import { Type } from "./type";
 
 export interface IVariable {
   readonly assignment?: string;
-  readonly type: NamedType;
+  readonly type: Type.Named;
 }
 
 export class Variable extends Renderable {
