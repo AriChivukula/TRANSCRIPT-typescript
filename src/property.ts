@@ -12,7 +12,7 @@ export namespace Property {
 
   export interface I {
     readonly assignment?: string;
-    readonly type: Type.Named;
+    readonly type: Type.Required | Type.Optional;
   }
 
   export abstract class Base extends Renderable {

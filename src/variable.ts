@@ -4,7 +4,7 @@ import { Type } from "./type";
 
 export interface IVariable {
   readonly assignment?: string;
-  readonly type: Type.Named;
+  readonly type: Type.Required;
 }
 
 export class Variable extends Renderable {

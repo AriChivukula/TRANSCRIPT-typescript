@@ -121,15 +121,15 @@ export const interface2: Interface = Interface.newExported({
   name: "If2",
   templates: ["T", "V"],
   types: [
-    Type.Named.newRequired({ name: "item", type: "string" }),
+    Type.Required.new({ name: "item", type: "string" }),
   ],
 });
 
 export const interface3: Interface = Interface.newExported({
   name: "If3",
   types: [
-    Type.Named.newRequired({ name: "test", types: ["null", "string"] }),
-    Type.Named.newRequired({ name: "test2", type: "If2" }),
+    Type.Required.new({ name: "test", types: ["null", "string"] }),
+    Type.Required.new({ name: "test2", type: "If2" }),
   ],
 });
 
@@ -140,7 +140,7 @@ export const methodInstance1: Method.Instance.Public = Method.Instance.Public.ne
     Type.Argument.new({ name: "var2", type: "object", default: "{}" }),
     Type.Argument.new({
       property: Property.Instance.Public.newImmutable({
-        type: Type.Named.newRequired({
+        type: Type.Required.new({
           name: "var5",
           type: "string",
         }),
@@ -201,28 +201,28 @@ export const methodStatic3: Method.Static.Private = Method.Static.Private.newAsy
 
 export const propertyInstance1: Property.Instance.Public = Property.Instance.Public.newMutable({
   assignment: "\"MYVAR\"",
-  type: Type.Named.newRequired({ name: "propertyInstance1", type: "string" }),
+  type: Type.Required.new({ name: "propertyInstance1", type: "string" }),
 });
 
 export const propertyInstance2: Property.Instance.Protected = Property.Instance.Protected.newImmutable({
-  type: Type.Named.newRequired({ name: "propertyInstance2", type: "number" }),
+  type: Type.Required.new({ name: "propertyInstance2", type: "number" }),
 });
 
 export const propertyInstance3: Property.Instance.Private = Property.Instance.Private.newMutable({
-  type: Type.Named.newRequired({ name: "propertyInstance3", types: ["string", "null"] }),
+  type: Type.Required.new({ name: "propertyInstance3", types: ["string", "null"] }),
 });
 
 export const propertyStatic1: Property.Static.Public = Property.Static.Public.newMutable({
   assignment: "\"MYVAR\"",
-  type: Type.Named.newRequired({ name: "propertyStatic1", type: "string" }),
+  type: Type.Required.new({ name: "propertyStatic1", type: "string" }),
 });
 
 export const propertyStatic2: Property.Static.Protected = Property.Static.Protected.newImmutable({
-  type: Type.Named.newRequired({ name: "propertyStatic2", type: "number" }),
+  type: Type.Required.new({ name: "propertyStatic2", type: "number" }),
 });
 
 export const propertyStatic3: Property.Static.Private = Property.Static.Private.newMutable({
-  type: Type.Named.newRequired({ name: "propertyStatic3", types: ["string", "null"] }),
+  type: Type.Required.new({ name: "propertyStatic3", types: ["string", "null"] }),
 });
 
 export const alias1: Alias = Alias.newInternal({
@@ -242,12 +242,12 @@ export const alias3: Alias = Alias.newExported({
   type: Type.Anonymous.new({ types: ["Ty2", "Ty1"] }),
 });
 
-export const type1: Type.Named = Type.Named.newOptional({
+export const type1: Type.Optional = Type.Optional.new({
   name: "test1",
   type: "string",
 });
 
-export const type2: Type.Named = Type.Named.newRequired({
+export const type2: Type.Required = Type.Required.new({
   name: "test1",
   types: ["string", "number"],
 });
@@ -258,7 +258,7 @@ export const type3: Type.Anonymous = Type.Anonymous.new({
 
 export const type4: Type.Argument = Type.Argument.new({
   property: Property.Instance.Public.newImmutable({
-    type: Type.Named.newRequired({
+    type: Type.Required.new({
       name: "var5",
       type: "string",
     }),
@@ -266,17 +266,17 @@ export const type4: Type.Argument = Type.Argument.new({
 });
 
 export const variable1: Variable = Variable.newExported({
-  type: Type.Named.newRequired({ name: "variable1", type: "string" }),
+  type: Type.Required.new({ name: "variable1", type: "string" }),
 });
 
 export const variable2: Variable = Variable.newImmutable({
   assignment: "\"TEST\"",
-  type: Type.Named.newRequired({ name: "variable2", types: ["string", "undefined"] }),
+  type: Type.Required.new({ name: "variable2", types: ["string", "undefined"] }),
 });
 
 export const variable3: Variable = Variable.newMutable({
   assignment: "1",
-  type: Type.Named.newRequired({ name: "variable3", types: ["number", "null", "undefined"] }),
+  type: Type.Required.new({ name: "variable3", types: ["number", "null", "undefined"] }),
 });
 
 export const emptyModule: Module = Module.new({
