@@ -171,6 +171,25 @@ test(
 );
 
 test(
+  "IfElse",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .if("A")
+        .addThenNewline("B")
+        .elseIf("C")
+        .addThenNewline("D")
+        .else()
+        .addThenNewline("E")
+        .endIf()
+        .print(),
+    )
+      .toMatchSnapshot();
+  },
+);
+
+test(
   "TryCatch",
   async (): Promise<void> => {
     expect(
@@ -298,6 +317,31 @@ test(
         .new()
         .setHeader("\na\t")
         .setHeader("\na\t"),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "IfPrintError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .if("true")
+        .print(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "IfError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .else(),
     )
       .toThrow();
   },

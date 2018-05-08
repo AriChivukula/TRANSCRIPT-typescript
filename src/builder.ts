@@ -1,6 +1,7 @@
 enum EBuilderVerifyMode {
   CONTENT,
   HEADER,
+  IF,
   INDENT,
   PRINT,
   TRY,
@@ -14,6 +15,7 @@ export class Builder {
 
   private built: string = "";
   private header: string | undefined;
+  private ifLevel: number = 0;
   private indentation: number = 0;
   private tryLevel: number = 0;
 
@@ -47,6 +49,33 @@ export class Builder {
     return this.indent();
   }
 
+  public else(): Builder {
+    this.verify(EBuilderVerifyMode.IF);
+
+    return this
+      .unindent()
+      .addThenNewline("} else {")
+      .indent();
+  }
+
+  public elseIf(check: string): Builder {
+    this.verify(EBuilderVerifyMode.IF);
+
+    return this
+      .unindent()
+      .addThenNewline(`} else if (${check}) {`)
+      .indent();
+  }
+
+  public endIf(): Builder {
+    this.verify(EBuilderVerifyMode.IF);
+    this.ifLevel--;
+
+    return this
+      .unindent()
+      .addThenNewline("}");
+  }
+
   public endTry(): Builder {
     this.verify(EBuilderVerifyMode.TRY);
     this.tryLevel--;
@@ -70,6 +99,15 @@ export class Builder {
     return this
       .unindent()
       .addThenNewline("} finally {")
+      .indent();
+  }
+
+  public if(check: string): Builder {
+    this.ifLevel++;
+    this.verify(EBuilderVerifyMode.IF);
+
+    return this
+      .addThenNewline(`if (${check}) {`)
       .indent();
   }
 
@@ -209,8 +247,16 @@ export class Builder {
       if (this.indentation !== 0) {
         throw new Error("Cannot print without zeroed indentation");
       }
+      if (this.ifLevel !== 0) {
+        throw new Error("Cannot print without completing if statements");
+      }
       if (this.tryLevel !== 0) {
         throw new Error("Cannot print without completing try statements");
+      }
+    }
+    if (mode === EBuilderVerifyMode.IF) {
+      if (this.ifLevel < 1) {
+        throw new Error("Not inside if statement");
       }
     }
     if (mode === EBuilderVerifyMode.TRY) {

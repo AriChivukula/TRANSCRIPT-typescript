@@ -16,6 +16,17 @@ exports[`AwaitThenNewline 1`] = `
 
 exports[`Empty 1`] = `""`;
 
+exports[`IfElse 1`] = `
+"if (A) {
+  B
+} else if (C) {
+  D
+} else {
+  E
+}
+"
+`;
+
 exports[`Indentation 1`] = `
 "a
   b
