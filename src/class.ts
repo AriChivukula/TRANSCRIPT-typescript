@@ -2,10 +2,10 @@ import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
 
 export interface IClass {
-  content: Renderable[];
-  extends?: string;
-  implements?: string[];
-  name: string;
+  readonly content: Renderable[];
+  readonly extends?: string;
+  readonly implements?: string[];
+  readonly name: string;
 }
 
 export class Class extends Renderable {
