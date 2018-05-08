@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add 1`] = `"a"`;
+
+exports[`AddThenNewline 1`] = `
+"a
+"
+`;
+
+exports[`Await 1`] = `"await a"`;
+
+exports[`AwaitThenNewline 1`] = `
+"await a
+"
+`;
+
+exports[`Empty 1`] = `""`;
+
+exports[`Indentation 1`] = `
+"a
+  b
+
+    c
+d
+"
+`;
+
+exports[`Newline 1`] = `
+"a
+"
+`;
+
+exports[`Newline 2`] = `
+"a
+"
+`;
+
+exports[`NewlineAfterEmptyline 1`] = `
+"a
+
+b
+"
+`;
+
+exports[`NewlineAfterEmptyline 2`] = `
+"a
+"
+`;
+
+exports[`SetHeader 1`] = `
+"
+a	
+
+b"
+`;

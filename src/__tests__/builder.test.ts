@@ -8,7 +8,7 @@ test(
         .new()
         .print(),
     )
-      .toEqual("");
+      .toMatchSnapshot();
   },
 );
 
@@ -21,12 +21,25 @@ test(
         .add("a")
         .print(),
     )
-      .toEqual("a");
+      .toMatchSnapshot();
   },
 );
 
 test(
-  "AddHeader",
+  "Await",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .await("a")
+        .print(),
+    )
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "SetHeader",
   async (): Promise<void> => {
     expect(
       Builder
@@ -35,12 +48,12 @@ test(
         .setHeader("\na\t")
         .print(),
     )
-      .toEqual("\na\t\n\nb");
+      .toMatchSnapshot();
   },
 );
 
 test(
-  "AddLine",
+  "AddThenNewline",
   async (): Promise<void> => {
     expect(
       Builder
@@ -48,7 +61,20 @@ test(
         .addThenNewline("a")
         .print(),
     )
-      .toEqual("a\n");
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "AwaitThenNewline",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .awaitThenNewline("a")
+        .print(),
+    )
+      .toMatchSnapshot();
   },
 );
 
@@ -62,7 +88,7 @@ test(
         .ensureOnNewline()
         .print(),
     )
-      .toEqual("a\n");
+      .toMatchSnapshot();
     expect(
       Builder
         .new()
@@ -70,7 +96,7 @@ test(
         .ensureOnNewline()
         .print(),
     )
-      .toEqual("a\n");
+      .toMatchSnapshot();
   },
 );
 
@@ -85,7 +111,7 @@ test(
         .addThenNewline("b")
         .print(),
     )
-      .toEqual("a\n\nb\n");
+      .toMatchSnapshot();
     expect(
       Builder
         .new()
@@ -93,7 +119,7 @@ test(
         .ensureOnNewlineAfterEmptyline()
         .print(),
     )
-      .toEqual("a\n");
+      .toMatchSnapshot();
   },
 );
 
@@ -114,7 +140,7 @@ test(
         .addThenNewline("d")
         .print(),
     )
-      .toEqual("a\n  b\n\n    c\nd\n");
+      .toMatchSnapshot();
   },
 );
 
@@ -149,6 +175,18 @@ test(
       () => Builder
         .new()
         .addThenNewline("a\nb"),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "AwaitError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .addThenNewline("a\nawait"),
     )
       .toThrow();
   },
@@ -194,7 +232,7 @@ test(
 );
 
 test(
-  "AddHeaderError",
+  "SetHeaderError",
   async (): Promise<void> => {
     expect(
       () => Builder

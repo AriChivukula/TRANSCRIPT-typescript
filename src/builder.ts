@@ -18,11 +18,19 @@ export class Builder {
   private constructor() {}
 
   public add(content: string): Builder {
-    return this.addImpl(content, false);
+    return this.addImpl(content, false, false);
   }
 
   public addThenNewline(content: string): Builder {
-    return this.addImpl(content, true);
+    return this.addImpl(content, false, true);
+  }
+
+  public await(content: string): Builder {
+    return this.addImpl(content, true, false);
+  }
+
+  public awaitThenNewline(content: string): Builder {
+    return this.addImpl(content, true, true);
   }
 
   public ensureOnNewline(): Builder {
@@ -63,13 +71,20 @@ export class Builder {
     return this.indentImpl(-1);
   }
 
-  private addImpl(content: string, newLineAfter: boolean): Builder {
+  private addImpl(
+    content: string,
+    isAsync: boolean,
+    newlineAfter: boolean,
+  ): Builder {
     this.verify(EBuilderVerifyMode.CONTENT, content);
     if (this.built.length > 0 && this.built.endsWith("\n")) {
       this.built += "  ".repeat(this.indentation);
     }
+    if (isAsync) {
+      this.built += "await ";
+    }
     this.built += content;
-    if (newLineAfter) {
+    if (newlineAfter) {
       this.built += "\n";
     }
 
@@ -116,6 +131,9 @@ export class Builder {
       }
       if (content.includes("\t")) {
         throw new Error("Unexpected tab");
+      }
+      if (content.includes("await ")) {
+        throw new Error("Unexpected await");
       }
     }
     if (mode === EBuilderVerifyMode.HEADER) {
