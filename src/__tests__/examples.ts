@@ -212,35 +212,29 @@ export const emptyModule: Module = Module.new({
   destination: "src/__tests__/__codegen__/emptyModule.ts",
 });
 
-export const class1: Class = Class.new({
-  abstract: true,
+export const class1: Class = Class.newAbstractExported({
   content: [
     property1,
     method1,
   ],
-  exported: true,
   name: "MyClass1",
 });
 
-export const class2: Class = Class.new({
-  abstract: false,
+export const class2: Class = Class.newConcreteExported({
   content: [
     bespoke1,
     property2,
     method2,
   ],
-  exported: true,
   extends: "MyClass1",
   name: "MyClass2",
 });
 
-export const class3: Class = Class.new({
-  abstract: false,
+export const class3: Class = Class.newConcreteInternal({
   content: [
     property3,
     method3,
   ],
-  exported: false,
   extends: "MyClass1",
   implements: ["MyInterface1", "MyInterface2"],
   name: "MyClass3",
