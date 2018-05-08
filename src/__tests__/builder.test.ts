@@ -205,6 +205,20 @@ test(
 );
 
 test(
+  "Switch",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .switch("A")
+        .endSwitch()
+        .print(),
+    )
+      .toMatchSnapshot();
+  },
+);
+
+test(
   "TryCatch",
   async (): Promise<void> => {
     expect(
@@ -382,6 +396,31 @@ test(
       () => Builder
         .new()
         .else(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "SwitchPrintError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .switch("A")
+        .print(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "SwitchError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .endSwitch(),
     )
       .toThrow();
   },

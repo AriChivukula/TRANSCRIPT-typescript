@@ -5,6 +5,7 @@ enum EBuilderVerifyMode {
   IF,
   INDENT,
   PRINT,
+  SWITCH,
   TRY,
 }
 
@@ -19,6 +20,7 @@ export class Builder {
   private header: string | undefined;
   private ifLevel: number = 0;
   private indentation: number = 0;
+  private switchLevel: number = 0;
   private tryLevel: number = 0;
 
   private constructor() {}
@@ -81,6 +83,15 @@ export class Builder {
   public endIf(): Builder {
     this.verify(EBuilderVerifyMode.IF);
     this.ifLevel--;
+
+    return this
+      .unindent()
+      .addThenNewline("}");
+  }
+
+  public endSwitch(): Builder {
+    this.verify(EBuilderVerifyMode.SWITCH);
+    this.switchLevel--;
 
     return this
       .unindent()
@@ -163,6 +174,15 @@ export class Builder {
     this.header = header;
 
     return this;
+  }
+
+  public switch(check: string): Builder {
+    this.switchLevel++;
+    this.verify(EBuilderVerifyMode.SWITCH);
+
+    return this
+      .addThenNewline(`switch (${check}) {`)
+      .indent();
   }
 
   public try(): Builder {
@@ -273,6 +293,9 @@ export class Builder {
       if (this.ifLevel !== 0) {
         throw new Error("Cannot print without completing if statements");
       }
+      if (this.switchLevel !== 0) {
+        throw new Error("Cannot print without completing switch statements");
+      }
       if (this.tryLevel !== 0) {
         throw new Error("Cannot print without completing try statements");
       }
@@ -285,6 +308,11 @@ export class Builder {
     if (mode === EBuilderVerifyMode.IF) {
       if (this.ifLevel < 1) {
         throw new Error("Not inside if statement");
+      }
+    }
+    if (mode === EBuilderVerifyMode.SWITCH) {
+      if (this.switchLevel < 1) {
+        throw new Error("Not inside switch statement");
       }
     }
     if (mode === EBuilderVerifyMode.TRY) {
