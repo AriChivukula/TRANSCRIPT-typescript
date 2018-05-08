@@ -21,14 +21,7 @@ export class Builder {
     return this.addImpl(content, false);
   }
 
-  public addHeader(header: string): Builder {
-    this.verify(EBuilderVerifyMode.HEADER);
-    this.header = header;
-
-    return this;
-  }
-
-  public addLine(content: string): Builder {
+  public addThenNewline(content: string): Builder {
     return this.addImpl(content, true);
   }
 
@@ -57,6 +50,13 @@ export class Builder {
     }
 
     return b.built;
+  }
+
+  public setHeader(header: string): Builder {
+    this.verify(EBuilderVerifyMode.HEADER);
+    this.header = header;
+
+    return this;
   }
 
   public unindent(): Builder {

@@ -62,12 +62,12 @@ export class Function extends Renderable {
       builder.add(`<${this.props.templates.join(", ")}>`);
     }
     builder
-      .addLine("(")
+      .addThenNewline("(")
       .indent();
     this.props.inTypes.forEach(
       (type: Type.Argument): void => {
         type.run(context, builder);
-        builder.addLine(",");
+        builder.addThenNewline(",");
       },
     );
     builder
@@ -75,7 +75,7 @@ export class Function extends Renderable {
       .add("): ");
     this.props.outType.run(context, builder);
     builder
-      .addLine(" {")
+      .addThenNewline(" {")
       .indent();
     this.props.content
       .forEach(
@@ -85,7 +85,7 @@ export class Function extends Renderable {
       );
     builder
       .unindent()
-      .addLine("}");
+      .addThenNewline("}");
   }
 
   protected verify(context: IContext): void {

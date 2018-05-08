@@ -157,7 +157,7 @@ export class Module extends Renderable {
         .replace("@0", `${context.path}::${context.name}`)
         .replace("@1", Module.getHash(builder));
     }
-    builder.addHeader(header);
+    builder.setHeader(header);
   }
 
   protected verify(context: IContext): void {

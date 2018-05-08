@@ -32,7 +32,7 @@ test(
       Builder
         .new()
         .add("b")
-        .addHeader("\na\t")
+        .setHeader("\na\t")
         .print(),
     )
       .toEqual("\na\t\n\nb");
@@ -45,7 +45,7 @@ test(
     expect(
       Builder
         .new()
-        .addLine("a")
+        .addThenNewline("a")
         .print(),
     )
       .toEqual("a\n");
@@ -66,7 +66,7 @@ test(
     expect(
       Builder
         .new()
-        .addLine("a")
+        .addThenNewline("a")
         .ensureOnNewline()
         .print(),
     )
@@ -82,14 +82,14 @@ test(
         .new()
         .add("a")
         .ensureOnNewlineAfterEmptyline()
-        .addLine("b")
+        .addThenNewline("b")
         .print(),
     )
       .toEqual("a\n\nb\n");
     expect(
       Builder
         .new()
-        .addLine("a")
+        .addThenNewline("a")
         .ensureOnNewlineAfterEmptyline()
         .print(),
     )
@@ -103,15 +103,15 @@ test(
     expect(
       Builder
         .new()
-        .addLine("a")
+        .addThenNewline("a")
         .indent()
-        .addLine("b")
+        .addThenNewline("b")
         .indent()
         .ensureOnNewlineAfterEmptyline()
-        .addLine("c")
+        .addThenNewline("c")
         .unindent()
         .unindent()
-        .addLine("d")
+        .addThenNewline("d")
         .print(),
     )
       .toEqual("a\n  b\n\n    c\nd\n");
@@ -136,7 +136,7 @@ test(
     expect(
       () => Builder
         .new()
-        .addLine("a\tb"),
+        .addThenNewline("a\tb"),
     )
       .toThrow();
   },
@@ -148,7 +148,7 @@ test(
     expect(
       () => Builder
         .new()
-        .addLine("a\nb"),
+        .addThenNewline("a\nb"),
     )
       .toThrow();
   },
@@ -160,7 +160,7 @@ test(
     expect(
       () => Builder
         .new()
-        .addLine("a")
+        .addThenNewline("a")
         .unindent(),
     )
       .toThrow();
@@ -173,7 +173,7 @@ test(
     expect(
       () => Builder
         .new()
-        .addLine("a")
+        .addThenNewline("a")
         .indent()
         .print(),
     )
@@ -199,8 +199,8 @@ test(
     expect(
       () => Builder
         .new()
-        .addHeader("\na\t")
-        .addHeader("\na\t"),
+        .setHeader("\na\t")
+        .setHeader("\na\t"),
     )
       .toThrow();
   },

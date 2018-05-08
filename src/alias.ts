@@ -46,7 +46,7 @@ export class Alias extends Renderable {
     }
     builder.add(" = ");
     this.props.type.run(context, builder);
-    builder.addLine(";");
+    builder.addThenNewline(";");
   }
 
   protected verify(context: IContext): void {

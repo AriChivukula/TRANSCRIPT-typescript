@@ -34,8 +34,8 @@ export class Bespoke extends Renderable {
     builder: Builder,
   ): void {
     builder
-      .addLine(startTemplate.replace("@0", this.props.name))
-      .addLine(endTemplate.replace("@0", this.props.name));
+      .addThenNewline(startTemplate.replace("@0", this.props.name))
+      .addThenNewline(endTemplate.replace("@0", this.props.name));
   }
 
   protected verify(context: IContext): void {
