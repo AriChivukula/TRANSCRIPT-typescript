@@ -9,9 +9,9 @@ export enum EMethodKind {
 
 export interface IMethod {
   readonly content?: Renderable[];
-  readonly inputs: { [index: string]: string};
+  readonly inTypes: { [index: string]: string};
   readonly name: string;
-  readonly output: string;
+  readonly outType: string;
 }
 
 export abstract class Method extends Renderable {
@@ -56,12 +56,12 @@ export abstract class Method extends Renderable {
     builder
       .addLine(`${this.props.name}(`)
       .indent();
-    for (const name of Object.keys(this.props.inputs)) {
-      builder.addLine(`${name}: ${this.props.inputs[name]},`);
+    for (const name of Object.keys(this.props.inTypes)) {
+      builder.addLine(`${name}: ${this.props.inTypes[name]},`);
     }
     builder
       .unindent()
-      .add(`): ${this.props.output}`);
+      .add(`): ${this.props.outType}`);
     if (this.props.content === undefined) {
       builder.addLine(";");
     } else {

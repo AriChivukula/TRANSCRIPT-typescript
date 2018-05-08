@@ -3,9 +3,9 @@ import { IContext, Renderable } from "./renderable";
 
 export interface IFunction {
   readonly content: Renderable[];
-  readonly inputs: { [index: string]: string};
+  readonly inTypes: { [index: string]: string};
   readonly name: string;
-  readonly output: string;
+  readonly outType: string;
 }
 
 export class Function extends Renderable {
@@ -58,12 +58,12 @@ export class Function extends Renderable {
     builder
       .addLine(`function ${this.props.name}(`)
       .indent();
-    for (const name of Object.keys(this.props.inputs)) {
-      builder.addLine(`${name}: ${this.props.inputs[name]},`);
+    for (const name of Object.keys(this.props.inTypes)) {
+      builder.addLine(`${name}: ${this.props.inTypes[name]},`);
     }
     builder
       .unindent()
-      .addLine(`): ${this.props.output} {`)
+      .addLine(`): ${this.props.outType} {`)
       .indent();
     this.props.content
       .forEach(

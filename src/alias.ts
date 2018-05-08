@@ -2,8 +2,8 @@ import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
 
 export interface IAlias {
-  readonly assignment: string;
   readonly name: string;
+  readonly type: string;
 }
 
 export class Alias extends Renderable {
@@ -38,7 +38,7 @@ export class Alias extends Renderable {
     if (this.exported) {
       builder.add("export ");
     }
-    builder.addLine(`type ${this.props.name} = ${this.props.assignment};`);
+    builder.addLine(`type ${this.props.name} = ${this.props.type};`);
   }
 
   protected verify(context: IContext): void {

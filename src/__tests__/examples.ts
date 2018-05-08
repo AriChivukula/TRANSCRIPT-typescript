@@ -29,16 +29,16 @@ export const bespoke3: Bespoke = Bespoke.new({
 
 export const function1: Function = Function.newSyncInternal({
   content: [],
-  inputs: {},
+  inTypes: {},
   name: "function1",
-  output: "void",
+  outType: "void",
 });
 
 export const function2: Function = Function.newAsyncExported({
   content: [],
-  inputs: {},
+  inTypes: {},
   name: "function2",
-  output: "Promise<string>",
+  outType: "Promise<string>",
 });
 
 export const function3: Function = Function.newAsyncExported({
@@ -47,12 +47,12 @@ export const function3: Function = Function.newAsyncExported({
       name: "fn3",
     }),
   ],
-  inputs: {
+  inTypes: {
     var1: "string",
     var2: "object",
   },
   name: "function3",
-  output: "Promise<string[]>",
+  outType: "Promise<string[]>",
 });
 
 export const importAll1: Import = Import.new({
@@ -134,18 +134,18 @@ export const interface3: Interface = Interface.newExported({
 
 export const method1: PublicMethod = PublicMethod.newAsyncInstance({
   content: [],
-  inputs: {
+  inTypes: {
     var1: "string",
     var2: "object",
   },
   name: "method1",
-  output: "Promise<string[]>",
+  outType: "Promise<string[]>",
 });
 
 export const method2: ProtectedMethod = ProtectedMethod.newSyncStatic({
-  inputs: {},
+  inTypes: {},
   name: "method2",
-  output: "void",
+  outType: "void",
 });
 
 export const method3: PrivateMethod = PrivateMethod.newAsyncStatic({
@@ -154,9 +154,9 @@ export const method3: PrivateMethod = PrivateMethod.newAsyncStatic({
       name: "method3Bespoke",
     }),
   ],
-  inputs: {},
+  inTypes: {},
   name: "method3",
-  output: "void",
+  outType: "void",
 });
 
 export const property1: PublicProperty = PublicProperty.newMutableInstance({
@@ -176,18 +176,18 @@ export const property3: PrivateProperty = PrivateProperty.newMutableStatic({
 });
 
 export const alias1: Alias = Alias.newInternal({
-  assignment: "number",
   name: "Ty1",
+  type: "number",
 });
 
 export const alias2: Alias = Alias.newExported({
-  assignment: "string | null",
   name: "Ty2",
+  type: "string | null",
 });
 
 export const alias3: Alias = Alias.newExported({
-  assignment: "Ty2 | Ty1",
   name: "Ty3",
+  type: "Ty2 | Ty1",
 });
 
 export const variable1: Variable = Variable.newExported({
