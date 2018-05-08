@@ -6,6 +6,7 @@ export interface IClass {
   readonly extends?: string;
   readonly implements?: string[];
   readonly name: string;
+  readonly templates?: string[];
 }
 
 export class Class extends Renderable {
@@ -60,7 +61,11 @@ export class Class extends Renderable {
     if (this.abstract) {
       builder.add("abstract ");
     }
-    builder.add(`class ${this.props.name} `);
+    builder.add(`class ${this.props.name}`);
+    if (this.props.templates !== undefined) {
+      builder.add(`<${this.props.templates.join(", ")}>`);
+    }
+    builder.add(" ");
     if (this.props.extends !== undefined) {
       builder.add(`extends ${this.props.extends} `);
     }

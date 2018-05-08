@@ -13,6 +13,7 @@ export interface IMethod {
   readonly inTypes: NamedType[];
   readonly name: string;
   readonly outType: AnonymousType;
+  readonly templates?: string[];
 }
 
 export abstract class Method extends Renderable {
@@ -54,8 +55,12 @@ export abstract class Method extends Renderable {
     if (this.props.content === undefined) {
       builder.add("abstract ");
     }
+    builder.add(this.props.name);
+    if (this.props.templates !== undefined) {
+      builder.add(`<${this.props.templates.join(", ")}>`);
+    }
     builder
-      .addLine(`${this.props.name}(`)
+      .addLine("(")
       .indent();
     this.props.inTypes.forEach(
       (type: NamedType): void => {

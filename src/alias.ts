@@ -4,6 +4,7 @@ import { AnonymousType } from "./type";
 
 export interface IAlias {
   readonly name: string;
+  readonly templates?: string[];
   readonly type: AnonymousType;
 }
 
@@ -39,7 +40,11 @@ export class Alias extends Renderable {
     if (this.exported) {
       builder.add("export ");
     }
-    builder.add(`type ${this.props.name} = `);
+    builder.add(`type ${this.props.name}`);
+    if (this.props.templates !== undefined) {
+      builder.add(`<${this.props.templates.join(", ")}>`);
+    }
+    builder.add(" = ");
     this.props.type.run(context, builder);
     builder.addLine(";");
   }

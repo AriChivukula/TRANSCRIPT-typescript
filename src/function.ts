@@ -7,6 +7,7 @@ export interface IFunction {
   readonly inTypes: NamedType[];
   readonly name: string;
   readonly outType: AnonymousType;
+  readonly templates?: string[];
 }
 
 export class Function extends Renderable {
@@ -56,8 +57,12 @@ export class Function extends Renderable {
     if (this.async) {
       builder.add("async ");
     }
+    builder.add(`function ${this.props.name}`);
+    if (this.props.templates !== undefined) {
+      builder.add(`<${this.props.templates.join(", ")}>`);
+    }
     builder
-      .addLine(`function ${this.props.name}(`)
+      .addLine("(")
       .indent();
     this.props.inTypes.forEach(
       (type: NamedType): void => {

@@ -4,6 +4,7 @@ import { NamedType } from "./type";
 
 export interface IInterface {
   readonly name: string;
+  readonly templates?: string[];
   readonly types: NamedType[];
 }
 
@@ -39,8 +40,12 @@ export class Interface extends Renderable {
     if (this.exported) {
       builder.add("export ");
     }
+    builder.add(`interface ${this.props.name}`);
+    if (this.props.templates !== undefined) {
+      builder.add(`<${this.props.templates.join(", ")}>`);
+    }
     builder
-      .addLine(`interface ${this.props.name} {`)
+      .addLine(" {")
       .indent();
     this.props.types.forEach(
       (type: NamedType): void => {
