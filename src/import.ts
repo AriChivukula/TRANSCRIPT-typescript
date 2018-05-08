@@ -8,22 +8,22 @@ export enum EImportKind {
 }
 
 export interface IImportAll {
-  name: string;
-  withAllAs: string;
+  readonly name: string;
+  readonly withAllAs: string;
 }
 
 export interface IImportDefault {
-  name: string;
-  withDefaultAs: string;
+  readonly name: string;
+  readonly withDefaultAs: string;
 }
 
 export interface IImportRaw {
-  name: string;
+  readonly name: string;
 }
 
 export interface IImportSome {
-  name: string;
-  with: string[];
+  readonly name: string;
+  readonly with: string[];
 }
 
 export type TImport = IImportAll | IImportDefault | IImportRaw | IImportSome;
