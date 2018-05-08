@@ -1,11 +1,13 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
+import { Type } from "./type";
 
 export interface IFunction {
   readonly content: Renderable[];
-  readonly inputs: { [index: string]: string};
+  readonly inTypes: Type.Argument[];
   readonly name: string;
-  readonly output: string;
+  readonly outType: Type.Anonymous;
+  readonly templates?: string[];
 }
 
 export class Function extends Renderable {
@@ -55,15 +57,25 @@ export class Function extends Renderable {
     if (this.async) {
       builder.add("async ");
     }
-    builder
-      .addLine(`function ${this.props.name}(`)
-      .indent();
-    for (const name of Object.keys(this.props.inputs)) {
-      builder.addLine(`${name}: ${this.props.inputs[name]},`);
+    builder.add(`function ${this.props.name}`);
+    if (this.props.templates !== undefined) {
+      builder.add(`<${this.props.templates.join(", ")}>`);
     }
     builder
+      .addLine("(")
+      .indent();
+    this.props.inTypes.forEach(
+      (type: Type.Argument): void => {
+        type.run(context, builder);
+        builder.addLine(",");
+      },
+    );
+    builder
       .unindent()
-      .addLine(`): ${this.props.output} {`)
+      .add("): ");
+    this.props.outType.run(context, builder);
+    builder
+      .addLine(" {")
       .indent();
     this.props.content
       .forEach(

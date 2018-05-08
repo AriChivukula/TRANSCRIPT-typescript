@@ -1,5 +1,6 @@
 import "@babel/polyfill";
 
+export * from "./alias";
 export * from "./bespoke";
 export * from "./builder";
 export * from "./class";

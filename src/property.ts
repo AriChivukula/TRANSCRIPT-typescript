@@ -1,113 +1,135 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
+import { Type } from "./type";
 
-export enum EPropertyKind {
-  PRIVATE = "private",
-  PROTECTED = "protected",
-  PUBLIC = "public",
-}
+export namespace Property {
 
-export interface IProperty {
-  readonly assignment?: string;
-  readonly name: string;
-  readonly type: string;
-}
-
-export abstract class Property extends Renderable {
-
-  protected constructor(
-    private readonly props: IProperty,
-    private readonly readonly: boolean,
-    private readonly isStatic: boolean,
-    private readonly kind: EPropertyKind,
-  ) {
-    super();
+  export enum EKind {
+    PRIVATE = "private",
+    PROTECTED = "protected",
+    PUBLIC = "public",
   }
 
-  public bespokes(): string[] {
-    return [];
+  export interface I {
+    readonly assignment?: string;
+    readonly type: Type.Named;
   }
 
-  public identifiers(): string[] {
-    return [this.props.name];
-  }
+  export abstract class Base extends Renderable {
 
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
-    builder.add(`${this.kind} `);
-    if (this.readonly) {
-      builder.add("readonly ");
+    protected constructor(
+      private readonly props: I,
+      private readonly readonly: boolean,
+      private readonly isStatic: boolean,
+      private readonly kind: EKind,
+    ) {
+      super();
     }
-    if (this.isStatic) {
-      builder.add("static ");
+
+    public bespokes(): string[] {
+      return [];
     }
-    builder.add(`${this.props.name}: ${this.props.type}`);
-    if (this.props.assignment !== undefined) {
-      builder.addLine(` = ${this.props.assignment};`);
-    } else {
-      builder.addLine(";");
+
+    public identifiers(): string[] {
+      return this.props.type.identifiers();
+    }
+
+    protected render(
+      context: IContext,
+      builder: Builder,
+    ): void {
+      builder.add(`${this.kind} `);
+      if (this.readonly) {
+        builder.add("readonly ");
+      }
+      if (this.isStatic) {
+        builder.add("static ");
+      }
+      this.props.type.run(context, builder);
+      if (this.props.assignment !== undefined) {
+        builder.addLine(` = ${this.props.assignment};`);
+      } else {
+        builder.addLine(";");
+      }
+    }
+
+    protected verify(context: IContext): void {
     }
   }
 
-  protected verify(context: IContext): void {
-  }
-}
+  export abstract class BaseInstance extends Base {}
 
-export class PrivateProperty extends Property {
+  export namespace Instance {
 
-  public static newImmutableInstance(props: IProperty): PrivateProperty {
-    return new PrivateProperty(props, true, false, EPropertyKind.PRIVATE);
-  }
+    export class Private extends BaseInstance {
 
-  public static newImmutableStatic(props: IProperty): PrivateProperty {
-    return new PrivateProperty(props, true, true, EPropertyKind.PRIVATE);
-  }
+      public static newImmutable(props: I): Private {
+        return new Private(props, true, false, EKind.PRIVATE);
+      }
 
-  public static newMutableInstance(props: IProperty): PrivateProperty {
-    return new PrivateProperty(props, false, false, EPropertyKind.PRIVATE);
-  }
+      public static newMutable(props: I): Private {
+        return new Private(props, false, false, EKind.PRIVATE);
+      }
+    }
 
-  public static newMutableStatic(props: IProperty): PrivateProperty {
-    return new PrivateProperty(props, false, true, EPropertyKind.PRIVATE);
-  }
-}
+    export class Protected extends BaseInstance {
 
-export class ProtectedProperty extends Property {
+      public static newImmutable(props: I): Protected {
+        return new Protected(props, true, false, EKind.PROTECTED);
+      }
 
-  public static newImmutableInstance(props: IProperty): ProtectedProperty {
-    return new ProtectedProperty(props, true, false, EPropertyKind.PROTECTED);
-  }
+      public static newMutable(props: I): Protected {
+        return new Protected(props, false, false, EKind.PROTECTED);
+      }
+    }
 
-  public static newImmutableStatic(props: IProperty): ProtectedProperty {
-    return new ProtectedProperty(props, true, true, EPropertyKind.PROTECTED);
-  }
+    export class Public extends BaseInstance {
 
-  public static newMutableInstance(props: IProperty): ProtectedProperty {
-    return new ProtectedProperty(props, false, false, EPropertyKind.PROTECTED);
-  }
+      public static newImmutable(props: I): Public {
+        return new Public(props, true, false, EKind.PUBLIC);
+      }
 
-  public static newMutableStatic(props: IProperty): ProtectedProperty {
-    return new ProtectedProperty(props, false, true, EPropertyKind.PROTECTED);
-  }
-}
-
-export class PublicProperty extends Property {
-
-  public static newImmutableInstance(props: IProperty): PublicProperty {
-    return new PublicProperty(props, true, false, EPropertyKind.PUBLIC);
+      public static newMutable(props: I): Public {
+        return new Public(props, false, false, EKind.PUBLIC);
+      }
+    }
   }
 
-  public static newImmutableStatic(props: IProperty): PublicProperty {
-    return new PublicProperty(props, true, true, EPropertyKind.PUBLIC);
-  }
+  export abstract class BaseStatic extends Base {}
 
-  public static newMutableInstance(props: IProperty): PublicProperty {
-    return new PublicProperty(props, false, false, EPropertyKind.PUBLIC);
-  }
+  export namespace Static {
 
-  public static newMutableStatic(props: IProperty): PublicProperty {
-    return new PublicProperty(props, false, true, EPropertyKind.PUBLIC);
+    export class Private extends BaseStatic {
+
+      public static newImmutable(props: I): Private {
+        return new Private(props, true, true, EKind.PRIVATE);
+      }
+
+      public static newMutable(props: I): Private {
+        return new Private(props, false, true, EKind.PRIVATE);
+      }
+    }
+
+    export class Protected extends BaseStatic {
+
+      public static newImmutable(props: I): Protected {
+        return new Protected(props, true, true, EKind.PROTECTED);
+      }
+
+      public static newMutable(props: I): Protected {
+        return new Protected(props, false, true, EKind.PROTECTED);
+      }
+    }
+
+    export class Public extends BaseStatic {
+
+      public static newImmutable(props: I): Public {
+        return new Public(props, true, true, EKind.PUBLIC);
+      }
+
+      public static newMutable(props: I): Public {
+        return new Public(props, false, true, EKind.PUBLIC);
+      }
+    }
   }
 }

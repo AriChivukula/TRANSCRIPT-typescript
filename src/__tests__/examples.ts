@@ -1,16 +1,13 @@
 import {
+  Alias,
   Bespoke,
   Class,
   Function,
   Import,
   Interface,
+  Method,
   Module,
-  PrivateMethod,
-  PrivateProperty,
-  ProtectedMethod,
-  ProtectedProperty,
-  PublicMethod,
-  PublicProperty,
+  Property,
   Type,
   Variable,
 } from "../index";
@@ -29,16 +26,18 @@ export const bespoke3: Bespoke = Bespoke.new({
 
 export const function1: Function = Function.newSyncInternal({
   content: [],
-  inputs: {},
+  inTypes: [],
   name: "function1",
-  output: "void",
+  outType: Type.Anonymous.new({ type: "void" }),
+  templates: ["T"],
 });
 
 export const function2: Function = Function.newAsyncExported({
   content: [],
-  inputs: {},
+  inTypes: [],
   name: "function2",
-  output: "Promise<string>",
+  outType: Type.Anonymous.new({ type: "Promise<string>" }),
+  templates: ["T", "V"],
 });
 
 export const function3: Function = Function.newAsyncExported({
@@ -47,12 +46,12 @@ export const function3: Function = Function.newAsyncExported({
       name: "fn3",
     }),
   ],
-  inputs: {
-    var1: "string",
-    var2: "object",
-  },
+  inTypes: [
+    Type.Argument.new({ name: "var1", type: "string" }),
+    Type.Argument.new({ name: "var2", type: "object", default: "{}" }),
+  ],
   name: "function3",
-  output: "Promise<string[]>",
+  outType: Type.Anonymous.new({ type: "Promise<string[]>" }),
 });
 
 export const importAll1: Import = Import.new({
@@ -114,97 +113,170 @@ export const importSome3: Import = Import.new({
 
 export const interface1: Interface = Interface.newInternal({
   name: "If1",
-  types: {},
+  templates: ["T"],
+  types: [],
 });
 
 export const interface2: Interface = Interface.newExported({
   name: "If2",
-  types: {
-    item: "string",
-  },
+  templates: ["T", "V"],
+  types: [
+    Type.Named.newRequired({ name: "item", type: "string" }),
+  ],
 });
 
 export const interface3: Interface = Interface.newExported({
   name: "If3",
-  types: {
-    test: "null | string",
-    test2: "If2",
-  },
+  types: [
+    Type.Named.newRequired({ name: "test", types: ["null", "string"] }),
+    Type.Named.newRequired({ name: "test2", type: "If2" }),
+  ],
 });
 
-export const method1: PublicMethod = PublicMethod.newAsyncInstance({
+export const methodInstance1: Method.Instance.Public = Method.Instance.Public.newAsync({
   content: [],
-  inputs: {
-    var1: "string",
-    var2: "object",
-  },
-  name: "method1",
-  output: "Promise<string[]>",
-});
-
-export const method2: ProtectedMethod = ProtectedMethod.newSyncStatic({
-  inputs: {},
-  name: "method2",
-  output: "void",
-});
-
-export const method3: PrivateMethod = PrivateMethod.newAsyncStatic({
-  content: [
-    Bespoke.new({
-      name: "method3Bespoke",
+  inTypes: [
+    Type.Argument.new({ name: "var1", type: "string" }),
+    Type.Argument.new({ name: "var2", type: "object", default: "{}" }),
+    Type.Argument.new({
+      property: Property.Instance.Public.newImmutable({
+        type: Type.Named.newRequired({
+          name: "var5",
+          type: "string",
+        }),
+      }),
     }),
   ],
-  inputs: {},
-  name: "method3",
-  output: "void",
+  name: "methodInstance1",
+  outType: Type.Anonymous.new({ type: "Promise<string[]>" }),
+  templates: ["T"],
 });
 
-export const property1: PublicProperty = PublicProperty.newMutableInstance({
+export const methodInstance2: Method.Instance.Protected = Method.Instance.Protected.newSync({
+  inTypes: [],
+  name: "methodInstance2",
+  outType: Type.Anonymous.new({ type: "void" }),
+  templates: ["T", "V"],
+});
+
+export const methodInstance3: Method.Instance.Private = Method.Instance.Private.newAsync({
+  content: [
+    Bespoke.new({
+      name: "methodInstance3Bespoke",
+    }),
+  ],
+  inTypes: [],
+  name: "methodInstance3",
+  outType: Type.Anonymous.new({ type: "void" }),
+});
+
+export const methodStatic1: Method.Static.Public = Method.Static.Public.newAsync({
+  content: [],
+  inTypes: [
+    Type.Argument.new({ name: "var1", type: "string" }),
+    Type.Argument.new({ name: "var2", type: "object", default: "{}" }),
+  ],
+  name: "methodStatic1",
+  outType: Type.Anonymous.new({ type: "Promise<string[]>" }),
+  templates: ["T"],
+});
+
+export const methodStatic2: Method.Static.Protected = Method.Static.Protected.newSync({
+  inTypes: [],
+  name: "methodStatic2",
+  outType: Type.Anonymous.new({ type: "void" }),
+  templates: ["T", "V"],
+});
+
+export const methodStatic3: Method.Static.Private = Method.Static.Private.newAsync({
+  content: [
+    Bespoke.new({
+      name: "methodStatic3Bespoke",
+    }),
+  ],
+  inTypes: [],
+  name: "methodStatic3",
+  outType: Type.Anonymous.new({ type: "void" }),
+});
+
+export const propertyInstance1: Property.Instance.Public = Property.Instance.Public.newMutable({
   assignment: "\"MYVAR\"",
-  name: "property1",
+  type: Type.Named.newRequired({ name: "propertyInstance1", type: "string" }),
+});
+
+export const propertyInstance2: Property.Instance.Protected = Property.Instance.Protected.newImmutable({
+  type: Type.Named.newRequired({ name: "propertyInstance2", type: "number" }),
+});
+
+export const propertyInstance3: Property.Instance.Private = Property.Instance.Private.newMutable({
+  type: Type.Named.newRequired({ name: "propertyInstance3", types: ["string", "null"] }),
+});
+
+export const propertyStatic1: Property.Static.Public = Property.Static.Public.newMutable({
+  assignment: "\"MYVAR\"",
+  type: Type.Named.newRequired({ name: "propertyStatic1", type: "string" }),
+});
+
+export const propertyStatic2: Property.Static.Protected = Property.Static.Protected.newImmutable({
+  type: Type.Named.newRequired({ name: "propertyStatic2", type: "number" }),
+});
+
+export const propertyStatic3: Property.Static.Private = Property.Static.Private.newMutable({
+  type: Type.Named.newRequired({ name: "propertyStatic3", types: ["string", "null"] }),
+});
+
+export const alias1: Alias = Alias.newInternal({
+  name: "Ty1",
+  templates: ["T"],
+  type: Type.Anonymous.new({ type: "number" }),
+});
+
+export const alias2: Alias = Alias.newExported({
+  name: "Ty2",
+  templates: ["T", "V"],
+  type: Type.Anonymous.new({ types: ["string", "null"] }),
+});
+
+export const alias3: Alias = Alias.newExported({
+  name: "Ty3",
+  type: Type.Anonymous.new({ types: ["Ty2", "Ty1"] }),
+});
+
+export const type1: Type.Named = Type.Named.newOptional({
+  name: "test1",
   type: "string",
 });
 
-export const property2: ProtectedProperty = ProtectedProperty.newImmutableInstance({
-  name: "property2",
+export const type2: Type.Named = Type.Named.newRequired({
+  name: "test1",
+  types: ["string", "number"],
+});
+
+export const type3: Type.Anonymous = Type.Anonymous.new({
   type: "number",
 });
 
-export const property3: PrivateProperty = PrivateProperty.newMutableStatic({
-  name: "property3",
-  type: "string | null",
-});
-
-export const type1: Type = Type.newInternal({
-  assignment: "number",
-  name: "Ty1",
-});
-
-export const type2: Type = Type.newExported({
-  assignment: "string | null",
-  name: "Ty2",
-});
-
-export const type3: Type = Type.newExported({
-  assignment: "Ty2 | Ty1",
-  name: "Ty3",
+export const type4: Type.Argument = Type.Argument.new({
+  property: Property.Instance.Public.newImmutable({
+    type: Type.Named.newRequired({
+      name: "var5",
+      type: "string",
+    }),
+  }),
 });
 
 export const variable1: Variable = Variable.newExported({
-  name: "variable1",
-  type: "string",
+  type: Type.Named.newRequired({ name: "variable1", type: "string" }),
 });
 
 export const variable2: Variable = Variable.newImmutable({
   assignment: "\"TEST\"",
-  name: "variable2",
-  type: "string | undefined",
+  type: Type.Named.newRequired({ name: "variable2", types: ["string", "undefined"] }),
 });
 
 export const variable3: Variable = Variable.newMutable({
   assignment: "1",
-  name: "variable3",
-  type: "number | null | undefined",
+  type: Type.Named.newRequired({ name: "variable3", types: ["number", "null", "undefined"] }),
 });
 
 export const emptyModule: Module = Module.new({
@@ -214,26 +286,34 @@ export const emptyModule: Module = Module.new({
 
 export const class1: Class = Class.newAbstractExported({
   content: [
-    property1,
-    method1,
+    propertyInstance1,
+    propertyStatic1,
+    methodInstance1,
+    methodStatic1,
   ],
   name: "MyClass1",
+  templates: ["T"],
 });
 
 export const class2: Class = Class.newConcreteExported({
   content: [
     bespoke1,
-    property2,
-    method2,
+    propertyInstance2,
+    propertyStatic2,
+    methodInstance2,
+    methodStatic2,
   ],
   extends: "MyClass1",
   name: "MyClass2",
+  templates: ["T", "V"],
 });
 
 export const class3: Class = Class.newConcreteInternal({
   content: [
-    property3,
-    method3,
+    propertyInstance3,
+    propertyStatic3,
+    methodInstance3,
+    methodStatic3,
   ],
   extends: "MyClass1",
   implements: ["MyInterface1", "MyInterface2"],
@@ -243,12 +323,12 @@ export const class3: Class = Class.newConcreteInternal({
 export const contentModule: Module = Module.new({
   content: [
     class1,
-    type1,
+    alias1,
     bespoke1,
     interface1,
     function1,
     variable1,
-    type2,
+    alias2,
     function2,
     interface3,
     variable2,
@@ -256,7 +336,7 @@ export const contentModule: Module = Module.new({
     bespoke2,
     function3,
     interface2,
-    type3,
+    alias3,
   ],
   destination: "src/__tests__/__codegen__/contentModule.ts",
 });
@@ -298,9 +378,9 @@ export const complexModule: Module = Module.new({
     function3,
     variable3,
     interface2,
-    type1,
-    type2,
-    type3,
+    alias1,
+    alias2,
+    alias3,
     class3,
     function2,
     variable1,

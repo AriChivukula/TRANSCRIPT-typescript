@@ -1,16 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`type1 1`] = `
-"type Ty1 = number;
-"
-`;
+exports[`type1 1`] = `"test1?: string"`;
 
-exports[`type2 1`] = `
-"export type Ty2 = string | null;
-"
-`;
+exports[`type2 1`] = `"test1: string | number"`;
 
-exports[`type3 1`] = `
-"export type Ty3 = Ty2 | Ty1;
-"
-`;
+exports[`type3 1`] = `"number"`;
+
+exports[`type4 1`] = `"public readonly var5: string"`;

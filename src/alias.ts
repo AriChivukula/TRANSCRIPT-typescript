@@ -2,24 +2,24 @@ import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
 import { Type } from "./type";
 
-export interface IInterface {
+export interface IAlias {
   readonly name: string;
   readonly templates?: string[];
-  readonly types: Type.Named[];
+  readonly type: Type.Anonymous;
 }
 
-export class Interface extends Renderable {
+export class Alias extends Renderable {
 
-  public static newExported(props: IInterface): Interface {
-    return new Interface(props, true);
+  public static newExported(props: IAlias): Alias {
+    return new Alias(props, true);
   }
 
-  public static newInternal(props: IInterface): Interface {
-    return new Interface(props, false);
+  public static newInternal(props: IAlias): Alias {
+    return new Alias(props, false);
   }
 
   private constructor(
-    private readonly props: IInterface,
+    private readonly props: IAlias,
     private readonly exported: boolean,
   ) {
     super();
@@ -40,22 +40,13 @@ export class Interface extends Renderable {
     if (this.exported) {
       builder.add("export ");
     }
-    builder.add(`interface ${this.props.name}`);
+    builder.add(`type ${this.props.name}`);
     if (this.props.templates !== undefined) {
       builder.add(`<${this.props.templates.join(", ")}>`);
     }
-    builder
-      .addLine(" {")
-      .indent();
-    this.props.types.forEach(
-      (type: Type.Named): void => {
-        type.run(context, builder);
-        builder.addLine(";");
-      },
-    );
-    builder
-      .unindent()
-      .addLine("}");
+    builder.add(" = ");
+    this.props.type.run(context, builder);
+    builder.addLine(";");
   }
 
   protected verify(context: IContext): void {

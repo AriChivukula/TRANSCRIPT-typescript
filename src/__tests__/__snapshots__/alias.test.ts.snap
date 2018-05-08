@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`alias1 1`] = `
+"type Ty1<T> = number;
+"
+`;
+
+exports[`alias2 1`] = `
+"export type Ty2<T, V> = string | null;
+"
+`;
+
+exports[`alias3 1`] = `
+"export type Ty3 = Ty2 | Ty1;
+"
+`;
