@@ -1,10 +1,10 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
-import { Type } from "./type";
+import { NamedType } from "./type";
 
 export interface IInterface {
   readonly name: string;
-  readonly types: Type[];
+  readonly types: NamedType[];
 }
 
 export class Interface extends Renderable {
@@ -43,7 +43,7 @@ export class Interface extends Renderable {
       .addLine(`interface ${this.props.name} {`)
       .indent();
     this.props.types.forEach(
-      (type: Type): void => {
+      (type: NamedType): void => {
         type.run(context, builder);
         builder.addLine(";");
       },

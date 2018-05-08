@@ -1,10 +1,10 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
-import { Type } from "./type";
+import { AnonymousType } from "./type";
 
 export interface IAlias {
   readonly name: string;
-  readonly type: Type;
+  readonly type: AnonymousType;
 }
 
 export class Alias extends Renderable {

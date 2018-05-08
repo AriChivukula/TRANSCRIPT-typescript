@@ -1,6 +1,6 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
-import { Type } from "./type";
+import { NamedType } from "./type";
 
 export enum EPropertyKind {
   PRIVATE = "private",
@@ -10,7 +10,7 @@ export enum EPropertyKind {
 
 export interface IProperty {
   readonly assignment?: string;
-  readonly type: Type;
+  readonly type: NamedType;
 }
 
 export abstract class Property extends Renderable {

@@ -1,29 +1,31 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
 
-export interface ISimpleType {
-  readonly name?: string;
+export interface IAnonymousSimpleType {
   readonly type: string;
 }
 
-export interface IUnionType {
-  readonly name?: string;
+export interface IAnonymousUnionType {
   readonly types: string[];
 }
 
-export type TType = ISimpleType | IUnionType;
+export interface INamedSimpleType extends IAnonymousSimpleType {
+  readonly name: string;
+}
 
-export class Type extends Renderable {
+export interface INamedUnionType extends IAnonymousUnionType {
+  readonly name: string;
+}
 
-  public static newOptional(props: TType): Type {
-    return new Type(props, true);
-  }
+export type TAnonymousType = IAnonymousSimpleType | IAnonymousUnionType;
 
-  public static newRequired(props: TType): Type {
-    return new Type(props, false);
-  }
+export type TNamedType = INamedSimpleType | INamedUnionType;
 
-  private constructor(
+export type TType = TAnonymousType | TNamedType;
+
+export abstract class Type extends Renderable {
+
+  protected constructor(
     private readonly props: TType,
     private readonly optional: boolean,
   ) {
@@ -35,7 +37,7 @@ export class Type extends Renderable {
   }
 
   public identifiers(): string[] {
-    if (this.props.name !== undefined) {
+    if ("name" in this.props) {
       return [this.props.name];
     }
 
@@ -46,7 +48,7 @@ export class Type extends Renderable {
     context: IContext,
     builder: Builder,
   ): void {
-    if (this.props.name !== undefined) {
+    if ("name" in this.props) {
       builder.add(`${this.props.name}${this.optional ? "?" : ""}: `);
     }
     if ("type" in this.props) {
@@ -57,5 +59,23 @@ export class Type extends Renderable {
   }
 
   protected verify(context: IContext): void {
+  }
+}
+
+export class AnonymousType extends Type {
+
+  public static new(props: TAnonymousType): AnonymousType {
+    return new AnonymousType(props, false);
+  }
+}
+
+export class NamedType extends Type {
+
+  public static newOptional(props: TNamedType): NamedType {
+    return new NamedType(props, true);
+  }
+
+  public static newRequired(props: TNamedType): NamedType {
+    return new NamedType(props, false);
   }
 }

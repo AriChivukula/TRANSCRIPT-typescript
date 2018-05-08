@@ -1,12 +1,12 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
-import { Type } from "./type";
+import { AnonymousType, NamedType } from "./type";
 
 export interface IFunction {
   readonly content: Renderable[];
-  readonly inTypes: Type[];
+  readonly inTypes: NamedType[];
   readonly name: string;
-  readonly outType: Type;
+  readonly outType: AnonymousType;
 }
 
 export class Function extends Renderable {
@@ -60,7 +60,7 @@ export class Function extends Renderable {
       .addLine(`function ${this.props.name}(`)
       .indent();
     this.props.inTypes.forEach(
-      (type: Type): void => {
+      (type: NamedType): void => {
         type.run(context, builder);
         builder.addLine(",");
       },
