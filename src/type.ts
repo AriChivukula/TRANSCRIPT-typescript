@@ -106,14 +106,17 @@ export namespace Type {
     }
   }
 
-  export class Named extends Base {
+  export class Optional extends Base {
 
-    public static newOptional(props: TNamed): Named {
-      return new Named(props, true);
+    public static new(props: TNamed): Optional {
+      return new Optional(props, true);
     }
+  }
 
-    public static newRequired(props: TNamed): Named {
-      return new Named(props, false);
+  export class Required extends Base {
+
+    public static new(props: TNamed): Required {
+      return new Required(props, false);
     }
   }
 }

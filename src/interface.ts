@@ -5,7 +5,7 @@ import { Type } from "./type";
 export interface IInterface {
   readonly name: string;
   readonly templates?: string[];
-  readonly types: Type.Named[];
+  readonly types: Array<Type.Required | Type.Optional>;
 }
 
 export class Interface extends Renderable {
@@ -48,7 +48,7 @@ export class Interface extends Renderable {
       .addThenNewline(" {")
       .indent();
     this.props.types.forEach(
-      (type: Type.Named): void => {
+      (type: Type.Required | Type.Optional): void => {
         type.run(context, builder);
         builder.addThenNewline(";");
       },
