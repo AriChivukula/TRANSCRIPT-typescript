@@ -12,6 +12,7 @@ import {
   ProtectedProperty,
   PublicMethod,
   PublicProperty,
+  Type,
   Variable,
 } from "../index";
 
@@ -188,6 +189,20 @@ export const alias2: Alias = Alias.newExported({
 export const alias3: Alias = Alias.newExported({
   name: "Ty3",
   type: "Ty2 | Ty1",
+});
+
+export const type1: Type = Type.newOptional({
+  name: "test1",
+  type: "string",
+});
+
+export const type2: Type = Type.newRequired({
+  name: "test1",
+  types: ["string", "number"],
+});
+
+export const type3: Type = Type.newRequired({
+  type: "number",
 });
 
 export const variable1: Variable = Variable.newExported({

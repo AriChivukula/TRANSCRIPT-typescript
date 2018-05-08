@@ -11,4 +11,5 @@ export * from "./method";
 export * from "./module";
 export * from "./property";
 export * from "./renderable";
+export * from "./type";
 export * from "./variable";
