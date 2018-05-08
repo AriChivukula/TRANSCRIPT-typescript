@@ -63,12 +63,12 @@ export class Import extends Renderable {
     builder: Builder,
   ): void {
     if ("withAllAs" in this.props) {
-      builder.addLine(`import * as ${this.props.withAllAs} from "${this.props.name}";`);
+      builder.addThenNewline(`import * as ${this.props.withAllAs} from "${this.props.name}";`);
     } else if ("withDefaultAs" in this.props) {
-      builder.addLine(`import ${this.props.withDefaultAs} from "${this.props.name}";`);
+      builder.addThenNewline(`import ${this.props.withDefaultAs} from "${this.props.name}";`);
     } else if ("with" in this.props) {
       builder
-        .addLine("import {")
+        .addThenNewline("import {")
         .indent();
       this.props.with
         .sort(
@@ -77,13 +77,13 @@ export class Import extends Renderable {
               .localeCompare(b.toLowerCase()),
         )
         .forEach(
-          (name: string): void => { builder.addLine(`${name},`); },
+          (name: string): void => { builder.addThenNewline(`${name},`); },
         );
       builder
         .unindent()
-        .addLine(`} from "${this.props.name}";`);
+        .addThenNewline(`} from "${this.props.name}";`);
     } else {
-      builder.addLine(`import "${this.props.name}";`);
+      builder.addThenNewline(`import "${this.props.name}";`);
     }
   }
 

@@ -47,9 +47,9 @@ export namespace Property {
       }
       this.props.type.run(context, builder);
       if (this.props.assignment !== undefined) {
-        builder.addLine(` = ${this.props.assignment};`);
+        builder.addThenNewline(` = ${this.props.assignment};`);
       } else {
-        builder.addLine(";");
+        builder.addThenNewline(";");
       }
     }
 

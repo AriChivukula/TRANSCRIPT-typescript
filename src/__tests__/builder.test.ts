@@ -8,7 +8,7 @@ test(
         .new()
         .print(),
     )
-      .toEqual("");
+      .toMatchSnapshot();
   },
 );
 
@@ -21,34 +21,86 @@ test(
         .add("a")
         .print(),
     )
-      .toEqual("a");
+      .toMatchSnapshot();
   },
 );
 
 test(
-  "AddHeader",
+  "Await",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .await("a")
+        .print(),
+    )
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "Return",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .return("a")
+        .print(),
+    )
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "SetHeader",
   async (): Promise<void> => {
     expect(
       Builder
         .new()
         .add("b")
-        .addHeader("\na\t")
+        .setHeader("\na\t")
         .print(),
     )
-      .toEqual("\na\t\n\nb");
+      .toMatchSnapshot();
   },
 );
 
 test(
-  "AddLine",
+  "AddThenNewline",
   async (): Promise<void> => {
     expect(
       Builder
         .new()
-        .addLine("a")
+        .addThenNewline("a")
         .print(),
     )
-      .toEqual("a\n");
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "AwaitThenNewline",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .awaitThenNewline("a")
+        .print(),
+    )
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "ReturnAwait",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .returnAwait("a")
+        .print(),
+    )
+      .toMatchSnapshot();
   },
 );
 
@@ -62,15 +114,15 @@ test(
         .ensureOnNewline()
         .print(),
     )
-      .toEqual("a\n");
+      .toMatchSnapshot();
     expect(
       Builder
         .new()
-        .addLine("a")
+        .addThenNewline("a")
         .ensureOnNewline()
         .print(),
     )
-      .toEqual("a\n");
+      .toMatchSnapshot();
   },
 );
 
@@ -82,18 +134,18 @@ test(
         .new()
         .add("a")
         .ensureOnNewlineAfterEmptyline()
-        .addLine("b")
+        .addThenNewline("b")
         .print(),
     )
-      .toEqual("a\n\nb\n");
+      .toMatchSnapshot();
     expect(
       Builder
         .new()
-        .addLine("a")
+        .addThenNewline("a")
         .ensureOnNewlineAfterEmptyline()
         .print(),
     )
-      .toEqual("a\n");
+      .toMatchSnapshot();
   },
 );
 
@@ -103,18 +155,94 @@ test(
     expect(
       Builder
         .new()
-        .addLine("a")
+        .addThenNewline("a")
         .indent()
-        .addLine("b")
+        .addThenNewline("b")
         .indent()
         .ensureOnNewlineAfterEmptyline()
-        .addLine("c")
+        .addThenNewline("c")
         .unindent()
         .unindent()
-        .addLine("d")
+        .addThenNewline("d")
         .print(),
     )
-      .toEqual("a\n  b\n\n    c\nd\n");
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "For",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .for("A")
+        .addThenNewline("B")
+        .endFor()
+        .print(),
+    )
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "IfElse",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .if("A")
+        .addThenNewline("B")
+        .elseIf("C")
+        .addThenNewline("D")
+        .else()
+        .addThenNewline("E")
+        .endIf()
+        .print(),
+    )
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "Switch",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .switch("A")
+        .case("B")
+        .addThenNewline("C")
+        .endCase()
+        .case("D")
+        .endCase()
+        .default()
+        .endCase()
+        .endSwitch()
+        .print(),
+    )
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "TryCatch",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .try()
+        .addThenNewline("A")
+        .catch()
+        .addThenNewline("B")
+        .catch("foo")
+        .addThenNewline("C")
+        .finally()
+        .addThenNewline("D")
+        .endTry()
+        .print(),
+    )
+      .toMatchSnapshot();
   },
 );
 
@@ -136,7 +264,7 @@ test(
     expect(
       () => Builder
         .new()
-        .addLine("a\tb"),
+        .addThenNewline("a\tb"),
     )
       .toThrow();
   },
@@ -148,7 +276,31 @@ test(
     expect(
       () => Builder
         .new()
-        .addLine("a\nb"),
+        .addThenNewline("a\nb"),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "AwaitError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .addThenNewline("a\nawait"),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "ReturnError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .addThenNewline("a\nreturn"),
     )
       .toThrow();
   },
@@ -160,7 +312,7 @@ test(
     expect(
       () => Builder
         .new()
-        .addLine("a")
+        .addThenNewline("a")
         .unindent(),
     )
       .toThrow();
@@ -173,7 +325,7 @@ test(
     expect(
       () => Builder
         .new()
-        .addLine("a")
+        .addThenNewline("a")
         .indent()
         .print(),
     )
@@ -194,13 +346,139 @@ test(
 );
 
 test(
-  "AddHeaderError",
+  "SetHeaderError",
   async (): Promise<void> => {
     expect(
       () => Builder
         .new()
-        .addHeader("\na\t")
-        .addHeader("\na\t"),
+        .setHeader("\na\t")
+        .setHeader("\na\t"),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "CasePrintError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .switch("A")
+        .case("B")
+        .print(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "CaseError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .endCase(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "ForPrintError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .for("true")
+        .print(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "ForError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .endFor(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "IfPrintError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .if("true")
+        .print(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "IfError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .else(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "SwitchPrintError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .switch("A")
+        .print(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "SwitchError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .endSwitch(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "TryPrintError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .try()
+        .print(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "TryError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .catch(),
     )
       .toThrow();
   },

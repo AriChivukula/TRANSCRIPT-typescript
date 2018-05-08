@@ -45,17 +45,17 @@ export class Interface extends Renderable {
       builder.add(`<${this.props.templates.join(", ")}>`);
     }
     builder
-      .addLine(" {")
+      .addThenNewline(" {")
       .indent();
     this.props.types.forEach(
       (type: Type.Named): void => {
         type.run(context, builder);
-        builder.addLine(";");
+        builder.addThenNewline(";");
       },
     );
     builder
       .unindent()
-      .addLine("}");
+      .addThenNewline("}");
   }
 
   protected verify(context: IContext): void {

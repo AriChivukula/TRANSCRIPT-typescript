@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add 1`] = `"a"`;
+
+exports[`AddThenNewline 1`] = `
+"a
+"
+`;
+
+exports[`Await 1`] = `"await a"`;
+
+exports[`AwaitThenNewline 1`] = `
+"await a
+"
+`;
+
+exports[`Empty 1`] = `""`;
+
+exports[`For 1`] = `
+"for (A) {
+  B
+}
+"
+`;
+
+exports[`IfElse 1`] = `
+"if (A) {
+  B
+} else if (C) {
+  D
+} else {
+  E
+}
+"
+`;
+
+exports[`Indentation 1`] = `
+"a
+  b
+
+    c
+d
+"
+`;
+
+exports[`Newline 1`] = `
+"a
+"
+`;
+
+exports[`Newline 2`] = `
+"a
+"
+`;
+
+exports[`NewlineAfterEmptyline 1`] = `
+"a
+
+b
+"
+`;
+
+exports[`NewlineAfterEmptyline 2`] = `
+"a
+"
+`;
+
+exports[`Return 1`] = `
+"return a
+"
+`;
+
+exports[`ReturnAwait 1`] = `
+"return await a
+"
+`;
+
+exports[`SetHeader 1`] = `
+"
+a	
+
+b"
+`;
+
+exports[`Switch 1`] = `
+"switch (A) {
+  case B: {
+    C
+    break;
+  }
+  case D: {
+    break;
+  }
+  default: {
+    break;
+  }
+}
+"
+`;
+
+exports[`TryCatch 1`] = `
+"try {
+  A
+} catch {
+  B
+} catch(foo) {
+  C
+} finally {
+  D
+}
+"
+`;

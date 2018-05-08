@@ -62,12 +62,12 @@ export namespace Method {
         builder.add(`<${this.props.templates.join(", ")}>`);
       }
       builder
-        .addLine("(")
+        .addThenNewline("(")
         .indent();
       this.props.inTypes.forEach(
         (type: Type.Argument): void => {
           type.run(context, builder);
-          builder.addLine(",");
+          builder.addThenNewline(",");
         },
       );
       builder
@@ -75,10 +75,10 @@ export namespace Method {
         .add("): ");
       this.props.outType.run(context, builder);
       if (this.props.content === undefined) {
-        builder.addLine(";");
+        builder.addThenNewline(";");
       } else {
         builder
-          .addLine(" {")
+          .addThenNewline(" {")
           .indent();
         this.props.content
           .forEach(
@@ -88,7 +88,7 @@ export namespace Method {
           );
         builder
           .unindent()
-          .addLine("}");
+          .addThenNewline("}");
       }
     }
 

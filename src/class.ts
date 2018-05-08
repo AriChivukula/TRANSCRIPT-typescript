@@ -73,7 +73,7 @@ export class Class extends Renderable {
       builder.add(`implements ${this.props.implements.join(", ")} `);
     }
     builder
-      .addLine("{")
+      .addThenNewline("{")
       .indent();
     this.props.content
       .forEach(
@@ -84,7 +84,7 @@ export class Class extends Renderable {
       );
     builder
       .unindent()
-      .addLine("}");
+      .addThenNewline("}");
   }
 
   protected verify(context: IContext): void {
