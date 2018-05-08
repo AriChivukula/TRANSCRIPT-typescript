@@ -171,6 +171,21 @@ test(
 );
 
 test(
+  "For",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .for("A")
+        .addThenNewline("B")
+        .endFor()
+        .print(),
+    )
+      .toMatchSnapshot();
+  },
+);
+
+test(
   "IfElse",
   async (): Promise<void> => {
     expect(
@@ -317,6 +332,31 @@ test(
         .new()
         .setHeader("\na\t")
         .setHeader("\na\t"),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "ForPrintError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .for("true")
+        .print(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "ForError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .endFor(),
     )
       .toThrow();
   },

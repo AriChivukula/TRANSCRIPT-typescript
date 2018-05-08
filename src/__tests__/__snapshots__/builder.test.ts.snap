@@ -16,6 +16,13 @@ exports[`AwaitThenNewline 1`] = `
 
 exports[`Empty 1`] = `""`;
 
+exports[`For 1`] = `
+"for (A) {
+  B
+}
+"
+`;
+
 exports[`IfElse 1`] = `
 "if (A) {
   B

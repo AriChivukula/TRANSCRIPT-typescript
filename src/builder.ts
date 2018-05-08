@@ -1,5 +1,6 @@
 enum EBuilderVerifyMode {
   CONTENT,
+  FOR,
   HEADER,
   IF,
   INDENT,
@@ -14,6 +15,7 @@ export class Builder {
   }
 
   private built: string = "";
+  private forLevel: number = 0;
   private header: string | undefined;
   private ifLevel: number = 0;
   private indentation: number = 0;
@@ -67,6 +69,15 @@ export class Builder {
       .indent();
   }
 
+  public endFor(): Builder {
+    this.verify(EBuilderVerifyMode.FOR);
+    this.forLevel--;
+
+    return this
+      .unindent()
+      .addThenNewline("}");
+  }
+
   public endIf(): Builder {
     this.verify(EBuilderVerifyMode.IF);
     this.ifLevel--;
@@ -99,6 +110,15 @@ export class Builder {
     return this
       .unindent()
       .addThenNewline("} finally {")
+      .indent();
+  }
+
+  public for(check: string): Builder {
+    this.forLevel++;
+    this.verify(EBuilderVerifyMode.FOR);
+
+    return this
+      .addThenNewline(`for (${check}) {`)
       .indent();
   }
 
@@ -247,11 +267,19 @@ export class Builder {
       if (this.indentation !== 0) {
         throw new Error("Cannot print without zeroed indentation");
       }
+      if (this.forLevel !== 0) {
+        throw new Error("Cannot print without completing for statements");
+      }
       if (this.ifLevel !== 0) {
         throw new Error("Cannot print without completing if statements");
       }
       if (this.tryLevel !== 0) {
         throw new Error("Cannot print without completing try statements");
+      }
+    }
+    if (mode === EBuilderVerifyMode.FOR) {
+      if (this.forLevel < 1) {
+        throw new Error("Not inside for statement");
       }
     }
     if (mode === EBuilderVerifyMode.IF) {
