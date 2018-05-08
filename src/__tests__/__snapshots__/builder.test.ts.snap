@@ -47,6 +47,16 @@ exports[`NewlineAfterEmptyline 2`] = `
 "
 `;
 
+exports[`Return 1`] = `
+"return a
+"
+`;
+
+exports[`ReturnAwait 1`] = `
+"return await a
+"
+`;
+
 exports[`SetHeader 1`] = `
 "
 a	

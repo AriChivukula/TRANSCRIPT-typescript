@@ -39,6 +39,19 @@ test(
 );
 
 test(
+  "Return",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .return("a")
+        .print(),
+    )
+      .toMatchSnapshot();
+  },
+);
+
+test(
   "SetHeader",
   async (): Promise<void> => {
     expect(
@@ -72,6 +85,19 @@ test(
       Builder
         .new()
         .awaitThenNewline("a")
+        .print(),
+    )
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "ReturnAwait",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .returnAwait("a")
         .print(),
     )
       .toMatchSnapshot();
@@ -187,6 +213,18 @@ test(
       () => Builder
         .new()
         .addThenNewline("a\nawait"),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "ReturnError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .addThenNewline("a\nreturn"),
     )
       .toThrow();
   },
