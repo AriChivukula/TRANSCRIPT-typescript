@@ -1,33 +1,73 @@
-import { property1, property2, property3 } from "./examples";
+import {
+  propertyInstance1,
+  propertyInstance2,
+  propertyInstance3,
+  propertyStatic1,
+  propertyStatic2,
+  propertyStatic3,
+} from "./examples";
 
 test(
-  "property1",
+  "propertyInstance1",
   async (): Promise<void> => {
-    expect(property1.print({
-      name: "property1",
-      path: "src/__tests__/property.test.ts",
+    expect(propertyInstance1.print({
+      name: "propertyInstance1",
+      path: "src/__tests__/propertyInstance.test.ts",
     }))
       .toMatchSnapshot();
   },
 );
 
 test(
-  "property2",
+  "propertyInstance2",
   async (): Promise<void> => {
-    expect(property2.print({
-      name: "property2",
-      path: "src/__tests__/property.test.ts",
+    expect(propertyInstance2.print({
+      name: "propertyInstance2",
+      path: "src/__tests__/propertyInstance.test.ts",
     }))
       .toMatchSnapshot();
   },
 );
 
 test(
-  "property3",
+  "propertyInstance3",
   async (): Promise<void> => {
-    expect(property3.print({
-      name: "property3",
-      path: "src/__tests__/property.test.ts",
+    expect(propertyInstance3.print({
+      name: "propertyInstance3",
+      path: "src/__tests__/propertyInstance.test.ts",
+    }))
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "propertyStatic1",
+  async (): Promise<void> => {
+    expect(propertyStatic1.print({
+      name: "propertyStatic1",
+      path: "src/__tests__/propertyStatic.test.ts",
+    }))
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "propertyStatic2",
+  async (): Promise<void> => {
+    expect(propertyStatic2.print({
+      name: "propertyStatic2",
+      path: "src/__tests__/propertyStatic.test.ts",
+    }))
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "propertyStatic3",
+  async (): Promise<void> => {
+    expect(propertyStatic3.print({
+      name: "propertyStatic3",
+      path: "src/__tests__/propertyStatic.test.ts",
     }))
       .toMatchSnapshot();
   },

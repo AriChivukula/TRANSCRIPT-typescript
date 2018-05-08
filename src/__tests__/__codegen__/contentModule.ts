@@ -3,12 +3,14 @@
  *
  * SOURCE<<src/__tests__/examples.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<sKZg3q5eWyY2VgWM+kKbKRCIhCbtEdVM6Sr7sDGAC91DQ0UMM4O4L41r73+c09ROqLuVDPGsxqodkTlXeKSMXw==>>
+ * SIGNED<<x4xEfTp0pHCT/qt2TFgpK5SXroX4eiTU0GKH4sZ11C5mw6Uqcudgj/l7SvqOuFKgE4h66JovDAP0ETxqzx/z8Q==>>
  */
 
 export abstract class MyClass1<T> {
 
-  public property1: string = "MYVAR";
+  public propertyInstance1: string = "MYVAR";
+
+  public static propertyStatic1: string = "MYVAR";
 
   public async method1<T>(
     var1: string,

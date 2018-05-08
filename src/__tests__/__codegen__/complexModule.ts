@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::complexModule>>
  * BESPOKE<<TEST1, fn3, method3Bespoke, 3tESt3>>
- * SIGNED<<QwqEUeVn0sZ9C9ZaxIR2mU3ueP0yfsZz3vgV6isOx2fnH8/nqhpKx1CmMDlNUI+VR6X74Vw7Tgxz3G7wfh76Og==>>
+ * SIGNED<<jVAPQFJnx8OICuy5i40iMH2aKHLXoNV5aKZr8/dxIV/gyFUkbmb3dwMQMTOx0+7EUWgKjEFlLEfzrs4k85ZUoA==>>
  */
 
 import "./p";
@@ -37,7 +37,9 @@ export class MyClass2<T, V> extends MyClass1 {
   "DO NOT DELETE"
   /* BESPOKE END <<TEST1>> */
 
-  protected readonly property2: number;
+  protected readonly propertyInstance2: number;
+
+  protected readonly static propertyStatic2: number;
 
   protected static abstract method2<T, V>(
   ): void;
@@ -68,7 +70,9 @@ export type Ty3 = Ty2 | Ty1;
 
 class MyClass3 extends MyClass1 implements MyInterface1, MyInterface2 {
 
-  private static property3: string | null;
+  private propertyInstance3: string | null;
+
+  private static propertyStatic3: string | null;
 
   private static async method3(
   ): void {

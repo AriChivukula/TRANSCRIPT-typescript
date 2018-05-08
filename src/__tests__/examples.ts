@@ -9,12 +9,15 @@ import {
   Interface,
   Module,
   NamedType,
+  PrivateInstanceProperty,
   PrivateMethod,
-  PrivateProperty,
+  PrivateStaticProperty,
+  ProtectedInstanceProperty,
   ProtectedMethod,
-  ProtectedProperty,
+  ProtectedStaticProperty,
+  PublicInstanceProperty,
   PublicMethod,
-  PublicProperty,
+  PublicStaticProperty,
   Variable,
 } from "../index";
 
@@ -168,17 +171,30 @@ export const method3: PrivateMethod = PrivateMethod.newAsyncStatic({
   outType: AnonymousType.new({ type: "void" }),
 });
 
-export const property1: PublicProperty = PublicProperty.newMutableInstance({
+export const propertyInstance1: PublicInstanceProperty = PublicInstanceProperty.newMutable({
   assignment: "\"MYVAR\"",
-  type: NamedType.newRequired({ name: "property1", type: "string" }),
+  type: NamedType.newRequired({ name: "propertyInstance1", type: "string" }),
 });
 
-export const property2: ProtectedProperty = ProtectedProperty.newImmutableInstance({
-  type: NamedType.newRequired({ name: "property2", type: "number" }),
+export const propertyInstance2: ProtectedInstanceProperty = ProtectedInstanceProperty.newImmutable({
+  type: NamedType.newRequired({ name: "propertyInstance2", type: "number" }),
 });
 
-export const property3: PrivateProperty = PrivateProperty.newMutableStatic({
-  type: NamedType.newRequired({ name: "property3", types: ["string", "null"] }),
+export const propertyInstance3: PrivateInstanceProperty = PrivateInstanceProperty.newMutable({
+  type: NamedType.newRequired({ name: "propertyInstance3", types: ["string", "null"] }),
+});
+
+export const propertyStatic1: PublicStaticProperty = PublicStaticProperty.newMutable({
+  assignment: "\"MYVAR\"",
+  type: NamedType.newRequired({ name: "propertyStatic1", type: "string" }),
+});
+
+export const propertyStatic2: ProtectedStaticProperty = ProtectedStaticProperty.newImmutable({
+  type: NamedType.newRequired({ name: "propertyStatic2", type: "number" }),
+});
+
+export const propertyStatic3: PrivateStaticProperty = PrivateStaticProperty.newMutable({
+  type: NamedType.newRequired({ name: "propertyStatic3", types: ["string", "null"] }),
 });
 
 export const alias1: Alias = Alias.newInternal({
@@ -233,7 +249,8 @@ export const emptyModule: Module = Module.new({
 
 export const class1: Class = Class.newAbstractExported({
   content: [
-    property1,
+    propertyInstance1,
+    propertyStatic1,
     method1,
   ],
   name: "MyClass1",
@@ -243,7 +260,8 @@ export const class1: Class = Class.newAbstractExported({
 export const class2: Class = Class.newConcreteExported({
   content: [
     bespoke1,
-    property2,
+    propertyInstance2,
+    propertyStatic2,
     method2,
   ],
   extends: "MyClass1",
@@ -253,7 +271,8 @@ export const class2: Class = Class.newConcreteExported({
 
 export const class3: Class = Class.newConcreteInternal({
   content: [
-    property3,
+    propertyInstance3,
+    propertyStatic3,
     method3,
   ],
   extends: "MyClass1",

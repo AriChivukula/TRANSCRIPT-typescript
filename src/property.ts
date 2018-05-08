@@ -55,59 +55,68 @@ export abstract class Property extends Renderable {
   }
 }
 
-export class PrivateProperty extends Property {
+export class PrivateInstanceProperty extends Property {
 
-  public static newImmutableInstance(props: IProperty): PrivateProperty {
-    return new PrivateProperty(props, true, false, EPropertyKind.PRIVATE);
+  public static newImmutable(props: IProperty): PrivateInstanceProperty {
+    return new PrivateInstanceProperty(props, true, false, EPropertyKind.PRIVATE);
   }
 
-  public static newImmutableStatic(props: IProperty): PrivateProperty {
-    return new PrivateProperty(props, true, true, EPropertyKind.PRIVATE);
-  }
-
-  public static newMutableInstance(props: IProperty): PrivateProperty {
-    return new PrivateProperty(props, false, false, EPropertyKind.PRIVATE);
-  }
-
-  public static newMutableStatic(props: IProperty): PrivateProperty {
-    return new PrivateProperty(props, false, true, EPropertyKind.PRIVATE);
+  public static newMutable(props: IProperty): PrivateInstanceProperty {
+    return new PrivateInstanceProperty(props, false, false, EPropertyKind.PRIVATE);
   }
 }
 
-export class ProtectedProperty extends Property {
+export class ProtectedInstanceProperty extends Property {
 
-  public static newImmutableInstance(props: IProperty): ProtectedProperty {
-    return new ProtectedProperty(props, true, false, EPropertyKind.PROTECTED);
+  public static newImmutable(props: IProperty): ProtectedInstanceProperty {
+    return new ProtectedInstanceProperty(props, true, false, EPropertyKind.PROTECTED);
   }
 
-  public static newImmutableStatic(props: IProperty): ProtectedProperty {
-    return new ProtectedProperty(props, true, true, EPropertyKind.PROTECTED);
-  }
-
-  public static newMutableInstance(props: IProperty): ProtectedProperty {
-    return new ProtectedProperty(props, false, false, EPropertyKind.PROTECTED);
-  }
-
-  public static newMutableStatic(props: IProperty): ProtectedProperty {
-    return new ProtectedProperty(props, false, true, EPropertyKind.PROTECTED);
+  public static newMutable(props: IProperty): ProtectedInstanceProperty {
+    return new ProtectedInstanceProperty(props, false, false, EPropertyKind.PROTECTED);
   }
 }
 
-export class PublicProperty extends Property {
+export class PublicInstanceProperty extends Property {
 
-  public static newImmutableInstance(props: IProperty): PublicProperty {
-    return new PublicProperty(props, true, false, EPropertyKind.PUBLIC);
+  public static newImmutable(props: IProperty): PublicInstanceProperty {
+    return new PublicInstanceProperty(props, true, false, EPropertyKind.PUBLIC);
   }
 
-  public static newImmutableStatic(props: IProperty): PublicProperty {
-    return new PublicProperty(props, true, true, EPropertyKind.PUBLIC);
+  public static newMutable(props: IProperty): PublicInstanceProperty {
+    return new PublicInstanceProperty(props, false, false, EPropertyKind.PUBLIC);
+  }
+}
+
+export class PrivateStaticProperty extends Property {
+
+  public static newImmutable(props: IProperty): PrivateStaticProperty {
+    return new PrivateStaticProperty(props, true, true, EPropertyKind.PRIVATE);
   }
 
-  public static newMutableInstance(props: IProperty): PublicProperty {
-    return new PublicProperty(props, false, false, EPropertyKind.PUBLIC);
+  public static newMutable(props: IProperty): PrivateStaticProperty {
+    return new PrivateStaticProperty(props, false, true, EPropertyKind.PRIVATE);
+  }
+}
+
+export class ProtectedStaticProperty extends Property {
+
+  public static newImmutable(props: IProperty): ProtectedStaticProperty {
+    return new ProtectedStaticProperty(props, true, true, EPropertyKind.PROTECTED);
   }
 
-  public static newMutableStatic(props: IProperty): PublicProperty {
-    return new PublicProperty(props, false, true, EPropertyKind.PUBLIC);
+  public static newMutable(props: IProperty): ProtectedStaticProperty {
+    return new ProtectedStaticProperty(props, false, true, EPropertyKind.PROTECTED);
+  }
+}
+
+export class PublicStaticProperty extends Property {
+
+  public static newImmutable(props: IProperty): PublicStaticProperty {
+    return new PublicStaticProperty(props, true, true, EPropertyKind.PUBLIC);
+  }
+
+  public static newMutable(props: IProperty): PublicStaticProperty {
+    return new PublicStaticProperty(props, false, true, EPropertyKind.PUBLIC);
   }
 }
