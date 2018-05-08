@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::complexModule>>
  * BESPOKE<<TEST1, fn3, method3Bespoke, 3tESt3>>
- * SIGNED<<8dZ+Lu8oyj/zPsJI1TSt0kuFG5VpBQiB+JD/LQlPRobcGrt3UkcDkDYK+gSsBmfN7XqT07vB1zJCFN/FxQmvnA==>>
+ * SIGNED<<uLWOi5YsM/17VZNqTe2MpB6CCT50U/+edxB4l/+Taq/xeQYJMTeC7eglRIPlr7QnUPYYtuul2IsFgO1pFqiMdQ==>>
  */
 
 import "./p";
@@ -31,7 +31,7 @@ import {
   wA,
 } from "./R";
 
-export class MyClass2 extends MyClass1 {
+export class MyClass2<T, V> extends MyClass1 {
 
   /* BESPOKE START <<TEST1>> */
   "DO NOT DELETE"
@@ -39,11 +39,11 @@ export class MyClass2 extends MyClass1 {
 
   protected readonly property2: number;
 
-  protected static abstract method2(
+  protected static abstract method2<T, V>(
   ): void;
 }
 
-interface If1 {
+interface If1<T> {
 }
 
 export async function function3(
@@ -56,13 +56,13 @@ export async function function3(
 
 let variable3: number | null | undefined = 1;
 
-export interface If2 {
+export interface If2<T, V> {
   item: string;
 }
 
-type Ty1 = number;
+type Ty1<T> = number;
 
-export type Ty2 = string | null;
+export type Ty2<T, V> = string | null;
 
 export type Ty3 = Ty2 | Ty1;
 
@@ -77,7 +77,7 @@ class MyClass3 extends MyClass1 implements MyInterface1, MyInterface2 {
   }
 }
 
-export async function function2(
+export async function function2<T, V>(
 ): Promise<string> {
 }
 
@@ -94,6 +94,6 @@ export interface If3 {
   test2: If2;
 }
 
-function function1(
+function function1<T>(
 ): void {
 }

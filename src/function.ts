@@ -1,10 +1,10 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
-import { AnonymousType, NamedType } from "./type";
+import { AnonymousType, ArgumentType } from "./type";
 
 export interface IFunction {
   readonly content: Renderable[];
-  readonly inTypes: NamedType[];
+  readonly inTypes: ArgumentType[];
   readonly name: string;
   readonly outType: AnonymousType;
   readonly templates?: string[];
@@ -65,7 +65,7 @@ export class Function extends Renderable {
       .addLine("(")
       .indent();
     this.props.inTypes.forEach(
-      (type: NamedType): void => {
+      (type: ArgumentType): void => {
         type.run(context, builder);
         builder.addLine(",");
       },

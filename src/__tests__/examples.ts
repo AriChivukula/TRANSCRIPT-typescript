@@ -1,6 +1,7 @@
 import {
   Alias,
   AnonymousType,
+  ArgumentType,
   Bespoke,
   Class,
   Function,
@@ -52,8 +53,8 @@ export const function3: Function = Function.newAsyncExported({
     }),
   ],
   inTypes: [
-    NamedType.newRequired({ name: "var1", type: "string" }),
-    NamedType.newRequired({ name: "var2", type: "object" }),
+    ArgumentType.new({ name: "var1", type: "string" }),
+    ArgumentType.new({ name: "var2", type: "object" }),
   ],
   name: "function3",
   outType: AnonymousType.new({ type: "Promise<string[]>" }),
@@ -141,8 +142,8 @@ export const interface3: Interface = Interface.newExported({
 export const method1: PublicMethod = PublicMethod.newAsyncInstance({
   content: [],
   inTypes: [
-    NamedType.newRequired({ name: "var1", type: "string" }),
-    NamedType.newRequired({ name: "var2", type: "object" }),
+    ArgumentType.new({ name: "var1", type: "string" }),
+    ArgumentType.new({ name: "var2", type: "object" }),
   ],
   name: "method1",
   outType: AnonymousType.new({ type: "Promise<string[]>" }),

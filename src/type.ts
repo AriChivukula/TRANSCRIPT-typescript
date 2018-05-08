@@ -17,11 +17,21 @@ export interface INamedUnionType extends IAnonymousUnionType {
   readonly name: string;
 }
 
+export interface IArgumentSimpleType extends INamedSimpleType {
+  readonly default?: string;
+}
+
+export interface IArgumentUnionType extends INamedUnionType {
+  readonly default?: string;
+}
+
 export type TAnonymousType = IAnonymousSimpleType | IAnonymousUnionType;
+
+export type TArgumentType = IArgumentSimpleType | IArgumentUnionType;
 
 export type TNamedType = INamedSimpleType | INamedUnionType;
 
-export type TType = TAnonymousType | TNamedType;
+export type TType = TAnonymousType | TArgumentType | TNamedType;
 
 export abstract class Type extends Renderable {
 
@@ -56,6 +66,11 @@ export abstract class Type extends Renderable {
     } else {
       builder.add(this.props.types.join(" | "));
     }
+    if ("default" in this.props) {
+      if (this.props.default !== undefined) {
+        builder.add(` = ${this.props.default}`);
+      }
+    }
   }
 
   protected verify(context: IContext): void {
@@ -66,6 +81,13 @@ export class AnonymousType extends Type {
 
   public static new(props: TAnonymousType): AnonymousType {
     return new AnonymousType(props, false);
+  }
+}
+
+export class ArgumentType extends Type {
+
+  public static new(props: TArgumentType): ArgumentType {
+    return new ArgumentType(props, false);
   }
 }
 
