@@ -3,6 +3,7 @@ enum EBuilderVerifyMode {
   HEADER,
   INDENT,
   PRINT,
+  TRY,
 }
 
 export class Builder {
@@ -14,6 +15,7 @@ export class Builder {
   private built: string = "";
   private header: string | undefined;
   private indentation: number = 0;
+  private tryLevel: number = 0;
 
   private constructor() {}
 
@@ -33,12 +35,42 @@ export class Builder {
     return this.addImpl(content, true, true, false);
   }
 
+  public catch(name?: string): Builder {
+    this.verify(EBuilderVerifyMode.TRY);
+    this.unindent();
+    if (name === undefined) {
+      this.addThenNewline("} catch {");
+    } else {
+      this.addThenNewline(`} catch(${name}) {`);
+    }
+
+    return this.indent();
+  }
+
+  public endTry(): Builder {
+    this.verify(EBuilderVerifyMode.TRY);
+    this.tryLevel--;
+
+    return this
+      .unindent()
+      .addThenNewline("}");
+  }
+
   public ensureOnNewline(): Builder {
     return this.ensureOnNewlineImpl(1);
   }
 
   public ensureOnNewlineAfterEmptyline(): Builder {
     return this.ensureOnNewlineImpl(2);
+  }
+
+  public finally(): Builder {
+    this.verify(EBuilderVerifyMode.TRY);
+
+    return this
+      .unindent()
+      .addThenNewline("} finally {")
+      .indent();
   }
 
   public indent(): Builder {
@@ -73,6 +105,15 @@ export class Builder {
     this.header = header;
 
     return this;
+  }
+
+  public try(): Builder {
+    this.tryLevel++;
+    this.verify(EBuilderVerifyMode.TRY);
+
+    return this
+      .addThenNewline("try {")
+      .indent();
   }
 
   public unindent(): Builder {
@@ -167,6 +208,14 @@ export class Builder {
     if (mode === EBuilderVerifyMode.PRINT) {
       if (this.indentation !== 0) {
         throw new Error("Cannot print without zeroed indentation");
+      }
+      if (this.tryLevel !== 0) {
+        throw new Error("Cannot print without completing try statements");
+      }
+    }
+    if (mode === EBuilderVerifyMode.TRY) {
+      if (this.tryLevel < 1) {
+        throw new Error("Not inside try statement");
       }
     }
   }

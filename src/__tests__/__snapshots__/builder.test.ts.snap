@@ -63,3 +63,16 @@ a
 
 b"
 `;
+
+exports[`TryCatch 1`] = `
+"try {
+  A
+} catch {
+  B
+} catch(foo) {
+  C
+} finally {
+  D
+}
+"
+`;

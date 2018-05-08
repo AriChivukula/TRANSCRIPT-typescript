@@ -171,6 +171,27 @@ test(
 );
 
 test(
+  "TryCatch",
+  async (): Promise<void> => {
+    expect(
+      Builder
+        .new()
+        .try()
+        .addThenNewline("A")
+        .catch()
+        .addThenNewline("B")
+        .catch("foo")
+        .addThenNewline("C")
+        .finally()
+        .addThenNewline("D")
+        .endTry()
+        .print(),
+    )
+      .toMatchSnapshot();
+  },
+);
+
+test(
   "EmptyError",
   async (): Promise<void> => {
     expect(
@@ -277,6 +298,31 @@ test(
         .new()
         .setHeader("\na\t")
         .setHeader("\na\t"),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "TryPrintError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .try()
+        .print(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "TryError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .catch(),
     )
       .toThrow();
   },
