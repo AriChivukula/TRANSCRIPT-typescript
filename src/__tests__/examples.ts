@@ -5,15 +5,13 @@ import {
   Function,
   Import,
   Interface,
+  Method,
   Module,
   PrivateInstanceProperty,
-  PrivateMethod,
   PrivateStaticProperty,
   ProtectedInstanceProperty,
-  ProtectedMethod,
   ProtectedStaticProperty,
   PublicInstanceProperty,
-  PublicMethod,
   PublicStaticProperty,
   Type,
   Variable,
@@ -140,7 +138,7 @@ export const interface3: Interface = Interface.newExported({
   ],
 });
 
-export const method1: PublicMethod = PublicMethod.newAsyncInstance({
+export const method1: Method.Public = Method.Public.newAsyncInstance({
   content: [],
   inTypes: [
     Type.Argument.new({ name: "var1", type: "string" }),
@@ -151,14 +149,14 @@ export const method1: PublicMethod = PublicMethod.newAsyncInstance({
   templates: ["T"],
 });
 
-export const method2: ProtectedMethod = ProtectedMethod.newSyncStatic({
+export const method2: Method.Protected = Method.Protected.newSyncStatic({
   inTypes: [],
   name: "method2",
   outType: Type.Anonymous.new({ type: "void" }),
   templates: ["T", "V"],
 });
 
-export const method3: PrivateMethod = PrivateMethod.newAsyncStatic({
+export const method3: Method.Private = Method.Private.newAsyncStatic({
   content: [
     Bespoke.new({
       name: "method3Bespoke",
