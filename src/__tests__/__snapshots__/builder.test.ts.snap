@@ -84,6 +84,16 @@ b"
 
 exports[`Switch 1`] = `
 "switch (A) {
+  case B: {
+    C
+    break;
+  }
+  case D: {
+    break;
+  }
+  default: {
+    break;
+  }
 }
 "
 `;

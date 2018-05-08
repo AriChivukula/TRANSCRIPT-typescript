@@ -1,4 +1,5 @@
 enum EBuilderVerifyMode {
+  CASE,
   CONTENT,
   FOR,
   HEADER,
@@ -20,7 +21,7 @@ export class Builder {
   private header: string | undefined;
   private ifLevel: number = 0;
   private indentation: number = 0;
-  private switchLevel: number = 0;
+  private switchCaseLevel: number = 0;
   private tryLevel: number = 0;
 
   private constructor() {}
@@ -41,6 +42,15 @@ export class Builder {
     return this.addImpl(content, true, true, false);
   }
 
+  public case(check: string): Builder {
+    this.switchCaseLevel++;
+    this.verify(EBuilderVerifyMode.CASE);
+
+    return this
+      .addThenNewline(`case ${check}: {`)
+      .indent();
+  }
+
   public catch(name?: string): Builder {
     this.verify(EBuilderVerifyMode.TRY);
     this.unindent();
@@ -51,6 +61,15 @@ export class Builder {
     }
 
     return this.indent();
+  }
+
+  public default(): Builder {
+    this.switchCaseLevel++;
+    this.verify(EBuilderVerifyMode.CASE);
+
+    return this
+      .addThenNewline("default: {")
+      .indent();
   }
 
   public else(): Builder {
@@ -69,6 +88,16 @@ export class Builder {
       .unindent()
       .addThenNewline(`} else if (${check}) {`)
       .indent();
+  }
+
+  public endCase(): Builder {
+    this.verify(EBuilderVerifyMode.CASE);
+    this.switchCaseLevel--;
+
+    return this
+      .addThenNewline("break;")
+      .unindent()
+      .addThenNewline("}");
   }
 
   public endFor(): Builder {
@@ -91,7 +120,7 @@ export class Builder {
 
   public endSwitch(): Builder {
     this.verify(EBuilderVerifyMode.SWITCH);
-    this.switchLevel--;
+    this.switchCaseLevel--;
 
     return this
       .unindent()
@@ -177,7 +206,7 @@ export class Builder {
   }
 
   public switch(check: string): Builder {
-    this.switchLevel++;
+    this.switchCaseLevel++;
     this.verify(EBuilderVerifyMode.SWITCH);
 
     return this
@@ -250,6 +279,11 @@ export class Builder {
     mode: EBuilderVerifyMode,
     content?: string,
   ): void {
+    if (mode === EBuilderVerifyMode.CASE) {
+      if (this.switchCaseLevel < 1 || this.switchCaseLevel % 2 !== 0) {
+        throw new Error("Not inside case statement");
+      }
+    }
     if (mode === EBuilderVerifyMode.CONTENT) {
       if (content === undefined) {
         throw new Error("Unreachable");
@@ -293,7 +327,7 @@ export class Builder {
       if (this.ifLevel !== 0) {
         throw new Error("Cannot print without completing if statements");
       }
-      if (this.switchLevel !== 0) {
+      if (this.switchCaseLevel !== 0) {
         throw new Error("Cannot print without completing switch statements");
       }
       if (this.tryLevel !== 0) {
@@ -311,7 +345,7 @@ export class Builder {
       }
     }
     if (mode === EBuilderVerifyMode.SWITCH) {
-      if (this.switchLevel < 1) {
+      if (this.switchCaseLevel < 1 || this.switchCaseLevel % 2 !== 1) {
         throw new Error("Not inside switch statement");
       }
     }

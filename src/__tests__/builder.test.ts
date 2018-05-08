@@ -211,6 +211,13 @@ test(
       Builder
         .new()
         .switch("A")
+        .case("B")
+        .addThenNewline("C")
+        .endCase()
+        .case("D")
+        .endCase()
+        .default()
+        .endCase()
         .endSwitch()
         .print(),
     )
@@ -346,6 +353,32 @@ test(
         .new()
         .setHeader("\na\t")
         .setHeader("\na\t"),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "CasePrintError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .switch("A")
+        .case("B")
+        .print(),
+    )
+      .toThrow();
+  },
+);
+
+test(
+  "CaseError",
+  async (): Promise<void> => {
+    expect(
+      () => Builder
+        .new()
+        .endCase(),
     )
       .toThrow();
   },
