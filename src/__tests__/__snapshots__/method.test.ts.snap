@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`method1 1`] = `
-"public async method1<T>(
+exports[`methodInstance1 1`] = `
+"public async methodInstance1<T>(
   var1: string,
   var2: object = {},
 ): Promise<string[]> {
@@ -9,17 +9,41 @@ exports[`method1 1`] = `
 "
 `;
 
-exports[`method2 1`] = `
-"protected static abstract method2<T, V>(
+exports[`methodInstance2 1`] = `
+"protected abstract methodInstance2<T, V>(
 ): void;
 "
 `;
 
-exports[`method3 1`] = `
-"private static async method3(
+exports[`methodInstance3 1`] = `
+"private async methodInstance3(
 ): void {
-  /* BESPOKE START <<method3Bespoke>> */
-  /* BESPOKE END <<method3Bespoke>> */
+  /* BESPOKE START <<methodInstance3Bespoke>> */
+  /* BESPOKE END <<methodInstance3Bespoke>> */
+}
+"
+`;
+
+exports[`methodStatic1 1`] = `
+"public static async methodStatic1<T>(
+  var1: string,
+  var2: object = {},
+): Promise<string[]> {
+}
+"
+`;
+
+exports[`methodStatic2 1`] = `
+"protected static abstract methodStatic2<T, V>(
+): void;
+"
+`;
+
+exports[`methodStatic3 1`] = `
+"private static async methodStatic3(
+): void {
+  /* BESPOKE START <<methodStatic3Bespoke>> */
+  /* BESPOKE END <<methodStatic3Bespoke>> */
 }
 "
 `;

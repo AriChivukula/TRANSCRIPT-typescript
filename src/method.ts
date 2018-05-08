@@ -96,60 +96,75 @@ export namespace Method {
     }
   }
 
-  export class Private extends Base {
+  export namespace Instance {
 
-    public static newAsyncInstance(props: I): Private {
-      return new Private(props, true, false, EKind.PRIVATE);
+    export class Private extends Base {
+
+      public static newAsync(props: I): Private {
+        return new Private(props, true, false, EKind.PRIVATE);
+      }
+
+      public static newSync(props: I): Private {
+        return new Private(props, false, false, EKind.PRIVATE);
+      }
     }
 
-    public static newAsyncStatic(props: I): Private {
-      return new Private(props, true, true, EKind.PRIVATE);
+    export class Protected extends Base {
+
+      public static newAsync(props: I): Protected {
+        return new Protected(props, true, false, EKind.PROTECTED);
+      }
+
+      public static newSync(props: I): Protected {
+        return new Protected(props, false, false, EKind.PROTECTED);
+      }
     }
 
-    public static newSyncInstance(props: I): Private {
-      return new Private(props, false, false, EKind.PRIVATE);
-    }
+    export class Public extends Base {
 
-    public static newSyncStatic(props: I): Private {
-      return new Private(props, false, true, EKind.PRIVATE);
-    }
-  }
+      public static newAsync(props: I): Public {
+        return new Public(props, true, false, EKind.PUBLIC);
+      }
 
-  export class Protected extends Base {
-
-    public static newAsyncInstance(props: I): Protected {
-      return new Protected(props, true, false, EKind.PROTECTED);
-    }
-
-    public static newAsyncStatic(props: I): Protected {
-      return new Protected(props, true, true, EKind.PROTECTED);
-    }
-
-    public static newSyncInstance(props: I): Protected {
-      return new Protected(props, false, false, EKind.PROTECTED);
-    }
-
-    public static newSyncStatic(props: I): Protected {
-      return new Protected(props, false, true, EKind.PROTECTED);
+      public static newSync(props: I): Public {
+        return new Public(props, false, false, EKind.PUBLIC);
+      }
     }
   }
 
-  export class Public extends Base {
+  export namespace Static {
 
-    public static newAsyncInstance(props: I): Public {
-      return new Public(props, true, false, EKind.PUBLIC);
+    export class Private extends Base {
+
+      public static newAsync(props: I): Private {
+        return new Private(props, true, true, EKind.PRIVATE);
+      }
+
+      public static newSync(props: I): Private {
+        return new Private(props, false, true, EKind.PRIVATE);
+      }
     }
 
-    public static newAsyncStatic(props: I): Public {
-      return new Public(props, true, true, EKind.PUBLIC);
+    export class Protected extends Base {
+
+      public static newAsync(props: I): Protected {
+        return new Protected(props, true, true, EKind.PROTECTED);
+      }
+
+      public static newSync(props: I): Protected {
+        return new Protected(props, false, true, EKind.PROTECTED);
+      }
     }
 
-    public static newSyncInstance(props: I): Public {
-      return new Public(props, false, false, EKind.PUBLIC);
-    }
+    export class Public extends Base {
 
-    public static newSyncStatic(props: I): Public {
-      return new Public(props, false, true, EKind.PUBLIC);
+      public static newAsync(props: I): Public {
+        return new Public(props, true, true, EKind.PUBLIC);
+      }
+
+      public static newSync(props: I): Public {
+        return new Public(props, false, true, EKind.PUBLIC);
+      }
     }
   }
 }

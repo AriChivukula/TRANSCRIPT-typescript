@@ -5,8 +5,8 @@ exports[`complexModule 1`] = `
  * This file is partially generated; only edit bespoke sections.
  *
  * SOURCE<<src/__tests__/module.test.ts::complexModule>>
- * BESPOKE<<TEST1, fn3, method3Bespoke, 3tESt3>>
- * SIGNED<<jVAPQFJnx8OICuy5i40iMH2aKHLXoNV5aKZr8/dxIV/gyFUkbmb3dwMQMTOx0+7EUWgKjEFlLEfzrs4k85ZUoA==>>
+ * BESPOKE<<TEST1, fn3, methodInstance3Bespoke, methodStatic3Bespoke, 3tESt3>>
+ * SIGNED<<s0gzV06h8Hjkjkb2IBwcjDlftkeYFMfzpRk4VZCNd4DdPuoWdnoc1tOCmuuhuHIA41To35XpNAsPr4+qnhooQg==>>
  */
 
 import \\"./p\\";
@@ -43,7 +43,10 @@ export class MyClass2<T, V> extends MyClass1 {
 
   protected readonly static propertyStatic2: number;
 
-  protected static abstract method2<T, V>(
+  protected abstract methodInstance2<T, V>(
+  ): void;
+
+  protected static abstract methodStatic2<T, V>(
   ): void;
 }
 
@@ -76,10 +79,16 @@ class MyClass3 extends MyClass1 implements MyInterface1, MyInterface2 {
 
   private static propertyStatic3: string | null;
 
-  private static async method3(
+  private async methodInstance3(
   ): void {
-    /* BESPOKE START <<method3Bespoke>> */
-    /* BESPOKE END <<method3Bespoke>> */
+    /* BESPOKE START <<methodInstance3Bespoke>> */
+    /* BESPOKE END <<methodInstance3Bespoke>> */
+  }
+
+  private static async methodStatic3(
+  ): void {
+    /* BESPOKE START <<methodStatic3Bespoke>> */
+    /* BESPOKE END <<methodStatic3Bespoke>> */
   }
 }
 
@@ -111,7 +120,7 @@ exports[`contentModule 1`] = `
  *
  * SOURCE<<src/__tests__/module.test.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<x4xEfTp0pHCT/qt2TFgpK5SXroX4eiTU0GKH4sZ11C5mw6Uqcudgj/l7SvqOuFKgE4h66JovDAP0ETxqzx/z8Q==>>
+ * SIGNED<<gyZYU9ZfO/lD+zY23MVW2OpdXbv//9gvjiok8CLQ3bqm6uRUww6LbU0vI6YyxofW1LLSrCSSnbeNqJiWBf9+wA==>>
  */
 
 export abstract class MyClass1<T> {
@@ -120,7 +129,13 @@ export abstract class MyClass1<T> {
 
   public static propertyStatic1: string = \\"MYVAR\\";
 
-  public async method1<T>(
+  public async methodInstance1<T>(
+    var1: string,
+    var2: object = {},
+  ): Promise<string[]> {
+  }
+
+  public static async methodStatic1<T>(
     var1: string,
     var2: object = {},
   ): Promise<string[]> {

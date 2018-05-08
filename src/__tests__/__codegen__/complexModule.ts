@@ -2,8 +2,8 @@
  * This file is partially generated; only edit bespoke sections.
  *
  * SOURCE<<src/__tests__/examples.ts::complexModule>>
- * BESPOKE<<TEST1, fn3, method3Bespoke, 3tESt3>>
- * SIGNED<<jVAPQFJnx8OICuy5i40iMH2aKHLXoNV5aKZr8/dxIV/gyFUkbmb3dwMQMTOx0+7EUWgKjEFlLEfzrs4k85ZUoA==>>
+ * BESPOKE<<TEST1, fn3, methodInstance3Bespoke, methodStatic3Bespoke, 3tESt3>>
+ * SIGNED<<s0gzV06h8Hjkjkb2IBwcjDlftkeYFMfzpRk4VZCNd4DdPuoWdnoc1tOCmuuhuHIA41To35XpNAsPr4+qnhooQg==>>
  */
 
 import "./p";
@@ -41,7 +41,10 @@ export class MyClass2<T, V> extends MyClass1 {
 
   protected readonly static propertyStatic2: number;
 
-  protected static abstract method2<T, V>(
+  protected abstract methodInstance2<T, V>(
+  ): void;
+
+  protected static abstract methodStatic2<T, V>(
   ): void;
 }
 
@@ -74,10 +77,16 @@ class MyClass3 extends MyClass1 implements MyInterface1, MyInterface2 {
 
   private static propertyStatic3: string | null;
 
-  private static async method3(
+  private async methodInstance3(
   ): void {
-    /* BESPOKE START <<method3Bespoke>> */
-    /* BESPOKE END <<method3Bespoke>> */
+    /* BESPOKE START <<methodInstance3Bespoke>> */
+    /* BESPOKE END <<methodInstance3Bespoke>> */
+  }
+
+  private static async methodStatic3(
+  ): void {
+    /* BESPOKE START <<methodStatic3Bespoke>> */
+    /* BESPOKE END <<methodStatic3Bespoke>> */
   }
 }
 

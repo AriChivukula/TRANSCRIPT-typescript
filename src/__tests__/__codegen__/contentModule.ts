@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<x4xEfTp0pHCT/qt2TFgpK5SXroX4eiTU0GKH4sZ11C5mw6Uqcudgj/l7SvqOuFKgE4h66JovDAP0ETxqzx/z8Q==>>
+ * SIGNED<<gyZYU9ZfO/lD+zY23MVW2OpdXbv//9gvjiok8CLQ3bqm6uRUww6LbU0vI6YyxofW1LLSrCSSnbeNqJiWBf9+wA==>>
  */
 
 export abstract class MyClass1<T> {
@@ -12,7 +12,13 @@ export abstract class MyClass1<T> {
 
   public static propertyStatic1: string = "MYVAR";
 
-  public async method1<T>(
+  public async methodInstance1<T>(
+    var1: string,
+    var2: object = {},
+  ): Promise<string[]> {
+  }
+
+  public static async methodStatic1<T>(
     var1: string,
     var2: object = {},
   ): Promise<string[]> {

@@ -7,7 +7,13 @@ exports[`class1 1`] = `
 
   public static propertyStatic1: string = \\"MYVAR\\";
 
-  public async method1<T>(
+  public async methodInstance1<T>(
+    var1: string,
+    var2: object = {},
+  ): Promise<string[]> {
+  }
+
+  public static async methodStatic1<T>(
     var1: string,
     var2: object = {},
   ): Promise<string[]> {
@@ -26,7 +32,10 @@ exports[`class2 1`] = `
 
   protected readonly static propertyStatic2: number;
 
-  protected static abstract method2<T, V>(
+  protected abstract methodInstance2<T, V>(
+  ): void;
+
+  protected static abstract methodStatic2<T, V>(
   ): void;
 }
 "
@@ -39,10 +48,16 @@ exports[`class3 1`] = `
 
   private static propertyStatic3: string | null;
 
-  private static async method3(
+  private async methodInstance3(
   ): void {
-    /* BESPOKE START <<method3Bespoke>> */
-    /* BESPOKE END <<method3Bespoke>> */
+    /* BESPOKE START <<methodInstance3Bespoke>> */
+    /* BESPOKE END <<methodInstance3Bespoke>> */
+  }
+
+  private static async methodStatic3(
+  ): void {
+    /* BESPOKE START <<methodStatic3Bespoke>> */
+    /* BESPOKE END <<methodStatic3Bespoke>> */
   }
 }
 "

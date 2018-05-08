@@ -138,32 +138,61 @@ export const interface3: Interface = Interface.newExported({
   ],
 });
 
-export const method1: Method.Public = Method.Public.newAsyncInstance({
+export const methodInstance1: Method.Instance.Public = Method.Instance.Public.newAsync({
   content: [],
   inTypes: [
     Type.Argument.new({ name: "var1", type: "string" }),
     Type.Argument.new({ name: "var2", type: "object", default: "{}" }),
   ],
-  name: "method1",
+  name: "methodInstance1",
   outType: Type.Anonymous.new({ type: "Promise<string[]>" }),
   templates: ["T"],
 });
 
-export const method2: Method.Protected = Method.Protected.newSyncStatic({
+export const methodInstance2: Method.Instance.Protected = Method.Instance.Protected.newSync({
   inTypes: [],
-  name: "method2",
+  name: "methodInstance2",
   outType: Type.Anonymous.new({ type: "void" }),
   templates: ["T", "V"],
 });
 
-export const method3: Method.Private = Method.Private.newAsyncStatic({
+export const methodInstance3: Method.Instance.Private = Method.Instance.Private.newAsync({
   content: [
     Bespoke.new({
-      name: "method3Bespoke",
+      name: "methodInstance3Bespoke",
     }),
   ],
   inTypes: [],
-  name: "method3",
+  name: "methodInstance3",
+  outType: Type.Anonymous.new({ type: "void" }),
+});
+
+export const methodStatic1: Method.Static.Public = Method.Static.Public.newAsync({
+  content: [],
+  inTypes: [
+    Type.Argument.new({ name: "var1", type: "string" }),
+    Type.Argument.new({ name: "var2", type: "object", default: "{}" }),
+  ],
+  name: "methodStatic1",
+  outType: Type.Anonymous.new({ type: "Promise<string[]>" }),
+  templates: ["T"],
+});
+
+export const methodStatic2: Method.Static.Protected = Method.Static.Protected.newSync({
+  inTypes: [],
+  name: "methodStatic2",
+  outType: Type.Anonymous.new({ type: "void" }),
+  templates: ["T", "V"],
+});
+
+export const methodStatic3: Method.Static.Private = Method.Static.Private.newAsync({
+  content: [
+    Bespoke.new({
+      name: "methodStatic3Bespoke",
+    }),
+  ],
+  inTypes: [],
+  name: "methodStatic3",
   outType: Type.Anonymous.new({ type: "void" }),
 });
 
@@ -247,7 +276,8 @@ export const class1: Class = Class.newAbstractExported({
   content: [
     propertyInstance1,
     propertyStatic1,
-    method1,
+    methodInstance1,
+    methodStatic1,
   ],
   name: "MyClass1",
   templates: ["T"],
@@ -258,7 +288,8 @@ export const class2: Class = Class.newConcreteExported({
     bespoke1,
     propertyInstance2,
     propertyStatic2,
-    method2,
+    methodInstance2,
+    methodStatic2,
   ],
   extends: "MyClass1",
   name: "MyClass2",
@@ -269,7 +300,8 @@ export const class3: Class = Class.newConcreteInternal({
   content: [
     propertyInstance3,
     propertyStatic3,
-    method3,
+    methodInstance3,
+    methodStatic3,
   ],
   extends: "MyClass1",
   implements: ["MyInterface1", "MyInterface2"],
