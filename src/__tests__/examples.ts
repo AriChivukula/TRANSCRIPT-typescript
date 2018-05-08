@@ -34,6 +34,7 @@ export const function1: Function = Function.newSyncInternal({
   inTypes: [],
   name: "function1",
   outType: AnonymousType.new({ type: "void" }),
+  templates: ["T"],
 });
 
 export const function2: Function = Function.newAsyncExported({
@@ -41,6 +42,7 @@ export const function2: Function = Function.newAsyncExported({
   inTypes: [],
   name: "function2",
   outType: AnonymousType.new({ type: "Promise<string>" }),
+  templates: ["T", "V"],
 });
 
 export const function3: Function = Function.newAsyncExported({
@@ -116,11 +118,13 @@ export const importSome3: Import = Import.new({
 
 export const interface1: Interface = Interface.newInternal({
   name: "If1",
+  templates: ["T"],
   types: [],
 });
 
 export const interface2: Interface = Interface.newExported({
   name: "If2",
+  templates: ["T", "V"],
   types: [
     NamedType.newRequired({ name: "item", type: "string" }),
   ],
@@ -142,12 +146,14 @@ export const method1: PublicMethod = PublicMethod.newAsyncInstance({
   ],
   name: "method1",
   outType: AnonymousType.new({ type: "Promise<string[]>" }),
+  templates: ["T"],
 });
 
 export const method2: ProtectedMethod = ProtectedMethod.newSyncStatic({
   inTypes: [],
   name: "method2",
   outType: AnonymousType.new({ type: "void" }),
+  templates: ["T", "V"],
 });
 
 export const method3: PrivateMethod = PrivateMethod.newAsyncStatic({
@@ -176,11 +182,13 @@ export const property3: PrivateProperty = PrivateProperty.newMutableStatic({
 
 export const alias1: Alias = Alias.newInternal({
   name: "Ty1",
+  templates: ["T"],
   type: AnonymousType.new({ type: "number" }),
 });
 
 export const alias2: Alias = Alias.newExported({
   name: "Ty2",
+  templates: ["T", "V"],
   type: AnonymousType.new({ types: ["string", "null"] }),
 });
 
@@ -228,6 +236,7 @@ export const class1: Class = Class.newAbstractExported({
     method1,
   ],
   name: "MyClass1",
+  templates: ["T"],
 });
 
 export const class2: Class = Class.newConcreteExported({
@@ -238,6 +247,7 @@ export const class2: Class = Class.newConcreteExported({
   ],
   extends: "MyClass1",
   name: "MyClass2",
+  templates: ["T", "V"],
 });
 
 export const class3: Class = Class.newConcreteInternal({

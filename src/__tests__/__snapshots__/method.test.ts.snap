@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`method1 1`] = `
-"public async method1(
+"public async method1<T>(
   var1: string,
   var2: object,
 ): Promise<string[]> {
@@ -10,7 +10,7 @@ exports[`method1 1`] = `
 `;
 
 exports[`method2 1`] = `
-"protected static abstract method2(
+"protected static abstract method2<T, V>(
 ): void;
 "
 `;
