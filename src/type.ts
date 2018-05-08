@@ -2,19 +2,23 @@ import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
 
 export interface IType {
-  assignment: string;
-  exported: boolean;
-  name: string;
+  readonly assignment: string;
+  readonly name: string;
 }
 
 export class Type extends Renderable {
 
-  public static new(props: IType): Type {
-    return new Type(props);
+  public static newExported(props: IType): Type {
+    return new Type(props, true);
+  }
+
+  public static newInternal(props: IType): Type {
+    return new Type(props, false);
   }
 
   private constructor(
     private readonly props: IType,
+    private readonly exported: boolean,
   ) {
     super();
   }
@@ -31,7 +35,7 @@ export class Type extends Renderable {
     context: IContext,
     builder: Builder,
   ): void {
-    if (this.props.exported) {
+    if (this.exported) {
       builder.add("export ");
     }
     builder.addLine(`type ${this.props.name} = ${this.props.assignment};`);

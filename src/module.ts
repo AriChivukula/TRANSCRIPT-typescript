@@ -20,8 +20,8 @@ const headerTemplateWithBespoke: string = `/**
  */`;
 
 export interface IModule {
-  content: Renderable[];
-  destination: string;
+  readonly content: Renderable[];
+  readonly destination: string;
 }
 
 export class Module extends Renderable {

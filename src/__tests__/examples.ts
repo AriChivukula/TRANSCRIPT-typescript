@@ -1,14 +1,16 @@
 import {
   Bespoke,
   Class,
-  EMethodKind,
-  EPropertyKind,
   Function,
   Import,
   Interface,
-  Method,
   Module,
-  Property,
+  PrivateMethod,
+  PrivateProperty,
+  ProtectedMethod,
+  ProtectedProperty,
+  PublicMethod,
+  PublicProperty,
   Type,
   Variable,
 } from "../index";
@@ -25,32 +27,26 @@ export const bespoke3: Bespoke = Bespoke.new({
   name: "3tESt3",
 });
 
-export const function1: Function = Function.new({
-  async: false,
+export const function1: Function = Function.newSyncInternal({
   content: [],
-  exported: false,
   inputs: {},
   name: "function1",
   output: "void",
 });
 
-export const function2: Function = Function.new({
-  async: true,
+export const function2: Function = Function.newAsyncExported({
   content: [],
-  exported: true,
   inputs: {},
   name: "function2",
   output: "Promise<string>",
 });
 
-export const function3: Function = Function.new({
-  async: true,
+export const function3: Function = Function.newAsyncExported({
   content: [
     Bespoke.new({
       name: "fn3",
     }),
   ],
-  exported: true,
   inputs: {
     var1: "string",
     var2: "object",
@@ -116,22 +112,19 @@ export const importSome3: Import = Import.new({
   with: ["g", "z", "r"],
 });
 
-export const interface1: Interface = Interface.new({
-  exported: false,
+export const interface1: Interface = Interface.newInternal({
   name: "If1",
   types: {},
 });
 
-export const interface2: Interface = Interface.new({
-  exported: true,
+export const interface2: Interface = Interface.newExported({
   name: "If2",
   types: {
     item: "string",
   },
 });
 
-export const interface3: Interface = Interface.new({
-  exported: true,
+export const interface3: Interface = Interface.newExported({
   name: "If3",
   types: {
     test: "null | string",
@@ -139,104 +132,77 @@ export const interface3: Interface = Interface.new({
   },
 });
 
-export const method1: Method = Method.new({
-  async: true,
+export const method1: PublicMethod = PublicMethod.newAsyncInstance({
   content: [],
   inputs: {
     var1: "string",
     var2: "object",
   },
-  kind: EMethodKind.PUBLIC,
   name: "method1",
   output: "Promise<string[]>",
-  static: false,
 });
 
-export const method2: Method = Method.new({
-  async: false,
+export const method2: ProtectedMethod = ProtectedMethod.newSyncStatic({
   inputs: {},
-  kind: EMethodKind.PROTECTED,
   name: "method2",
   output: "void",
-  static: true,
 });
 
-export const method3: Method = Method.new({
-  async: true,
+export const method3: PrivateMethod = PrivateMethod.newAsyncStatic({
   content: [
     Bespoke.new({
       name: "method3Bespoke",
     }),
   ],
   inputs: {},
-  kind: EMethodKind.PRIVATE,
   name: "method3",
   output: "void",
-  static: true,
 });
 
-export const property1: Property = Property.new({
+export const property1: PublicProperty = PublicProperty.newMutableInstance({
   assignment: "\"MYVAR\"",
-  kind: EPropertyKind.PUBLIC,
   name: "property1",
-  readonly: false,
-  static: false,
   type: "string",
 });
 
-export const property2: Property = Property.new({
-  kind: EPropertyKind.PROTECTED,
+export const property2: ProtectedProperty = ProtectedProperty.newImmutableInstance({
   name: "property2",
-  readonly: true,
-  static: false,
   type: "number",
 });
 
-export const property3: Property = Property.new({
-  kind: EPropertyKind.PRIVATE,
+export const property3: PrivateProperty = PrivateProperty.newMutableStatic({
   name: "property3",
-  readonly: false,
-  static: true,
   type: "string | null",
 });
 
-export const type1: Type = Type.new({
+export const type1: Type = Type.newInternal({
   assignment: "number",
-  exported: false,
   name: "Ty1",
 });
 
-export const type2: Type = Type.new({
+export const type2: Type = Type.newExported({
   assignment: "string | null",
-  exported: true,
   name: "Ty2",
 });
 
-export const type3: Type = Type.new({
+export const type3: Type = Type.newExported({
   assignment: "Ty2 | Ty1",
-  exported: true,
   name: "Ty3",
 });
 
-export const variable1: Variable = Variable.new({
-  exported: true,
-  mutable: false,
+export const variable1: Variable = Variable.newExported({
   name: "variable1",
   type: "string",
 });
 
-export const variable2: Variable = Variable.new({
+export const variable2: Variable = Variable.newImmutable({
   assignment: "\"TEST\"",
-  exported: false,
-  mutable: false,
   name: "variable2",
   type: "string | undefined",
 });
 
-export const variable3: Variable = Variable.new({
+export const variable3: Variable = Variable.newMutable({
   assignment: "1",
-  exported: false,
-  mutable: true,
   name: "variable3",
   type: "number | null | undefined",
 });
@@ -246,35 +212,29 @@ export const emptyModule: Module = Module.new({
   destination: "src/__tests__/__codegen__/emptyModule.ts",
 });
 
-export const class1: Class = Class.new({
-  abstract: true,
+export const class1: Class = Class.newAbstractExported({
   content: [
     property1,
     method1,
   ],
-  exported: true,
   name: "MyClass1",
 });
 
-export const class2: Class = Class.new({
-  abstract: false,
+export const class2: Class = Class.newConcreteExported({
   content: [
     bespoke1,
     property2,
     method2,
   ],
-  exported: true,
   extends: "MyClass1",
   name: "MyClass2",
 });
 
-export const class3: Class = Class.new({
-  abstract: false,
+export const class3: Class = Class.newConcreteInternal({
   content: [
     property3,
     method3,
   ],
-  exported: false,
   extends: "MyClass1",
   implements: ["MyInterface1", "MyInterface2"],
   name: "MyClass3",

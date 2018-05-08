@@ -8,23 +8,19 @@ export enum EMethodKind {
 }
 
 export interface IMethod {
-  async: boolean;
-  content?: Renderable[];
-  inputs: { [index: string]: string};
-  kind: EMethodKind;
-  name: string;
-  output: string;
-  static: boolean;
+  readonly content?: Renderable[];
+  readonly inputs: { [index: string]: string};
+  readonly name: string;
+  readonly output: string;
 }
 
-export class Method extends Renderable {
+export abstract class Method extends Renderable {
 
-  public static new(props: IMethod): Method {
-    return new Method(props);
-  }
-
-  private constructor(
+  protected constructor(
     private readonly props: IMethod,
+    private readonly async: boolean,
+    private readonly isStatic: boolean,
+    private readonly kind: EMethodKind,
   ) {
     super();
   }
@@ -47,11 +43,11 @@ export class Method extends Renderable {
     context: IContext,
     builder: Builder,
   ): void {
-    builder.add(`${this.props.kind} `);
-    if (this.props.static) {
+    builder.add(`${this.kind} `);
+    if (this.isStatic) {
       builder.add("static ");
     }
-    if (this.props.async) {
+    if (this.async) {
       builder.add("async ");
     }
     if (this.props.content === undefined) {
@@ -85,5 +81,62 @@ export class Method extends Renderable {
   }
 
   protected verify(context: IContext): void {
+  }
+}
+
+export class PrivateMethod extends Method {
+
+  public static newAsyncInstance(props: IMethod): PrivateMethod {
+    return new PrivateMethod(props, true, false, EMethodKind.PRIVATE);
+  }
+
+  public static newAsyncStatic(props: IMethod): PrivateMethod {
+    return new PrivateMethod(props, true, true, EMethodKind.PRIVATE);
+  }
+
+  public static newSyncInstance(props: IMethod): PrivateMethod {
+    return new PrivateMethod(props, false, false, EMethodKind.PRIVATE);
+  }
+
+  public static newSyncStatic(props: IMethod): PrivateMethod {
+    return new PrivateMethod(props, false, true, EMethodKind.PRIVATE);
+  }
+}
+
+export class ProtectedMethod extends Method {
+
+  public static newAsyncInstance(props: IMethod): ProtectedMethod {
+    return new ProtectedMethod(props, true, false, EMethodKind.PROTECTED);
+  }
+
+  public static newAsyncStatic(props: IMethod): ProtectedMethod {
+    return new ProtectedMethod(props, true, true, EMethodKind.PROTECTED);
+  }
+
+  public static newSyncInstance(props: IMethod): ProtectedMethod {
+    return new ProtectedMethod(props, false, false, EMethodKind.PROTECTED);
+  }
+
+  public static newSyncStatic(props: IMethod): ProtectedMethod {
+    return new ProtectedMethod(props, false, true, EMethodKind.PROTECTED);
+  }
+}
+
+export class PublicMethod extends Method {
+
+  public static newAsyncInstance(props: IMethod): PublicMethod {
+    return new PublicMethod(props, true, false, EMethodKind.PUBLIC);
+  }
+
+  public static newAsyncStatic(props: IMethod): PublicMethod {
+    return new PublicMethod(props, true, true, EMethodKind.PUBLIC);
+  }
+
+  public static newSyncInstance(props: IMethod): PublicMethod {
+    return new PublicMethod(props, false, false, EMethodKind.PUBLIC);
+  }
+
+  public static newSyncStatic(props: IMethod): PublicMethod {
+    return new PublicMethod(props, false, true, EMethodKind.PUBLIC);
   }
 }

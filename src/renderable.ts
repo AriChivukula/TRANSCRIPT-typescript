@@ -1,8 +1,8 @@
 import { Builder } from "./builder";
 
 export interface IContext {
-  name: string;
-  path: string;
+  readonly name: string;
+  readonly path: string;
 }
 
 export abstract class Renderable {

@@ -6,7 +6,7 @@ export const startTemplate: string = "/* BESPOKE START <<@0>> */";
 export const endTemplate: string = "/* BESPOKE END <<@0>> */";
 
 export interface IBespoke {
-  name: string;
+  readonly name: string;
 }
 
 export class Bespoke extends Renderable {

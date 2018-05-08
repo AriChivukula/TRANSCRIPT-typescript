@@ -2,22 +2,34 @@ import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
 
 export interface IClass {
-  abstract: boolean;
-  content: Renderable[];
-  exported: boolean;
-  extends?: string;
-  implements?: string[];
-  name: string;
+  readonly content: Renderable[];
+  readonly extends?: string;
+  readonly implements?: string[];
+  readonly name: string;
 }
 
 export class Class extends Renderable {
 
-  public static new(props: IClass): Class {
-    return new Class(props);
+  public static newAbstractExported(props: IClass): Class {
+    return new Class(props, true, true);
+  }
+
+  public static newAbstractInternal(props: IClass): Class {
+    return new Class(props, true, false);
+  }
+
+  public static newConcreteExported(props: IClass): Class {
+    return new Class(props, false, true);
+  }
+
+  public static newConcreteInternal(props: IClass): Class {
+    return new Class(props, false, false);
   }
 
   private constructor(
     private readonly props: IClass,
+    private readonly abstract: boolean,
+    private readonly exported: boolean,
   ) {
     super();
   }
@@ -42,10 +54,10 @@ export class Class extends Renderable {
     context: IContext,
     builder: Builder,
   ): void {
-    if (this.props.exported) {
+    if (this.exported) {
       builder.add("export ");
     }
-    if (this.props.abstract) {
+    if (this.abstract) {
       builder.add("abstract ");
     }
     builder.add(`class ${this.props.name} `);
