@@ -7,12 +7,7 @@ import {
   Interface,
   Method,
   Module,
-  PrivateInstanceProperty,
-  PrivateStaticProperty,
-  ProtectedInstanceProperty,
-  ProtectedStaticProperty,
-  PublicInstanceProperty,
-  PublicStaticProperty,
+  Property,
   Type,
   Variable,
 } from "../index";
@@ -196,29 +191,29 @@ export const methodStatic3: Method.Static.Private = Method.Static.Private.newAsy
   outType: Type.Anonymous.new({ type: "void" }),
 });
 
-export const propertyInstance1: PublicInstanceProperty = PublicInstanceProperty.newMutable({
+export const propertyInstance1: Property.Instance.Public = Property.Instance.Public.newMutable({
   assignment: "\"MYVAR\"",
   type: Type.Named.newRequired({ name: "propertyInstance1", type: "string" }),
 });
 
-export const propertyInstance2: ProtectedInstanceProperty = ProtectedInstanceProperty.newImmutable({
+export const propertyInstance2: Property.Instance.Protected = Property.Instance.Protected.newImmutable({
   type: Type.Named.newRequired({ name: "propertyInstance2", type: "number" }),
 });
 
-export const propertyInstance3: PrivateInstanceProperty = PrivateInstanceProperty.newMutable({
+export const propertyInstance3: Property.Instance.Private = Property.Instance.Private.newMutable({
   type: Type.Named.newRequired({ name: "propertyInstance3", types: ["string", "null"] }),
 });
 
-export const propertyStatic1: PublicStaticProperty = PublicStaticProperty.newMutable({
+export const propertyStatic1: Property.Static.Public = Property.Static.Public.newMutable({
   assignment: "\"MYVAR\"",
   type: Type.Named.newRequired({ name: "propertyStatic1", type: "string" }),
 });
 
-export const propertyStatic2: ProtectedStaticProperty = ProtectedStaticProperty.newImmutable({
+export const propertyStatic2: Property.Static.Protected = Property.Static.Protected.newImmutable({
   type: Type.Named.newRequired({ name: "propertyStatic2", type: "number" }),
 });
 
-export const propertyStatic3: PrivateStaticProperty = PrivateStaticProperty.newMutable({
+export const propertyStatic3: Property.Static.Private = Property.Static.Private.newMutable({
   type: Type.Named.newRequired({ name: "propertyStatic3", types: ["string", "null"] }),
 });
 
