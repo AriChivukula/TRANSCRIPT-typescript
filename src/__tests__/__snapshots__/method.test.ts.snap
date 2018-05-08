@@ -3,7 +3,7 @@
 exports[`method1 1`] = `
 "public async method1<T>(
   var1: string,
-  var2: object,
+  var2: object = {},
 ): Promise<string[]> {
 }
 "

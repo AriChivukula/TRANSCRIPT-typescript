@@ -6,7 +6,7 @@ exports[`complexModule 1`] = `
  *
  * SOURCE<<src/__tests__/module.test.ts::complexModule>>
  * BESPOKE<<TEST1, fn3, method3Bespoke, 3tESt3>>
- * SIGNED<<uLWOi5YsM/17VZNqTe2MpB6CCT50U/+edxB4l/+Taq/xeQYJMTeC7eglRIPlr7QnUPYYtuul2IsFgO1pFqiMdQ==>>
+ * SIGNED<<QwqEUeVn0sZ9C9ZaxIR2mU3ueP0yfsZz3vgV6isOx2fnH8/nqhpKx1CmMDlNUI+VR6X74Vw7Tgxz3G7wfh76Og==>>
  */
 
 import \\"./p\\";
@@ -50,7 +50,7 @@ interface If1<T> {
 
 export async function function3(
   var1: string,
-  var2: object,
+  var2: object = {},
 ): Promise<string[]> {
   /* BESPOKE START <<fn3>> */
   /* BESPOKE END <<fn3>> */
@@ -107,7 +107,7 @@ exports[`contentModule 1`] = `
  *
  * SOURCE<<src/__tests__/module.test.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<R5LWPEMH43tDiNMcqKfNgngQJ0YszrmFxh1cD1ttFu2+t7MZ94ZJtqJebh2i9iqPze3SpYmzHJWTvdJXk8wTIg==>>
+ * SIGNED<<sKZg3q5eWyY2VgWM+kKbKRCIhCbtEdVM6Sr7sDGAC91DQ0UMM4O4L41r73+c09ROqLuVDPGsxqodkTlXeKSMXw==>>
  */
 
 export abstract class MyClass1<T> {
@@ -116,7 +116,7 @@ export abstract class MyClass1<T> {
 
   public async method1<T>(
     var1: string,
-    var2: object,
+    var2: object = {},
   ): Promise<string[]> {
   }
 }
@@ -155,7 +155,7 @@ let variable3: number | null | undefined = 1;
 
 export async function function3(
   var1: string,
-  var2: object,
+  var2: object = {},
 ): Promise<string[]> {
   /* BESPOKE START <<fn3>> */
   /* BESPOKE END <<fn3>> */

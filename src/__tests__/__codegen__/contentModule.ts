@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<R5LWPEMH43tDiNMcqKfNgngQJ0YszrmFxh1cD1ttFu2+t7MZ94ZJtqJebh2i9iqPze3SpYmzHJWTvdJXk8wTIg==>>
+ * SIGNED<<sKZg3q5eWyY2VgWM+kKbKRCIhCbtEdVM6Sr7sDGAC91DQ0UMM4O4L41r73+c09ROqLuVDPGsxqodkTlXeKSMXw==>>
  */
 
 export abstract class MyClass1<T> {
@@ -12,7 +12,7 @@ export abstract class MyClass1<T> {
 
   public async method1<T>(
     var1: string,
-    var2: object,
+    var2: object = {},
   ): Promise<string[]> {
   }
 }
@@ -52,7 +52,7 @@ let variable3: number | null | undefined = 1;
 
 export async function function3(
   var1: string,
-  var2: object,
+  var2: object = {},
 ): Promise<string[]> {
   /* BESPOKE START <<fn3>> */
   /* BESPOKE END <<fn3>> */

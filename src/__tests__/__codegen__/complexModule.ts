@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::complexModule>>
  * BESPOKE<<TEST1, fn3, method3Bespoke, 3tESt3>>
- * SIGNED<<uLWOi5YsM/17VZNqTe2MpB6CCT50U/+edxB4l/+Taq/xeQYJMTeC7eglRIPlr7QnUPYYtuul2IsFgO1pFqiMdQ==>>
+ * SIGNED<<QwqEUeVn0sZ9C9ZaxIR2mU3ueP0yfsZz3vgV6isOx2fnH8/nqhpKx1CmMDlNUI+VR6X74Vw7Tgxz3G7wfh76Og==>>
  */
 
 import "./p";
@@ -48,7 +48,7 @@ interface If1<T> {
 
 export async function function3(
   var1: string,
-  var2: object,
+  var2: object = {},
 ): Promise<string[]> {
   /* BESPOKE START <<fn3>> */
   /* BESPOKE END <<fn3>> */

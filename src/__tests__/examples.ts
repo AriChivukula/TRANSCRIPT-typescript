@@ -54,7 +54,7 @@ export const function3: Function = Function.newAsyncExported({
   ],
   inTypes: [
     ArgumentType.new({ name: "var1", type: "string" }),
-    ArgumentType.new({ name: "var2", type: "object" }),
+    ArgumentType.new({ name: "var2", type: "object", default: "{}" }),
   ],
   name: "function3",
   outType: AnonymousType.new({ type: "Promise<string[]>" }),
@@ -143,7 +143,7 @@ export const method1: PublicMethod = PublicMethod.newAsyncInstance({
   content: [],
   inTypes: [
     ArgumentType.new({ name: "var1", type: "string" }),
-    ArgumentType.new({ name: "var2", type: "object" }),
+    ArgumentType.new({ name: "var2", type: "object", default: "{}" }),
   ],
   name: "method1",
   outType: AnonymousType.new({ type: "Promise<string[]>" }),
