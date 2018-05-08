@@ -1,10 +1,10 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
+import { Type } from "./type";
 
 export interface IVariable {
   readonly assignment?: string;
-  readonly name: string;
-  readonly type: string;
+  readonly type: Type;
 }
 
 export class Variable extends Renderable {
@@ -34,7 +34,7 @@ export class Variable extends Renderable {
   }
 
   public identifiers(): string[] {
-    return [this.props.name];
+    return this.props.type.identifiers();
   }
 
   protected render(
@@ -49,7 +49,7 @@ export class Variable extends Renderable {
     } else {
       builder.add("const ");
     }
-    builder.add(`${this.props.name}: ${this.props.type}`);
+    this.props.type.run(context, builder);
     if (this.props.assignment !== undefined) {
       builder.addLine(` = ${this.props.assignment};`);
     } else {

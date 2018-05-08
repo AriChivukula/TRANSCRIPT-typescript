@@ -30,16 +30,16 @@ export const bespoke3: Bespoke = Bespoke.new({
 
 export const function1: Function = Function.newSyncInternal({
   content: [],
-  inTypes: {},
+  inTypes: [],
   name: "function1",
-  outType: "void",
+  outType: Type.newRequired({ type: "void" }),
 });
 
 export const function2: Function = Function.newAsyncExported({
   content: [],
-  inTypes: {},
+  inTypes: [],
   name: "function2",
-  outType: "Promise<string>",
+  outType: Type.newRequired({ type: "Promise<string>" }),
 });
 
 export const function3: Function = Function.newAsyncExported({
@@ -48,12 +48,12 @@ export const function3: Function = Function.newAsyncExported({
       name: "fn3",
     }),
   ],
-  inTypes: {
-    var1: "string",
-    var2: "object",
-  },
+  inTypes: [
+    Type.newRequired({ name: "var1", type: "string" }),
+    Type.newRequired({ name: "var2", type: "object" }),
+  ],
   name: "function3",
-  outType: "Promise<string[]>",
+  outType: Type.newRequired({ type: "Promise<string[]>" }),
 });
 
 export const importAll1: Import = Import.new({
@@ -115,38 +115,38 @@ export const importSome3: Import = Import.new({
 
 export const interface1: Interface = Interface.newInternal({
   name: "If1",
-  types: {},
+  types: [],
 });
 
 export const interface2: Interface = Interface.newExported({
   name: "If2",
-  types: {
-    item: "string",
-  },
+  types: [
+    Type.newRequired({ name: "item", type: "string" }),
+  ],
 });
 
 export const interface3: Interface = Interface.newExported({
   name: "If3",
-  types: {
-    test: "null | string",
-    test2: "If2",
-  },
+  types: [
+    Type.newRequired({ name: "test", types: ["null", "string"] }),
+    Type.newRequired({ name: "test2", type: "If2" }),
+  ],
 });
 
 export const method1: PublicMethod = PublicMethod.newAsyncInstance({
   content: [],
-  inTypes: {
-    var1: "string",
-    var2: "object",
-  },
+  inTypes: [
+    Type.newRequired({ name: "var1", type: "string" }),
+    Type.newRequired({ name: "var2", type: "object" }),
+  ],
   name: "method1",
-  outType: "Promise<string[]>",
+  outType: Type.newRequired({ type: "Promise<string[]>" }),
 });
 
 export const method2: ProtectedMethod = ProtectedMethod.newSyncStatic({
-  inTypes: {},
+  inTypes: [],
   name: "method2",
-  outType: "void",
+  outType: Type.newRequired({ type: "void" }),
 });
 
 export const method3: PrivateMethod = PrivateMethod.newAsyncStatic({
@@ -155,40 +155,37 @@ export const method3: PrivateMethod = PrivateMethod.newAsyncStatic({
       name: "method3Bespoke",
     }),
   ],
-  inTypes: {},
+  inTypes: [],
   name: "method3",
-  outType: "void",
+  outType: Type.newRequired({ type: "void" }),
 });
 
 export const property1: PublicProperty = PublicProperty.newMutableInstance({
   assignment: "\"MYVAR\"",
-  name: "property1",
-  type: "string",
+  type: Type.newRequired({ name: "property1", type: "string" }),
 });
 
 export const property2: ProtectedProperty = ProtectedProperty.newImmutableInstance({
-  name: "property2",
-  type: "number",
+  type: Type.newRequired({ name: "property2", type: "number" }),
 });
 
 export const property3: PrivateProperty = PrivateProperty.newMutableStatic({
-  name: "property3",
-  type: "string | null",
+  type: Type.newRequired({ name: "property3", types: ["string", "null"] }),
 });
 
 export const alias1: Alias = Alias.newInternal({
   name: "Ty1",
-  type: "number",
+  type: Type.newRequired({ type: "number" }),
 });
 
 export const alias2: Alias = Alias.newExported({
   name: "Ty2",
-  type: "string | null",
+  type: Type.newRequired({ types: ["string", "null"] }),
 });
 
 export const alias3: Alias = Alias.newExported({
   name: "Ty3",
-  type: "Ty2 | Ty1",
+  type: Type.newRequired({ types: ["Ty2", "Ty1"] }),
 });
 
 export const type1: Type = Type.newOptional({
@@ -206,20 +203,17 @@ export const type3: Type = Type.newRequired({
 });
 
 export const variable1: Variable = Variable.newExported({
-  name: "variable1",
-  type: "string",
+  type: Type.newRequired({ name: "variable1", type: "string" }),
 });
 
 export const variable2: Variable = Variable.newImmutable({
   assignment: "\"TEST\"",
-  name: "variable2",
-  type: "string | undefined",
+  type: Type.newRequired({ name: "variable2", types: ["string", "undefined"] }),
 });
 
 export const variable3: Variable = Variable.newMutable({
   assignment: "1",
-  name: "variable3",
-  type: "number | null | undefined",
+  type: Type.newRequired({ name: "variable3", types: ["number", "null", "undefined"] }),
 });
 
 export const emptyModule: Module = Module.new({

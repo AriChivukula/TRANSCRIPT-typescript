@@ -1,11 +1,12 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
+import { Type } from "./type";
 
 export interface IFunction {
   readonly content: Renderable[];
-  readonly inTypes: { [index: string]: string};
+  readonly inTypes: Type[];
   readonly name: string;
-  readonly outType: string;
+  readonly outType: Type;
 }
 
 export class Function extends Renderable {
@@ -58,12 +59,18 @@ export class Function extends Renderable {
     builder
       .addLine(`function ${this.props.name}(`)
       .indent();
-    for (const name of Object.keys(this.props.inTypes)) {
-      builder.addLine(`${name}: ${this.props.inTypes[name]},`);
-    }
+    this.props.inTypes.forEach(
+      (type: Type): void => {
+        type.run(context, builder);
+        builder.addLine(",");
+      },
+    );
     builder
       .unindent()
-      .addLine(`): ${this.props.outType} {`)
+      .add("): ");
+    this.props.outType.run(context, builder);
+    builder
+      .addLine(" {")
       .indent();
     this.props.content
       .forEach(

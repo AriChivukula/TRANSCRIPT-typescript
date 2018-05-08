@@ -1,5 +1,6 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
+import { Type } from "./type";
 
 export enum EMethodKind {
   PRIVATE = "private",
@@ -9,9 +10,9 @@ export enum EMethodKind {
 
 export interface IMethod {
   readonly content?: Renderable[];
-  readonly inTypes: { [index: string]: string};
+  readonly inTypes: Type[];
   readonly name: string;
-  readonly outType: string;
+  readonly outType: Type;
 }
 
 export abstract class Method extends Renderable {
@@ -56,12 +57,16 @@ export abstract class Method extends Renderable {
     builder
       .addLine(`${this.props.name}(`)
       .indent();
-    for (const name of Object.keys(this.props.inTypes)) {
-      builder.addLine(`${name}: ${this.props.inTypes[name]},`);
-    }
+    this.props.inTypes.forEach(
+      (type: Type): void => {
+        type.run(context, builder);
+        builder.addLine(",");
+      },
+    );
     builder
       .unindent()
-      .add(`): ${this.props.outType}`);
+      .add("): ");
+    this.props.outType.run(context, builder);
     if (this.props.content === undefined) {
       builder.addLine(";");
     } else {

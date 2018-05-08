@@ -1,5 +1,6 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
+import { Type } from "./type";
 
 export enum EPropertyKind {
   PRIVATE = "private",
@@ -9,8 +10,7 @@ export enum EPropertyKind {
 
 export interface IProperty {
   readonly assignment?: string;
-  readonly name: string;
-  readonly type: string;
+  readonly type: Type;
 }
 
 export abstract class Property extends Renderable {
@@ -29,7 +29,7 @@ export abstract class Property extends Renderable {
   }
 
   public identifiers(): string[] {
-    return [this.props.name];
+    return this.props.type.identifiers();
   }
 
   protected render(
@@ -43,7 +43,7 @@ export abstract class Property extends Renderable {
     if (this.isStatic) {
       builder.add("static ");
     }
-    builder.add(`${this.props.name}: ${this.props.type}`);
+    this.props.type.run(context, builder);
     if (this.props.assignment !== undefined) {
       builder.addLine(` = ${this.props.assignment};`);
     } else {

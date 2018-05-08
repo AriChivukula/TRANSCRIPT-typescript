@@ -1,9 +1,10 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
+import { Type } from "./type";
 
 export interface IInterface {
   readonly name: string;
-  readonly types: { [index: string]: string};
+  readonly types: Type[];
 }
 
 export class Interface extends Renderable {
@@ -41,9 +42,12 @@ export class Interface extends Renderable {
     builder
       .addLine(`interface ${this.props.name} {`)
       .indent();
-    for (const name of Object.keys(this.props.types)) {
-      builder.addLine(`${name}: ${this.props.types[name]};`);
-    }
+    this.props.types.forEach(
+      (type: Type): void => {
+        type.run(context, builder);
+        builder.addLine(";");
+      },
+    );
     builder
       .unindent()
       .addLine("}");
