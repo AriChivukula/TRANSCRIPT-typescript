@@ -1,4 +1,5 @@
 import { Builder } from "./builder";
+import { Property } from "./property";
 import { IContext, Renderable } from "./renderable";
 
 export namespace Type {
@@ -23,13 +24,17 @@ export namespace Type {
     readonly default?: string;
   }
 
+  export interface IArgumentProperty {
+    readonly property: Property.BaseInstance;
+  }
+
   export interface IArgumentUnion extends INamedUnion {
     readonly default?: string;
   }
 
   export type TAnonymous = IAnonymousSimple | IAnonymousUnion;
 
-  export type TArgument = IArgumentSimple | IArgumentUnion;
+  export type TArgument = IArgumentSimple | IArgumentUnion | IArgumentProperty;
 
   export type TNamed = INamedSimple | INamedUnion;
 
@@ -51,6 +56,8 @@ export namespace Type {
     public identifiers(): string[] {
       if ("name" in this.props) {
         return [this.props.name];
+      } else if ("property" in this.props) {
+        return this.props.property.identifiers();
       }
 
       return [];
@@ -65,8 +72,14 @@ export namespace Type {
       }
       if ("type" in this.props) {
         builder.add(this.props.type);
-      } else {
+      } else if ("types" in this.props) {
         builder.add(this.props.types.join(" | "));
+      } else {
+        builder.add(
+          this.props.property
+            .print(context)
+            .replace(";\n", ""),
+        );
       }
       if ("default" in this.props) {
         if (this.props.default !== undefined) {

@@ -1,4 +1,4 @@
-import { type1, type2, type3 } from "./examples";
+import { type1, type2, type3, type4 } from "./examples";
 
 test(
   "type1",
@@ -27,6 +27,17 @@ test(
   async (): Promise<void> => {
     expect(type3.print({
       name: "type3",
+      path: "src/__tests__/type.test.ts",
+    }))
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "type4",
+  async (): Promise<void> => {
+    expect(type4.print({
+      name: "type4",
       path: "src/__tests__/type.test.ts",
     }))
       .toMatchSnapshot();

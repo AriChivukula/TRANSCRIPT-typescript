@@ -5,3 +5,5 @@ exports[`type1 1`] = `"test1?: string"`;
 exports[`type2 1`] = `"test1: string | number"`;
 
 exports[`type3 1`] = `"number"`;
+
+exports[`type4 1`] = `"public readonly var5: string"`;

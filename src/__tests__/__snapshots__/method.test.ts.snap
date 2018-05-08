@@ -4,6 +4,7 @@ exports[`methodInstance1 1`] = `
 "public async methodInstance1<T>(
   var1: string,
   var2: object = {},
+  public readonly var5: string,
 ): Promise<string[]> {
 }
 "

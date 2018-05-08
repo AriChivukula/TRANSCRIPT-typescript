@@ -138,6 +138,14 @@ export const methodInstance1: Method.Instance.Public = Method.Instance.Public.ne
   inTypes: [
     Type.Argument.new({ name: "var1", type: "string" }),
     Type.Argument.new({ name: "var2", type: "object", default: "{}" }),
+    Type.Argument.new({
+      property: Property.Instance.Public.newImmutable({
+        type: Type.Named.newRequired({
+          name: "var5",
+          type: "string",
+        }),
+      }),
+    }),
   ],
   name: "methodInstance1",
   outType: Type.Anonymous.new({ type: "Promise<string[]>" }),
@@ -246,6 +254,15 @@ export const type2: Type.Named = Type.Named.newRequired({
 
 export const type3: Type.Anonymous = Type.Anonymous.new({
   type: "number",
+});
+
+export const type4: Type.Argument = Type.Argument.new({
+  property: Property.Instance.Public.newImmutable({
+    type: Type.Named.newRequired({
+      name: "var5",
+      type: "string",
+    }),
+  }),
 });
 
 export const variable1: Variable = Variable.newExported({

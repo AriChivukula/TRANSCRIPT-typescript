@@ -57,9 +57,11 @@ export namespace Property {
     }
   }
 
+  export abstract class BaseInstance extends Base {}
+
   export namespace Instance {
 
-    export class Private extends Base {
+    export class Private extends BaseInstance {
 
       public static newImmutable(props: I): Private {
         return new Private(props, true, false, EKind.PRIVATE);
@@ -70,7 +72,7 @@ export namespace Property {
       }
     }
 
-    export class Protected extends Base {
+    export class Protected extends BaseInstance {
 
       public static newImmutable(props: I): Protected {
         return new Protected(props, true, false, EKind.PROTECTED);
@@ -81,7 +83,7 @@ export namespace Property {
       }
     }
 
-    export class Public extends Base {
+    export class Public extends BaseInstance {
 
       public static newImmutable(props: I): Public {
         return new Public(props, true, false, EKind.PUBLIC);
@@ -93,9 +95,11 @@ export namespace Property {
     }
   }
 
+  export abstract class BaseStatic extends Base {}
+
   export namespace Static {
 
-    export class Private extends Base {
+    export class Private extends BaseStatic {
 
       public static newImmutable(props: I): Private {
         return new Private(props, true, true, EKind.PRIVATE);
@@ -106,7 +110,7 @@ export namespace Property {
       }
     }
 
-    export class Protected extends Base {
+    export class Protected extends BaseStatic {
 
       public static newImmutable(props: I): Protected {
         return new Protected(props, true, true, EKind.PROTECTED);
@@ -117,7 +121,7 @@ export namespace Property {
       }
     }
 
-    export class Public extends Base {
+    export class Public extends BaseStatic {
 
       public static newImmutable(props: I): Public {
         return new Public(props, true, true, EKind.PUBLIC);
