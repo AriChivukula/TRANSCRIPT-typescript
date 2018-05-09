@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, NamedRenderer, TRenderer } from "./renderer";
+import { NamedRenderer, TRenderer } from "./renderer";
 
 export interface IClass {
   readonly content: TRenderer[];
@@ -35,18 +35,8 @@ export class Class extends NamedRenderer {
     super();
   }
 
-  public bespokes(): string[] {
-    return [...Class.genericBespokes(this.props.content)];
-  }
-
-  public identifiers(): string[] {
-    return [...Class.genericIdentifiers(this.props.content), this.props.name];
-  }
-
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
+    builder.withIdentifiers(this.props.name);
     if (this.exported) {
       builder.add("export ");
     }
@@ -71,7 +61,7 @@ export class Class extends NamedRenderer {
       .forEach(
         (content: TRenderer): void => {
           builder.ensureOnNewlineAfterEmptyline();
-          Class.genericRenderer(content)(context, builder);
+          Class.genericRenderer(content)(builder);
         },
       );
     builder
@@ -79,6 +69,6 @@ export class Class extends NamedRenderer {
       .addThenNewline("}");
   }
 
-  protected verify(context: IContext): void {
+  protected verify(builder: Builder): void {
   }
 }

@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, NamedRenderer } from "./renderer";
+import { NamedRenderer } from "./renderer";
 import { Type } from "./type";
 
 export interface IAlias {
@@ -25,18 +25,8 @@ export class Alias extends NamedRenderer {
     super();
   }
 
-  public bespokes(): string[] {
-    return [];
-  }
-
-  public identifiers(): string[] {
-    return [this.props.name];
-  }
-
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
+    builder.withIdentifiers(this.props.name);
     if (this.exported) {
       builder.add("export ");
     }
@@ -45,10 +35,10 @@ export class Alias extends NamedRenderer {
       builder.add(`<${this.props.templates.join(", ")}>`);
     }
     builder.add(" = ");
-    this.props.type.run(context, builder);
+    this.props.type.run(builder);
     builder.addThenNewline(";");
   }
 
-  protected verify(context: IContext): void {
+  protected verify(builder: Builder): void {
   }
 }

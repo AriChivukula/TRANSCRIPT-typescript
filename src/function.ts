@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, NamedRenderer, TRenderer } from "./renderer";
+import { NamedRenderer, TRenderer } from "./renderer";
 import { Type } from "./type";
 
 export interface IFunction {
@@ -36,18 +36,8 @@ export class Function extends NamedRenderer {
     super();
   }
 
-  public bespokes(): string[] {
-    return [...Function.genericBespokes(this.props.content)];
-  }
-
-  public identifiers(): string[] {
-    return [this.props.name];
-  }
-
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
+    builder.withIdentifiers(this.props.name);
     if (this.exported) {
       builder.add("export ");
     }
@@ -63,21 +53,21 @@ export class Function extends NamedRenderer {
       .indent();
     this.props.inTypes.forEach(
       (type: Type.Argument): void => {
-        type.run(context, builder);
+        type.run(builder);
         builder.addThenNewline(",");
       },
     );
     builder
       .unindent()
       .add("): ");
-    this.props.outType.run(context, builder);
+    this.props.outType.run(builder);
     builder
       .addThenNewline(" {")
       .indent();
     this.props.content
       .forEach(
         (content: TRenderer): void => {
-          Function.genericRenderer(content)(context, builder);
+          Function.genericRenderer(content)(builder);
         },
       );
     builder
@@ -85,6 +75,6 @@ export class Function extends NamedRenderer {
       .addThenNewline("}");
   }
 
-  protected verify(context: IContext): void {
+  protected verify(builder: Builder): void {
   }
 }

@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, NamedRenderer } from "./renderer";
+import { NamedRenderer } from "./renderer";
 
 export enum EImportKind {
   GLOBAL,
@@ -40,12 +40,8 @@ export class Import extends NamedRenderer {
     super();
   }
 
-  public bespokes(): string[] {
-    return [];
-  }
-
-  public identifiers(): string[] {
-    return [this.props.name];
+  public compare(i: Import): number {
+    return this.props.name.localeCompare(i.props.name);
   }
 
   public kind(): EImportKind {
@@ -58,10 +54,8 @@ export class Import extends NamedRenderer {
     }
   }
 
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
+    builder.withIdentifiers(this.props.name);
     if ("withAllAs" in this.props) {
       builder.addThenNewline(`import * as ${this.props.withAllAs} from "${this.props.name}";`);
     } else if ("withDefaultAs" in this.props) {
@@ -87,6 +81,6 @@ export class Import extends NamedRenderer {
     }
   }
 
-  protected verify(context: IContext): void {
+  protected verify(builder: Builder): void {
   }
 }

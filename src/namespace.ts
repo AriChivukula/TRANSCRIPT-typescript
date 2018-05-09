@@ -24,7 +24,7 @@ export class Namespace extends NamedRenderer {
   }
 
   public bespokes(): string[] {
-    return [...Namespace.genericBespokes(this.props.content)];
+    return Namespace.genericBespokes(this.props.content);
   }
 
   public identifiers(): string[] {

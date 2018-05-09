@@ -1,7 +1,7 @@
 import { Builder } from "./builder";
 import { Method } from "./method";
 import { Property } from "./property";
-import { IContext, NamedRenderer } from "./renderer";
+import { NamedRenderer } from "./renderer";
 
 export namespace Type {
 
@@ -58,26 +58,10 @@ export namespace Type {
       super();
     }
 
-    public bespokes(): string[] {
-      return [];
-    }
-
-    public identifiers(): string[] {
-      if ("name" in this.props) {
-        return [this.props.name];
-      } else if ("property" in this.props) {
-        return this.props.property.identifiers();
-      }
-
-      return [];
-    }
-
-    protected render(
-      context: IContext,
-      builder: Builder,
-    ): void {
+    protected render(builder: Builder): void {
       if ("name" in this.props) {
         builder.add(`${this.props.name}${this.optional ? "?" : ""}: `);
+        builder.withIdentifiers(this.props.name);
       }
       if ("type" in this.props) {
         builder.add(this.props.type);
@@ -86,12 +70,12 @@ export namespace Type {
       } else if ("property" in this.props) {
         builder.add(
           this.props.property
-            .print(context)
+            .print(builder)
             .replace(";\n", ""),
         );
       } else {
         this.props.method
-          .print(context)
+          .print(builder)
           .replace(";\n", "")
           .replace("public abstract ", "")
           .replace("public async abstract ", "")
@@ -113,7 +97,7 @@ export namespace Type {
       }
     }
 
-    protected verify(context: IContext): void {
+    protected verify(builder: Builder): void {
     }
   }
 

@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, NamedRenderer } from "./renderer";
+import { NamedRenderer } from "./renderer";
 import { Type } from "./type";
 
 export interface IInterface {
@@ -27,18 +27,8 @@ export class Interface extends NamedRenderer {
     super();
   }
 
-  public bespokes(): string[] {
-    return [];
-  }
-
-  public identifiers(): string[] {
-    return [this.props.name];
-  }
-
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
+    builder.withIdentifiers(this.props.name);
     if (this.exported) {
       builder.add("export ");
     }
@@ -57,7 +47,7 @@ export class Interface extends NamedRenderer {
     }
     this.props.types.forEach(
       (type: Type.Required | Type.Optional): void => {
-        type.run(context, builder);
+        type.run(builder);
         builder.addThenNewline(";");
       },
     );
@@ -66,6 +56,6 @@ export class Interface extends NamedRenderer {
       .addThenNewline("}");
   }
 
-  protected verify(context: IContext): void {
+  protected verify(builder: Builder): void {
   }
 }

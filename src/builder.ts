@@ -10,21 +10,30 @@ enum EBuilderVerifyMode {
   TRY,
 }
 
+export interface IBuilder {
+  readonly name: string;
+  readonly path: string;
+}
+
 export class Builder {
 
-  public static new(): Builder {
-    return new Builder();
+  public static new(props: IBuilder): Builder {
+    return new Builder(props);
   }
 
+  private bespokes: string[] = [];
   private built: string = "";
   private forLevel: number = 0;
   private header: string | undefined;
+  private identifiers: string[] = [];
   private ifLevel: number = 0;
   private indentation: number = 0;
   private switchCaseLevel: number = 0;
   private tryLevel: number = 0;
 
-  private constructor() {}
+  private constructor(
+    private readonly props: IBuilder,
+  ) {}
 
   public add(content: string): Builder {
     return this.addImpl(content, false, false, false);
@@ -162,6 +171,22 @@ export class Builder {
       .indent();
   }
 
+  public getBespokes(): string[] {
+    return this.bespokes;
+  }
+
+  public getIdentifiers(): string[] {
+    return this.identifiers;
+  }
+
+  public getName(): string {
+    return this.props.name;
+  }
+
+  public getPath(): string {
+    return this.props.path;
+  }
+
   public if(check: string): Builder {
     this.ifLevel++;
     this.verify(EBuilderVerifyMode.IF);
@@ -177,7 +202,7 @@ export class Builder {
 
   public print(): string {
     this.verify(EBuilderVerifyMode.PRINT);
-    const b: Builder = Builder.new();
+    const b: Builder = Builder.new(this.props);
     if (this.header !== undefined) {
       b.built = this.header;
     }
@@ -225,6 +250,18 @@ export class Builder {
 
   public unindent(): Builder {
     return this.indentImpl(-1);
+  }
+
+  public withBespokes(...bespokes: string[]): Builder {
+    this.bespokes = this.bespokes.concat(bespokes);
+
+    return this;
+  }
+
+  public withIdentifiers(...identifiers: string[]): Builder {
+    this.bespokes = this.identifiers.concat(identifiers);
+
+    return this;
   }
 
   private addImpl(

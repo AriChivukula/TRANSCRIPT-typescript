@@ -2,7 +2,7 @@ import { createHash, Hash } from "crypto";
 
 import { Builder } from "./builder";
 import { EImportKind, Import } from "./import";
-import { IContext, NamedRenderer, TRenderer } from "./renderer";
+import { NamedRenderer, TRenderer } from "./renderer";
 
 const headerTemplateWithoutBespoke: string = `/**
  * This file is fully generated; do not manually edit.
@@ -38,12 +38,10 @@ export class Module extends NamedRenderer {
   }
 
   private static renderImports(
-    context: IContext,
     builder: Builder,
     imports: Import[],
   ): void {
     Module.renderImportSection(
-      context,
       builder,
       imports
         .filter(
@@ -52,7 +50,6 @@ export class Module extends NamedRenderer {
     );
     builder.ensureOnNewlineAfterEmptyline();
     Module.renderImportSection(
-      context,
       builder,
       imports
         .filter(
@@ -61,7 +58,6 @@ export class Module extends NamedRenderer {
     );
     builder.ensureOnNewlineAfterEmptyline();
     Module.renderImportSection(
-      context,
       builder,
       imports
         .filter(
@@ -72,19 +68,17 @@ export class Module extends NamedRenderer {
   }
 
   private static renderImportSection(
-    context: IContext,
     builder: Builder,
     imports: Import[],
   ): void {
     imports.forEach(
       (i: Import) => {
-        i.run(context, builder);
+        i.run(builder);
       },
     );
   }
 
   private static renderNonImports(
-    context: IContext,
     builder: Builder,
     nonImports: TRenderer[],
   ): void {
@@ -92,7 +86,7 @@ export class Module extends NamedRenderer {
       .forEach(
         (r: TRenderer): void => {
           builder.ensureOnNewlineAfterEmptyline();
-          Module.genericRenderer(r)(context, builder);
+          Module.genericRenderer(r)(builder);
         },
       );
   }
@@ -103,68 +97,56 @@ export class Module extends NamedRenderer {
     super();
   }
 
-  public bespokes(): string[] {
-    return [...Module.genericBespokes(this.props.content)];
-  }
-
   public destination(): string {
     return this.props.destination;
   }
 
-  public identifiers(): string[] {
-    return [...Module.genericIdentifiers(this.props.content)];
-  }
-
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
     const imports: Import[] = this.props.content
       .filter(
         (i: TRenderer): i is Import => i instanceof Import,
       )
       .sort(
-        (a: Import, b: Import) => a.identifiers()[0]
-          .localeCompare(b.identifiers()[0]),
+        (a: Import, b: Import) => a.compare(b),
       );
-    Module.renderImports(context, builder, imports);
+    Module.renderImports(builder, imports);
 
     const nonImports: TRenderer[] = this.props.content
       .filter(
         (i: TRenderer): boolean => !(i instanceof Import),
       );
-    Module.renderNonImports(context, builder, nonImports);
+    Module.renderNonImports(builder, nonImports);
 
-    const bespokes: string[] = this.bespokes();
+    const bespokes: string[] = builder.getBespokes();
     let header: string = "";
     if (bespokes.length > 0) {
       header = headerTemplateWithBespoke
-        .replace("@0", `${context.path}::${context.name}`)
+        .replace("@0", `${builder.getPath()}::${builder.getName()}`)
         .replace("@1", bespokes.join(", "))
         .replace("@2", Module.getHash(builder));
     } else {
       header = headerTemplateWithoutBespoke
-        .replace("@0", `${context.path}::${context.name}`)
+        .replace("@0", `${builder.getPath()}::${builder.getName()}`)
         .replace("@1", Module.getHash(builder));
     }
     builder.setHeader(header);
   }
 
-  protected verify(context: IContext): void {
-    this.verifyUniqueBespoke();
-    this.verifyUniqueIdentifiers();
+  protected verify(builder: Builder): void {
+    this.verifyUniqueBespoke(builder);
+    this.verifyUniqueIdentifiers(builder);
   }
 
-  private verifyUniqueBespoke(): void {
-    const bespokeArray: string[] = this.bespokes();
+  private verifyUniqueBespoke(builder: Builder): void {
+    const bespokeArray: string[] = builder.getBespokes();
     const bespokeSet: Set<string> = new Set(bespokeArray);
     if (bespokeSet.size < bespokeArray.length) {
       throw new Error("Duplicated Bespoke Sections");
     }
   }
 
-  private verifyUniqueIdentifiers(): void {
-    const identifierArray: string[] = this.identifiers();
+  private verifyUniqueIdentifiers(builder: Builder): void {
+    const identifierArray: string[] = builder.getIdentifiers();
     const identifierSet: Set<string> = new Set(identifierArray);
     if (identifierSet.size < identifierArray.length) {
       throw new Error("Duplicated Identifier Names");

@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, NamedRenderer, TRenderer } from "./renderer";
+import { NamedRenderer, TRenderer } from "./renderer";
 import { Type } from "./type";
 
 export namespace Method {
@@ -38,26 +38,7 @@ export namespace Method {
       super();
     }
 
-    public bespokes(): string[] {
-      if (this.props.content === undefined) {
-        return [];
-      }
-
-      return [...Base.genericBespokes(this.props.content)];
-    }
-
-    public identifiers(): string[] {
-      if ("name" in this.props) {
-        return [this.props.name];
-      }
-
-      return [];
-    }
-
-    protected render(
-      context: IContext,
-      builder: Builder,
-    ): void {
+    protected render(builder: Builder): void {
       builder.add(`${this.kind} `);
       if (this.isStatic) {
         builder.add("static ");
@@ -69,6 +50,7 @@ export namespace Method {
         builder.add("abstract ");
       }
       if ("name" in this.props) {
+        builder.withIdentifiers(this.props.name);
         builder.add(this.props.name);
       } else {
         builder.add("constructor");
@@ -81,7 +63,7 @@ export namespace Method {
         .indent();
       (this.props.inTypes as Type.Base[]).forEach(
         (type: Type.Base): void => {
-          type.run(context, builder);
+          type.run(builder);
           builder.addThenNewline(",");
         },
       );
@@ -90,7 +72,7 @@ export namespace Method {
         .add(")");
       if ("outType" in this.props) {
         builder.add(": ");
-        this.props.outType.run(context, builder);
+        this.props.outType.run(builder);
       }
       if (this.props.content === undefined) {
         builder.addThenNewline(";");
@@ -101,7 +83,7 @@ export namespace Method {
         this.props.content
           .forEach(
             (content: TRenderer): void => {
-              Base.genericRenderer(content)(context, builder);
+              Base.genericRenderer(content)(builder);
             },
           );
         builder
@@ -110,7 +92,7 @@ export namespace Method {
       }
     }
 
-    protected verify(context: IContext): void {
+    protected verify(builder: Builder): void {
     }
   }
 

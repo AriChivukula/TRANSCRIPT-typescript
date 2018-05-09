@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, NamedRenderer } from "./renderer";
+import { NamedRenderer } from "./renderer";
 
 export const startTemplate: string = "/* BESPOKE START <<@0>> */";
 
@@ -21,23 +21,13 @@ export class Bespoke extends NamedRenderer {
     super();
   }
 
-  public bespokes(): string[] {
-    return [this.props.name];
-  }
-
-  public identifiers(): string[] {
-    return [this.props.name];
-  }
-
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
+    builder.withBespokes(this.props.name);
     builder
       .addThenNewline(startTemplate.replace("@0", this.props.name))
       .addThenNewline(endTemplate.replace("@0", this.props.name));
   }
 
-  protected verify(context: IContext): void {
+  protected verify(builder: Builder): void {
   }
 }
