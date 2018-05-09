@@ -3,25 +3,28 @@
  *
  * SOURCE<<src/__tests__/examples.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<gknqMk9XOZLt3TpjTXwERCaPbInPIAByL1kv2j/2Xcond5GAK5OwTV+LVbe6jqHKVCODGWVs76z84eXmybVq1Q==>>
+ * SIGNED<<tPk8Owc00LreYSBtyaPMW+EmuUDp15tI2r2BuS+Nilt/6FjfImngWh5fvE/ovU7TeakUo7aA7UOV9+dm0IyBxQ==>>
  */
 
-export abstract class MyClass1<T> {
+namespace namespace1 {
 
-  public propertyInstance1: string = "MYVAR";
+  export abstract class MyClass1<T> {
 
-  public static propertyStatic1: string = "MYVAR";
+    public propertyInstance1: string = "MYVAR";
 
-  public async methodInstance1<T>(
-    var1: string,
-    var2: object = {},
-  ): Promise<string[]> {
-  }
+    public static propertyStatic1: string = "MYVAR";
 
-  public static async methodStatic1<T>(
-    var1: string,
-    var2: object = {},
-  ): Promise<string[]> {
+    public async methodInstance1<T>(
+      var1: string,
+      var2: object = {},
+    ): Promise<string[]> {
+    }
+
+    public static async methodStatic1<T>(
+      var1: string,
+      var2: object = {},
+    ): Promise<string[]> {
+    }
   }
 }
 
