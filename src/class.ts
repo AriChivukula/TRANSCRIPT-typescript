@@ -1,7 +1,9 @@
 import { Builder } from "./builder";
 import { IContext, Renderable } from "./renderable";
+import { Type } from "./type";
 
 export interface IClass {
+  readonly constructorInTypes?: Array<Type.Argument | Type.FromProperty>;
   readonly content: Renderable[];
   readonly extends?: string;
   readonly implements?: string[];

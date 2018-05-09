@@ -24,21 +24,23 @@ export namespace Type {
     readonly default?: string;
   }
 
-  export interface IArgumentProperty {
-    readonly property: Property.BaseInstance;
-  }
-
   export interface IArgumentUnion extends INamedUnion {
     readonly default?: string;
   }
 
+  export interface IProperty {
+    readonly property: Property.BaseInstance;
+  }
+
   export type TAnonymous = IAnonymousSimple | IAnonymousUnion;
 
-  export type TArgument = IArgumentSimple | IArgumentUnion | IArgumentProperty;
+  export type TArgument = IArgumentSimple | IArgumentUnion;
 
   export type TNamed = INamedSimple | INamedUnion;
 
-  export type T = TAnonymous | TArgument | TNamed;
+  export type TProperty = IProperty;
+
+  export type T = TAnonymous | TArgument | TNamed | TProperty;
 
   export abstract class Base extends Renderable {
 
@@ -102,6 +104,13 @@ export namespace Type {
   export class Argument extends Base {
 
     public static new(props: TArgument): Argument {
+      return new Argument(props, false);
+    }
+  }
+
+  export class FromProperty extends Base {
+
+    public static new(props: TProperty): Argument {
       return new Argument(props, false);
     }
   }

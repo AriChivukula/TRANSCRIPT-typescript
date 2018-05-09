@@ -138,7 +138,7 @@ export const methodInstance1: Method.Instance.Public = Method.Instance.Public.ne
   inTypes: [
     Type.Argument.new({ name: "var1", type: "string" }),
     Type.Argument.new({ name: "var2", type: "object", default: "{}" }),
-    Type.Argument.new({
+    Type.FromProperty.new({
       property: Property.Instance.Public.newImmutable({
         type: Type.Required.new({
           name: "var5",
@@ -256,7 +256,7 @@ export const type3: Type.Anonymous = Type.Anonymous.new({
   type: "number",
 });
 
-export const type4: Type.Argument = Type.Argument.new({
+export const type4: Type.Argument = Type.FromProperty.new({
   property: Property.Instance.Public.newImmutable({
     type: Type.Required.new({
       name: "var5",
