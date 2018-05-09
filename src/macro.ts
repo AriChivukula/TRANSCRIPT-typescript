@@ -160,7 +160,7 @@ export function React(
         inTypes: [],
         name: reactName,
         outType: Type.Anonymous.new({
-          type: "JSX.Element",
+          type: "Promise<JSX.Element>",
         }),
       }),
     ];
@@ -214,7 +214,7 @@ export function React(
             inTypes: [],
             name: "render",
             outType: Type.Anonymous.new({
-              type: "JSX.Element",
+              type: "Promise<JSX.Element>",
             }),
           }),
           Bespoke.new({

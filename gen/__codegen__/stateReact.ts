@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/react.ts::stateReact>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<8TxpU7UJGNUJk7rn1mu/Nsd7KEwGfnxAjOS97KVefHtrCtOor30ws6F+5r4gaXZBGX+oo1jd1K0xIbo36ieumg==>>
+ * SIGNED<<VbnF55TbaD/LwEDvqAirWv3vSg5uuL2nfGOwlSIZ97sFSwJWUtgdrH/4to5bkH6do/5uwTxjgo3GhOynTDyQ7Q==>>
  */
 
 import * as React from "react";
@@ -32,7 +32,7 @@ export class StateReact extends React.Component<IStateReactProps, IStateReactSta
   }
 
   public async render(
-  ): JSX.Element {
+  ): Promise<JSX.Element> {
     /* BESPOKE START <<render>> */
     /* BESPOKE END <<render>> */
   }

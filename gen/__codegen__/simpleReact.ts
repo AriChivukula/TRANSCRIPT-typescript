@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/react.ts::simpleReact>>
  * BESPOKE<<imports, render>>
- * SIGNED<<O04IcVbJpUjjGoaDRCTeLsM7TpuejQuJ2FILdBaQTsUnaatqp9ta9CKAlGqP1IqtI35w2xFiBFSkS4msyrecrQ==>>
+ * SIGNED<<UKUkG3rJOsfRy5Uxn7HS2drrS5i8amsB/Qf2TbjJyReOftYXQdR9og8dmQx0ajIEahlox66ejVGill2f6F2obA==>>
  */
 
 import * as React from "react";
@@ -12,7 +12,7 @@ import * as React from "react";
 /* BESPOKE END <<imports>> */
 
 export async function SimpleReact(
-): JSX.Element {
+): Promise<JSX.Element> {
   /* BESPOKE START <<render>> */
   /* BESPOKE END <<render>> */
 }
