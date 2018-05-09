@@ -2,6 +2,7 @@ import {
   Alias,
   Bespoke,
   Class,
+  Enum,
   Function,
   Import,
   Interface,
@@ -345,9 +346,26 @@ export const class3: Class = Class.newConcreteInternal({
   name: "MyClass3",
 });
 
+export const enum1: Enum = Enum.newInternal({
+  name: "enum1",
+  values: {
+    A: "B",
+    C: "D",
+  },
+});
+
+export const enum2: Enum = Enum.newExported({
+  name: "enum2",
+  values: {
+    E: 0,
+    F: 1,
+  },
+});
+
 export const namespace1: Namespace = Namespace.newInternal({
   content: [
     class1,
+    enum1,
   ],
   name: "namespace1",
 });
@@ -355,6 +373,7 @@ export const namespace1: Namespace = Namespace.newInternal({
 export const namespace2: Namespace = Namespace.newExported({
   content: [
     class2,
+    enum2,
     class3,
   ],
   name: "namespace2",

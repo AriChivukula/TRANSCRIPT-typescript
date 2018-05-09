@@ -4,6 +4,7 @@ export * from "./alias";
 export * from "./bespoke";
 export * from "./builder";
 export * from "./class";
+export * from "./enum";
 export * from "./function";
 export * from "./import";
 export * from "./interface";
