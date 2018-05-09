@@ -1,6 +1,18 @@
 /**
- * This file is fully generated; do not manually edit.
+ * This file is partially generated; only edit bespoke sections.
  *
  * SOURCE<<gen/react.ts::simpleReact>>
- * SIGNED<<z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP+DGNKHfuwvY7kxvUdBeoGlODJ6+SfaPg==>>
+ * BESPOKE<<imports, SimpleReact>>
+ * SIGNED<<TvV0ywzr9TQKFdOf5tAAu3Fn/mKPy5zT1g5p6bE3kkTEnINNnM67HSdg5pUMpE9EOz136ZdrVRaiIP36BrIDUQ==>>
  */
+
+import * as React from "react";
+
+/* BESPOKE START <<imports>> */
+/* BESPOKE END <<imports>> */
+
+export async function SimpleReact(
+): JSX.Element {
+  /* BESPOKE START <<SimpleReact>> */
+  /* BESPOKE END <<SimpleReact>> */
+}

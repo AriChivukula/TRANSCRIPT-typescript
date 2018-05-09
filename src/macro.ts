@@ -1,8 +1,11 @@
 import { Bespoke } from "./bespoke";
 import { Builder } from "./builder";
+import { Function } from "./function";
+import { Import } from "./import";
 import { Interface } from "./interface";
 import { Module } from "./module";
 import { IContext, Renderable } from "./renderable";
+import { Type } from "./type";
 
 interface IJestCall {
   readonly functionName: string;
@@ -104,11 +107,35 @@ export function React(
   destination: string,
   reactName: string,
   props?: Interface,
-  relayName?: string,
   state?: Interface,
 ): Module {
+  const reactImport: Renderable = Import.new({
+    name: "react",
+    withAllAs: "React",
+  });
+  const bespokeImport: Renderable = Bespoke.new({
+    name: "imports",
+  });
+  let reactClass: Renderable;
+  if (props === undefined && state === undefined) {
+    reactClass = Function.newAsyncExported({
+      content: [
+        Bespoke.new({
+          name: reactName,
+        }),
+      ],
+      inTypes: [],
+      name: reactName,
+      outType: Type.Anonymous.new({
+        type: "JSX.Element",
+      }),
+    });
+  } else {
+    throw new Error();
+  }
+
   return Module.new({
-    content: [],
+    content: [reactImport, bespokeImport, reactClass],
     destination,
   });
 }
