@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderer";
+import { IContext, NamedRenderer } from "./renderer";
 import { Type } from "./type";
 
 export interface IAlias {
@@ -8,7 +8,7 @@ export interface IAlias {
   readonly type: Type.Anonymous;
 }
 
-export class Alias extends Renderable {
+export class Alias extends NamedRenderer {
 
   public static newExported(props: IAlias): Alias {
     return new Alias(props, true);

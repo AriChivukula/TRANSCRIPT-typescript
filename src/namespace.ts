@@ -1,12 +1,12 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderer";
+import { IContext, NamedRenderer, TRenderer } from "./renderer";
 
 export interface INamespace {
-  readonly content: Renderable[];
+  readonly content: TRenderer[];
   readonly name: string;
 }
 
-export class Namespace extends Renderable {
+export class Namespace extends NamedRenderer {
 
   public static newExported(props: INamespace): Namespace {
     return new Namespace(props, true);
@@ -24,19 +24,11 @@ export class Namespace extends Renderable {
   }
 
   public bespokes(): string[] {
-    const bespokes: string[][] = this.props.content
-      .map((content: Renderable) => content.bespokes());
-
-    return ([] as string[]).concat(...bespokes);
+    return [...Namespace.genericBespokes(this.props.content)];
   }
 
   public identifiers(): string[] {
-    const identifiers: string[][] = this.props.content
-      .map(
-        (content: Renderable) => content.identifiers(),
-      );
-
-    return ([] as string[]).concat(...identifiers, [this.props.name]);
+    return [...Namespace.genericIdentifiers(this.props.content), this.props.name];
   }
 
   protected render(
@@ -51,9 +43,9 @@ export class Namespace extends Renderable {
       .indent();
     this.props.content
       .forEach(
-        (content: Renderable): void => {
+        (content: TRenderer): void => {
           builder.ensureOnNewlineAfterEmptyline();
-          content.run(context, builder);
+          Namespace.genericRenderer(content)(context, builder);
         },
       );
     builder

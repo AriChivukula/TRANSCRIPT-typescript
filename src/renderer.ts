@@ -5,7 +5,49 @@ export interface IContext {
   readonly path: string;
 }
 
-export abstract class Renderable {
+export type AnonymousRenderer = (context: IContext, builder: Builder) => void;
+
+export abstract class NamedRenderer {
+
+  protected static genericBespokes(renderers: TRenderer[]): string[] {
+    return ([] as string[]).concat(
+      ...renderers
+        .map(
+          (renderer: TRenderer): string[] => {
+            if (renderer instanceof NamedRenderer) {
+              return renderer.bespokes();
+            } else {
+              return [];
+            }
+          },
+        ),
+    );
+  }
+
+  protected static genericIdentifiers(renderers: TRenderer[]): string[] {
+    return ([] as string[]).concat(
+      ...renderers
+        .map(
+          (renderer: TRenderer): string[] => {
+            if (renderer instanceof NamedRenderer) {
+              return renderer.identifiers();
+            } else {
+              return [];
+            }
+          },
+        ),
+    );
+  }
+
+  protected static genericRenderer(renderer: TRenderer): AnonymousRenderer {
+    if (renderer instanceof NamedRenderer) {
+      return (context: IContext, builder: Builder): void => {
+        renderer.run(context, builder);
+      };
+    } else {
+      return renderer;
+    }
+  }
 
   public abstract bespokes(): string[];
 
@@ -35,3 +77,5 @@ export abstract class Renderable {
 
   protected abstract verify(context: IContext): void;
 }
+
+export type TRenderer = AnonymousRenderer | NamedRenderer;

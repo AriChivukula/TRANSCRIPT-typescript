@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderer";
+import { IContext, NamedRenderer } from "./renderer";
 
 export const startTemplate: string = "/* BESPOKE START <<@0>> */";
 
@@ -9,7 +9,7 @@ export interface IBespoke {
   readonly name: string;
 }
 
-export class Bespoke extends Renderable {
+export class Bespoke extends NamedRenderer {
 
   public static new(props: IBespoke): Bespoke {
     return new Bespoke(props);

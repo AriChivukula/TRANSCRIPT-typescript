@@ -1,16 +1,16 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderer";
+import { IContext, NamedRenderer, TRenderer } from "./renderer";
 import { Type } from "./type";
 
 export interface IFunction {
-  readonly content: Renderable[];
+  readonly content: TRenderer[];
   readonly inTypes: Type.Argument[];
   readonly name: string;
   readonly outType: Type.Anonymous;
   readonly templates?: string[];
 }
 
-export class Function extends Renderable {
+export class Function extends NamedRenderer {
 
   public static newAsyncExported(props: IFunction): Function {
     return new Function(props, true, true);
@@ -37,10 +37,7 @@ export class Function extends Renderable {
   }
 
   public bespokes(): string[] {
-    const bespokes: string[][] = this.props.content
-      .map((content: Renderable) => content.bespokes());
-
-    return ([] as string[]).concat(...bespokes);
+    return [...Function.genericBespokes(this.props.content)];
   }
 
   public identifiers(): string[] {
@@ -79,8 +76,8 @@ export class Function extends Renderable {
       .indent();
     this.props.content
       .forEach(
-        (content: Renderable): void => {
-          content.run(context, builder);
+        (content: TRenderer): void => {
+          Function.genericRenderer(content)(context, builder);
         },
       );
     builder

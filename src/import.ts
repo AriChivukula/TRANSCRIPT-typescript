@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderer";
+import { IContext, NamedRenderer } from "./renderer";
 
 export enum EImportKind {
   GLOBAL,
@@ -28,7 +28,7 @@ export interface IImportSome {
 
 export type TImport = IImportAll | IImportDefault | IImportRaw | IImportSome;
 
-export class Import extends Renderable {
+export class Import extends NamedRenderer {
 
   public static new(props: TImport): Import {
     return new Import(props);

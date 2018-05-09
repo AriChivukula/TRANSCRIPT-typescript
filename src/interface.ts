@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderer";
+import { IContext, NamedRenderer } from "./renderer";
 import { Type } from "./type";
 
 export interface IInterface {
@@ -10,7 +10,7 @@ export interface IInterface {
   readonly types: Array<Type.FromMethod | Type.Optional | Type.Required>;
 }
 
-export class Interface extends Renderable {
+export class Interface extends NamedRenderer {
 
   public static newExported(props: IInterface): Interface {
     return new Interface(props, true);

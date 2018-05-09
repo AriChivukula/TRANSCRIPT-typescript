@@ -1,12 +1,12 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderer";
+import { IContext, NamedRenderer } from "./renderer";
 
 export interface IEnum {
   readonly name: string;
   readonly values: { [index: string]: string | number };
 }
 
-export class Enum extends Renderable {
+export class Enum extends NamedRenderer {
 
   public static newExported(props: IEnum): Enum {
     return new Enum(props, true);

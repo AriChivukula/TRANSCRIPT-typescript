@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderer";
+import { IContext, NamedRenderer, TRenderer } from "./renderer";
 import { Type } from "./type";
 
 export namespace Method {
@@ -11,7 +11,7 @@ export namespace Method {
   }
 
   export interface IBase {
-    readonly content?: Renderable[];
+    readonly content?: TRenderer[];
     readonly templates?: string[];
   }
 
@@ -27,7 +27,7 @@ export namespace Method {
 
   export type T = IConstructor | INormal;
 
-  export abstract class Base extends Renderable {
+  export abstract class Base extends NamedRenderer {
 
     protected constructor(
       private readonly props: T,
@@ -42,10 +42,8 @@ export namespace Method {
       if (this.props.content === undefined) {
         return [];
       }
-      const bespokes: string[][] = this.props.content
-        .map((content: Renderable) => content.bespokes());
 
-      return ([] as string[]).concat(...bespokes);
+      return [...Base.genericBespokes(this.props.content)];
     }
 
     public identifiers(): string[] {
@@ -102,8 +100,8 @@ export namespace Method {
           .indent();
         this.props.content
           .forEach(
-            (content: Renderable): void => {
-              content.run(context, builder);
+            (content: TRenderer): void => {
+              Base.genericRenderer(content)(context, builder);
             },
           );
         builder

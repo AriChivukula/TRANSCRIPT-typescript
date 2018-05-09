@@ -1,7 +1,7 @@
 import { Builder } from "./builder";
 import { Method } from "./method";
 import { Property } from "./property";
-import { IContext, Renderable } from "./renderer";
+import { IContext, NamedRenderer } from "./renderer";
 
 export namespace Type {
 
@@ -49,7 +49,7 @@ export namespace Type {
 
   export type T = TAnonymous | TArgument | TMethod | TNamed | TProperty;
 
-  export abstract class Base extends Renderable {
+  export abstract class Base extends NamedRenderer {
 
     protected constructor(
       private readonly props: T,

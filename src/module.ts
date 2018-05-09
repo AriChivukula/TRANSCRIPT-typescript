@@ -2,7 +2,7 @@ import { createHash, Hash } from "crypto";
 
 import { Builder } from "./builder";
 import { EImportKind, Import } from "./import";
-import { IContext, Renderable } from "./renderer";
+import { IContext, NamedRenderer, TRenderer } from "./renderer";
 
 const headerTemplateWithoutBespoke: string = `/**
  * This file is fully generated; do not manually edit.
@@ -20,11 +20,11 @@ const headerTemplateWithBespoke: string = `/**
  */`;
 
 export interface IModule {
-  readonly content: Renderable[];
+  readonly content: TRenderer[];
   readonly destination: string;
 }
 
-export class Module extends Renderable {
+export class Module extends NamedRenderer {
 
   public static new(props: IModule): Module {
     return new Module(props);
@@ -86,13 +86,13 @@ export class Module extends Renderable {
   private static renderNonImports(
     context: IContext,
     builder: Builder,
-    nonImports: Renderable[],
+    nonImports: TRenderer[],
   ): void {
     nonImports
       .forEach(
-        (r: Renderable): void => {
+        (r: TRenderer): void => {
           builder.ensureOnNewlineAfterEmptyline();
-          r.run(context, builder);
+          Module.genericRenderer(r)(context, builder);
         },
       );
   }
@@ -104,12 +104,7 @@ export class Module extends Renderable {
   }
 
   public bespokes(): string[] {
-    const bespokes: string[][] = this.props.content
-      .map(
-        (content: Renderable) => content.bespokes(),
-      );
-
-    return ([] as string[]).concat(...bespokes);
+    return [...Module.genericBespokes(this.props.content)];
   }
 
   public destination(): string {
@@ -117,12 +112,7 @@ export class Module extends Renderable {
   }
 
   public identifiers(): string[] {
-    const identifiers: string[][] = this.props.content
-      .map(
-        (content: Renderable) => content.identifiers(),
-      );
-
-    return ([] as string[]).concat(...identifiers);
+    return [...Module.genericIdentifiers(this.props.content)];
   }
 
   protected render(
@@ -131,7 +121,7 @@ export class Module extends Renderable {
   ): void {
     const imports: Import[] = this.props.content
       .filter(
-        (i: Renderable): i is Import => i instanceof Import,
+        (i: TRenderer): i is Import => i instanceof Import,
       )
       .sort(
         (a: Import, b: Import) => a.identifiers()[0]
@@ -139,9 +129,9 @@ export class Module extends Renderable {
       );
     Module.renderImports(context, builder, imports);
 
-    const nonImports: Renderable[] = this.props.content
+    const nonImports: TRenderer[] = this.props.content
       .filter(
-        (i: Renderable): boolean => !(i instanceof Import),
+        (i: TRenderer): boolean => !(i instanceof Import),
       );
     Module.renderNonImports(context, builder, nonImports);
 

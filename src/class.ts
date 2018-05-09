@@ -1,15 +1,15 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderer";
+import { IContext, NamedRenderer, TRenderer } from "./renderer";
 
 export interface IClass {
-  readonly content: Renderable[];
+  readonly content: TRenderer[];
   readonly extends?: string;
   readonly implements?: string[];
   readonly name: string;
   readonly templates?: string[];
 }
 
-export class Class extends Renderable {
+export class Class extends NamedRenderer {
 
   public static newAbstractExported(props: IClass): Class {
     return new Class(props, true, true);
@@ -36,19 +36,11 @@ export class Class extends Renderable {
   }
 
   public bespokes(): string[] {
-    const bespokes: string[][] = this.props.content
-      .map((content: Renderable) => content.bespokes());
-
-    return ([] as string[]).concat(...bespokes);
+    return [...Class.genericBespokes(this.props.content)];
   }
 
   public identifiers(): string[] {
-    const identifiers: string[][] = this.props.content
-      .map(
-        (content: Renderable) => content.identifiers(),
-      );
-
-    return ([] as string[]).concat(...identifiers, [this.props.name]);
+    return [...Class.genericIdentifiers(this.props.content), this.props.name];
   }
 
   protected render(
@@ -77,9 +69,9 @@ export class Class extends Renderable {
       .indent();
     this.props.content
       .forEach(
-        (content: Renderable): void => {
+        (content: TRenderer): void => {
           builder.ensureOnNewlineAfterEmptyline();
-          content.run(context, builder);
+          Class.genericRenderer(content)(context, builder);
         },
       );
     builder

@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderer";
+import { IContext, NamedRenderer } from "./renderer";
 import { Type } from "./type";
 
 export namespace Property {
@@ -15,7 +15,7 @@ export namespace Property {
     readonly type: Type.Required | Type.Optional;
   }
 
-  export abstract class Base extends Renderable {
+  export abstract class Base extends NamedRenderer {
 
     protected constructor(
       private readonly props: I,

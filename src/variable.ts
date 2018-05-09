@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderer";
+import { IContext, NamedRenderer } from "./renderer";
 import { Type } from "./type";
 
 export interface IVariable {
@@ -7,7 +7,7 @@ export interface IVariable {
   readonly type: Type.Required;
 }
 
-export class Variable extends Renderable {
+export class Variable extends NamedRenderer {
 
   public static newExported(props: IVariable): Variable {
     return new Variable(props, true, false);
