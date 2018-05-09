@@ -104,6 +104,37 @@ export function Jest(
   });
 }
 
+class ReactConstructorCall extends Renderable {
+
+  public static new(): ReactConstructorCall {
+    return new ReactConstructorCall();
+  }
+
+  public bespokes(): string[] {
+    return [];
+  }
+
+  public identifiers(): string[] {
+    return [];
+  }
+
+  protected render(context: IContext, builder: Builder): void {
+    builder
+      .addThenNewline("super(props);")
+      .addThenNewline("this.state = {")
+      .indent();
+    Bespoke
+      .new({ name: "state" })
+      .run(context, builder);
+    builder
+      .unindent()
+      .addThenNewline("};");
+  }
+
+  protected verify(context: IContext): void {
+  }
+}
+
 export function React(
   destination: string,
   reactName: string,
@@ -141,6 +172,7 @@ export function React(
         types: props,
       }),
     ];
+    let constructor: Renderable[] = [];
     if (state !== undefined) {
       reactExtends += ", IState>";
       reactClass = [
@@ -150,6 +182,19 @@ export function React(
           types: state,
         }),
       ];
+      constructor = [
+        Method.Instance.Public.newConstructor({
+          content: [
+            ReactConstructorCall.new(),
+          ],
+          inTypes: [
+            Type.Argument.new({
+              name: "props",
+              type: "IProps",
+            }),
+          ],
+        }),
+      ];
     } else {
       reactExtends += ">";
     }
@@ -157,6 +202,7 @@ export function React(
       ...reactClass,
       Class.newConcreteExported({
         content: [
+          ...constructor,
           Method.Instance.Public.newAsync({
             content: [
               Bespoke.new({

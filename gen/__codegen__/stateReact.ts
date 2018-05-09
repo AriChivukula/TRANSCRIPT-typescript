@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/react.ts::stateReact>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<TkflLcD7g+3fN6oH3FzhNQi3xLEhScEZMWgbgAZcQvAKGXLVavDWQ6hSc4UmQhCkzxYXVz1JpM2AesAXBl/lmA==>>
+ * SIGNED<<GJ/Cp6Sw/5qobkZ/AyhnAs2/LtSCNiqVMFtKlcFiGxFfW8W2KI2V/j5mvoSrsG45r29wvuioDg2KcyQv+StICw==>>
  */
 
 import * as React from "react";
@@ -20,6 +20,16 @@ interface IState {
 }
 
 export class StateReact extends React.Component<IProps, IState> {
+
+  public constructor(
+    props: IProps,
+  ) {
+    super(props);
+    this.state = {
+      /* BESPOKE START <<state>> */
+      /* BESPOKE END <<state>> */
+    };
+  }
 
   public async render(
   ): JSX.Element {
