@@ -8,6 +8,7 @@ export * from "./enum";
 export * from "./function";
 export * from "./import";
 export * from "./interface";
+export * from "./macro";
 export * from "./method";
 export * from "./module";
 export * from "./namespace";

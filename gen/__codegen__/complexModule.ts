@@ -1,7 +1,7 @@
 /**
  * This file is partially generated; only edit bespoke sections.
  *
- * SOURCE<<src/__tests__/examples.ts::complexModule>>
+ * SOURCE<<gen/modules.ts::complexModule>>
  * BESPOKE<<TEST1, methodInstance4, methodInstance3Bespoke, methodStatic3Bespoke, fn3, 3tESt3>>
  * SIGNED<<FYYo4wAxg20K/H76YhQwPAaQIedFKNTg3qgygu3PkkVHdtj0MUwymzdxoT9o5G0hnvWHDo79kdxHHcmx3upQ4A==>>
  */

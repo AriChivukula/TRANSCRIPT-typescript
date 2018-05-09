@@ -303,11 +303,6 @@ export const variable3: Variable = Variable.newMutable({
   type: Type.Required.new({ name: "variable3", types: ["number", "null", "undefined"] }),
 });
 
-export const emptyModule: Module = Module.new({
-  content: [],
-  destination: "src/__tests__/__codegen__/emptyModule.ts",
-});
-
 export const class1: Class = Class.newAbstractExported({
   content: [
     propertyInstance1,
@@ -379,6 +374,11 @@ export const namespace2: Namespace = Namespace.newExported({
   name: "namespace2",
 });
 
+export const emptyModule: Module = Module.new({
+  content: [],
+  destination: "gen/__codegen__/emptyModule.ts",
+});
+
 export const contentModule: Module = Module.new({
   content: [
     namespace1,
@@ -397,7 +397,7 @@ export const contentModule: Module = Module.new({
     interface2,
     alias3,
   ],
-  destination: "src/__tests__/__codegen__/contentModule.ts",
+  destination: "gen/__codegen__/contentModule.ts",
 });
 
 export const importModule: Module = Module.new({
@@ -415,7 +415,7 @@ export const importModule: Module = Module.new({
     importSome2,
     importSome3,
   ],
-  destination: "src/__tests__/__codegen__/importModule.ts",
+  destination: "gen/__codegen__/importModule.ts",
 });
 
 export const complexModule: Module = Module.new({
@@ -447,5 +447,5 @@ export const complexModule: Module = Module.new({
     interface3,
     function1,
   ],
-  destination: "src/__tests__/__codegen__/complexModule.ts",
+  destination: "gen/__codegen__/complexModule.ts",
 });

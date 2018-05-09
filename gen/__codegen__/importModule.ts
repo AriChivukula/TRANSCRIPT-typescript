@@ -1,7 +1,7 @@
 /**
  * This file is fully generated; do not manually edit.
  *
- * SOURCE<<src/__tests__/examples.ts::importModule>>
+ * SOURCE<<gen/modules.ts::importModule>>
  * SIGNED<<nuskwMYvDowcShGj7ARGsTL7b/BBCoDcLpaOivMO6l3A9oECfnr089sFlub49/+ApuhHjOHuo+PyeRSzJJ0JXw==>>
  */
 

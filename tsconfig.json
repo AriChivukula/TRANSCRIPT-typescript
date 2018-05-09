@@ -10,6 +10,6 @@
   },
   "exclude": [
     "bin/*",
-    "src/__tests__/__codegen__/*"
+    "gen/*"
   ]
 }

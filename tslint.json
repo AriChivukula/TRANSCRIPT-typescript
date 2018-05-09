@@ -4,7 +4,7 @@
   ],
   "linterOptions": {
     "exclude": [
-      "src/__tests__/__codegen__/*"
+      "gen/__codegen__/*"
     ]
   },
   "rules": {
@@ -12,6 +12,7 @@
     "completed-docs": false,
     "cyclomatic-complexity": false,
     "max-classes-per-file": false,
+    "max-line-length": false,
     "no-empty": false,
     "no-import-side-effect": false,
     "no-inferrable-types": false,

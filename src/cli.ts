@@ -46,15 +46,8 @@ function codegenFile(
 ): void {
   // tslint:disable-next-line
   let file: { [index: string]: any };
-  try {
-    // tslint:disable-next-line
-    file = require(`${process.cwd()}/${path}`);
-  } catch (err) {
-    // tslint:disable-next-line
-    console.log(`Error loading ${path}`);
-
-    return;
-  }
+  // tslint:disable-next-line
+  file = require(`${process.cwd()}/${path}`);
   for (const name in file) {
     if (file[name] instanceof Module) {
       // tslint:disable-next-line
