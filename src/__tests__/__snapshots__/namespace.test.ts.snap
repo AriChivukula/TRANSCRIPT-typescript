@@ -21,6 +21,11 @@ exports[`namespace1 1`] = `
     ): Promise<string[]> {
     }
   }
+
+  enum enum1 {
+    A = \\"B\\",
+    C = \\"D\\",
+  }
 }
 "
 `;
@@ -50,6 +55,11 @@ exports[`namespace2 1`] = `
       /* BESPOKE START <<methodInstance4>> */
       /* BESPOKE END <<methodInstance4>> */
     }
+  }
+
+  export enum enum2 {
+    E = 0,
+    F = 1,
   }
 
   class MyClass3 extends MyClass1 implements MyInterface1, MyInterface2 {

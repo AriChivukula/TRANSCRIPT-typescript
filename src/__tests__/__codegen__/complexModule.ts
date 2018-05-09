@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::complexModule>>
  * BESPOKE<<TEST1, methodInstance4, methodInstance3Bespoke, methodStatic3Bespoke, fn3, 3tESt3>>
- * SIGNED<<rE5JX5iPKxIHfLP2Zr1oylDQz1QTpt42eboIkyAAV2qaarzKKzUgO/0y0tPEK0xaLyuoa08mQw/dWnBqhXnUyw==>>
+ * SIGNED<<FYYo4wAxg20K/H76YhQwPAaQIedFKNTg3qgygu3PkkVHdtj0MUwymzdxoT9o5G0hnvWHDo79kdxHHcmx3upQ4A==>>
  */
 
 import "./p";
@@ -56,6 +56,11 @@ export namespace namespace2 {
       /* BESPOKE START <<methodInstance4>> */
       /* BESPOKE END <<methodInstance4>> */
     }
+  }
+
+  export enum enum2 {
+    E = 0,
+    F = 1,
   }
 
   class MyClass3 extends MyClass1 implements MyInterface1, MyInterface2 {

@@ -6,7 +6,7 @@ exports[`complexModule 1`] = `
  *
  * SOURCE<<src/__tests__/module.test.ts::complexModule>>
  * BESPOKE<<TEST1, methodInstance4, methodInstance3Bespoke, methodStatic3Bespoke, fn3, 3tESt3>>
- * SIGNED<<rE5JX5iPKxIHfLP2Zr1oylDQz1QTpt42eboIkyAAV2qaarzKKzUgO/0y0tPEK0xaLyuoa08mQw/dWnBqhXnUyw==>>
+ * SIGNED<<FYYo4wAxg20K/H76YhQwPAaQIedFKNTg3qgygu3PkkVHdtj0MUwymzdxoT9o5G0hnvWHDo79kdxHHcmx3upQ4A==>>
  */
 
 import \\"./p\\";
@@ -58,6 +58,11 @@ export namespace namespace2 {
       /* BESPOKE START <<methodInstance4>> */
       /* BESPOKE END <<methodInstance4>> */
     }
+  }
+
+  export enum enum2 {
+    E = 0,
+    F = 1,
   }
 
   class MyClass3 extends MyClass1 implements MyInterface1, MyInterface2 {
@@ -139,7 +144,7 @@ exports[`contentModule 1`] = `
  *
  * SOURCE<<src/__tests__/module.test.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<tPk8Owc00LreYSBtyaPMW+EmuUDp15tI2r2BuS+Nilt/6FjfImngWh5fvE/ovU7TeakUo7aA7UOV9+dm0IyBxQ==>>
+ * SIGNED<<5+iK7xn4UBU13t6bWlz2CJ61YwPCApF6c2V09n4VXNHy+dA588yCp6g3PjpPgoWJuBdSLnFg3kJSbWT5AmD2ug==>>
  */
 
 namespace namespace1 {
@@ -161,6 +166,11 @@ namespace namespace1 {
       var2: object = {},
     ): Promise<string[]> {
     }
+  }
+
+  enum enum1 {
+    A = \\"B\\",
+    C = \\"D\\",
   }
 }
 

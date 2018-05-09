@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<tPk8Owc00LreYSBtyaPMW+EmuUDp15tI2r2BuS+Nilt/6FjfImngWh5fvE/ovU7TeakUo7aA7UOV9+dm0IyBxQ==>>
+ * SIGNED<<5+iK7xn4UBU13t6bWlz2CJ61YwPCApF6c2V09n4VXNHy+dA588yCp6g3PjpPgoWJuBdSLnFg3kJSbWT5AmD2ug==>>
  */
 
 namespace namespace1 {
@@ -25,6 +25,11 @@ namespace namespace1 {
       var2: object = {},
     ): Promise<string[]> {
     }
+  }
+
+  enum enum1 {
+    A = "B",
+    C = "D",
   }
 }
 
