@@ -290,6 +290,11 @@ export const class1: Class = Class.newAbstractExported({
 });
 
 export const class2: Class = Class.newConcreteExported({
+  classConstructor: {
+    abstract: false,
+    inTypes: [type4, type5],
+    kind: Method.EKind.PRIVATE,
+  },
   content: [
     bespoke1,
     propertyInstance2,
@@ -303,7 +308,11 @@ export const class2: Class = Class.newConcreteExported({
 });
 
 export const class3: Class = Class.newConcreteInternal({
-  constructorInTypes: [type4, type5],
+  classConstructor: {
+    abstract: true,
+    inTypes: [type4, type5],
+    kind: Method.EKind.PUBLIC,
+  },
   content: [
     propertyInstance3,
     propertyStatic3,
