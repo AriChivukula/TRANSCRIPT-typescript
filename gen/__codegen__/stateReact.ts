@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/react.ts::stateReact>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<VbnF55TbaD/LwEDvqAirWv3vSg5uuL2nfGOwlSIZ97sFSwJWUtgdrH/4to5bkH6do/5uwTxjgo3GhOynTDyQ7Q==>>
+ * SIGNED<<zVWi9xIj418oHA+UTQxOxg55FWtRgl3k+H2QFrkNuXGLs5O1jSqs09eMbhIP7EePEeQHfKxu+G3Cij84L/9Omg==>>
  */
 
 import * as React from "react";
@@ -31,8 +31,8 @@ export class StateReact extends React.Component<IStateReactProps, IStateReactSta
     };
   }
 
-  public async render(
-  ): Promise<JSX.Element> {
+  public render(
+  ): JSX.Element {
     /* BESPOKE START <<render>> */
     /* BESPOKE END <<render>> */
   }

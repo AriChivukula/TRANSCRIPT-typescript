@@ -151,7 +151,7 @@ export function React(
   let reactClass: Renderable[];
   if (props === undefined) {
     reactClass = [
-      Function.newAsyncExported({
+      Function.newSyncExported({
         content: [
           Bespoke.new({
             name: "render",
@@ -160,7 +160,7 @@ export function React(
         inTypes: [],
         name: reactName,
         outType: Type.Anonymous.new({
-          type: "Promise<JSX.Element>",
+          type: "JSX.Element",
         }),
       }),
     ];
@@ -205,7 +205,7 @@ export function React(
       Class.newConcreteExported({
         content: [
           ...constructor,
-          Method.Instance.Public.newAsync({
+          Method.Instance.Public.newSync({
             content: [
               Bespoke.new({
                 name: "render",
@@ -214,7 +214,7 @@ export function React(
             inTypes: [],
             name: "render",
             outType: Type.Anonymous.new({
-              type: "Promise<JSX.Element>",
+              type: "JSX.Element",
             }),
           }),
           Bespoke.new({

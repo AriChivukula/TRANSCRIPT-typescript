@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/react.ts::propsReact>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<scvN8LYV9PQZCJhlHUVs1dHoovbz3fy4NUmaI4u9rk6VEmyXbamZYhUGF5UD9v9ndtuKFmqxpugdxY14z/4Z6g==>>
+ * SIGNED<<OlUQvCLl9ilEHBaJAhyts6QubUNbtUfomJGT1+Va5RxkbXs5mFw4vICtZioi3IiqoCVH6qn3pmdtgqKzLUClEA==>>
  */
 
 import * as React from "react";
@@ -17,8 +17,8 @@ export interface IPropsReactProps {
 
 export class PropsReact extends React.Component<IPropsReactProps> {
 
-  public async render(
-  ): Promise<JSX.Element> {
+  public render(
+  ): JSX.Element {
     /* BESPOKE START <<render>> */
     /* BESPOKE END <<render>> */
   }
