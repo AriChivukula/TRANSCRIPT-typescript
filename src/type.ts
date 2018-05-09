@@ -1,7 +1,7 @@
 import { Builder } from "./builder";
 import { Method } from "./method";
 import { Property } from "./property";
-import { IContext, Renderable } from "./renderable";
+import { IContext, Renderable } from "./renderer";
 
 export namespace Type {
 

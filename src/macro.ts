@@ -6,7 +6,7 @@ import { Import } from "./import";
 import { Interface } from "./interface";
 import { Method } from "./method";
 import { Module } from "./module";
-import { IContext, Renderable } from "./renderable";
+import { IContext, Renderable } from "./renderer";
 import { Type } from "./type";
 
 interface IJestCall {

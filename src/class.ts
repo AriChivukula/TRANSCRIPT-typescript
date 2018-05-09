@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderable";
+import { IContext, Renderable } from "./renderer";
 
 export interface IClass {
   readonly content: Renderable[];

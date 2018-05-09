@@ -2,7 +2,7 @@ import { createHash, Hash } from "crypto";
 
 import { Builder } from "./builder";
 import { EImportKind, Import } from "./import";
-import { IContext, Renderable } from "./renderable";
+import { IContext, Renderable } from "./renderer";
 
 const headerTemplateWithoutBespoke: string = `/**
  * This file is fully generated; do not manually edit.

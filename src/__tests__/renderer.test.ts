@@ -1,7 +1,7 @@
 /**
  * This file is partially generated; only edit bespoke sections.
  *
- * SOURCE<<gen/tests.ts::renderableTest>>
+ * SOURCE<<gen/tests.ts::rendererTest>>
  * BESPOKE<<imports, beforeAll, afterAll, beforeEach, afterEach, verifyUniqueBespoke, verifyUniqueIdentifiers>>
  * SIGNED<<aM68pwGrctaRFjMPubDsqbhijm4PBHeNpQwy719bb2babXMTQL7Ovnrz5TVj3Yd9UxH4NhomEC62oQY7N1SoZQ==>>
  */

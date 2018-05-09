@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderable";
+import { IContext, Renderable } from "./renderer";
 import { Type } from "./type";
 
 export interface IVariable {
