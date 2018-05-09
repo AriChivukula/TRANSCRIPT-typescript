@@ -6,11 +6,11 @@ import { Import } from "./import";
 import { Interface } from "./interface";
 import { Method } from "./method";
 import { Module } from "./module";
-import { AnonymousRenderer, IContext, TRenderer } from "./renderer";
+import { AnonymousRenderer, TRenderer } from "./renderer";
 import { Type } from "./type";
 
 function JestCall(functionName: string, testName?: string): AnonymousRenderer {
-  return (context: IContext, builder: Builder): void => {
+  return (builder: Builder): void => {
     builder
       .addThenNewline(`${functionName}(`)
       .indent();
@@ -23,11 +23,11 @@ function JestCall(functionName: string, testName?: string): AnonymousRenderer {
     if (testName !== undefined) {
       Bespoke
         .new({ name: testName })
-        .run(context, builder);
+        .run(builder);
     } else {
       Bespoke
         .new({ name: functionName })
-        .run(context, builder);
+        .run(builder);
     }
     builder
       .unindent()
@@ -66,14 +66,14 @@ export function Jest(
 }
 
 function ReactConstructorCall(): AnonymousRenderer {
-  return (context: IContext, builder: Builder): void => {
+  return (builder: Builder): void => {
     builder
       .addThenNewline("super(props);")
       .addThenNewline("this.state = {")
       .indent();
     Bespoke
       .new({ name: "state" })
-      .run(context, builder);
+      .run(builder);
     builder
       .unindent()
       .addThenNewline("};");

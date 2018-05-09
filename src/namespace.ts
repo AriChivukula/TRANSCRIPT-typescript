@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, NamedRenderer, TRenderer } from "./renderer";
+import { NamedRenderer, TRenderer } from "./renderer";
 
 export interface INamespace {
   readonly content: TRenderer[];
@@ -23,18 +23,8 @@ export class Namespace extends NamedRenderer {
     super();
   }
 
-  public bespokes(): string[] {
-    return Namespace.genericBespokes(this.props.content);
-  }
-
-  public identifiers(): string[] {
-    return [...Namespace.genericIdentifiers(this.props.content), this.props.name];
-  }
-
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
+    builder.withIdentifiers(this.props.name);
     if (this.exported) {
       builder.add("export ");
     }
@@ -45,7 +35,7 @@ export class Namespace extends NamedRenderer {
       .forEach(
         (content: TRenderer): void => {
           builder.ensureOnNewlineAfterEmptyline();
-          Namespace.genericRenderer(content)(context, builder);
+          Namespace.genericRenderer(content)(builder);
         },
       );
     builder
@@ -53,6 +43,6 @@ export class Namespace extends NamedRenderer {
       .addThenNewline("}");
   }
 
-  protected verify(context: IContext): void {
+  protected verify(builder: Builder): void {
   }
 }

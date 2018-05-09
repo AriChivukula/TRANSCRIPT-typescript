@@ -1,4 +1,4 @@
-import { IBuilder, Builder } from "./builder";
+import { Builder } from "./builder";
 
 export type AnonymousRenderer = (builder: Builder) => void;
 

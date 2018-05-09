@@ -4,7 +4,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, sep } from "path";
 import * as yargs from "yargs";
 
-import { endTemplate, Module, startTemplate } from "./index";
+import { Builder, endTemplate, Module, startTemplate } from "./index";
 
 // tslint:disable-next-line
 yargs
@@ -71,13 +71,15 @@ function codegenModule(
         mkdirSync(dirBuilder);
       }
     });
+  const builder: Builder = Builder.new({
+    name,
+    path,
+  });
+  const content: string = module.print(builder);
   codegenModuleWithBespokes(
-    module.bespokes(),
+    builder.getBespokes(),
     module.destination(),
-    module.print({
-      name,
-      path,
-    }),
+    content,
     inspectOnly,
   );
 }

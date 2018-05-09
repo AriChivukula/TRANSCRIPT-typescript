@@ -259,7 +259,7 @@ export class Builder {
   }
 
   public withIdentifiers(...identifiers: string[]): Builder {
-    this.bespokes = this.identifiers.concat(identifiers);
+    this.identifiers = this.identifiers.concat(identifiers);
 
     return this;
   }
