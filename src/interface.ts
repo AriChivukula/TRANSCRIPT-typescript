@@ -4,6 +4,7 @@ import { Type } from "./type";
 
 export interface IInterface {
   readonly extends?: string[];
+  readonly kind?: string;
   readonly name: string;
   readonly templates?: string[];
   readonly types: Array<Type.FromMethod | Type.Optional | Type.Required>;
@@ -51,6 +52,9 @@ export class Interface extends Renderable {
     builder
       .addThenNewline(" {")
       .indent();
+    if ("kind" in this.props) {
+      builder.addThenNewline(`kind: "${this.props.kind}";`);
+    }
     this.props.types.forEach(
       (type: Type.Required | Type.Optional): void => {
         type.run(context, builder);

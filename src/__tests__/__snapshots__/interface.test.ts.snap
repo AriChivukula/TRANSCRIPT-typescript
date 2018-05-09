@@ -2,6 +2,7 @@
 
 exports[`interface1 1`] = `
 "interface If1<T> {
+  kind: \\"IF1\\";
 }
 "
 `;
