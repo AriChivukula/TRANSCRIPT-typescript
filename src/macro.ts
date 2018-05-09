@@ -122,7 +122,7 @@ export function React(
       Function.newAsyncExported({
         content: [
           Bespoke.new({
-            name: reactName,
+            name: "implementation",
           }),
         ],
         inTypes: [],
@@ -155,7 +155,11 @@ export function React(
     reactClass = [
       ...reactClass,
       Class.newConcreteExported({
-        content: [],
+        content: [
+          Bespoke.new({
+            name: "implementation",
+          }),
+        ],
         extends: reactExtends,
         name: reactName,
       }),

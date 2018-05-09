@@ -2,8 +2,8 @@
  * This file is partially generated; only edit bespoke sections.
  *
  * SOURCE<<gen/react.ts::stateReact>>
- * BESPOKE<<imports>>
- * SIGNED<<D7qkFGAZatuIqwk5TecpHqybWD6hcywA5GbZozl5tifAZd05AGp6yyg1PAVg439QHfDaPSJMTngsw4g/4dGUKQ==>>
+ * BESPOKE<<imports, implementation>>
+ * SIGNED<<+Q3zCi+IWkeOPvjIyic0ElM1O0NREPJamhNFVH9ILDXPv/AgMTSPdjvqmjf5LEJhZdbWGYDj38L4zr2sA4fmSg==>>
  */
 
 import * as React from "react";
@@ -20,4 +20,7 @@ interface IState {
 }
 
 export class StateReact extends React.Component<IProps, IState> {
+
+  /* BESPOKE START <<implementation>> */
+  /* BESPOKE END <<implementation>> */
 }
