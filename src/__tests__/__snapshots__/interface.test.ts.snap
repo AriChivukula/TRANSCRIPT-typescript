@@ -3,6 +3,10 @@
 exports[`interface1 1`] = `
 "interface If1<T> {
   kind: \\"IF1\\";
+  methodInstance6<T>(
+    var1: string,
+    var2: object,
+  ): Promise<string[]>;
 }
 "
 `;

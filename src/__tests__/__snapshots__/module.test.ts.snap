@@ -6,7 +6,7 @@ exports[`complexModule 1`] = `
  *
  * SOURCE<<src/__tests__/module.test.ts::complexModule>>
  * BESPOKE<<TEST1, methodInstance4, fn3, methodInstance3Bespoke, methodStatic3Bespoke, 3tESt3>>
- * SIGNED<<c3HUqC1k16hbSN2+P9XV2PIKkZiqT76F3FskXtYMddxC2+44KirQvKEZHo1AemvcRdmaPvsvj1Jq+PLXQlBt4A==>>
+ * SIGNED<<bQ3bdy5L7hKONFVIVHZhAmFCNwvmKnP9uqEqKGr5zeHg1ZTutWnEwxR92nLVQp3D5Dx/5saQ8FgCIE3FIITGHQ==>>
  */
 
 import \\"./p\\";
@@ -60,6 +60,10 @@ export class MyClass2<T, V> extends MyClass1 {
 
 interface If1<T> {
   kind: \\"IF1\\";
+  methodInstance6<T>(
+    var1: string,
+    var2: object,
+  ): Promise<string[]>;
 }
 
 export async function function3(
@@ -132,7 +136,7 @@ exports[`contentModule 1`] = `
  *
  * SOURCE<<src/__tests__/module.test.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<t9Z7xMxC3QKsSHo8TFsMaWtReVzigtCVADVz0Rk8JAU6Tcsdu5S7X3hZ+wgfFBRJdxDHxI2z55EHyik6998Dcg==>>
+ * SIGNED<<gknqMk9XOZLt3TpjTXwERCaPbInPIAByL1kv2j/2Xcond5GAK5OwTV+LVbe6jqHKVCODGWVs76z84eXmybVq1Q==>>
  */
 
 export abstract class MyClass1<T> {
@@ -161,6 +165,10 @@ type Ty1<T> = number;
 
 interface If1<T> {
   kind: \\"IF1\\";
+  methodInstance6<T>(
+    var1: string,
+    var2: object,
+  ): Promise<string[]>;
 }
 
 function function1<T>(

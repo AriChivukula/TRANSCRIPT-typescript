@@ -7,7 +7,7 @@ export interface IInterface {
   readonly kind?: string;
   readonly name: string;
   readonly templates?: string[];
-  readonly types: Array<Type.Required | Type.Optional>;
+  readonly types: Array<Type.FromMethod | Type.Optional | Type.Required>;
 }
 
 export class Interface extends Renderable {
