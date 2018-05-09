@@ -42,10 +42,7 @@ test(
   "type1",
   async (): Promise<void> => {
     /* BESPOKE START <<type1>> */
-    expect(type1.print({
-      name: "type1",
-      path: "src/__tests__/type.test.ts",
-    }))
+    expect(type1.print())
       .toMatchSnapshot();
     /* BESPOKE END <<type1>> */
   },
@@ -55,10 +52,7 @@ test(
   "type2",
   async (): Promise<void> => {
     /* BESPOKE START <<type2>> */
-    expect(type2.print({
-      name: "type2",
-      path: "src/__tests__/type.test.ts",
-    }))
+    expect(type2.print())
       .toMatchSnapshot();
     /* BESPOKE END <<type2>> */
   },
@@ -68,10 +62,7 @@ test(
   "type3",
   async (): Promise<void> => {
     /* BESPOKE START <<type3>> */
-    expect(type3.print({
-      name: "type3",
-      path: "src/__tests__/type.test.ts",
-    }))
+    expect(type3.print())
       .toMatchSnapshot();
     /* BESPOKE END <<type3>> */
   },
@@ -81,10 +72,7 @@ test(
   "type4",
   async (): Promise<void> => {
     /* BESPOKE START <<type4>> */
-    expect(type4.print({
-      name: "type4",
-      path: "src/__tests__/type.test.ts",
-    }))
+    expect(type4.print())
       .toMatchSnapshot();
     /* BESPOKE END <<type4>> */
   },
@@ -94,10 +82,7 @@ test(
   "type5",
   async (): Promise<void> => {
     /* BESPOKE START <<type5>> */
-    expect(type5.print({
-      name: "type5",
-      path: "src/__tests__/type.test.ts",
-    }))
+    expect(type5.print())
       .toMatchSnapshot();
     /* BESPOKE END <<type5>> */
   },

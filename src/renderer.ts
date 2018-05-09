@@ -14,7 +14,13 @@ export abstract class NamedRenderer {
     }
   }
 
-  public print(builder: Builder): string {
+  public print(builder?: Builder): string {
+    if (builder === undefined) {
+      builder = Builder.new({
+        name: "DO_NOT_COMMIT",
+        path: "DO_NOT_COMMIT",
+      });
+    }
     this.run(builder);
 
     return builder.print();

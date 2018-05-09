@@ -42,10 +42,7 @@ test(
   "complexModule",
   async (): Promise<void> => {
     /* BESPOKE START <<complexModule>> */
-    expect(complexModule.print({
-      name: "complexModule",
-      path: "src/__tests__/module.test.ts",
-    }))
+    expect(complexModule.print())
       .toMatchSnapshot();
     /* BESPOKE END <<complexModule>> */
   },
@@ -55,10 +52,7 @@ test(
   "contentModule",
   async (): Promise<void> => {
     /* BESPOKE START <<contentModule>> */
-    expect(contentModule.print({
-      name: "contentModule",
-      path: "src/__tests__/module.test.ts",
-    }))
+    expect(contentModule.print())
       .toMatchSnapshot();
     /* BESPOKE END <<contentModule>> */
   },
@@ -68,10 +62,7 @@ test(
   "emptyModule",
   async (): Promise<void> => {
     /* BESPOKE START <<emptyModule>> */
-    expect(emptyModule.print({
-      name: "emptyModule",
-      path: "src/__tests__/module.test.ts",
-    }))
+    expect(emptyModule.print())
       .toMatchSnapshot();
     /* BESPOKE END <<emptyModule>> */
   },
@@ -81,10 +72,7 @@ test(
   "importModule",
   async (): Promise<void> => {
     /* BESPOKE START <<importModule>> */
-    expect(importModule.print({
-      name: "importModule",
-      path: "src/__tests__/module.test.ts",
-    }))
+    expect(importModule.print())
       .toMatchSnapshot();
     /* BESPOKE END <<importModule>> */
   },

@@ -52,10 +52,7 @@ test(
           ],
           destination: "",
         })
-        .print({
-          name: "",
-          path: "",
-        }),
+        .print(),
     )
       .toThrow();
     /* BESPOKE END <<verifyUniqueBespoke>> */
@@ -75,10 +72,7 @@ test(
           ],
           destination: "",
         })
-        .print({
-          name: "",
-          path: "",
-        }),
+        .print(),
     )
       .toThrow();
     /* BESPOKE END <<verifyUniqueIdentifiers>> */

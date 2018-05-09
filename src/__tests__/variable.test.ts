@@ -42,10 +42,7 @@ test(
   "variable1",
   async (): Promise<void> => {
     /* BESPOKE START <<variable1>> */
-    expect(variable1.print({
-      name: "variable1",
-      path: "src/__tests__/variable.test.ts",
-    }))
+    expect(variable1.print())
       .toMatchSnapshot();
     /* BESPOKE END <<variable1>> */
   },
@@ -55,10 +52,7 @@ test(
   "variable2",
   async (): Promise<void> => {
     /* BESPOKE START <<variable2>> */
-    expect(variable2.print({
-      name: "variable2",
-      path: "src/__tests__/variable.test.ts",
-    }))
+    expect(variable2.print())
       .toMatchSnapshot();
     /* BESPOKE END <<variable2>> */
   },
@@ -68,10 +62,7 @@ test(
   "variable3",
   async (): Promise<void> => {
     /* BESPOKE START <<variable3>> */
-    expect(variable3.print({
-      name: "variable3",
-      path: "src/__tests__/variable.test.ts",
-    }))
+    expect(variable3.print())
       .toMatchSnapshot();
     /* BESPOKE END <<variable3>> */
   },
