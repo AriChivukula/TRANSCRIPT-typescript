@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::complexModule>>
  * BESPOKE<<TEST1, methodInstance4, fn3, methodInstance3Bespoke, methodStatic3Bespoke, 3tESt3>>
- * SIGNED<<jqVv/ueDqHpju8sWOzfjLUo1Qyl2d5CKKREjmeDM8XE4/HIZpiSnquNmo+WpWCo/253z2HbMCWwwmAu/gTThwA==>>
+ * SIGNED<<c3HUqC1k16hbSN2+P9XV2PIKkZiqT76F3FskXtYMddxC2+44KirQvKEZHo1AemvcRdmaPvsvj1Jq+PLXQlBt4A==>>
  */
 
 import "./p";
@@ -57,6 +57,7 @@ export class MyClass2<T, V> extends MyClass1 {
 }
 
 interface If1<T> {
+  kind: "IF1";
 }
 
 export async function function3(
