@@ -1,5 +1,6 @@
 import { Bespoke } from "./bespoke";
 import { Builder } from "./builder";
+import { Interface } from "./interface";
 import { Module } from "./module";
 import { IContext, Renderable } from "./renderable";
 
@@ -95,6 +96,19 @@ export function Jest(
   return Module.new({
     content: ([] as Renderable[])
       .concat(bespokeImport, beforeAll, afterAll, beforeEach, afterEach, ...testRenders),
+    destination,
+  });
+}
+
+export function React(
+  destination: string,
+  reactName: string,
+  props?: Interface,
+  relayName?: string,
+  state?: Interface,
+): Module {
+  return Module.new({
+    content: [],
     destination,
   });
 }
