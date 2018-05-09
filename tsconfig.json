@@ -10,6 +10,6 @@
   },
   "exclude": [
     "bin/*",
-    "gen/__codegen__/*"
+    "gen/*"
   ]
 }
