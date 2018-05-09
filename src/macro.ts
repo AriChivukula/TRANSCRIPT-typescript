@@ -66,7 +66,7 @@ export function Jest(props: IJest): Module {
   const testRenders: TRenderer[] = props.tests.map(
     (test: string): TRenderer => JestCall({
       functionName: "test",
-      testName: name,
+      testName: test,
     }),
   );
 
@@ -98,7 +98,20 @@ function ReactConstructorCall(): AnonymousRenderer {
   };
 }
 
-export enum RelayType {
+interface IRelayContainerCall {
+  name: string;
+  relayType: ERelayType;
+}
+
+function RelayContainerCall(props: IRelayContainerCall): AnonymousRenderer {
+  return (builder: Builder): void => {
+    builder
+      .indent()
+      .unindent();
+  };
+}
+
+export enum ERelayType {
   FRAGMENT = "createFragmentContainer",
   PAGINATION = "createPaginationContainer",
   REFETCH = "createRefetchContainer",
@@ -108,20 +121,24 @@ export interface IReact {
   destination: string;
   name: string;
   props?: Array<Type.Optional | Type.Required>;
+  relayMutation?: boolean;
+  relayType?: ERelayType;
   state?: Array<Type.Optional | Type.Required>;
 }
 
 export function React(props: IReact): Module {
-  const reactImport: TRenderer = Import.new({
-    name: "react",
-    withAllAs: "React",
-  });
-  const bespokeImport: TRenderer = Bespoke.new({
-    name: "imports",
-  });
-  let reactClass: TRenderer[];
+  let content: TRenderer[] = [
+    Import.new({
+      name: "react",
+      withAllAs: "React",
+    }),
+    Bespoke.new({
+      name: "imports",
+    }),
+  ];
   if (props.props === undefined) {
-    reactClass = [
+    content = [
+      ...content,
       Function.newSyncExported({
         content: [
           Bespoke.new({
@@ -138,7 +155,8 @@ export function React(props: IReact): Module {
   } else {
     const propsName: string = `I${props.name}Props`;
     let reactExtends: string = `React.Component<${propsName}`;
-    reactClass = [
+    content = [
+      ...content,
       Interface.newExported({
         name: propsName,
         types: props.props,
@@ -148,8 +166,8 @@ export function React(props: IReact): Module {
     if (props.state !== undefined) {
       const stateName: string = `I${props.name}State`;
       reactExtends += `, ${stateName}>`;
-      reactClass = [
-        ...reactClass,
+      content = [
+        ...content,
         Interface.newExported({
           name: stateName,
           types: props.state,
@@ -171,8 +189,8 @@ export function React(props: IReact): Module {
     } else {
       reactExtends += ">";
     }
-    reactClass = [
-      ...reactClass,
+    content = [
+      ...content,
       Class.newConcreteExported({
         content: [
           ...constructor,
@@ -196,10 +214,27 @@ export function React(props: IReact): Module {
         name: props.name,
       }),
     ];
+    if (props.relayType !== undefined) {
+      let relayImports: string[] = ["graphql", props.relayType];
+      if (props.relayMutation === true) {
+        relayImports = [...relayImports, "commitMutation"];
+      }
+      content = [
+        ...content,
+        Import.new({
+          name: "react-relay",
+          with: relayImports,
+        }),
+        RelayContainerCall({
+          name: props.name,
+          relayType: props.relayType,
+        }),
+      ];
+    }
   }
 
   return Module.new({
-    content: [reactImport, bespokeImport, ...reactClass],
+    content,
     destination: props.destination,
   });
 }
