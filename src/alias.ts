@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderable";
+import { NamedRenderer } from "./renderer";
 import { Type } from "./type";
 
 export interface IAlias {
@@ -8,7 +8,7 @@ export interface IAlias {
   readonly type: Type.Anonymous;
 }
 
-export class Alias extends Renderable {
+export class Alias extends NamedRenderer {
 
   public static newExported(props: IAlias): Alias {
     return new Alias(props, true);
@@ -25,18 +25,8 @@ export class Alias extends Renderable {
     super();
   }
 
-  public bespokes(): string[] {
-    return [];
-  }
-
-  public identifiers(): string[] {
-    return [this.props.name];
-  }
-
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
+    builder.withIdentifiers(this.props.name);
     if (this.exported) {
       builder.add("export ");
     }
@@ -45,10 +35,10 @@ export class Alias extends Renderable {
       builder.add(`<${this.props.templates.join(", ")}>`);
     }
     builder.add(" = ");
-    this.props.type.run(context, builder);
+    this.props.type.run(builder);
     builder.addThenNewline(";");
   }
 
-  protected verify(context: IContext): void {
+  protected verify(builder: Builder): void {
   }
 }

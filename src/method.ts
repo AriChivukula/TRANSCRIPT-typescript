@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderable";
+import { NamedRenderer, TRenderer } from "./renderer";
 import { Type } from "./type";
 
 export namespace Method {
@@ -11,7 +11,7 @@ export namespace Method {
   }
 
   export interface IBase {
-    readonly content?: Renderable[];
+    readonly content?: TRenderer[];
     readonly templates?: string[];
   }
 
@@ -27,7 +27,7 @@ export namespace Method {
 
   export type T = IConstructor | INormal;
 
-  export abstract class Base extends Renderable {
+  export abstract class Base extends NamedRenderer {
 
     protected constructor(
       private readonly props: T,
@@ -38,28 +38,7 @@ export namespace Method {
       super();
     }
 
-    public bespokes(): string[] {
-      if (this.props.content === undefined) {
-        return [];
-      }
-      const bespokes: string[][] = this.props.content
-        .map((content: Renderable) => content.bespokes());
-
-      return ([] as string[]).concat(...bespokes);
-    }
-
-    public identifiers(): string[] {
-      if ("name" in this.props) {
-        return [this.props.name];
-      }
-
-      return [];
-    }
-
-    protected render(
-      context: IContext,
-      builder: Builder,
-    ): void {
+    protected render(builder: Builder): void {
       builder.add(`${this.kind} `);
       if (this.isStatic) {
         builder.add("static ");
@@ -71,6 +50,7 @@ export namespace Method {
         builder.add("abstract ");
       }
       if ("name" in this.props) {
+        builder.withIdentifiers(this.props.name);
         builder.add(this.props.name);
       } else {
         builder.add("constructor");
@@ -83,7 +63,7 @@ export namespace Method {
         .indent();
       (this.props.inTypes as Type.Base[]).forEach(
         (type: Type.Base): void => {
-          type.run(context, builder);
+          type.run(builder);
           builder.addThenNewline(",");
         },
       );
@@ -92,7 +72,7 @@ export namespace Method {
         .add(")");
       if ("outType" in this.props) {
         builder.add(": ");
-        this.props.outType.run(context, builder);
+        this.props.outType.run(builder);
       }
       if (this.props.content === undefined) {
         builder.addThenNewline(";");
@@ -102,8 +82,8 @@ export namespace Method {
           .indent();
         this.props.content
           .forEach(
-            (content: Renderable): void => {
-              content.run(context, builder);
+            (content: TRenderer): void => {
+              Base.genericRenderer(content)(builder);
             },
           );
         builder
@@ -112,7 +92,7 @@ export namespace Method {
       }
     }
 
-    protected verify(context: IContext): void {
+    protected verify(builder: Builder): void {
     }
   }
 

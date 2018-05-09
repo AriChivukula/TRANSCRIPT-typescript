@@ -1,12 +1,12 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderable";
+import { NamedRenderer, TRenderer } from "./renderer";
 
 export interface INamespace {
-  readonly content: Renderable[];
+  readonly content: TRenderer[];
   readonly name: string;
 }
 
-export class Namespace extends Renderable {
+export class Namespace extends NamedRenderer {
 
   public static newExported(props: INamespace): Namespace {
     return new Namespace(props, true);
@@ -23,26 +23,8 @@ export class Namespace extends Renderable {
     super();
   }
 
-  public bespokes(): string[] {
-    const bespokes: string[][] = this.props.content
-      .map((content: Renderable) => content.bespokes());
-
-    return ([] as string[]).concat(...bespokes);
-  }
-
-  public identifiers(): string[] {
-    const identifiers: string[][] = this.props.content
-      .map(
-        (content: Renderable) => content.identifiers(),
-      );
-
-    return ([] as string[]).concat(...identifiers, [this.props.name]);
-  }
-
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
+    builder.withIdentifiers(this.props.name);
     if (this.exported) {
       builder.add("export ");
     }
@@ -51,9 +33,9 @@ export class Namespace extends Renderable {
       .indent();
     this.props.content
       .forEach(
-        (content: Renderable): void => {
+        (content: TRenderer): void => {
           builder.ensureOnNewlineAfterEmptyline();
-          content.run(context, builder);
+          Namespace.genericRenderer(content)(builder);
         },
       );
     builder
@@ -61,6 +43,6 @@ export class Namespace extends Renderable {
       .addThenNewline("}");
   }
 
-  protected verify(context: IContext): void {
+  protected verify(builder: Builder): void {
   }
 }

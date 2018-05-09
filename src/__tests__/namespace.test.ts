@@ -42,10 +42,7 @@ test(
   "namespace1",
   async (): Promise<void> => {
     /* BESPOKE START <<namespace1>> */
-    expect(namespace1.print({
-      name: "namespace1",
-      path: "src/__tests__/namespace.test.ts",
-    }))
+    expect(namespace1.print())
       .toMatchSnapshot();
     /* BESPOKE END <<namespace1>> */
   },
@@ -55,10 +52,7 @@ test(
   "namespace2",
   async (): Promise<void> => {
     /* BESPOKE START <<namespace2>> */
-    expect(namespace2.print({
-      name: "namespace2",
-      path: "src/__tests__/namespace.test.ts",
-    }))
+    expect(namespace2.print())
       .toMatchSnapshot();
     /* BESPOKE END <<namespace2>> */
   },

@@ -1,7 +1,7 @@
 import { Builder } from "./builder";
 import { Method } from "./method";
 import { Property } from "./property";
-import { IContext, Renderable } from "./renderable";
+import { NamedRenderer } from "./renderer";
 
 export namespace Type {
 
@@ -49,7 +49,7 @@ export namespace Type {
 
   export type T = TAnonymous | TArgument | TMethod | TNamed | TProperty;
 
-  export abstract class Base extends Renderable {
+  export abstract class Base extends NamedRenderer {
 
     protected constructor(
       private readonly props: T,
@@ -58,24 +58,7 @@ export namespace Type {
       super();
     }
 
-    public bespokes(): string[] {
-      return [];
-    }
-
-    public identifiers(): string[] {
-      if ("name" in this.props) {
-        return [this.props.name];
-      } else if ("property" in this.props) {
-        return this.props.property.identifiers();
-      }
-
-      return [];
-    }
-
-    protected render(
-      context: IContext,
-      builder: Builder,
-    ): void {
+    protected render(builder: Builder): void {
       if ("name" in this.props) {
         builder.add(`${this.props.name}${this.optional ? "?" : ""}: `);
       }
@@ -86,12 +69,12 @@ export namespace Type {
       } else if ("property" in this.props) {
         builder.add(
           this.props.property
-            .print(context)
+            .print()
             .replace(";\n", ""),
         );
       } else {
         this.props.method
-          .print(context)
+          .print()
           .replace(";\n", "")
           .replace("public abstract ", "")
           .replace("public async abstract ", "")
@@ -113,7 +96,7 @@ export namespace Type {
       }
     }
 
-    protected verify(context: IContext): void {
+    protected verify(builder: Builder): void {
     }
   }
 

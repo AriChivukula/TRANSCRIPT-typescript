@@ -28,7 +28,7 @@
 ### Internal
 
 * [Builder](https://github.com/arichiv/typescriptase/blob/master/src/builder.ts)
-* [Renderable](https://github.com/arichiv/typescriptase/blob/master/src/renderable.ts)
+* [Renderer](https://github.com/arichiv/typescriptase/blob/master/src/renderer.ts)
 
 ## Examples
 

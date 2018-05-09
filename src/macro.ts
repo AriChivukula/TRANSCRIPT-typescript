@@ -6,133 +6,78 @@ import { Import } from "./import";
 import { Interface } from "./interface";
 import { Method } from "./method";
 import { Module } from "./module";
-import { IContext, Renderable } from "./renderable";
+import { AnonymousRenderer, TRenderer } from "./renderer";
 import { Type } from "./type";
 
-interface IJestCall {
-  readonly functionName: string;
-  readonly testName?: string;
-}
-
-class JestCall extends Renderable {
-
-  public static new(props: IJestCall): JestCall {
-    return new JestCall(props);
-  }
-
-  private constructor(
-    private readonly props: IJestCall,
-  ) {
-    super();
-  }
-
-  public bespokes(): string[] {
-    if (this.props.testName !== undefined) {
-      return [this.props.testName];
-    }
-
-    return [this.props.functionName];
-  }
-
-  public identifiers(): string[] {
-    if (this.props.testName !== undefined) {
-      return [this.props.testName];
-    }
-
-    return [this.props.functionName];
-  }
-
-  protected render(context: IContext, builder: Builder): void {
+function JestCall(functionName: string, testName?: string): AnonymousRenderer {
+  return (builder: Builder): void => {
     builder
-      .addThenNewline(`${this.props.functionName}(`)
+      .addThenNewline(`${functionName}(`)
       .indent();
-    if (this.props.testName !== undefined) {
-      builder.addThenNewline(`"${this.props.testName}",`);
+    if (testName !== undefined) {
+      builder.addThenNewline(`"${testName}",`);
     }
     builder
       .addThenNewline("async (): Promise<void> => {")
       .indent();
-    if (this.props.testName !== undefined) {
+    if (testName !== undefined) {
       Bespoke
-        .new({ name: this.props.testName })
-        .run(context, builder);
+        .new({ name: testName })
+        .run(builder);
     } else {
       Bespoke
-        .new({ name: this.props.functionName })
-        .run(context, builder);
+        .new({ name: functionName })
+        .run(builder);
     }
     builder
       .unindent()
       .addThenNewline("},")
       .unindent()
       .addThenNewline(");");
-  }
-
-  protected verify(context: IContext): void {
-  }
+  };
 }
 
 export function Jest(
   destination: string,
   tests: string[],
 ): Module {
-  const bespokeImport: Renderable = Bespoke.new({
+  const bespokeImport: TRenderer = Bespoke.new({
     name: "imports",
   });
-  const beforeAll: Renderable = JestCall.new({
-    functionName: "beforeAll",
-  });
-  const afterAll: Renderable = JestCall.new({
-    functionName: "afterAll",
-  });
-  const beforeEach: Renderable = JestCall.new({
-    functionName: "beforeEach",
-  });
-  const afterEach: Renderable = JestCall.new({
-    functionName: "afterEach",
-  });
-  const testRenders: Renderable[] = tests.map(
-    (test: string): Renderable => JestCall.new({
-      functionName: "test",
-      testName: test,
-    }),
+  const beforeAll: TRenderer = JestCall("beforeAll");
+  const afterAll: TRenderer = JestCall("afterAll");
+  const beforeEach: TRenderer = JestCall("beforeEach");
+  const afterEach: TRenderer = JestCall("afterEach");
+  const testRenders: TRenderer[] = tests.map(
+    (test: string): TRenderer => JestCall("test", test),
   );
 
   return Module.new({
-    content: [bespokeImport, beforeAll, afterAll, beforeEach, afterEach, ...testRenders],
+    content: [
+      bespokeImport,
+      beforeAll,
+      afterAll,
+      beforeEach,
+      afterEach,
+      ...testRenders,
+    ],
     destination,
   });
 }
 
-class ReactConstructorCall extends Renderable {
-
-  public static new(): ReactConstructorCall {
-    return new ReactConstructorCall();
-  }
-
-  public bespokes(): string[] {
-    return [];
-  }
-
-  public identifiers(): string[] {
-    return [];
-  }
-
-  protected render(context: IContext, builder: Builder): void {
+function ReactConstructorCall(): AnonymousRenderer {
+  return (builder: Builder): void => {
     builder
       .addThenNewline("super(props);")
       .addThenNewline("this.state = {")
       .indent();
     Bespoke
       .new({ name: "state" })
-      .run(context, builder);
+      .run(builder);
     builder
       .unindent()
       .addThenNewline("};");
-  }
-
-  protected verify(context: IContext): void {
-  }
+  };
 }
 
 export function React(
@@ -141,14 +86,14 @@ export function React(
   props?: Array<Type.Optional | Type.Required>,
   state?: Array<Type.Optional | Type.Required>,
 ): Module {
-  const reactImport: Renderable = Import.new({
+  const reactImport: TRenderer = Import.new({
     name: "react",
     withAllAs: "React",
   });
-  const bespokeImport: Renderable = Bespoke.new({
+  const bespokeImport: TRenderer = Bespoke.new({
     name: "imports",
   });
-  let reactClass: Renderable[];
+  let reactClass: TRenderer[];
   if (props === undefined) {
     reactClass = [
       Function.newSyncExported({
@@ -173,7 +118,7 @@ export function React(
         types: props,
       }),
     ];
-    let constructor: Renderable[] = [];
+    let constructor: TRenderer[] = [];
     if (state !== undefined) {
       const stateName: string = `I${reactName}State`;
       reactExtends += `, ${stateName}>`;
@@ -187,7 +132,7 @@ export function React(
       constructor = [
         Method.Instance.Public.newConstructor({
           content: [
-            ReactConstructorCall.new(),
+            ReactConstructorCall(),
           ],
           inTypes: [
             Type.Argument.new({

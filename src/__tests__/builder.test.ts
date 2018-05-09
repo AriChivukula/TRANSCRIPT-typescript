@@ -44,7 +44,7 @@ test(
     /* BESPOKE START <<Empty>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .print(),
     )
       .toMatchSnapshot();
@@ -58,7 +58,7 @@ test(
     /* BESPOKE START <<Add>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .add("a")
         .print(),
     )
@@ -73,7 +73,7 @@ test(
     /* BESPOKE START <<Await>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .await("a")
         .print(),
     )
@@ -88,7 +88,7 @@ test(
     /* BESPOKE START <<Return>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .return("a")
         .print(),
     )
@@ -103,7 +103,7 @@ test(
     /* BESPOKE START <<SetHeader>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .add("b")
         .setHeader("\na\t")
         .print(),
@@ -119,7 +119,7 @@ test(
     /* BESPOKE START <<AddThenNewline>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .addThenNewline("a")
         .print(),
     )
@@ -134,7 +134,7 @@ test(
     /* BESPOKE START <<AwaitThenNewline>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .awaitThenNewline("a")
         .print(),
     )
@@ -149,7 +149,7 @@ test(
     /* BESPOKE START <<ReturnAwait>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .returnAwait("a")
         .print(),
     )
@@ -164,7 +164,7 @@ test(
     /* BESPOKE START <<Newline>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .add("a")
         .ensureOnNewline()
         .print(),
@@ -172,7 +172,7 @@ test(
       .toMatchSnapshot();
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .addThenNewline("a")
         .ensureOnNewline()
         .print(),
@@ -188,7 +188,7 @@ test(
     /* BESPOKE START <<NewlineAfterEmptyline>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .add("a")
         .ensureOnNewlineAfterEmptyline()
         .addThenNewline("b")
@@ -197,7 +197,7 @@ test(
       .toMatchSnapshot();
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .addThenNewline("a")
         .ensureOnNewlineAfterEmptyline()
         .print(),
@@ -213,7 +213,7 @@ test(
     /* BESPOKE START <<Indentation>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .addThenNewline("a")
         .indent()
         .addThenNewline("b")
@@ -236,7 +236,7 @@ test(
     /* BESPOKE START <<For>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .for("A")
         .addThenNewline("B")
         .endFor()
@@ -253,7 +253,7 @@ test(
     /* BESPOKE START <<IfElse>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .if("A")
         .addThenNewline("B")
         .elseIf("C")
@@ -274,7 +274,7 @@ test(
     /* BESPOKE START <<Switch>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .switch("A")
         .case("B")
         .addThenNewline("C")
@@ -297,7 +297,7 @@ test(
     /* BESPOKE START <<TryCatch>> */
     expect(
       Builder
-        .new()
+        .new({ name: "", path: "" })
         .try()
         .addThenNewline("A")
         .catch()
@@ -320,7 +320,7 @@ test(
     /* BESPOKE START <<EmptyError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .add(""),
     )
       .toThrow();
@@ -334,7 +334,7 @@ test(
     /* BESPOKE START <<TabError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .addThenNewline("a\tb"),
     )
       .toThrow();
@@ -348,7 +348,7 @@ test(
     /* BESPOKE START <<NewlineError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .addThenNewline("a\nb"),
     )
       .toThrow();
@@ -362,7 +362,7 @@ test(
     /* BESPOKE START <<AwaitError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .addThenNewline("a\nawait"),
     )
       .toThrow();
@@ -376,7 +376,7 @@ test(
     /* BESPOKE START <<ReturnError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .addThenNewline("a\nreturn"),
     )
       .toThrow();
@@ -390,7 +390,7 @@ test(
     /* BESPOKE START <<UnindentError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .addThenNewline("a")
         .unindent(),
     )
@@ -405,7 +405,7 @@ test(
     /* BESPOKE START <<IndentError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .addThenNewline("a")
         .indent()
         .print(),
@@ -421,7 +421,7 @@ test(
     /* BESPOKE START <<IndentNewlineError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .indent(),
     )
       .toThrow();
@@ -435,7 +435,7 @@ test(
     /* BESPOKE START <<SetHeaderError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .setHeader("\na\t")
         .setHeader("\na\t"),
     )
@@ -450,7 +450,7 @@ test(
     /* BESPOKE START <<CasePrintError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .switch("A")
         .case("B")
         .print(),
@@ -466,7 +466,7 @@ test(
     /* BESPOKE START <<CaseError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .endCase(),
     )
       .toThrow();
@@ -480,7 +480,7 @@ test(
     /* BESPOKE START <<ForPrintError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .for("true")
         .print(),
     )
@@ -495,7 +495,7 @@ test(
     /* BESPOKE START <<ForError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .endFor(),
     )
       .toThrow();
@@ -509,7 +509,7 @@ test(
     /* BESPOKE START <<IfPrintError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .if("true")
         .print(),
     )
@@ -524,7 +524,7 @@ test(
     /* BESPOKE START <<IfError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .else(),
     )
       .toThrow();
@@ -538,7 +538,7 @@ test(
     /* BESPOKE START <<SwitchPrintError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .switch("A")
         .print(),
     )
@@ -553,7 +553,7 @@ test(
     /* BESPOKE START <<SwitchError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .endSwitch(),
     )
       .toThrow();
@@ -567,7 +567,7 @@ test(
     /* BESPOKE START <<TryPrintError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .try()
         .print(),
     )
@@ -582,7 +582,7 @@ test(
     /* BESPOKE START <<TryError>> */
     expect(
       () => Builder
-        .new()
+        .new({ name: "", path: "" })
         .catch(),
     )
       .toThrow();

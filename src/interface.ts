@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderable";
+import { NamedRenderer } from "./renderer";
 import { Type } from "./type";
 
 export interface IInterface {
@@ -10,7 +10,7 @@ export interface IInterface {
   readonly types: Array<Type.FromMethod | Type.Optional | Type.Required>;
 }
 
-export class Interface extends Renderable {
+export class Interface extends NamedRenderer {
 
   public static newExported(props: IInterface): Interface {
     return new Interface(props, true);
@@ -27,18 +27,8 @@ export class Interface extends Renderable {
     super();
   }
 
-  public bespokes(): string[] {
-    return [];
-  }
-
-  public identifiers(): string[] {
-    return [this.props.name];
-  }
-
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
+    builder.withIdentifiers(this.props.name);
     if (this.exported) {
       builder.add("export ");
     }
@@ -57,7 +47,7 @@ export class Interface extends Renderable {
     }
     this.props.types.forEach(
       (type: Type.Required | Type.Optional): void => {
-        type.run(context, builder);
+        type.run(builder);
         builder.addThenNewline(";");
       },
     );
@@ -66,6 +56,6 @@ export class Interface extends Renderable {
       .addThenNewline("}");
   }
 
-  protected verify(context: IContext): void {
+  protected verify(builder: Builder): void {
   }
 }

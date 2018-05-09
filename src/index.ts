@@ -13,6 +13,6 @@ export * from "./method";
 export * from "./module";
 export * from "./namespace";
 export * from "./property";
-export * from "./renderable";
+export * from "./renderer";
 export * from "./type";
 export * from "./variable";

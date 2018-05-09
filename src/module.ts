@@ -2,7 +2,7 @@ import { createHash, Hash } from "crypto";
 
 import { Builder } from "./builder";
 import { EImportKind, Import } from "./import";
-import { IContext, Renderable } from "./renderable";
+import { NamedRenderer, TRenderer } from "./renderer";
 
 const headerTemplateWithoutBespoke: string = `/**
  * This file is fully generated; do not manually edit.
@@ -20,11 +20,11 @@ const headerTemplateWithBespoke: string = `/**
  */`;
 
 export interface IModule {
-  readonly content: Renderable[];
+  readonly content: TRenderer[];
   readonly destination: string;
 }
 
-export class Module extends Renderable {
+export class Module extends NamedRenderer {
 
   public static new(props: IModule): Module {
     return new Module(props);
@@ -38,12 +38,10 @@ export class Module extends Renderable {
   }
 
   private static renderImports(
-    context: IContext,
     builder: Builder,
     imports: Import[],
   ): void {
     Module.renderImportSection(
-      context,
       builder,
       imports
         .filter(
@@ -52,7 +50,6 @@ export class Module extends Renderable {
     );
     builder.ensureOnNewlineAfterEmptyline();
     Module.renderImportSection(
-      context,
       builder,
       imports
         .filter(
@@ -61,7 +58,6 @@ export class Module extends Renderable {
     );
     builder.ensureOnNewlineAfterEmptyline();
     Module.renderImportSection(
-      context,
       builder,
       imports
         .filter(
@@ -72,27 +68,25 @@ export class Module extends Renderable {
   }
 
   private static renderImportSection(
-    context: IContext,
     builder: Builder,
     imports: Import[],
   ): void {
     imports.forEach(
       (i: Import) => {
-        i.run(context, builder);
+        i.run(builder);
       },
     );
   }
 
   private static renderNonImports(
-    context: IContext,
     builder: Builder,
-    nonImports: Renderable[],
+    nonImports: TRenderer[],
   ): void {
     nonImports
       .forEach(
-        (r: Renderable): void => {
+        (r: TRenderer): void => {
           builder.ensureOnNewlineAfterEmptyline();
-          r.run(context, builder);
+          Module.genericRenderer(r)(builder);
         },
       );
   }
@@ -103,78 +97,56 @@ export class Module extends Renderable {
     super();
   }
 
-  public bespokes(): string[] {
-    const bespokes: string[][] = this.props.content
-      .map(
-        (content: Renderable) => content.bespokes(),
-      );
-
-    return ([] as string[]).concat(...bespokes);
-  }
-
   public destination(): string {
     return this.props.destination;
   }
 
-  public identifiers(): string[] {
-    const identifiers: string[][] = this.props.content
-      .map(
-        (content: Renderable) => content.identifiers(),
-      );
-
-    return ([] as string[]).concat(...identifiers);
-  }
-
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
     const imports: Import[] = this.props.content
       .filter(
-        (i: Renderable): i is Import => i instanceof Import,
+        (i: TRenderer): i is Import => i instanceof Import,
       )
       .sort(
-        (a: Import, b: Import) => a.identifiers()[0]
-          .localeCompare(b.identifiers()[0]),
+        (a: Import, b: Import) => a.compare(b),
       );
-    Module.renderImports(context, builder, imports);
+    Module.renderImports(builder, imports);
 
-    const nonImports: Renderable[] = this.props.content
+    const nonImports: TRenderer[] = this.props.content
       .filter(
-        (i: Renderable): boolean => !(i instanceof Import),
+        (i: TRenderer): boolean => !(i instanceof Import),
       );
-    Module.renderNonImports(context, builder, nonImports);
+    Module.renderNonImports(builder, nonImports);
 
-    const bespokes: string[] = this.bespokes();
+    const bespokes: string[] = builder.getBespokes();
     let header: string = "";
     if (bespokes.length > 0) {
       header = headerTemplateWithBespoke
-        .replace("@0", `${context.path}::${context.name}`)
+        .replace("@0", `${builder.getPath()}::${builder.getName()}`)
         .replace("@1", bespokes.join(", "))
         .replace("@2", Module.getHash(builder));
     } else {
       header = headerTemplateWithoutBespoke
-        .replace("@0", `${context.path}::${context.name}`)
+        .replace("@0", `${builder.getPath()}::${builder.getName()}`)
         .replace("@1", Module.getHash(builder));
     }
     builder.setHeader(header);
   }
 
-  protected verify(context: IContext): void {
-    this.verifyUniqueBespoke();
-    this.verifyUniqueIdentifiers();
+  protected verify(builder: Builder): void {
+    this.verifyUniqueBespoke(builder);
+    this.verifyUniqueIdentifiers(builder);
   }
 
-  private verifyUniqueBespoke(): void {
-    const bespokeArray: string[] = this.bespokes();
+  private verifyUniqueBespoke(builder: Builder): void {
+    const bespokeArray: string[] = builder.getBespokes();
     const bespokeSet: Set<string> = new Set(bespokeArray);
     if (bespokeSet.size < bespokeArray.length) {
       throw new Error("Duplicated Bespoke Sections");
     }
   }
 
-  private verifyUniqueIdentifiers(): void {
-    const identifierArray: string[] = this.identifiers();
+  private verifyUniqueIdentifiers(builder: Builder): void {
+    const identifierArray: string[] = builder.getIdentifiers();
     const identifierSet: Set<string> = new Set(identifierArray);
     if (identifierSet.size < identifierArray.length) {
       throw new Error("Duplicated Identifier Names");

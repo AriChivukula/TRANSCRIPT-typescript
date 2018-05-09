@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderable";
+import { NamedRenderer } from "./renderer";
 import { Type } from "./type";
 
 export namespace Property {
@@ -15,7 +15,7 @@ export namespace Property {
     readonly type: Type.Required | Type.Optional;
   }
 
-  export abstract class Base extends Renderable {
+  export abstract class Base extends NamedRenderer {
 
     protected constructor(
       private readonly props: I,
@@ -26,18 +26,7 @@ export namespace Property {
       super();
     }
 
-    public bespokes(): string[] {
-      return [];
-    }
-
-    public identifiers(): string[] {
-      return this.props.type.identifiers();
-    }
-
-    protected render(
-      context: IContext,
-      builder: Builder,
-    ): void {
+    protected render(builder: Builder): void {
       builder.add(`${this.kind} `);
       if (this.readonly) {
         builder.add("readonly ");
@@ -45,7 +34,7 @@ export namespace Property {
       if (this.isStatic) {
         builder.add("static ");
       }
-      this.props.type.run(context, builder);
+      this.props.type.run(builder);
       if (this.props.assignment !== undefined) {
         builder.addThenNewline(` = ${this.props.assignment};`);
       } else {
@@ -53,7 +42,7 @@ export namespace Property {
       }
     }
 
-    protected verify(context: IContext): void {
+    protected verify(builder: Builder): void {
     }
   }
 

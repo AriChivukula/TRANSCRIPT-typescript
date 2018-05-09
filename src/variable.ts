@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderable";
+import { NamedRenderer } from "./renderer";
 import { Type } from "./type";
 
 export interface IVariable {
@@ -7,7 +7,7 @@ export interface IVariable {
   readonly type: Type.Required;
 }
 
-export class Variable extends Renderable {
+export class Variable extends NamedRenderer {
 
   public static newExported(props: IVariable): Variable {
     return new Variable(props, true, false);
@@ -29,18 +29,7 @@ export class Variable extends Renderable {
     super();
   }
 
-  public bespokes(): string[] {
-    return [];
-  }
-
-  public identifiers(): string[] {
-    return this.props.type.identifiers();
-  }
-
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
     if (this.exported) {
       builder.add("export ");
     }
@@ -49,7 +38,7 @@ export class Variable extends Renderable {
     } else {
       builder.add("const ");
     }
-    this.props.type.run(context, builder);
+    this.props.type.run(builder);
     if (this.props.assignment !== undefined) {
       builder.addThenNewline(` = ${this.props.assignment};`);
     } else {
@@ -57,6 +46,6 @@ export class Variable extends Renderable {
     }
   }
 
-  protected verify(context: IContext): void {
+  protected verify(builder: Builder): void {
   }
 }

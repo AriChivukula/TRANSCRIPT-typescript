@@ -1,5 +1,5 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderable";
+import { NamedRenderer } from "./renderer";
 
 export enum EImportKind {
   GLOBAL,
@@ -28,7 +28,7 @@ export interface IImportSome {
 
 export type TImport = IImportAll | IImportDefault | IImportRaw | IImportSome;
 
-export class Import extends Renderable {
+export class Import extends NamedRenderer {
 
   public static new(props: TImport): Import {
     return new Import(props);
@@ -40,12 +40,8 @@ export class Import extends Renderable {
     super();
   }
 
-  public bespokes(): string[] {
-    return [];
-  }
-
-  public identifiers(): string[] {
-    return [this.props.name];
+  public compare(i: Import): number {
+    return this.props.name.localeCompare(i.props.name);
   }
 
   public kind(): EImportKind {
@@ -58,10 +54,8 @@ export class Import extends Renderable {
     }
   }
 
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
+    builder.withIdentifiers(this.props.name);
     if ("withAllAs" in this.props) {
       builder.addThenNewline(`import * as ${this.props.withAllAs} from "${this.props.name}";`);
     } else if ("withDefaultAs" in this.props) {
@@ -87,6 +81,6 @@ export class Import extends Renderable {
     }
   }
 
-  protected verify(context: IContext): void {
+  protected verify(builder: Builder): void {
   }
 }

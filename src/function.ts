@@ -1,16 +1,16 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderable";
+import { NamedRenderer, TRenderer } from "./renderer";
 import { Type } from "./type";
 
 export interface IFunction {
-  readonly content: Renderable[];
+  readonly content: TRenderer[];
   readonly inTypes: Type.Argument[];
   readonly name: string;
   readonly outType: Type.Anonymous;
   readonly templates?: string[];
 }
 
-export class Function extends Renderable {
+export class Function extends NamedRenderer {
 
   public static newAsyncExported(props: IFunction): Function {
     return new Function(props, true, true);
@@ -36,21 +36,8 @@ export class Function extends Renderable {
     super();
   }
 
-  public bespokes(): string[] {
-    const bespokes: string[][] = this.props.content
-      .map((content: Renderable) => content.bespokes());
-
-    return ([] as string[]).concat(...bespokes);
-  }
-
-  public identifiers(): string[] {
-    return [this.props.name];
-  }
-
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
+    builder.withIdentifiers(this.props.name);
     if (this.exported) {
       builder.add("export ");
     }
@@ -66,21 +53,21 @@ export class Function extends Renderable {
       .indent();
     this.props.inTypes.forEach(
       (type: Type.Argument): void => {
-        type.run(context, builder);
+        type.run(builder);
         builder.addThenNewline(",");
       },
     );
     builder
       .unindent()
       .add("): ");
-    this.props.outType.run(context, builder);
+    this.props.outType.run(builder);
     builder
       .addThenNewline(" {")
       .indent();
     this.props.content
       .forEach(
-        (content: Renderable): void => {
-          content.run(context, builder);
+        (content: TRenderer): void => {
+          Function.genericRenderer(content)(builder);
         },
       );
     builder
@@ -88,6 +75,6 @@ export class Function extends Renderable {
       .addThenNewline("}");
   }
 
-  protected verify(context: IContext): void {
+  protected verify(builder: Builder): void {
   }
 }

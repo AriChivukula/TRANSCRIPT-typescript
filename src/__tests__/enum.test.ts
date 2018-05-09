@@ -42,10 +42,7 @@ test(
   "enum1",
   async (): Promise<void> => {
     /* BESPOKE START <<enum1>> */
-    expect(enum1.print({
-      name: "enum1",
-      path: "src/__tests__/enum.test.ts",
-    }))
+    expect(enum1.print())
       .toMatchSnapshot();
     /* BESPOKE END <<enum1>> */
   },
@@ -55,10 +52,7 @@ test(
   "enum2",
   async (): Promise<void> => {
     /* BESPOKE START <<enum2>> */
-    expect(enum2.print({
-      name: "enum2",
-      path: "src/__tests__/enum.test.ts",
-    }))
+    expect(enum2.print())
       .toMatchSnapshot();
     /* BESPOKE END <<enum2>> */
   },

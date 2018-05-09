@@ -1,12 +1,12 @@
 import { Builder } from "./builder";
-import { IContext, Renderable } from "./renderable";
+import { NamedRenderer } from "./renderer";
 
 export interface IEnum {
   readonly name: string;
   readonly values: { [index: string]: string | number };
 }
 
-export class Enum extends Renderable {
+export class Enum extends NamedRenderer {
 
   public static newExported(props: IEnum): Enum {
     return new Enum(props, true);
@@ -23,18 +23,8 @@ export class Enum extends Renderable {
     super();
   }
 
-  public bespokes(): string[] {
-    return [];
-  }
-
-  public identifiers(): string[] {
-    return [this.props.name];
-  }
-
-  protected render(
-    context: IContext,
-    builder: Builder,
-  ): void {
+  protected render(builder: Builder): void {
+    builder.withIdentifiers(this.props.name);
     if (this.exported) {
       builder.add("export ");
     }
@@ -54,6 +44,6 @@ export class Enum extends Renderable {
       .addThenNewline("}");
   }
 
-  protected verify(context: IContext): void {
+  protected verify(builder: Builder): void {
   }
 }

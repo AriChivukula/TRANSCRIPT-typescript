@@ -42,10 +42,7 @@ test(
   "interface1",
   async (): Promise<void> => {
     /* BESPOKE START <<interface1>> */
-    expect(interface1.print({
-      name: "interface1",
-      path: "src/__tests__/interface.test.ts",
-    }))
+    expect(interface1.print())
       .toMatchSnapshot();
     /* BESPOKE END <<interface1>> */
   },
@@ -55,10 +52,7 @@ test(
   "interface2",
   async (): Promise<void> => {
     /* BESPOKE START <<interface2>> */
-    expect(interface2.print({
-      name: "interface2",
-      path: "src/__tests__/interface.test.ts",
-    }))
+    expect(interface2.print())
       .toMatchSnapshot();
     /* BESPOKE END <<interface2>> */
   },
@@ -68,10 +62,7 @@ test(
   "interface3",
   async (): Promise<void> => {
     /* BESPOKE START <<interface3>> */
-    expect(interface3.print({
-      name: "interface3",
-      path: "src/__tests__/interface.test.ts",
-    }))
+    expect(interface3.print())
       .toMatchSnapshot();
     /* BESPOKE END <<interface3>> */
   },
