@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/react.ts::propsReact>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<HuIGaWq7r16CiEUtFEOxQE7iS7+6/XPtJglh1ew8xbGQC5sPnPwWsR8RwQyjr7hYEVxqsau/x3Eh0NVZL0F6cA==>>
+ * SIGNED<<veAYsmxiSTHZT5IIhUOmRq/gJFmBRX5sE1dkGhp4qav6hsFKsYW/ZOnTkINtrfq6dG/k46V3c0OIIVT+JOH8hw==>>
  */
 
 import * as React from "react";
@@ -11,11 +11,11 @@ import * as React from "react";
 /* BESPOKE START <<imports>> */
 /* BESPOKE END <<imports>> */
 
-interface IProps {
+export interface IPropsReactProps {
   test1: string;
 }
 
-export class PropsReact extends React.Component<IProps> {
+export class PropsReact extends React.Component<IPropsReactProps> {
 
   public async render(
   ): JSX.Element {

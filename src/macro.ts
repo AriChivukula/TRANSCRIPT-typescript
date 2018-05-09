@@ -165,20 +165,22 @@ export function React(
       }),
     ];
   } else {
-    let reactExtends: string = "React.Component<IProps";
+    const propsName: string = `I${reactName}Props`;
+    let reactExtends: string = `React.Component<${propsName}`;
     reactClass = [
-      Interface.newInternal({
-        name: "IProps",
+      Interface.newExported({
+        name: propsName,
         types: props,
       }),
     ];
     let constructor: Renderable[] = [];
     if (state !== undefined) {
-      reactExtends += ", IState>";
+      const stateName: string = `I${reactName}State`;
+      reactExtends += `, ${stateName}>`;
       reactClass = [
         ...reactClass,
-        Interface.newInternal({
-          name: "IState",
+        Interface.newExported({
+          name: stateName,
           types: state,
         }),
       ];
@@ -190,7 +192,7 @@ export function React(
           inTypes: [
             Type.Argument.new({
               name: "props",
-              type: "IProps",
+              type: propsName,
             }),
           ],
         }),
