@@ -21,6 +21,46 @@ export const bespokeTest: Module = Jest(
   ],
 );
 
+export const builderTest: Module = Jest(
+  "src/__tests__/builder.test.ts",
+  [
+    "Empty",
+    "Add",
+    "Await",
+    "Return",
+    "SetHeader",
+    "AddThenNewline",
+    "AwaitThenNewline",
+    "ReturnAwait",
+    "Newline",
+    "NewlineAfterEmptyline",
+    "Indentation",
+    "For",
+    "IfElse",
+    "Switch",
+    "TryCatch",
+    "EmptyError",
+    "TabError",
+    "NewlineError",
+    "AwaitError",
+    "ReturnError",
+    "UnindentError",
+    "IndentError",
+    "IndentNewlineError",
+    "SetHeaderError",
+    "CasePrintError",
+    "CaseError",
+    "ForPrintError",
+    "ForError",
+    "IfPrintError",
+    "IfError",
+    "SwitchPrintError",
+    "SwitchError",
+    "TryPrintError",
+    "TryError",
+  ],
+);
+
 export const classTest: Module = Jest(
   "src/__tests__/class.test.ts",
   [
