@@ -1,9 +1,9 @@
 /**
  * This file is partially generated; only edit bespoke sections.
  *
- * SOURCE<<gen/react.ts::propsReact>>
+ * SOURCE<<gen/views.ts::propsView>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<OlUQvCLl9ilEHBaJAhyts6QubUNbtUfomJGT1+Va5RxkbXs5mFw4vICtZioi3IiqoCVH6qn3pmdtgqKzLUClEA==>>
+ * SIGNED<<19CPtzlbKZScdME57aLVNuofS6zI22XxUYd+ROQyX32wuz3ENCmi5bOqxHP5hX0uCIpI97Kx+Yo99hSZWpGzgQ==>>
  */
 
 import * as React from "react";
@@ -11,11 +11,11 @@ import * as React from "react";
 /* BESPOKE START <<imports>> */
 /* BESPOKE END <<imports>> */
 
-export interface IPropsReactProps {
+export interface IPropsProps {
   test1: string;
 }
 
-export class PropsReact extends React.Component<IPropsReactProps> {
+export class Props extends React.Component<IPropsProps> {
 
   public render(
   ): JSX.Element {

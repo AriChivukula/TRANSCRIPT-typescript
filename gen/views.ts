@@ -5,14 +5,14 @@ import {
   Type,
 } from "../src/index";
 
-export const simpleReact: Module = React(
-  "gen/__codegen__/simpleReact.ts",
-  "SimpleReact",
+export const simpleView: Module = React(
+  "gen/__codegen__/Simple.ts",
+  "Simple",
 );
 
-export const propsReact: Module = React(
-  "gen/__codegen__/propsReact.ts",
-  "PropsReact",
+export const propsView: Module = React(
+  "gen/__codegen__/Props.ts",
+  "Props",
   [
     Type.Required.new({
       name: "test1",
@@ -21,9 +21,9 @@ export const propsReact: Module = React(
   ],
 );
 
-export const stateReact: Module = React(
-  "gen/__codegen__/stateReact.ts",
-  "StateReact",
+export const stateView: Module = React(
+  "gen/__codegen__/State.ts",
+  "State",
   [
     Type.Required.new({
       name: "test1",
