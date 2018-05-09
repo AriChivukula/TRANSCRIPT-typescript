@@ -138,14 +138,6 @@ export const methodInstance1: Method.Instance.Public = Method.Instance.Public.ne
   inTypes: [
     Type.Argument.new({ name: "var1", type: "string" }),
     Type.Argument.new({ name: "var2", type: "object", default: "{}" }),
-    Type.Argument.new({
-      property: Property.Instance.Public.newImmutable({
-        type: Type.Required.new({
-          name: "var5",
-          type: "string",
-        }),
-      }),
-    }),
   ],
   name: "methodInstance1",
   outType: Type.Anonymous.new({ type: "Promise<string[]>" }),
@@ -256,13 +248,28 @@ export const type3: Type.Anonymous = Type.Anonymous.new({
   type: "number",
 });
 
-export const type4: Type.Argument = Type.Argument.new({
+export const type4: Type.Argument = Type.Argument.new({ name: "var1", type: "string" });
+
+export const type5: Type.FromProperty = Type.FromProperty.new({
   property: Property.Instance.Public.newImmutable({
     type: Type.Required.new({
       name: "var5",
       type: "string",
     }),
   }),
+});
+
+export const methodInstance4: Method.Instance.Private = Method.Instance.Private.newConstructor({
+  content: [
+    Bespoke.new({
+      name: "methodInstance4",
+    }),
+  ],
+  inTypes: [type4, type5],
+});
+
+export const methodInstance5: Method.Instance.Private = Method.Instance.Public.newConstructor({
+  inTypes: [],
 });
 
 export const variable1: Variable = Variable.newExported({
@@ -302,6 +309,7 @@ export const class2: Class = Class.newConcreteExported({
     propertyStatic2,
     methodInstance2,
     methodStatic2,
+    methodInstance4,
   ],
   extends: "MyClass1",
   name: "MyClass2",
@@ -314,6 +322,7 @@ export const class3: Class = Class.newConcreteInternal({
     propertyStatic3,
     methodInstance3,
     methodStatic3,
+    methodInstance5,
   ],
   extends: "MyClass1",
   implements: ["MyInterface1", "MyInterface2"],

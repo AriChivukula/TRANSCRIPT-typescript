@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<QFEO7Ae0kH30l4oglEO6r78yIvsnSa4pXgXClGkxV2/8XU8r6wZq0HgOymKOqzCM3WGXu9rMzGTOSsZCglhn+Q==>>
+ * SIGNED<<gyZYU9ZfO/lD+zY23MVW2OpdXbv//9gvjiok8CLQ3bqm6uRUww6LbU0vI6YyxofW1LLSrCSSnbeNqJiWBf9+wA==>>
  */
 
 export abstract class MyClass1<T> {
@@ -15,7 +15,6 @@ export abstract class MyClass1<T> {
   public async methodInstance1<T>(
     var1: string,
     var2: object = {},
-    public readonly var5: string,
   ): Promise<string[]> {
   }
 

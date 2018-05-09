@@ -4,7 +4,6 @@ exports[`methodInstance1 1`] = `
 "public async methodInstance1<T>(
   var1: string,
   var2: object = {},
-  public readonly var5: string,
 ): Promise<string[]> {
 }
 "
@@ -22,6 +21,23 @@ exports[`methodInstance3 1`] = `
   /* BESPOKE START <<methodInstance3Bespoke>> */
   /* BESPOKE END <<methodInstance3Bespoke>> */
 }
+"
+`;
+
+exports[`methodInstance4 1`] = `
+"private constructor(
+  var1: string,
+  public readonly var5: string,
+) {
+  /* BESPOKE START <<methodInstance4>> */
+  /* BESPOKE END <<methodInstance4>> */
+}
+"
+`;
+
+exports[`methodInstance5 1`] = `
+"public abstract constructor(
+);
 "
 `;
 

@@ -2,6 +2,8 @@ import {
   methodInstance1,
   methodInstance2,
   methodInstance3,
+  methodInstance4,
+  methodInstance5,
   methodStatic1,
   methodStatic2,
   methodStatic3,
@@ -34,6 +36,28 @@ test(
   async (): Promise<void> => {
     expect(methodInstance3.print({
       name: "methodInstance3",
+      path: "src/__tests__/method.test.ts",
+    }))
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "methodInstance4",
+  async (): Promise<void> => {
+    expect(methodInstance4.print({
+      name: "methodInstance4",
+      path: "src/__tests__/method.test.ts",
+    }))
+      .toMatchSnapshot();
+  },
+);
+
+test(
+  "methodInstance5",
+  async (): Promise<void> => {
+    expect(methodInstance5.print({
+      name: "methodInstance5",
       path: "src/__tests__/method.test.ts",
     }))
       .toMatchSnapshot();

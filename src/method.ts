@@ -10,18 +10,27 @@ export namespace Method {
     PUBLIC = "public",
   }
 
-  export interface I {
+  export interface IBase {
     readonly content?: Renderable[];
+    readonly templates?: string[];
+  }
+
+  export interface IConstructor extends IBase {
+    readonly inTypes: Array<Type.Argument | Type.FromProperty>;
+  }
+
+  export interface INormal extends IBase {
     readonly inTypes: Type.Argument[];
     readonly name: string;
     readonly outType: Type.Anonymous;
-    readonly templates?: string[];
   }
+
+  export type T = IConstructor | INormal;
 
   export abstract class Base extends Renderable {
 
     protected constructor(
-      private readonly props: I,
+      private readonly props: T,
       private readonly async: boolean,
       private readonly isStatic: boolean,
       private readonly kind: EKind,
@@ -40,7 +49,11 @@ export namespace Method {
     }
 
     public identifiers(): string[] {
-      return [this.props.name];
+      if ("name" in this.props) {
+        return [this.props.name];
+      }
+
+      return [];
     }
 
     protected render(
@@ -57,23 +70,30 @@ export namespace Method {
       if (this.props.content === undefined) {
         builder.add("abstract ");
       }
-      builder.add(this.props.name);
+      if ("name" in this.props) {
+        builder.add(this.props.name);
+      } else {
+        builder.add("constructor");
+      }
       if (this.props.templates !== undefined) {
         builder.add(`<${this.props.templates.join(", ")}>`);
       }
       builder
         .addThenNewline("(")
         .indent();
-      this.props.inTypes.forEach(
-        (type: Type.Argument): void => {
+      (this.props.inTypes as Type.Base[]).forEach(
+        (type: Type.Base): void => {
           type.run(context, builder);
           builder.addThenNewline(",");
         },
       );
       builder
         .unindent()
-        .add("): ");
-      this.props.outType.run(context, builder);
+        .add(")");
+      if ("outType" in this.props) {
+        builder.add(": ");
+        this.props.outType.run(context, builder);
+      }
       if (this.props.content === undefined) {
         builder.addThenNewline(";");
       } else {
@@ -102,33 +122,45 @@ export namespace Method {
 
     export class Private extends BaseInstance {
 
-      public static newAsync(props: I): Private {
+      public static newAsync(props: INormal): Private {
         return new Private(props, true, false, EKind.PRIVATE);
       }
 
-      public static newSync(props: I): Private {
+      public static newConstructor(props: IConstructor): Private {
+        return new Private(props, false, false, EKind.PRIVATE);
+      }
+
+      public static newSync(props: INormal): Private {
         return new Private(props, false, false, EKind.PRIVATE);
       }
     }
 
     export class Protected extends BaseInstance {
 
-      public static newAsync(props: I): Protected {
+      public static newAsync(props: INormal): Protected {
         return new Protected(props, true, false, EKind.PROTECTED);
       }
 
-      public static newSync(props: I): Protected {
+      public static newConstructor(props: IConstructor): Protected {
+        return new Protected(props, false, false, EKind.PROTECTED);
+      }
+
+      public static newSync(props: INormal): Protected {
         return new Protected(props, false, false, EKind.PROTECTED);
       }
     }
 
     export class Public extends BaseInstance {
 
-      public static newAsync(props: I): Public {
+      public static newAsync(props: INormal): Public {
         return new Public(props, true, false, EKind.PUBLIC);
       }
 
-      public static newSync(props: I): Public {
+      public static newConstructor(props: IConstructor): Public {
+        return new Public(props, false, false, EKind.PUBLIC);
+      }
+
+      public static newSync(props: INormal): Public {
         return new Public(props, false, false, EKind.PUBLIC);
       }
     }
@@ -140,33 +172,33 @@ export namespace Method {
 
     export class Private extends BaseStatic {
 
-      public static newAsync(props: I): Private {
+      public static newAsync(props: INormal): Private {
         return new Private(props, true, true, EKind.PRIVATE);
       }
 
-      public static newSync(props: I): Private {
+      public static newSync(props: INormal): Private {
         return new Private(props, false, true, EKind.PRIVATE);
       }
     }
 
     export class Protected extends BaseStatic {
 
-      public static newAsync(props: I): Protected {
+      public static newAsync(props: INormal): Protected {
         return new Protected(props, true, true, EKind.PROTECTED);
       }
 
-      public static newSync(props: I): Protected {
+      public static newSync(props: INormal): Protected {
         return new Protected(props, false, true, EKind.PROTECTED);
       }
     }
 
     export class Public extends BaseStatic {
 
-      public static newAsync(props: I): Public {
+      public static newAsync(props: INormal): Public {
         return new Public(props, true, true, EKind.PUBLIC);
       }
 
-      public static newSync(props: I): Public {
+      public static newSync(props: INormal): Public {
         return new Public(props, false, true, EKind.PUBLIC);
       }
     }

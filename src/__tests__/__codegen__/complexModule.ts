@@ -2,8 +2,8 @@
  * This file is partially generated; only edit bespoke sections.
  *
  * SOURCE<<src/__tests__/examples.ts::complexModule>>
- * BESPOKE<<TEST1, fn3, methodInstance3Bespoke, methodStatic3Bespoke, 3tESt3>>
- * SIGNED<<s0gzV06h8Hjkjkb2IBwcjDlftkeYFMfzpRk4VZCNd4DdPuoWdnoc1tOCmuuhuHIA41To35XpNAsPr4+qnhooQg==>>
+ * BESPOKE<<TEST1, methodInstance4, fn3, methodInstance3Bespoke, methodStatic3Bespoke, 3tESt3>>
+ * SIGNED<<BkdnMYONRiKbtYRKbmQd6sCm1aH/nH3JQGqE3zJReLCuFOJiAwaGTnSSir21z668oQSzC5xRnxujsTGbelf1/g==>>
  */
 
 import "./p";
@@ -46,6 +46,14 @@ export class MyClass2<T, V> extends MyClass1 {
 
   protected static abstract methodStatic2<T, V>(
   ): void;
+
+  private constructor(
+    var1: string,
+    public readonly var5: string,
+  ) {
+    /* BESPOKE START <<methodInstance4>> */
+    /* BESPOKE END <<methodInstance4>> */
+  }
 }
 
 interface If1<T> {
@@ -88,6 +96,9 @@ class MyClass3 extends MyClass1 implements MyInterface1, MyInterface2 {
     /* BESPOKE START <<methodStatic3Bespoke>> */
     /* BESPOKE END <<methodStatic3Bespoke>> */
   }
+
+  public abstract constructor(
+  );
 }
 
 export async function function2<T, V>(
