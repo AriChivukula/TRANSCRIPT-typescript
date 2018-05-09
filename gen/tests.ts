@@ -118,6 +118,14 @@ export const propertyTest: Module = Jest(
   ],
 );
 
+export const renderableTest: Module = Jest(
+  "src/__tests__/renderable.test.ts",
+  [
+    "verifyUniqueBespoke",
+    "verifyUniqueIdentifiers",
+  ],
+);
+
 export const typeTest: Module = Jest(
   "src/__tests__/type.test.ts",
   [
