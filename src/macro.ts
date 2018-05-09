@@ -1,7 +1,13 @@
 import { Bespoke } from "./bespoke";
 import { Builder } from "./builder";
+import { Class } from "./class";
+import { Function } from "./function";
+import { Import } from "./import";
+import { Interface } from "./interface";
+import { Method } from "./method";
 import { Module } from "./module";
 import { IContext, Renderable } from "./renderable";
+import { Type } from "./type";
 
 interface IJestCall {
   readonly functionName: string;
@@ -93,8 +99,136 @@ export function Jest(
   );
 
   return Module.new({
-    content: ([] as Renderable[])
-      .concat(bespokeImport, beforeAll, afterAll, beforeEach, afterEach, ...testRenders),
+    content: [bespokeImport, beforeAll, afterAll, beforeEach, afterEach, ...testRenders],
+    destination,
+  });
+}
+
+class ReactConstructorCall extends Renderable {
+
+  public static new(): ReactConstructorCall {
+    return new ReactConstructorCall();
+  }
+
+  public bespokes(): string[] {
+    return [];
+  }
+
+  public identifiers(): string[] {
+    return [];
+  }
+
+  protected render(context: IContext, builder: Builder): void {
+    builder
+      .addThenNewline("super(props);")
+      .addThenNewline("this.state = {")
+      .indent();
+    Bespoke
+      .new({ name: "state" })
+      .run(context, builder);
+    builder
+      .unindent()
+      .addThenNewline("};");
+  }
+
+  protected verify(context: IContext): void {
+  }
+}
+
+export function React(
+  destination: string,
+  reactName: string,
+  props?: Array<Type.Optional | Type.Required>,
+  state?: Array<Type.Optional | Type.Required>,
+): Module {
+  const reactImport: Renderable = Import.new({
+    name: "react",
+    withAllAs: "React",
+  });
+  const bespokeImport: Renderable = Bespoke.new({
+    name: "imports",
+  });
+  let reactClass: Renderable[];
+  if (props === undefined) {
+    reactClass = [
+      Function.newAsyncExported({
+        content: [
+          Bespoke.new({
+            name: "render",
+          }),
+        ],
+        inTypes: [],
+        name: reactName,
+        outType: Type.Anonymous.new({
+          type: "JSX.Element",
+        }),
+      }),
+    ];
+  } else {
+    const propsName: string = `I${reactName}Props`;
+    let reactExtends: string = `React.Component<${propsName}`;
+    reactClass = [
+      Interface.newExported({
+        name: propsName,
+        types: props,
+      }),
+    ];
+    let constructor: Renderable[] = [];
+    if (state !== undefined) {
+      const stateName: string = `I${reactName}State`;
+      reactExtends += `, ${stateName}>`;
+      reactClass = [
+        ...reactClass,
+        Interface.newExported({
+          name: stateName,
+          types: state,
+        }),
+      ];
+      constructor = [
+        Method.Instance.Public.newConstructor({
+          content: [
+            ReactConstructorCall.new(),
+          ],
+          inTypes: [
+            Type.Argument.new({
+              name: "props",
+              type: propsName,
+            }),
+          ],
+        }),
+      ];
+    } else {
+      reactExtends += ">";
+    }
+    reactClass = [
+      ...reactClass,
+      Class.newConcreteExported({
+        content: [
+          ...constructor,
+          Method.Instance.Public.newAsync({
+            content: [
+              Bespoke.new({
+                name: "render",
+              }),
+            ],
+            inTypes: [],
+            name: "render",
+            outType: Type.Anonymous.new({
+              type: "JSX.Element",
+            }),
+          }),
+          Bespoke.new({
+            name: "implementation",
+          }),
+        ],
+        extends: reactExtends,
+        name: reactName,
+      }),
+    ];
+  }
+
+  return Module.new({
+    content: [reactImport, bespokeImport, ...reactClass],
     destination,
   });
 }
