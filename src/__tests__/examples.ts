@@ -138,14 +138,6 @@ export const methodInstance1: Method.Instance.Public = Method.Instance.Public.ne
   inTypes: [
     Type.Argument.new({ name: "var1", type: "string" }),
     Type.Argument.new({ name: "var2", type: "object", default: "{}" }),
-    Type.FromProperty.new({
-      property: Property.Instance.Public.newImmutable({
-        type: Type.Required.new({
-          name: "var5",
-          type: "string",
-        }),
-      }),
-    }),
   ],
   name: "methodInstance1",
   outType: Type.Anonymous.new({ type: "Promise<string[]>" }),
@@ -256,7 +248,9 @@ export const type3: Type.Anonymous = Type.Anonymous.new({
   type: "number",
 });
 
-export const type4: Type.Argument = Type.FromProperty.new({
+export const type4: Type.Argument = Type.Argument.new({ name: "var1", type: "string" });
+
+export const type5: Type.FromProperty = Type.FromProperty.new({
   property: Property.Instance.Public.newImmutable({
     type: Type.Required.new({
       name: "var5",
@@ -309,6 +303,7 @@ export const class2: Class = Class.newConcreteExported({
 });
 
 export const class3: Class = Class.newConcreteInternal({
+  constructorInTypes: [type4, type5],
   content: [
     propertyInstance3,
     propertyStatic3,

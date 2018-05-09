@@ -110,7 +110,7 @@ export namespace Type {
 
   export class FromProperty extends Base {
 
-    public static new(props: TProperty): Argument {
+    public static new(props: TProperty): FromProperty {
       return new Argument(props, false);
     }
   }

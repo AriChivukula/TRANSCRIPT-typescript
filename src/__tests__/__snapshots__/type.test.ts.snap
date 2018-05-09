@@ -6,4 +6,6 @@ exports[`type2 1`] = `"test1: string | number"`;
 
 exports[`type3 1`] = `"number"`;
 
-exports[`type4 1`] = `"public readonly var5: string"`;
+exports[`type4 1`] = `"var1: string"`;
+
+exports[`type5 1`] = `"public readonly var5: string"`;
