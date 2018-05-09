@@ -3,6 +3,7 @@ import { IContext, Renderable } from "./renderable";
 import { Type } from "./type";
 
 export interface IInterface {
+  readonly extends?: string[];
   readonly name: string;
   readonly templates?: string[];
   readonly types: Array<Type.Required | Type.Optional>;
@@ -43,6 +44,9 @@ export class Interface extends Renderable {
     builder.add(`interface ${this.props.name}`);
     if (this.props.templates !== undefined) {
       builder.add(`<${this.props.templates.join(", ")}>`);
+    }
+    if (this.props.extends !== undefined) {
+      builder.add(` extends ${this.props.extends.join(", ")}`);
     }
     builder
       .addThenNewline(" {")

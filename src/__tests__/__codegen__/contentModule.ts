@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<gyZYU9ZfO/lD+zY23MVW2OpdXbv//9gvjiok8CLQ3bqm6uRUww6LbU0vI6YyxofW1LLSrCSSnbeNqJiWBf9+wA==>>
+ * SIGNED<<mawQnJ43DNSGf8hW8LzI0WDtOsI7MbPHJn28U1sAFt7nNdOFwm1Ub/WF+yUyBVqe4dW0JTK671MZEHhBOmw5vA==>>
  */
 
 export abstract class MyClass1<T> {
@@ -46,7 +46,7 @@ export async function function2<T, V>(
 ): Promise<string> {
 }
 
-export interface If3 {
+export interface If3 extends interface1, interface2 {
   test: null | string;
   test2: If2;
 }
@@ -66,7 +66,7 @@ export async function function3(
   /* BESPOKE END <<fn3>> */
 }
 
-export interface If2<T, V> {
+export interface If2<T, V> extends interface1 {
   item: string;
 }
 

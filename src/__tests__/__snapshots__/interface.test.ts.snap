@@ -7,14 +7,14 @@ exports[`interface1 1`] = `
 `;
 
 exports[`interface2 1`] = `
-"export interface If2<T, V> {
+"export interface If2<T, V> extends interface1 {
   item: string;
 }
 "
 `;
 
 exports[`interface3 1`] = `
-"export interface If3 {
+"export interface If3 extends interface1, interface2 {
   test: null | string;
   test2: If2;
 }

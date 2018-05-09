@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::complexModule>>
  * BESPOKE<<TEST1, methodInstance4, fn3, methodInstance3Bespoke, methodStatic3Bespoke, 3tESt3>>
- * SIGNED<<BkdnMYONRiKbtYRKbmQd6sCm1aH/nH3JQGqE3zJReLCuFOJiAwaGTnSSir21z668oQSzC5xRnxujsTGbelf1/g==>>
+ * SIGNED<<jqVv/ueDqHpju8sWOzfjLUo1Qyl2d5CKKREjmeDM8XE4/HIZpiSnquNmo+WpWCo/253z2HbMCWwwmAu/gTThwA==>>
  */
 
 import "./p";
@@ -69,7 +69,7 @@ export async function function3(
 
 let variable3: number | null | undefined = 1;
 
-export interface If2<T, V> {
+export interface If2<T, V> extends interface1 {
   item: string;
 }
 
@@ -113,7 +113,7 @@ export const variable1: string;
 
 const variable2: string | undefined = "TEST";
 
-export interface If3 {
+export interface If3 extends interface1, interface2 {
   test: null | string;
   test2: If2;
 }
