@@ -118,6 +118,7 @@ export const interface1: Interface = Interface.newInternal({
 });
 
 export const interface2: Interface = Interface.newExported({
+  extends: ["interface1"],
   name: "If2",
   templates: ["T", "V"],
   types: [
@@ -126,6 +127,7 @@ export const interface2: Interface = Interface.newExported({
 });
 
 export const interface3: Interface = Interface.newExported({
+  extends: ["interface1", "interface2"],
   name: "If3",
   types: [
     Type.Required.new({ name: "test", types: ["null", "string"] }),
