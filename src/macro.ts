@@ -1,5 +1,6 @@
 import { Bespoke } from "./bespoke";
 import { Builder } from "./builder";
+import { Class } from "./class";
 import { Function } from "./function";
 import { Import } from "./import";
 import { Interface } from "./interface";
@@ -97,8 +98,7 @@ export function Jest(
   );
 
   return Module.new({
-    content: ([] as Renderable[])
-      .concat(bespokeImport, beforeAll, afterAll, beforeEach, afterEach, ...testRenders),
+    content: [bespokeImport, beforeAll, afterAll, beforeEach, afterEach, ...testRenders],
     destination,
   });
 }
@@ -106,8 +106,8 @@ export function Jest(
 export function React(
   destination: string,
   reactName: string,
-  props?: Interface,
-  state?: Interface,
+  props?: Array<Type.Optional | Type.Required>,
+  state?: Array<Type.Optional | Type.Required>,
 ): Module {
   const reactImport: Renderable = Import.new({
     name: "react",
@@ -116,26 +116,52 @@ export function React(
   const bespokeImport: Renderable = Bespoke.new({
     name: "imports",
   });
-  let reactClass: Renderable;
+  let reactClass: Renderable[] = [];
   if (props === undefined && state === undefined) {
-    reactClass = Function.newAsyncExported({
-      content: [
-        Bespoke.new({
-          name: reactName,
+    reactClass = [
+      Function.newAsyncExported({
+        content: [
+          Bespoke.new({
+            name: reactName,
+          }),
+        ],
+        inTypes: [],
+        name: reactName,
+        outType: Type.Anonymous.new({
+          type: "JSX.Element",
         }),
-      ],
-      inTypes: [],
-      name: reactName,
-      outType: Type.Anonymous.new({
-        type: "JSX.Element",
       }),
-    });
+    ];
   } else {
-    throw new Error();
+    reactClass = [
+      Class.newConcreteExported({
+        content: [],
+        extends: "React.Component",
+        name: reactName,
+      }),
+    ];
+    if (state !== undefined) {
+      reactClass = [
+        Interface.newInternal({
+          name: "IState",
+          types: state,
+        }),
+        ...reactClass
+      ];
+    }
+    if (props !== undefined) {
+      reactClass = [
+        Interface.newInternal({
+          name: "IProps",
+          types: props,
+        }),
+        ...reactClass
+      ];
+    }
   }
 
   return Module.new({
-    content: [reactImport, bespokeImport, reactClass],
+    content: [reactImport, bespokeImport, ...reactClass],
     destination,
   });
 }

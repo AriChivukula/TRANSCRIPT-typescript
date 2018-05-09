@@ -2,8 +2,8 @@
  * This file is partially generated; only edit bespoke sections.
  *
  * SOURCE<<gen/react.ts::complexReact>>
- * BESPOKE<<imports, ComplexReact>>
- * SIGNED<<klV+VHirmZpENjIpQFfB0QSgOspW/0YZS8SxFPHZS4oCy+k5haQBFKYxca5/zQwiVx1OJySpAa/7bs/Wwo8NTA==>>
+ * BESPOKE<<imports>>
+ * SIGNED<<9zHh03roPdBPxHzHLH1y82E7DKJcLnGLaA1UpTD+v2Tpm/ZkTUCkqJ15eBuBJs+nVzbd9A+UcoZB4qGRRL0w1Q==>>
  */
 
 import * as React from "react";
@@ -11,8 +11,13 @@ import * as React from "react";
 /* BESPOKE START <<imports>> */
 /* BESPOKE END <<imports>> */
 
-export async function ComplexReact(
-): JSX.Element {
-  /* BESPOKE START <<ComplexReact>> */
-  /* BESPOKE END <<ComplexReact>> */
+interface IProps {
+  test1: string;
+}
+
+interface IState {
+  test2?: string;
+}
+
+export class ComplexReact extends React.Component {
 }

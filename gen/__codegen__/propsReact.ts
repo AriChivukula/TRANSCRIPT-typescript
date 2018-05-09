@@ -2,8 +2,8 @@
  * This file is partially generated; only edit bespoke sections.
  *
  * SOURCE<<gen/react.ts::propsReact>>
- * BESPOKE<<imports, PropsReact>>
- * SIGNED<<6Gcpapd/rH/Sp3rs/ZgwFezo/40sZqaSTZnES2CcHm3McUeyFANCih228pVm2K2a4xZrGOdwkURvB7IXE95N6w==>>
+ * BESPOKE<<imports>>
+ * SIGNED<<1uy5BONmRsxw4Jp+OtolgG/HxojmAT3ktTsp19uZ4UEoMGn6jzlTToDHP12eomWwq59MZf5fninUm+b7DjL4nw==>>
  */
 
 import * as React from "react";
@@ -11,8 +11,9 @@ import * as React from "react";
 /* BESPOKE START <<imports>> */
 /* BESPOKE END <<imports>> */
 
-export async function PropsReact(
-): JSX.Element {
-  /* BESPOKE START <<PropsReact>> */
-  /* BESPOKE END <<PropsReact>> */
+interface IProps {
+  test1: string;
+}
+
+export class PropsReact extends React.Component {
 }
