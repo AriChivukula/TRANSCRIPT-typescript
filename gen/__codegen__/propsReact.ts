@@ -2,8 +2,8 @@
  * This file is partially generated; only edit bespoke sections.
  *
  * SOURCE<<gen/react.ts::propsReact>>
- * BESPOKE<<imports, implementation>>
- * SIGNED<<clnCbj9M3/mvyOMAOkQ3IJQw4jeI5uSC9+AbCOfx8Y/71MxSoiDjpf9UyqNLykVGLNHvKDAex/d9hAyIBBd0Gw==>>
+ * BESPOKE<<imports, render, implementation>>
+ * SIGNED<<HuIGaWq7r16CiEUtFEOxQE7iS7+6/XPtJglh1ew8xbGQC5sPnPwWsR8RwQyjr7hYEVxqsau/x3Eh0NVZL0F6cA==>>
  */
 
 import * as React from "react";
@@ -16,6 +16,12 @@ interface IProps {
 }
 
 export class PropsReact extends React.Component<IProps> {
+
+  public async render(
+  ): JSX.Element {
+    /* BESPOKE START <<render>> */
+    /* BESPOKE END <<render>> */
+  }
 
   /* BESPOKE START <<implementation>> */
   /* BESPOKE END <<implementation>> */

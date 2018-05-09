@@ -4,6 +4,7 @@ import { Class } from "./class";
 import { Function } from "./function";
 import { Import } from "./import";
 import { Interface } from "./interface";
+import { Method } from "./method";
 import { Module } from "./module";
 import { IContext, Renderable } from "./renderable";
 import { Type } from "./type";
@@ -122,7 +123,7 @@ export function React(
       Function.newAsyncExported({
         content: [
           Bespoke.new({
-            name: "implementation",
+            name: "render",
           }),
         ],
         inTypes: [],
@@ -156,6 +157,18 @@ export function React(
       ...reactClass,
       Class.newConcreteExported({
         content: [
+          Method.Instance.Public.newAsync({
+            content: [
+              Bespoke.new({
+                name: "render",
+              }),
+            ],
+            inTypes: [],
+            name: "render",
+            outType: Type.Anonymous.new({
+              type: "JSX.Element",
+            }),
+          }),
           Bespoke.new({
             name: "implementation",
           }),
