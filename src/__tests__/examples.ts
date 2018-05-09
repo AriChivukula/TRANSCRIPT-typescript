@@ -112,6 +112,7 @@ export const importSome3: Import = Import.new({
 });
 
 export const interface1: Interface = Interface.newInternal({
+  kind: "IF1",
   name: "If1",
   templates: ["T"],
   types: [],
