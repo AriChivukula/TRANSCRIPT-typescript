@@ -7,6 +7,7 @@ import {
   Interface,
   Method,
   Module,
+  Namespace,
   Property,
   Type,
   Variable,
@@ -344,9 +345,24 @@ export const class3: Class = Class.newConcreteInternal({
   name: "MyClass3",
 });
 
-export const contentModule: Module = Module.new({
+export const namespace1: Namespace = Namespace.newInternal({
   content: [
     class1,
+  ],
+  name: "namespace1",
+});
+
+export const namespace2: Namespace = Namespace.newExported({
+  content: [
+    class2,
+    class3,
+  ],
+  name: "namespace2",
+});
+
+export const contentModule: Module = Module.new({
+  content: [
+    namespace1,
     alias1,
     bespoke1,
     interface1,
@@ -389,7 +405,7 @@ export const complexModule: Module = Module.new({
     importSome3,
     importSome2,
     importSome1,
-    class2,
+    namespace2,
     importDefault3,
     importDefault2,
     importDefault1,
@@ -405,7 +421,6 @@ export const complexModule: Module = Module.new({
     alias1,
     alias2,
     alias3,
-    class3,
     function2,
     variable1,
     bespoke3,
