@@ -20,26 +20,28 @@ class JestCall extends Renderable {
     super();
   }
 
-	public bespokes(): string[] {
+  public bespokes(): string[] {
     if (this.props.testName !== undefined) {
       return [this.props.testName];
     }
-		return [this.props.functionName];
-	}
 
-	public identifiers(): string[] {
+    return [this.props.functionName];
+  }
+
+  public identifiers(): string[] {
     if (this.props.testName !== undefined) {
       return [this.props.testName];
     }
-		return [this.props.functionName];
-	}
 
-	protected render(context: IContext, builder: Builder): void {
-		builder
+    return [this.props.functionName];
+  }
+
+  protected render(context: IContext, builder: Builder): void {
+    builder
       .addThenNewline(`${this.props.functionName}(`)
       .indent();
     if (this.props.testName !== undefined) {
-      builder.addThenNewline(`"${this.props.testName}",`)
+      builder.addThenNewline(`"${this.props.testName}",`);
     }
     builder
       .addThenNewline("async (): Promise<void> => {")
@@ -57,11 +59,11 @@ class JestCall extends Renderable {
       .unindent()
       .addThenNewline("},")
       .unindent()
-      .addThenNewline(");")
-	}
+      .addThenNewline(");");
+  }
 
-	protected verify(context: IContext): void {
-	}
+  protected verify(context: IContext): void {
+  }
 }
 
 export function Jest(
@@ -84,13 +86,12 @@ export function Jest(
     functionName: "afterEach",
   });
   const testRenders: Renderable[] = tests.map(
-    (test: string): Renderable => {
-      return JestCall.new({
-        functionName: "test",
-        testName: test,
-      });
-    }
+    (test: string): Renderable => JestCall.new({
+      functionName: "test",
+      testName: test,
+    }),
   );
+
   return Module.new({
     content: ([] as Renderable[])
       .concat(bespokeImport, beforeAll, afterAll, beforeEach, afterEach, ...testRenders),

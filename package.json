@@ -43,10 +43,9 @@
     "typescriptase": "bin/cli.js"
   },
   "scripts": {
-    "codegen": "ts-node src/cli.ts --files gen/*.ts",
     "build": "tsc && babel --minified bin/__tests__/*.js -d bin/__tests__/ && babel --minified bin/*.js -d bin/ && chmod +x bin/cli.js",
     "lint": "tslint -p .",
     "snap": "jest -u",
-    "test": "jest && ts-node src/cli.ts --files src/__tests__/*.ts"
+    "test": "jest && ts-node src/cli.ts --files gen/*.ts"
   }
 }
