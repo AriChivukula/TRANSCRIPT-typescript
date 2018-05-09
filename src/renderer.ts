@@ -15,15 +15,18 @@ export abstract class NamedRenderer {
   }
 
   public print(builder?: Builder): string {
+    let forceBuilder: Builder;
     if (builder === undefined) {
-      builder = Builder.new({
+      forceBuilder = Builder.new({
         name: "DO_NOT_COMMIT",
         path: "DO_NOT_COMMIT",
       });
+    } else {
+      forceBuilder = builder;
     }
-    this.run(builder);
+    this.run(forceBuilder);
 
-    return builder.print();
+    return forceBuilder.print();
   }
 
   public run(

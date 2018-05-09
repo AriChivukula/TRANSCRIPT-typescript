@@ -61,7 +61,6 @@ export namespace Type {
     protected render(builder: Builder): void {
       if ("name" in this.props) {
         builder.add(`${this.props.name}${this.optional ? "?" : ""}: `);
-        builder.withIdentifiers(this.props.name);
       }
       if ("type" in this.props) {
         builder.add(this.props.type);
@@ -70,12 +69,12 @@ export namespace Type {
       } else if ("property" in this.props) {
         builder.add(
           this.props.property
-            .print(builder)
+            .print()
             .replace(";\n", ""),
         );
       } else {
         this.props.method
-          .print(builder)
+          .print()
           .replace(";\n", "")
           .replace("public abstract ", "")
           .replace("public async abstract ", "")
