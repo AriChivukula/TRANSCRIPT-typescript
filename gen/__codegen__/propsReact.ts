@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/react.ts::propsReact>>
  * BESPOKE<<imports>>
- * SIGNED<<1uy5BONmRsxw4Jp+OtolgG/HxojmAT3ktTsp19uZ4UEoMGn6jzlTToDHP12eomWwq59MZf5fninUm+b7DjL4nw==>>
+ * SIGNED<<KJqgbpH8bYnpgw/PKe2aTKw6tmffc2BOMXfsFONGuFr0yAdo8a/j/Qr9LCW9k46/6gVc255wwmRq7/QWEsPu7g==>>
  */
 
 import * as React from "react";
@@ -15,5 +15,5 @@ interface IProps {
   test1: string;
 }
 
-export class PropsReact extends React.Component {
+export class PropsReact extends React.Component<IProps> {
 }

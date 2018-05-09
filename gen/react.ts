@@ -24,18 +24,6 @@ export const propsReact: Module = React(
 export const stateReact: Module = React(
   "gen/__codegen__/stateReact.ts",
   "StateReact",
-  undefined,
-  [
-    Type.Optional.new({
-      name: "test2",
-      type: "string",
-    }),
-  ],
-);
-
-export const complexReact: Module = React(
-  "gen/__codegen__/complexReact.ts",
-  "ComplexReact",
   [
     Type.Required.new({
       name: "test1",

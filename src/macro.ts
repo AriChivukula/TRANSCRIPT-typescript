@@ -116,8 +116,8 @@ export function React(
   const bespokeImport: Renderable = Bespoke.new({
     name: "imports",
   });
-  let reactClass: Renderable[] = [];
-  if (props === undefined && state === undefined) {
+  let reactClass: Renderable[];
+  if (props === undefined) {
     reactClass = [
       Function.newAsyncExported({
         content: [
@@ -133,31 +133,33 @@ export function React(
       }),
     ];
   } else {
+    let reactExtends: string = "React.Component<IProps";
     reactClass = [
-      Class.newConcreteExported({
-        content: [],
-        extends: "React.Component",
-        name: reactName,
+      Interface.newInternal({
+        name: "IProps",
+        types: props,
       }),
     ];
     if (state !== undefined) {
+      reactExtends += ", IState>";
       reactClass = [
+        ...reactClass,
         Interface.newInternal({
           name: "IState",
           types: state,
         }),
-        ...reactClass
       ];
+    } else {
+      reactExtends += ">";
     }
-    if (props !== undefined) {
-      reactClass = [
-        Interface.newInternal({
-          name: "IProps",
-          types: props,
-        }),
-        ...reactClass
-      ];
-    }
+    reactClass = [
+      ...reactClass,
+      Class.newConcreteExported({
+        content: [],
+        extends: reactExtends,
+        name: reactName,
+      }),
+    ];
   }
 
   return Module.new({
