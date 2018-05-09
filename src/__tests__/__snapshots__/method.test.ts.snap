@@ -24,6 +24,23 @@ exports[`methodInstance3 1`] = `
 "
 `;
 
+exports[`methodInstance4 1`] = `
+"private constructor(
+  var1: string,
+  public readonly var5: string,
+) {
+  /* BESPOKE START <<methodInstance4>> */
+  /* BESPOKE END <<methodInstance4>> */
+}
+"
+`;
+
+exports[`methodInstance5 1`] = `
+"public abstract constructor(
+);
+"
+`;
+
 exports[`methodStatic1 1`] = `
 "public static async methodStatic1<T>(
   var1: string,

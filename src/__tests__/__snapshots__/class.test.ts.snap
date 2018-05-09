@@ -37,6 +37,14 @@ exports[`class2 1`] = `
 
   protected static abstract methodStatic2<T, V>(
   ): void;
+
+  private constructor(
+    var1: string,
+    public readonly var5: string,
+  ) {
+    /* BESPOKE START <<methodInstance4>> */
+    /* BESPOKE END <<methodInstance4>> */
+  }
 }
 "
 `;
@@ -59,6 +67,9 @@ exports[`class3 1`] = `
     /* BESPOKE START <<methodStatic3Bespoke>> */
     /* BESPOKE END <<methodStatic3Bespoke>> */
   }
+
+  public abstract constructor(
+  );
 }
 "
 `;

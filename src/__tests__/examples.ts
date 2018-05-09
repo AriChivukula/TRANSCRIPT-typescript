@@ -259,6 +259,19 @@ export const type5: Type.FromProperty = Type.FromProperty.new({
   }),
 });
 
+export const methodInstance4: Method.Instance.Private = Method.Instance.Private.newConstructor({
+  content: [
+    Bespoke.new({
+      name: "methodInstance4",
+    }),
+  ],
+  inTypes: [type4, type5],
+});
+
+export const methodInstance5: Method.Instance.Private = Method.Instance.Public.newConstructor({
+  inTypes: [],
+});
+
 export const variable1: Variable = Variable.newExported({
   type: Type.Required.new({ name: "variable1", type: "string" }),
 });
@@ -290,17 +303,13 @@ export const class1: Class = Class.newAbstractExported({
 });
 
 export const class2: Class = Class.newConcreteExported({
-  classConstructor: {
-    abstract: false,
-    inTypes: [type4, type5],
-    kind: Method.EKind.PRIVATE,
-  },
   content: [
     bespoke1,
     propertyInstance2,
     propertyStatic2,
     methodInstance2,
     methodStatic2,
+    methodInstance4,
   ],
   extends: "MyClass1",
   name: "MyClass2",
@@ -308,16 +317,12 @@ export const class2: Class = Class.newConcreteExported({
 });
 
 export const class3: Class = Class.newConcreteInternal({
-  classConstructor: {
-    abstract: true,
-    inTypes: [type4, type5],
-    kind: Method.EKind.PUBLIC,
-  },
   content: [
     propertyInstance3,
     propertyStatic3,
     methodInstance3,
     methodStatic3,
+    methodInstance5,
   ],
   extends: "MyClass1",
   implements: ["MyInterface1", "MyInterface2"],
