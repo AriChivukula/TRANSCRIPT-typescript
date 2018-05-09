@@ -3,7 +3,7 @@
  *
  * SOURCE<<src/__tests__/examples.ts::contentModule>>
  * BESPOKE<<TEST1, test2, fn3>>
- * SIGNED<<t9Z7xMxC3QKsSHo8TFsMaWtReVzigtCVADVz0Rk8JAU6Tcsdu5S7X3hZ+wgfFBRJdxDHxI2z55EHyik6998Dcg==>>
+ * SIGNED<<gknqMk9XOZLt3TpjTXwERCaPbInPIAByL1kv2j/2Xcond5GAK5OwTV+LVbe6jqHKVCODGWVs76z84eXmybVq1Q==>>
  */
 
 export abstract class MyClass1<T> {
@@ -33,6 +33,10 @@ type Ty1<T> = number;
 
 interface If1<T> {
   kind: "IF1";
+  methodInstance6<T>(
+    var1: string,
+    var2: object,
+  ): Promise<string[]>;
 }
 
 function function1<T>(

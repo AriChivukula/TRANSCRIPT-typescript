@@ -90,7 +90,21 @@ export namespace Type {
             .replace(";\n", ""),
         );
       } else {
-
+        this.props.method
+          .print(context)
+          .replace(";\n", "")
+          .replace("public abstract ", "")
+          .replace("public async abstract ", "")
+          .split("\n")
+          .forEach(
+            (line: string, idx: number, arr: string[]): void => {
+              if (idx === arr.length - 1) {
+                builder.add(line);
+              } else {
+                builder.addThenNewline(line);
+              }
+            },
+          );
       }
       if ("default" in this.props) {
         if (this.props.default !== undefined) {

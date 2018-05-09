@@ -111,11 +111,23 @@ export const importSome3: Import = Import.new({
   with: ["g", "z", "r"],
 });
 
+export const type6: Type.FromMethod = Type.FromMethod.new({
+  method: Method.Instance.Public.newAsync({
+    inTypes: [
+      Type.Argument.new({ name: "var1", type: "string" }),
+      Type.Argument.new({ name: "var2", type: "object" }),
+    ],
+    name: "methodInstance6",
+    outType: Type.Anonymous.new({ type: "Promise<string[]>" }),
+    templates: ["T"],
+  }),
+});
+
 export const interface1: Interface = Interface.newInternal({
   kind: "IF1",
   name: "If1",
   templates: ["T"],
-  types: [],
+  types: [type6],
 });
 
 export const interface2: Interface = Interface.newExported({
