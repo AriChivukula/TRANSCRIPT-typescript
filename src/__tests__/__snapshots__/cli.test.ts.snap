@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`codegenModuleWithBespoke 1`] = `
+"FOO
+/* BESPOKE START <<REPL>> */
+BAR
+/* BESPOKE END <<REPL>> */
+FOO
+"
+`;

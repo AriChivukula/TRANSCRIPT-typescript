@@ -1,48 +1,51 @@
 #!/usr/bin/env node
 
+import { createHash, Hash } from "crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, sep } from "path";
 import * as yargs from "yargs";
 
 import { Builder, endTemplate, Module, startTemplate } from "./index";
 
-// tslint:disable-next-line
-yargs
-  .usage(
-    "$0",
-    "Typescript Codegen",
-    (y: yargs.Argv): yargs.Argv => y
-      .option(
-        "v",
-        {
-          boolean: true,
-          describe: "Verify Only",
-        },
-      )
-      .option(
-        "files",
-        {
-          array: true,
-          demandOption: true,
-          describe: "Files",
-        },
-      ),
-    (argv: yargs.Arguments): void => {
-      // tslint:disable-next-line
-      argv.files.forEach(
-        (path: string): void => {
-          // tslint:disable-next-line
-          codegenFile(path, argv.v);
-        },
-      );
-    },
-  )
-  .help()
-  .argv;
+if (require.main === module) {
+  // tslint:disable-next-line
+  yargs
+    .usage(
+      "$0",
+      "Typescript Codegen",
+      (y: yargs.Argv): yargs.Argv => y
+        .option(
+          "expectNoChanges",
+          {
+            boolean: true,
+            describe: "Expect No Changes",
+          },
+        )
+        .option(
+          "files",
+          {
+            array: true,
+            demandOption: true,
+            describe: "Files",
+          },
+        ),
+      (argv: yargs.Arguments): void => {
+        // tslint:disable-next-line
+        argv.files.forEach(
+          (path: string): void => {
+            // tslint:disable-next-line
+            codegenFile(path, argv.expectNoChanges);
+          },
+        );
+      },
+    )
+    .help()
+    .argv;
+}
 
-function codegenFile(
+export function codegenFile(
   path: string,
-  inspectOnly: boolean,
+  expectNoChanges: boolean,
 ): void {
   // tslint:disable-next-line
   let file: { [index: string]: any };
@@ -51,16 +54,16 @@ function codegenFile(
   for (const name in file) {
     if (file[name] instanceof Module) {
       // tslint:disable-next-line
-      codegenModule(file[name], path, name, inspectOnly);
+      codegenModule(file[name], path, name, expectNoChanges);
     }
   }
 }
 
-function codegenModule(
+export function codegenModule(
   module: Module,
   path: string,
   name: string,
-  inspectOnly: boolean,
+  expectNoChanges: boolean,
 ): void {
   let dirBuilder: string = "";
   dirname(module.destination())
@@ -80,19 +83,23 @@ function codegenModule(
     builder.getBespokes(),
     module.destination(),
     content,
-    inspectOnly,
+    expectNoChanges,
   );
 }
 
-function codegenModuleWithBespokes(
+export function codegenModuleWithBespokes(
   bespokes: string[],
   destination: string,
   module: string,
-  inspectOnly: boolean,
+  expectNoChanges: boolean,
 ): void {
   let mutableModule: string = module;
+  let originalModule: string = "";
   if (existsSync(destination)) {
-    const originalModule: string = readFileSync(destination, "ascii");
+    originalModule = readFileSync(destination, "ascii");
+    if (moduleCodegenIsInvalid(originalModule)) {
+      throw new Error(`Invalid signature ${destination}`);
+    }
     bespokes.forEach((bespoke: string) => {
       mutableModule = codegenModuleWithBespoke(
         bespoke,
@@ -101,15 +108,46 @@ function codegenModuleWithBespokes(
       );
     });
   }
-  if (inspectOnly) {
-    // tslint:disable-next-line
-    console.log(`Skipping writing ${destination}`);
+  if (expectNoChanges && originalModule !== mutableModule) {
+    throw new Error(`Codegen outdated ${destination}`);
   } else {
     writeFileSync(destination, mutableModule);
   }
 }
 
-function codegenModuleWithBespoke(
+export function moduleCodegenIsInvalid(
+  module: string,
+): boolean {
+  const regexResult: RegExpExecArray | null = /SIGNED<<(.*)>>/.exec(module);
+  if (regexResult === null) {
+    return true;
+  }
+  const actualSignature: string = regexResult[1];
+  const oldLines: string[] = module
+    .split("\n")
+    .slice(8);
+  let newLines: string[] = [];
+  let exclude: boolean = false;
+  for (const oldLine of oldLines) {
+    if (oldLine.indexOf("BESPOKE END") !== -1) {
+      exclude = false;
+    }
+    if (exclude) {
+      continue;
+    }
+    if (oldLine.indexOf("BESPOKE START") !== -1) {
+      exclude = true;
+    }
+    newLines = [...newLines, oldLine];
+  }
+  const hash: Hash = createHash("SHA512");
+  hash.update(newLines.join("\n"));
+  const expectedSignature: string = hash.digest("base64");
+
+  return actualSignature !== expectedSignature;
+}
+
+export function codegenModuleWithBespoke(
   bespoke: string,
   module: string,
   originalModule: string,
