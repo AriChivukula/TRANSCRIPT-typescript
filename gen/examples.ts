@@ -25,7 +25,7 @@ export const bespoke3: Bespoke = Bespoke.new({
   name: "3tESt3",
 });
 
-export const function1: Function = Function.newSyncInternal({
+export const function1: Function.Sync = Function.Sync.newInternal({
   content: [],
   inTypes: [],
   name: "function1",
@@ -33,7 +33,7 @@ export const function1: Function = Function.newSyncInternal({
   templates: ["T"],
 });
 
-export const function2: Function = Function.newAsyncExported({
+export const function2: Function.Async = Function.Async.newExported({
   content: [],
   inTypes: [],
   name: "function2",
@@ -41,7 +41,7 @@ export const function2: Function = Function.newAsyncExported({
   templates: ["T", "V"],
 });
 
-export const function3: Function = Function.newAsyncExported({
+export const function3: Function.Async = Function.Async.newExported({
   content: [
     Bespoke.new({
       name: "fn3",

@@ -148,7 +148,7 @@ export function React(props: IReact): Module {
   if (props.props === undefined) {
     content = [
       ...content,
-      Function.newSyncExported({
+      Function.Sync.newExported({
         content: [
           Bespoke.new({
             name: "render",
