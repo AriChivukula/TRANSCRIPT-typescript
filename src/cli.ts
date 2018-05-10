@@ -6,41 +6,43 @@ import * as yargs from "yargs";
 
 import { Builder, endTemplate, Module, startTemplate } from "./index";
 
-// tslint:disable-next-line
-yargs
-  .usage(
-    "$0",
-    "Typescript Codegen",
-    (y: yargs.Argv): yargs.Argv => y
-      .option(
-        "v",
-        {
-          boolean: true,
-          describe: "Verify Only",
-        },
-      )
-      .option(
-        "files",
-        {
-          array: true,
-          demandOption: true,
-          describe: "Files",
-        },
-      ),
-    (argv: yargs.Arguments): void => {
-      // tslint:disable-next-line
-      argv.files.forEach(
-        (path: string): void => {
-          // tslint:disable-next-line
-          codegenFile(path, argv.v);
-        },
-      );
-    },
-  )
-  .help()
-  .argv;
+if (require.main === module) {
+  // tslint:disable-next-line
+  yargs
+    .usage(
+      "$0",
+      "Typescript Codegen",
+      (y: yargs.Argv): yargs.Argv => y
+        .option(
+          "v",
+          {
+            boolean: true,
+            describe: "Verify Only",
+          },
+        )
+        .option(
+          "files",
+          {
+            array: true,
+            demandOption: true,
+            describe: "Files",
+          },
+        ),
+      (argv: yargs.Arguments): void => {
+        // tslint:disable-next-line
+        argv.files.forEach(
+          (path: string): void => {
+            // tslint:disable-next-line
+            codegenFile(path, argv.v);
+          },
+        );
+      },
+    )
+    .help()
+    .argv;
+}
 
-function codegenFile(
+export function codegenFile(
   path: string,
   inspectOnly: boolean,
 ): void {
@@ -56,7 +58,7 @@ function codegenFile(
   }
 }
 
-function codegenModule(
+export function codegenModule(
   module: Module,
   path: string,
   name: string,
@@ -84,7 +86,7 @@ function codegenModule(
   );
 }
 
-function codegenModuleWithBespokes(
+export function codegenModuleWithBespokes(
   bespokes: string[],
   destination: string,
   module: string,
@@ -109,7 +111,7 @@ function codegenModuleWithBespokes(
   }
 }
 
-function codegenModuleWithBespoke(
+export function codegenModuleWithBespoke(
   bespoke: string,
   module: string,
   originalModule: string,

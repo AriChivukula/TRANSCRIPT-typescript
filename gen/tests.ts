@@ -197,3 +197,10 @@ export const viewsTest: Module = Jest({
     "refetchRelayView",
   ],
 });
+
+export const cliTest: Module = Jest({
+  destination: "src/__tests__/cli.test.ts",
+  tests: [
+    "codegenModuleWithBespoke",
+  ],
+});
