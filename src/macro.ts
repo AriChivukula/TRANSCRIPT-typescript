@@ -106,8 +106,17 @@ interface IRelayContainerCall {
 function RelayContainerCall(props: IRelayContainerCall): AnonymousRenderer {
   return (builder: Builder): void => {
     builder
+      .addThenNewline(`export const ${props.name}: React.ComponentType = ${props.relayType}(`)
       .indent()
-      .unindent();
+      .addThenNewline(`${props.name}Impl,`);
+    Bespoke
+      .new({
+        name: "relay",
+      })
+      .run(builder);
+    builder
+      .unindent()
+      .addThenNewline(");");
   };
 }
 

@@ -2,8 +2,8 @@
  * This file is partially generated; only edit bespoke sections.
  *
  * SOURCE<<gen/views.ts::refetchRelayView>>
- * BESPOKE<<imports, state, render, implementation>>
- * SIGNED<<mO1BpsJ/5cWedYgHTNAY3AagLo2kUquQt65SHElwPoW2ZviuwY5Si2LackC7oXnZJbJ8p3up6u6lJy9aOl1umw==>>
+ * BESPOKE<<imports, state, render, implementation, relay>>
+ * SIGNED<<YVgU3MlbwtcHTj4BF7tqLm1EEgIQiXyRoqmW+ktFY64e+X+hOfuJ8QGtJCZZqsz0YT7Zfukpc++RcC6vXZfwew==>>
  */
 
 import * as React from "react";
@@ -45,3 +45,9 @@ class RefetchRelayImpl extends React.Component<IRefetchRelayProps, IRefetchRelay
   /* BESPOKE START <<implementation>> */
   /* BESPOKE END <<implementation>> */
 }
+
+export const RefetchRelay: React.ComponentType = createRefetchContainer(
+  RefetchRelayImpl,
+  /* BESPOKE START <<relay>> */
+  /* BESPOKE END <<relay>> */
+);
