@@ -7,7 +7,11 @@
  */
 
 /* BESPOKE START <<imports>> */
-import { bespoke1, bespoke2, bespoke3 } from "./examples";
+import {
+  bespoke1,
+  bespoke2,
+  bespoke3,
+} from "../../gen/examples";
 /* BESPOKE END <<imports>> */
 
 beforeAll(

@@ -148,7 +148,7 @@ export function React(props: IReact): Module {
   if (props.props === undefined) {
     content = [
       ...content,
-      Function.newSyncExported({
+      Function.Sync.newExported({
         content: [
           Bespoke.new({
             name: "render",
@@ -219,7 +219,7 @@ export function React(props: IReact): Module {
     if (props.relayType === undefined) {
       content = [
         ...content,
-        Class.newConcreteExported({
+        Class.Concrete.newExported({
           content: classContent,
           extends: reactExtends,
           name: props.name,
@@ -228,7 +228,7 @@ export function React(props: IReact): Module {
     } else {
       content = [
         ...content,
-        Class.newConcreteInternal({
+        Class.Concrete.newInternal({
           content: classContent,
           extends: reactExtends,
           name: `${props.name}Impl`,

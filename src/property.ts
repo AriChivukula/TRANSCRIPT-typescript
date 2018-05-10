@@ -4,7 +4,7 @@ import { Type } from "./type";
 
 export namespace Property {
 
-  export enum EKind {
+  export enum E {
     PRIVATE = "private",
     PROTECTED = "protected",
     PUBLIC = "public",
@@ -21,7 +21,7 @@ export namespace Property {
       private readonly props: I,
       private readonly readonly: boolean,
       private readonly isStatic: boolean,
-      private readonly kind: EKind,
+      private readonly kind: E,
     ) {
       super();
     }
@@ -53,33 +53,33 @@ export namespace Property {
     export class Private extends BaseInstance {
 
       public static newImmutable(props: I): Private {
-        return new Private(props, true, false, EKind.PRIVATE);
+        return new Private(props, true, false, E.PRIVATE);
       }
 
       public static newMutable(props: I): Private {
-        return new Private(props, false, false, EKind.PRIVATE);
+        return new Private(props, false, false, E.PRIVATE);
       }
     }
 
     export class Protected extends BaseInstance {
 
       public static newImmutable(props: I): Protected {
-        return new Protected(props, true, false, EKind.PROTECTED);
+        return new Protected(props, true, false, E.PROTECTED);
       }
 
       public static newMutable(props: I): Protected {
-        return new Protected(props, false, false, EKind.PROTECTED);
+        return new Protected(props, false, false, E.PROTECTED);
       }
     }
 
     export class Public extends BaseInstance {
 
       public static newImmutable(props: I): Public {
-        return new Public(props, true, false, EKind.PUBLIC);
+        return new Public(props, true, false, E.PUBLIC);
       }
 
       public static newMutable(props: I): Public {
-        return new Public(props, false, false, EKind.PUBLIC);
+        return new Public(props, false, false, E.PUBLIC);
       }
     }
   }
@@ -91,33 +91,33 @@ export namespace Property {
     export class Private extends BaseStatic {
 
       public static newImmutable(props: I): Private {
-        return new Private(props, true, true, EKind.PRIVATE);
+        return new Private(props, true, true, E.PRIVATE);
       }
 
       public static newMutable(props: I): Private {
-        return new Private(props, false, true, EKind.PRIVATE);
+        return new Private(props, false, true, E.PRIVATE);
       }
     }
 
     export class Protected extends BaseStatic {
 
       public static newImmutable(props: I): Protected {
-        return new Protected(props, true, true, EKind.PROTECTED);
+        return new Protected(props, true, true, E.PROTECTED);
       }
 
       public static newMutable(props: I): Protected {
-        return new Protected(props, false, true, EKind.PROTECTED);
+        return new Protected(props, false, true, E.PROTECTED);
       }
     }
 
     export class Public extends BaseStatic {
 
       public static newImmutable(props: I): Public {
-        return new Public(props, true, true, EKind.PUBLIC);
+        return new Public(props, true, true, E.PUBLIC);
       }
 
       public static newMutable(props: I): Public {
-        return new Public(props, false, true, EKind.PUBLIC);
+        return new Public(props, false, true, E.PUBLIC);
       }
     }
   }

@@ -16,7 +16,7 @@ import {
   methodStatic1,
   methodStatic2,
   methodStatic3,
-} from "./examples";
+} from "../../gen/examples";
 /* BESPOKE END <<imports>> */
 
 beforeAll(

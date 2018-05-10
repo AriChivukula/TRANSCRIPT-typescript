@@ -7,7 +7,11 @@
  */
 
 /* BESPOKE START <<imports>> */
-import { class1, class2, class3 } from "./examples";
+import {
+  class1,
+  class2,
+  class3,
+} from "../../gen/examples";
 /* BESPOKE END <<imports>> */
 
 beforeAll(

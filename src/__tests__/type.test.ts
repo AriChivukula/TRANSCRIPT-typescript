@@ -7,7 +7,13 @@
  */
 
 /* BESPOKE START <<imports>> */
-import { type1, type2, type3, type4, type5 } from "./examples";
+import {
+  type1,
+  type2,
+  type3,
+  type4,
+  type5,
+} from "../../gen/examples";
 /* BESPOKE END <<imports>> */
 
 beforeAll(

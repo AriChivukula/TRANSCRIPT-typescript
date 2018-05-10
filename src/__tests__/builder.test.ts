@@ -7,7 +7,9 @@
  */
 
 /* BESPOKE START <<imports>> */
-import { Builder } from "../index";
+import {
+  Builder,
+} from "../index";
 /* BESPOKE END <<imports>> */
 
 beforeAll(

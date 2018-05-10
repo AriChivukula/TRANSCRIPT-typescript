@@ -7,7 +7,10 @@
  */
 
 /* BESPOKE START <<imports>> */
-import { namespace1, namespace2 } from "./examples";
+import {
+  namespace1,
+  namespace2,
+} from "../../gen/examples";
 /* BESPOKE END <<imports>> */
 
 beforeAll(

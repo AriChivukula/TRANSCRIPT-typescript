@@ -1,6 +1,6 @@
 {
   "name": "typescriptase",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "TypeScript Codegen",
   "main": "bin/index.js",
   "types": "bin/index.d.ts",
@@ -23,17 +23,17 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0-beta.46",
-    "yargs": "^11.1.0"
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.46",
     "@babel/core": "^7.0.0-beta.46",
     "@babel/preset-env": "^7.0.0-beta.46",
     "@types/jest": "^22.2.3",
-    "@types/node": "^10.0.4",
+    "@types/node": "^10.0.6",
     "@types/yargs": "^11.0.0",
     "jest": "^22.4.3",
-    "npm": "^6.0.0",
+    "npm": "^6.0.1",
     "ts-jest": "^22.4.5",
     "ts-node": "^6.0.3",
     "tslint": "^5.10.0",
@@ -43,7 +43,7 @@
     "typescriptase": "bin/cli.js"
   },
   "scripts": {
-    "build": "tsc && babel --minified bin/__tests__/*.js -d bin/__tests__/ && babel --minified bin/*.js -d bin/",
+    "build": "tsc && babel --minified bin/*.js -d bin/",
     "lint": "tslint -p .",
     "snap": "jest -u",
     "test": "jest && ts-node src/cli.ts --files gen/*.ts"

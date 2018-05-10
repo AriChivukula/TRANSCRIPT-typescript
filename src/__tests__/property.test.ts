@@ -14,7 +14,7 @@ import {
   propertyStatic1,
   propertyStatic2,
   propertyStatic3,
-} from "./examples";
+} from "../../gen/examples";
 /* BESPOKE END <<imports>> */
 
 beforeAll(

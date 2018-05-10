@@ -7,7 +7,12 @@
  */
 
 /* BESPOKE START <<imports>> */
-import { complexModule, contentModule, emptyModule, importModule } from "./examples";
+import {
+  complexModule,
+  contentModule,
+  emptyModule,
+  importModule,
+} from "../../gen/modules";
 /* BESPOKE END <<imports>> */
 
 beforeAll(

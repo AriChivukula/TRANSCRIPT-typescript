@@ -185,3 +185,15 @@ export const variableTest: Module = Jest({
     "variable3",
   ],
 });
+
+export const viewsTest: Module = Jest({
+  destination: "src/__tests__/views.test.ts",
+  tests: [
+    "simpleView",
+    "propsView",
+    "stateView",
+    "fragmentRelayView",
+    "paginationRelayView",
+    "refetchRelayView",
+  ],
+});

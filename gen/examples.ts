@@ -7,12 +7,11 @@ import {
   Import,
   Interface,
   Method,
-  Module,
   Namespace,
   Property,
   Type,
   Variable,
-} from "../index";
+} from "../src/index";
 
 export const bespoke1: Bespoke = Bespoke.new({
   name: "TEST1",
@@ -26,7 +25,7 @@ export const bespoke3: Bespoke = Bespoke.new({
   name: "3tESt3",
 });
 
-export const function1: Function = Function.newSyncInternal({
+export const function1: Function.Sync = Function.Sync.newInternal({
   content: [],
   inTypes: [],
   name: "function1",
@@ -34,7 +33,7 @@ export const function1: Function = Function.newSyncInternal({
   templates: ["T"],
 });
 
-export const function2: Function = Function.newAsyncExported({
+export const function2: Function.Async = Function.Async.newExported({
   content: [],
   inTypes: [],
   name: "function2",
@@ -42,7 +41,7 @@ export const function2: Function = Function.newAsyncExported({
   templates: ["T", "V"],
 });
 
-export const function3: Function = Function.newAsyncExported({
+export const function3: Function.Async = Function.Async.newExported({
   content: [
     Bespoke.new({
       name: "fn3",
@@ -303,7 +302,7 @@ export const variable3: Variable = Variable.newMutable({
   type: Type.Required.new({ name: "variable3", types: ["number", "null", "undefined"] }),
 });
 
-export const class1: Class = Class.newAbstractExported({
+export const class1: Class.Abstract = Class.Abstract.newExported({
   content: [
     propertyInstance1,
     propertyStatic1,
@@ -314,7 +313,7 @@ export const class1: Class = Class.newAbstractExported({
   templates: ["T"],
 });
 
-export const class2: Class = Class.newConcreteExported({
+export const class2: Class.Concrete = Class.Concrete.newExported({
   content: [
     bespoke1,
     propertyInstance2,
@@ -328,7 +327,7 @@ export const class2: Class = Class.newConcreteExported({
   templates: ["T", "V"],
 });
 
-export const class3: Class = Class.newConcreteInternal({
+export const class3: Class.Concrete = Class.Concrete.newInternal({
   content: [
     propertyInstance3,
     propertyStatic3,
@@ -372,80 +371,4 @@ export const namespace2: Namespace = Namespace.newExported({
     class3,
   ],
   name: "namespace2",
-});
-
-export const emptyModule: Module = Module.new({
-  content: [],
-  destination: "gen/__codegen__/emptyModule.ts",
-});
-
-export const contentModule: Module = Module.new({
-  content: [
-    namespace1,
-    alias1,
-    bespoke1,
-    interface1,
-    function1,
-    variable1,
-    alias2,
-    function2,
-    interface3,
-    variable2,
-    variable3,
-    bespoke2,
-    function3,
-    interface2,
-    alias3,
-  ],
-  destination: "gen/__codegen__/contentModule.ts",
-});
-
-export const importModule: Module = Module.new({
-  content: [
-    importAll1,
-    importAll2,
-    importAll3,
-    importDefault1,
-    importDefault2,
-    importDefault3,
-    importRaw1,
-    importRaw2,
-    importRaw3,
-    importSome1,
-    importSome2,
-    importSome3,
-  ],
-  destination: "gen/__codegen__/importModule.ts",
-});
-
-export const complexModule: Module = Module.new({
-  content: [
-    importRaw1,
-    importSome3,
-    importSome2,
-    importSome1,
-    namespace2,
-    importDefault3,
-    importDefault2,
-    importDefault1,
-    importAll3,
-    importRaw2,
-    importRaw3,
-    importAll2,
-    importAll1,
-    interface1,
-    function3,
-    variable3,
-    interface2,
-    alias1,
-    alias2,
-    alias3,
-    function2,
-    variable1,
-    bespoke3,
-    variable2,
-    interface3,
-    function1,
-  ],
-  destination: "gen/__codegen__/complexModule.ts",
 });

@@ -7,7 +7,11 @@
  */
 
 /* BESPOKE START <<imports>> */
-import { variable1, variable2, variable3 } from "./examples";
+import {
+  variable1,
+  variable2,
+  variable3,
+} from "../../gen/examples";
 /* BESPOKE END <<imports>> */
 
 beforeAll(
