@@ -1,0 +1,256 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fragmentRelayView 1`] = `
+"/**
+ * This file is partially generated; only edit bespoke sections.
+ *
+ * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
+ * BESPOKE<<imports, state, render, implementation, relay>>
+ * SIGNED<<eEGd/rFe0Cn5R7vxW1SJOgE+6QSkJZukrvR7pk4oaFMfAaYqRTwR8wPJJzDtE2oSh5yAreTQu0NKbMllv89myQ==>>
+ */
+
+import * as React from \\"react\\";
+import {
+  createFragmentContainer,
+  graphql,
+} from \\"react-relay\\";
+
+/* BESPOKE START <<imports>> */
+/* BESPOKE END <<imports>> */
+
+export interface IFragmentRelayProps {
+  test1: string;
+}
+
+export interface IFragmentRelayState {
+  test2?: string;
+}
+
+class FragmentRelayImpl extends React.Component<IFragmentRelayProps, IFragmentRelayState> {
+
+  public constructor(
+    props: IFragmentRelayProps,
+  ) {
+    super(props);
+    this.state = {
+      /* BESPOKE START <<state>> */
+      /* BESPOKE END <<state>> */
+    };
+  }
+
+  public render(
+  ): JSX.Element {
+    /* BESPOKE START <<render>> */
+    /* BESPOKE END <<render>> */
+  }
+
+  /* BESPOKE START <<implementation>> */
+  /* BESPOKE END <<implementation>> */
+}
+
+export const FragmentRelay: React.ComponentType = createFragmentContainer(
+  FragmentRelayImpl,
+  /* BESPOKE START <<relay>> */
+  /* BESPOKE END <<relay>> */
+);
+"
+`;
+
+exports[`paginationRelayView 1`] = `
+"/**
+ * This file is partially generated; only edit bespoke sections.
+ *
+ * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
+ * BESPOKE<<imports, render, implementation, relay>>
+ * SIGNED<<KAOJPr9mlyxVJEKun1Uw0j9GnDOSeL4RDNb/31B0aigQSMbeuq5XSnmhAH8rxeyP/WbeZXOT6xof81JIZ+efnQ==>>
+ */
+
+import * as React from \\"react\\";
+import {
+  createPaginationContainer,
+  graphql,
+} from \\"react-relay\\";
+
+/* BESPOKE START <<imports>> */
+/* BESPOKE END <<imports>> */
+
+export interface IPaginationRelayProps {
+  test1: string;
+}
+
+class PaginationRelayImpl extends React.Component<IPaginationRelayProps> {
+
+  public render(
+  ): JSX.Element {
+    /* BESPOKE START <<render>> */
+    /* BESPOKE END <<render>> */
+  }
+
+  /* BESPOKE START <<implementation>> */
+  /* BESPOKE END <<implementation>> */
+}
+
+export const PaginationRelay: React.ComponentType = createPaginationContainer(
+  PaginationRelayImpl,
+  /* BESPOKE START <<relay>> */
+  /* BESPOKE END <<relay>> */
+);
+"
+`;
+
+exports[`propsView 1`] = `
+"/**
+ * This file is partially generated; only edit bespoke sections.
+ *
+ * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
+ * BESPOKE<<imports, render, implementation>>
+ * SIGNED<<19CPtzlbKZScdME57aLVNuofS6zI22XxUYd+ROQyX32wuz3ENCmi5bOqxHP5hX0uCIpI97Kx+Yo99hSZWpGzgQ==>>
+ */
+
+import * as React from \\"react\\";
+
+/* BESPOKE START <<imports>> */
+/* BESPOKE END <<imports>> */
+
+export interface IPropsProps {
+  test1: string;
+}
+
+export class Props extends React.Component<IPropsProps> {
+
+  public render(
+  ): JSX.Element {
+    /* BESPOKE START <<render>> */
+    /* BESPOKE END <<render>> */
+  }
+
+  /* BESPOKE START <<implementation>> */
+  /* BESPOKE END <<implementation>> */
+}
+"
+`;
+
+exports[`refetchRelayView 1`] = `
+"/**
+ * This file is partially generated; only edit bespoke sections.
+ *
+ * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
+ * BESPOKE<<imports, state, render, implementation, relay>>
+ * SIGNED<<YVgU3MlbwtcHTj4BF7tqLm1EEgIQiXyRoqmW+ktFY64e+X+hOfuJ8QGtJCZZqsz0YT7Zfukpc++RcC6vXZfwew==>>
+ */
+
+import * as React from \\"react\\";
+import {
+  commitMutation,
+  createRefetchContainer,
+  graphql,
+} from \\"react-relay\\";
+
+/* BESPOKE START <<imports>> */
+/* BESPOKE END <<imports>> */
+
+export interface IRefetchRelayProps {
+  test1: string;
+}
+
+export interface IRefetchRelayState {
+  test2?: string;
+}
+
+class RefetchRelayImpl extends React.Component<IRefetchRelayProps, IRefetchRelayState> {
+
+  public constructor(
+    props: IRefetchRelayProps,
+  ) {
+    super(props);
+    this.state = {
+      /* BESPOKE START <<state>> */
+      /* BESPOKE END <<state>> */
+    };
+  }
+
+  public render(
+  ): JSX.Element {
+    /* BESPOKE START <<render>> */
+    /* BESPOKE END <<render>> */
+  }
+
+  /* BESPOKE START <<implementation>> */
+  /* BESPOKE END <<implementation>> */
+}
+
+export const RefetchRelay: React.ComponentType = createRefetchContainer(
+  RefetchRelayImpl,
+  /* BESPOKE START <<relay>> */
+  /* BESPOKE END <<relay>> */
+);
+"
+`;
+
+exports[`simpleView 1`] = `
+"/**
+ * This file is partially generated; only edit bespoke sections.
+ *
+ * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
+ * BESPOKE<<imports, render>>
+ * SIGNED<<p55GFnlaW0jHBVxawVTLnzcLRSvrBpqq6/v60L8z5qr57bxoXJ6kkowwVvvalBaPP1zgbKkfw2zkXQpdgZW+Vg==>>
+ */
+
+import * as React from \\"react\\";
+
+/* BESPOKE START <<imports>> */
+/* BESPOKE END <<imports>> */
+
+export function Simple(
+): JSX.Element {
+  /* BESPOKE START <<render>> */
+  /* BESPOKE END <<render>> */
+}
+"
+`;
+
+exports[`stateView 1`] = `
+"/**
+ * This file is partially generated; only edit bespoke sections.
+ *
+ * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
+ * BESPOKE<<imports, state, render, implementation>>
+ * SIGNED<<h8FhVvgew4Uys7vjWG49giElnrvHJOWPn9UWNTh4kEoq5lefvUhY1XSBYQXKKkNwZKI7wtBbwYeUH/EiphS+Aw==>>
+ */
+
+import * as React from \\"react\\";
+
+/* BESPOKE START <<imports>> */
+/* BESPOKE END <<imports>> */
+
+export interface IStateProps {
+  test1: string;
+}
+
+export interface IStateState {
+  test2?: string;
+}
+
+export class State extends React.Component<IStateProps, IStateState> {
+
+  public constructor(
+    props: IStateProps,
+  ) {
+    super(props);
+    this.state = {
+      /* BESPOKE START <<state>> */
+      /* BESPOKE END <<state>> */
+    };
+  }
+
+  public render(
+  ): JSX.Element {
+    /* BESPOKE START <<render>> */
+    /* BESPOKE END <<render>> */
+  }
+
+  /* BESPOKE START <<implementation>> */
+  /* BESPOKE END <<implementation>> */
+}
+"
+`;

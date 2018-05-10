@@ -12,7 +12,7 @@ import {
   contentModule,
   emptyModule,
   importModule,
-} from "../../gen/examples";
+} from "../../gen/modules";
 /* BESPOKE END <<imports>> */
 
 beforeAll(

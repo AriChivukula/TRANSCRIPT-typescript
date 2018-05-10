@@ -7,7 +7,6 @@ import {
   Import,
   Interface,
   Method,
-  Module,
   Namespace,
   Property,
   Type,
@@ -372,80 +371,4 @@ export const namespace2: Namespace = Namespace.newExported({
     class3,
   ],
   name: "namespace2",
-});
-
-export const emptyModule: Module = Module.new({
-  content: [],
-  destination: "gen/__codegen__/emptyModule.ts",
-});
-
-export const contentModule: Module = Module.new({
-  content: [
-    namespace1,
-    alias1,
-    bespoke1,
-    interface1,
-    function1,
-    variable1,
-    alias2,
-    function2,
-    interface3,
-    variable2,
-    variable3,
-    bespoke2,
-    function3,
-    interface2,
-    alias3,
-  ],
-  destination: "gen/__codegen__/contentModule.ts",
-});
-
-export const importModule: Module = Module.new({
-  content: [
-    importAll1,
-    importAll2,
-    importAll3,
-    importDefault1,
-    importDefault2,
-    importDefault3,
-    importRaw1,
-    importRaw2,
-    importRaw3,
-    importSome1,
-    importSome2,
-    importSome3,
-  ],
-  destination: "gen/__codegen__/importModule.ts",
-});
-
-export const complexModule: Module = Module.new({
-  content: [
-    importRaw1,
-    importSome3,
-    importSome2,
-    importSome1,
-    namespace2,
-    importDefault3,
-    importDefault2,
-    importDefault1,
-    importAll3,
-    importRaw2,
-    importRaw3,
-    importAll2,
-    importAll1,
-    interface1,
-    function3,
-    variable3,
-    interface2,
-    alias1,
-    alias2,
-    alias3,
-    function2,
-    variable1,
-    bespoke3,
-    variable2,
-    interface3,
-    function1,
-  ],
-  destination: "gen/__codegen__/complexModule.ts",
 });
