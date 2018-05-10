@@ -198,31 +198,43 @@ export function React(props: IReact): Module {
     } else {
       reactExtends += ">";
     }
-    content = [
-      ...content,
-      (props.relayType === undefined ? Class.newConcreteExported : Class.newConcreteInternal)({
+    const classContent: TRenderer[] = [
+      ...constructor,
+      Method.Instance.Public.newSync({
         content: [
-          ...constructor,
-          Method.Instance.Public.newSync({
-            content: [
-              Bespoke.new({
-                name: "render",
-              }),
-            ],
-            inTypes: [],
-            name: "render",
-            outType: Type.Anonymous.new({
-              type: "JSX.Element",
-            }),
-          }),
           Bespoke.new({
-            name: "implementation",
+            name: "render",
           }),
         ],
-        extends: reactExtends,
-        name: props.relayType === undefined ? props.name : `${props.name}Impl`,
+        inTypes: [],
+        name: "render",
+        outType: Type.Anonymous.new({
+          type: "JSX.Element",
+        }),
+      }),
+      Bespoke.new({
+        name: "implementation",
       }),
     ];
+    if (props.relayType === undefined) {
+      content = [
+        ...content,
+        Class.newConcreteExported({
+          content: classContent,
+          extends: reactExtends,
+          name: props.name,
+        }),
+      ];
+    } else {
+      content = [
+        ...content,
+        Class.newConcreteInternal({
+          content: classContent,
+          extends: reactExtends,
+          name: `${props.name}Impl`,
+        }),
+      ];
+    }
     if (props.relayType !== undefined) {
       let relayImports: string[] = ["graphql", props.relayType];
       if (props.relayMutation === true) {
