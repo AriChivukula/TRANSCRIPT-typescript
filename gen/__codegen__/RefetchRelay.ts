@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::refetchRelayView>>
  * BESPOKE<<imports, state, render, implementation>>
- * SIGNED<<Hlq6VEm0pN76dwJW8yJFQUkmb1owzje5574udOLwQTLarMMDEU7eXm+Ubk/BHXVdfZ5aTRQbU85o3sqbcBDFxw==>>
+ * SIGNED<<mO1BpsJ/5cWedYgHTNAY3AagLo2kUquQt65SHElwPoW2ZviuwY5Si2LackC7oXnZJbJ8p3up6u6lJy9aOl1umw==>>
  */
 
 import * as React from "react";
@@ -24,7 +24,7 @@ export interface IRefetchRelayState {
   test2?: string;
 }
 
-export class RefetchRelay extends React.Component<IRefetchRelayProps, IRefetchRelayState> {
+class RefetchRelayImpl extends React.Component<IRefetchRelayProps, IRefetchRelayState> {
 
   public constructor(
     props: IRefetchRelayProps,

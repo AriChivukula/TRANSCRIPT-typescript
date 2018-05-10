@@ -191,7 +191,7 @@ export function React(props: IReact): Module {
     }
     content = [
       ...content,
-      Class.newConcreteExported({
+      (props.relayType === undefined ? Class.newConcreteExported : Class.newConcreteInternal)({
         content: [
           ...constructor,
           Method.Instance.Public.newSync({
@@ -211,7 +211,7 @@ export function React(props: IReact): Module {
           }),
         ],
         extends: reactExtends,
-        name: props.name,
+        name: props.relayType === undefined ? props.name : `${props.name}Impl`,
       }),
     ];
     if (props.relayType !== undefined) {

@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::fragmentRelayView>>
  * BESPOKE<<imports, state, render, implementation>>
- * SIGNED<<4xsc97asxMjZ7bF/lAJjJ0yijTmo7E8X/RN0BjwhXBObWOFO/q2Wj3uN3Xw0Xvtblmy/PtpRwUZAFvhI4mVOPg==>>
+ * SIGNED<<mUhatyGBNmJlk/snd9/d2MEa73W8vrKfcIcqZN1qDxPGuXEu9+tO8UtOodyUza1/oxNoOhmYbqXk0ui9BqCrTQ==>>
  */
 
 import * as React from "react";
@@ -23,7 +23,7 @@ export interface IFragmentRelayState {
   test2?: string;
 }
 
-export class FragmentRelay extends React.Component<IFragmentRelayProps, IFragmentRelayState> {
+class FragmentRelayImpl extends React.Component<IFragmentRelayProps, IFragmentRelayState> {
 
   public constructor(
     props: IFragmentRelayProps,
