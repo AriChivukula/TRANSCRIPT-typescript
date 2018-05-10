@@ -302,7 +302,7 @@ export const variable3: Variable = Variable.newMutable({
   type: Type.Required.new({ name: "variable3", types: ["number", "null", "undefined"] }),
 });
 
-export const class1: Class = Class.newAbstractExported({
+export const class1: Class.Abstract = Class.Abstract.newExported({
   content: [
     propertyInstance1,
     propertyStatic1,
@@ -313,7 +313,7 @@ export const class1: Class = Class.newAbstractExported({
   templates: ["T"],
 });
 
-export const class2: Class = Class.newConcreteExported({
+export const class2: Class.Concrete = Class.Concrete.newExported({
   content: [
     bespoke1,
     propertyInstance2,
@@ -327,7 +327,7 @@ export const class2: Class = Class.newConcreteExported({
   templates: ["T", "V"],
 });
 
-export const class3: Class = Class.newConcreteInternal({
+export const class3: Class.Concrete = Class.Concrete.newInternal({
   content: [
     propertyInstance3,
     propertyStatic3,
