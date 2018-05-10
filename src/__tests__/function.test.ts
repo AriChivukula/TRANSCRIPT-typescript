@@ -7,7 +7,11 @@
  */
 
 /* BESPOKE START <<imports>> */
-import { function1, function2, function3 } from "./examples";
+import {
+  function1,
+  function2,
+  function3,
+} from "../../gen/examples";
 /* BESPOKE END <<imports>> */
 
 beforeAll(

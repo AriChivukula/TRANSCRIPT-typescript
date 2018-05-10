@@ -20,7 +20,7 @@ import {
   importSome1,
   importSome2,
   importSome3,
-} from "./examples";
+} from "../../gen/examples";
 /* BESPOKE END <<imports>> */
 
 beforeAll(

@@ -12,7 +12,7 @@ import {
   Property,
   Type,
   Variable,
-} from "../index";
+} from "../src/index";
 
 export const bespoke1: Bespoke = Bespoke.new({
   name: "TEST1",

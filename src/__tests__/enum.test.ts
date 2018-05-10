@@ -7,7 +7,10 @@
  */
 
 /* BESPOKE START <<imports>> */
-import { enum1, enum2 } from "./examples";
+import {
+  enum1,
+  enum2,
+} from "../../gen/examples";
 /* BESPOKE END <<imports>> */
 
 beforeAll(

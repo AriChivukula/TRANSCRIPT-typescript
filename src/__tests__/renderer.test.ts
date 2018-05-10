@@ -7,8 +7,13 @@
  */
 
 /* BESPOKE START <<imports>> */
-import { Module } from "../index";
-import { bespoke1, interface1 } from "./examples";
+import {
+  Module,
+} from "../index";
+import {
+  bespoke1,
+  interface1,
+} from "../../gen/examples";
 /* BESPOKE END <<imports>> */
 
 beforeAll(

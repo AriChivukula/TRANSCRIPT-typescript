@@ -7,7 +7,11 @@
  */
 
 /* BESPOKE START <<imports>> */
-import { interface1, interface2, interface3 } from "./examples";
+import {
+  interface1,
+  interface2,
+  interface3,
+} from "../../gen/examples";
 /* BESPOKE END <<imports>> */
 
 beforeAll(

@@ -7,7 +7,11 @@
  */
 
 /* BESPOKE START <<imports>> */
-import { alias1, alias2, alias3 } from "./examples";
+import {
+  alias1,
+  alias2,
+  alias3,
+} from "../../gen/examples";
 /* BESPOKE END <<imports>> */
 
 beforeAll(
