@@ -1,6 +1,5 @@
 import {
   ERelayType,
-  Interface,
   Module,
   React,
   Type,
@@ -48,13 +47,13 @@ export const fragmentRelayView: Module = React({
       type: "string",
     }),
   ],
+  relayType: ERelayType.FRAGMENT,
   state: [
     Type.Optional.new({
       name: "test2",
       type: "string",
     }),
   ],
-  relayType: ERelayType.FRAGMENT,
 });
 
 export const paginationRelayView: Module = React({
@@ -78,12 +77,12 @@ export const refetchRelayView: Module = React({
       type: "string",
     }),
   ],
+  relayMutation: true,
+  relayType: ERelayType.REFETCH,
   state: [
     Type.Optional.new({
       name: "test2",
       type: "string",
     }),
   ],
-  relayMutation: true,
-  relayType: ERelayType.REFETCH,
 });

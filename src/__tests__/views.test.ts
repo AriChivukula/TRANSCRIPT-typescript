@@ -8,12 +8,12 @@
 
 /* BESPOKE START <<imports>> */
 import {
-  simpleView,
-  propsView,
-  stateView,
   fragmentRelayView,
   paginationRelayView,
+  propsView,
   refetchRelayView,
+  simpleView,
+  stateView,
 } from "../../gen/views";
 /* BESPOKE END <<imports>> */
 
