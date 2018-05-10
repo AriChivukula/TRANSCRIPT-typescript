@@ -7,6 +7,7 @@ import { NamedRenderer, TRenderer } from "./renderer";
 const headerTemplateWithoutBespoke: string = `/**
  * This file is fully generated; do not manually edit.
  *
+ *
  * SOURCE<<@0>>
  * SIGNED<<@1>>
  */`;

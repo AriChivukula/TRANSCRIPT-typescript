@@ -2,14 +2,18 @@
  * This file is partially generated; only edit bespoke sections.
  *
  * SOURCE<<gen/tests.ts::cliTest>>
- * BESPOKE<<imports, beforeAll, afterAll, beforeEach, afterEach, codegenModuleWithBespoke>>
- * SIGNED<<y00hXWupNT25rgjF1AveV1whfGkI+WumdcWTaES9H2X/GhYkxYcJATFioM6DvBHtDXyxayRGQDNH9K+chANlXg==>>
+ * BESPOKE<<imports, beforeAll, afterAll, beforeEach, afterEach, codegenModuleWithBespoke, moduleCodegenIsInvalid>>
+ * SIGNED<<y0USZ6wfaUDmI4KMXOfbXm49Qc9sMS04ZMeOYzKtK1tm/r0fmgPSQvXSEk7N4bD/sGBOOWpc3oVOpkWorLPp+A==>>
  */
 
 /* BESPOKE START <<imports>> */
 import {
   codegenModuleWithBespoke,
+  moduleCodegenIsInvalid,
 } from "../cli"
+import {
+  complexModule,
+} from "../../gen/modules";
 /* BESPOKE END <<imports>> */
 
 beforeAll(
@@ -46,10 +50,30 @@ test(
     /* BESPOKE START <<codegenModuleWithBespoke>> */
     expect(codegenModuleWithBespoke(
       "REPL",
-      "FOO\n/* BESPOKE START <<REPL>> */\n/* BESPOKE END <<REPL>> */\nFOO\n",
-      "BAR\n/* BESPOKE START <<REPL>> */\nBAR\n/* BESPOKE END <<REPL>> */\nBAR\n",
+      "FOO\n/* @@ START <<REPL>> */\n/* @@ END <<REPL>> */\nFOO\n"
+        .replace("@@", "BESPOKE")
+        .replace("@@", "BESPOKE"),
+      "BAR\n/* @@ START <<REPL>> */\nBAR\n/* @@ END <<REPL>> */\nBAR\n"
+        .replace("@@", "BESPOKE")
+        .replace("@@", "BESPOKE"),
     ))
       .toMatchSnapshot();
     /* BESPOKE END <<codegenModuleWithBespoke>> */
+  },
+);
+
+test(
+  "moduleCodegenIsInvalid",
+  async (): Promise<void> => {
+    /* BESPOKE START <<moduleCodegenIsInvalid>> */
+    expect(moduleCodegenIsInvalid(
+      complexModule.print(),
+    ))
+      .toBeFalsy();
+    expect(moduleCodegenIsInvalid(
+      complexModule.print().replace("import {", "import{"),
+    ))
+      .toBeTruthy();
+    /* BESPOKE END <<moduleCodegenIsInvalid>> */
   },
 );

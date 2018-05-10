@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { createHash, Hash } from "crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, sep } from "path";
 import * as yargs from "yargs";
@@ -95,6 +96,9 @@ export function codegenModuleWithBespokes(
   let mutableModule: string = module;
   if (existsSync(destination)) {
     const originalModule: string = readFileSync(destination, "ascii");
+    if (moduleCodegenIsInvalid(originalModule)) {
+      throw new Error("Invalid Module Signature");
+    }
     bespokes.forEach((bespoke: string) => {
       mutableModule = codegenModuleWithBespoke(
         bespoke,
@@ -109,6 +113,38 @@ export function codegenModuleWithBespokes(
   } else {
     writeFileSync(destination, mutableModule);
   }
+}
+
+export function moduleCodegenIsInvalid(
+  module: string,
+): boolean {
+  const regexResult: RegExpExecArray | null = /SIGNED<<(.*)>>/.exec(module);
+  if (regexResult === null) {
+    return true;
+  }
+  const actualSignature: string = regexResult[1];
+  const oldLines: string[] = module
+    .split("\n")
+    .slice(8);
+  let newLines: string[] = [];
+  let exclude: boolean = false;
+  for (const oldLine of oldLines) {
+    if (oldLine.indexOf("BESPOKE END") !== -1) {
+      exclude = false;
+    }
+    if (exclude) {
+      continue;
+    }
+    if (oldLine.indexOf("BESPOKE START") !== -1) {
+      exclude = true;
+    }
+    newLines = [...newLines, oldLine];
+  }
+  const hash: Hash = createHash("SHA512");
+  hash.update(newLines.join("\n"));
+  const expectedSignature: string = hash.digest("base64");
+
+  return actualSignature !== expectedSignature;
 }
 
 export function codegenModuleWithBespoke(
