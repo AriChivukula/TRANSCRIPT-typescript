@@ -15,10 +15,10 @@ if (require.main === module) {
       "Typescript Codegen",
       (y: yargs.Argv): yargs.Argv => y
         .option(
-          "v",
+          "expectNoChanges",
           {
             boolean: true,
-            describe: "Verify Only",
+            describe: "Expect No Changes",
           },
         )
         .option(
@@ -34,7 +34,7 @@ if (require.main === module) {
         argv.files.forEach(
           (path: string): void => {
             // tslint:disable-next-line
-            codegenFile(path, argv.v);
+            codegenFile(path, argv.expectNoChanges);
           },
         );
       },
@@ -45,7 +45,7 @@ if (require.main === module) {
 
 export function codegenFile(
   path: string,
-  inspectOnly: boolean,
+  expectNoChanges: boolean,
 ): void {
   // tslint:disable-next-line
   let file: { [index: string]: any };
@@ -54,7 +54,7 @@ export function codegenFile(
   for (const name in file) {
     if (file[name] instanceof Module) {
       // tslint:disable-next-line
-      codegenModule(file[name], path, name, inspectOnly);
+      codegenModule(file[name], path, name, expectNoChanges);
     }
   }
 }
@@ -63,7 +63,7 @@ export function codegenModule(
   module: Module,
   path: string,
   name: string,
-  inspectOnly: boolean,
+  expectNoChanges: boolean,
 ): void {
   let dirBuilder: string = "";
   dirname(module.destination())
@@ -83,7 +83,7 @@ export function codegenModule(
     builder.getBespokes(),
     module.destination(),
     content,
-    inspectOnly,
+    expectNoChanges,
   );
 }
 
@@ -91,13 +91,14 @@ export function codegenModuleWithBespokes(
   bespokes: string[],
   destination: string,
   module: string,
-  inspectOnly: boolean,
+  expectNoChanges: boolean,
 ): void {
   let mutableModule: string = module;
+  let originalModule: string = "";
   if (existsSync(destination)) {
-    const originalModule: string = readFileSync(destination, "ascii");
+    originalModule = readFileSync(destination, "ascii");
     if (moduleCodegenIsInvalid(originalModule)) {
-      throw new Error("Invalid Module Signature");
+      throw new Error(`Invalid signature ${destination}`);
     }
     bespokes.forEach((bespoke: string) => {
       mutableModule = codegenModuleWithBespoke(
@@ -107,9 +108,8 @@ export function codegenModuleWithBespokes(
       );
     });
   }
-  if (inspectOnly) {
-    // tslint:disable-next-line
-    console.log(`Skipping writing ${destination}`);
+  if (expectNoChanges && originalModule !== mutableModule) {
+    throw new Error(`Codegen outdated ${destination}`);
   } else {
     writeFileSync(destination, mutableModule);
   }
