@@ -43,7 +43,7 @@
     "typescriptase": "bin/cli.js"
   },
   "scripts": {
-    "build": "tsc && babel --minified bin/__tests__/*.js -d bin/__tests__/ && babel --minified bin/*.js -d bin/",
+    "build": "tsc && babel --minified bin/*.js -d bin/",
     "lint": "tslint -p .",
     "snap": "jest -u",
     "test": "jest && ts-node src/cli.ts --files gen/*.ts"
