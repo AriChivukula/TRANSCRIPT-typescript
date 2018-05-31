@@ -30,6 +30,7 @@ export const stateView: Module = React({
       type: "string",
     }),
   ],
+  relayMutation: true,
   state: [
     Type.Optional.new({
       name: "test2",

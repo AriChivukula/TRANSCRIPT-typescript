@@ -225,6 +225,15 @@ export function React(props: IReact): Module {
           name: props.name,
         }),
       ];
+      if (props.relayMutation === true) {
+        content = [
+          ...content,
+          Import.new({
+            name: "react-relay",
+            with: ["commitMutation"],
+          }),
+        ];
+      }
     } else {
       content = [
         ...content,
@@ -234,8 +243,6 @@ export function React(props: IReact): Module {
           name: `${props.name}Impl`,
         }),
       ];
-    }
-    if (props.relayType !== undefined) {
       let relayImports: string[] = ["graphql", props.relayType];
       if (props.relayMutation === true) {
         relayImports = [...relayImports, "commitMutation"];
