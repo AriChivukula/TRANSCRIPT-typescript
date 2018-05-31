@@ -50,7 +50,7 @@ afterEach(
 test(
   "any",
   async (): Promise<void> => {
-    /* BESPOKE START <<any> */
+    /* BESPOKE START <<any>> */
     expect(primitiveAny)
       .toMatchSnapshot();
     /* BESPOKE END <<any>> */
