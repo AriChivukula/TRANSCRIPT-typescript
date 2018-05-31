@@ -230,7 +230,7 @@ export function React(props: IReact): Module {
           ...content,
           Import.new({
             name: "react-relay",
-            with: ["commitMutation"],
+            with: ["commitMutation", "graphql"],
           }),
         ];
       }
