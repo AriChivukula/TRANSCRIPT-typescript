@@ -146,6 +146,20 @@ export const namespaceTest: Module = Jest({
   ],
 });
 
+export const primitiveTest: Module = Jest({
+  destination: "src/__tests__/primitive.test.ts",
+  tests: [
+    "any",
+    "boolean",
+    "never",
+    "null",
+    "number",
+    "string",
+    "undefined",
+    "void",
+  ],
+});
+
 export const propertyTest: Module = Jest({
   destination: "src/__tests__/property.test.ts",
   tests: [

@@ -8,10 +8,27 @@ import {
   Interface,
   Method,
   Namespace,
+  Primitive,
   Property,
   Type,
   Variable,
 } from "../src/index";
+
+export const primitiveAny: string = Primitive.ANY;
+
+export const primitiveBoolean: string = Primitive.BOOLEAN;
+
+export const primitiveNever: string = Primitive.NEVER;
+
+export const primitiveNull: string = Primitive.NULL;
+
+export const primitiveNumber: string = Primitive.NUMBER;
+
+export const primitiveString: string = Primitive.STRING;
+
+export const primitiveUndefined: string = Primitive.UNDEFINED;
+
+export const primitiveVoid: string = Primitive.VOID;
 
 export const bespoke1: Bespoke = Bespoke.new({
   name: "TEST1",

@@ -21,6 +21,7 @@
 * [Method](https://github.com/arichiv/typescriptase/blob/master/src/method.ts)
 * [Module](https://github.com/arichiv/typescriptase/blob/master/src/module.ts)
 * [Namespace](https://github.com/arichiv/typescriptase/blob/master/src/namespace.ts)
+* [Primitive](https://github.com/arichiv/typescriptase/blob/master/src/primitive.ts)
 * [Property](https://github.com/arichiv/typescriptase/blob/master/src/property.ts)
 * [Type](https://github.com/arichiv/typescriptase/blob/master/src/type.ts)
 * [Variable](https://github.com/arichiv/typescriptase/blob/master/src/variable.ts)
