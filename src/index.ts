@@ -12,6 +12,7 @@ export * from "./macro";
 export * from "./method";
 export * from "./module";
 export * from "./namespace";
+export * from "./primitive";
 export * from "./property";
 export * from "./renderer";
 export * from "./type";

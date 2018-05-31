@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`any 1`] = `"any"`;
+
+exports[`boolean 1`] = `"boolean"`;
+
+exports[`never 1`] = `"never"`;
+
+exports[`null 1`] = `"null"`;
+
+exports[`number 1`] = `"number"`;
+
+exports[`string 1`] = `"string"`;
+
+exports[`undefined 1`] = `"undefined"`;
+
+exports[`void 1`] = `"void"`;
