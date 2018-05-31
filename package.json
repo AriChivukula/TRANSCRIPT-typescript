@@ -4,7 +4,7 @@
   "description": "TypeScript Codegen",
   "main": "bin/index.js",
   "types": "bin/index.d.ts",
-  "repository": "https://github.com/arichiv/typescriptase.git",
+  "repository": "https://github.com/AriChivukula/typescriptase",
   "author": "Ari Chivukula <ari@chivuku.la>",
   "license": "MIT",
   "jest": {
