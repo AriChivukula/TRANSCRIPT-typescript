@@ -1,6 +1,6 @@
 {
   "name": "typescriptase",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "TypeScript Codegen",
   "main": "bin/index.js",
   "types": "bin/index.d.ts",
@@ -29,7 +29,7 @@
     "@babel/cli": "^7.0.0-beta.49",
     "@babel/core": "^7.0.0-beta.49",
     "@babel/preset-env": "^7.0.0-beta.49",
-    "@types/jest": "^22.2.3",
+    "@types/jest": "^23.1.1",
     "@types/node": "^10.1.4",
     "@types/yargs": "^11.0.0",
     "jest": "^23.1.0 ",
@@ -42,7 +42,6 @@
     "typescriptase": "bin/cli.js"
   },
   "scripts": {
-    "prep": "rm package-lock.json && rm -rf node_modules && npm install",
     "codegen": "ts-node src/cli.ts --files gen/*.ts",
     "build": "tsc && babel --minified bin/*.js -d bin/",
     "lint": "tslint -p .",
