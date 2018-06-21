@@ -9,6 +9,10 @@ jobs:
     - npm run lint
     - npm run test
     - npm run build
+  - stage: Deploy
+    if: tag
+    script:
+    - npm run build
     deploy:
       - provider: npm
         email: $EMAIL
