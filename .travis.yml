@@ -1,25 +1,25 @@
 language: node_js
 node_js:
 - node
-script:
-- npm outdated
-- npm run lint
-- npm run test
-- npm run build
-deploy:
-  - provider: npm
-    email: $EMAIL
-    api_key: $API_KEY
-    skip_cleanup: true
-    tag: next
-    on:
-      tags: true
-      condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+-UNSTABLE$"
-  - provider: npm
-    email: $EMAIL
-    api_key: $API_KEY
-    skip_cleanup: true
-    tag: latest
-    on:
-      tags: true
-      condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+-STABLE$"
+jobs:
+  include:
+  - stage: Test
+    script:
+    - npm outdated
+    - npm run lint
+    - npm run test
+    - npm run build
+  - stage: Deploy
+    if: tag =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+-(UNSTABLE|STABLE)$"
+    script:
+    - npm run build
+    - if [[ "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+-UNSTABLE$" ]] ; then export NPM_TAG="next" ; fi
+    - if [[ "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+-STABLE$" ]] ; then export NPM_TAG="latest" ; fi
+    deploy:
+      - provider: npm
+        email: $EMAIL
+        api_key: $API_KEY
+        skip_cleanup: true
+        tag: $NPM_TAG
+        on:
+          tags: true
