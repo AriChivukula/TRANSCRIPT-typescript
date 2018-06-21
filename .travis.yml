@@ -4,6 +4,7 @@ node_js:
 jobs:
   include:
   - stage: Test
+    if: type != api
     script:
     - npm outdated
     - npm run lint
@@ -23,3 +24,13 @@ jobs:
         tag: $NPM_TAG
         on:
           tags: true
+          
+  - stage: Actualize
+    if: type = api
+    script:
+    - npm run snap
+    - npm run codegen
+    - git remote add target https://arichiv:$GITHUB_TOKEN@github.com/AriChivukula/typescriptase.git
+    - git add -A
+    - git commit -m "ACTUALIZE $TRAVIS_BUILD_NUMBER"
+    - git push target HEAD:$TRAVIS_BRANCH
