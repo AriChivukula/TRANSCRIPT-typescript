@@ -4,14 +4,14 @@ node_js:
 jobs:
   include:
   - stage: Test
-    if: type != api
+    if: type = push
     script:
     - npm outdated
     - npm run lint
     - npm run test
     - npm run build
   - stage: Deploy
-    if: tag =~ ^v
+    if: tag IS present
     script:
     - npm run build
     - if [[ "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+-UNSTABLE$" ]] ; then export NPM_TAG="next" ; fi
@@ -22,9 +22,6 @@ jobs:
         api_key: $API_KEY
         skip_cleanup: true
         tag: $NPM_TAG
-        on:
-          tags: true
-          
   - stage: Actualize
     if: type = api
     script:
