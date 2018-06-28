@@ -270,8 +270,8 @@ export function React(props: IReact): Module {
   content = [
     ...content,
     Variable.newExported({
+      assignment: `polyfill(_${props.name})`,
       type: Type.Required.new({
-        assignment: `polyfill(_${props.name})`,
         name: props.name,
         type: extendsType,
       }),
