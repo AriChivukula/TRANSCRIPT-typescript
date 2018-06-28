@@ -270,6 +270,7 @@ export function React(props: IReact): Module {
     ...content,
     Variable.newExported({
       type: Type.Required.new({
+        assignment: `_${props.name}`,
         name: props.name,
         type: extendsType,
       }),
