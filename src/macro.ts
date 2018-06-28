@@ -106,7 +106,6 @@ interface IRelayContainerCall {
 function RelayContainerCall(props: IRelayContainerCall): AnonymousRenderer {
   return (builder: Builder): void => {
     builder
-      .addThenNewline(`polyfill(__${props.name});`)
       .addThenNewline(`const _${props.name}: React.ComponentType = ${props.relayType}(`)
       .indent()
       .addThenNewline(`__${props.name},`);
