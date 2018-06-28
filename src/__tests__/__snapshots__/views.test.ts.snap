@@ -6,7 +6,7 @@ exports[`fragmentRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<K1xDe0eLeMtsyHbZ4J3q418McV+krxNRKlpDye6e0YD96xgAeMD6eLWOQpz90EQws+Mdvppy2Kbhya936VHxzg==>>
+ * SIGNED<<P+tDtdYger6IWR6YvHcg7WBStLXE3TMH1yhY9Tz72GTTM/6zrMOgnJ3vi8vc38cZwZrjiNRENHNdoukrAam4Mw==>>
  */
 
 import * as React from \\"react\\";
@@ -58,7 +58,7 @@ const _FragmentRelay: React.ComponentType = createFragmentContainer(
 );
 
 polyfill(_FragmentRelay);
-export const FragmentRelay: React.Component<IFragmentRelayProps, IFragmentRelayState> = _FragmentRelay;
+export const FragmentRelay: React.ComponentType = _FragmentRelay;
 "
 `;
 
@@ -68,7 +68,7 @@ exports[`paginationRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, render, implementation, relay>>
- * SIGNED<<GShg1XlwjwuYqa7//Mo3/nmMUXmHxirxytLn2paXPJ2lcpG+eNB42ZZ00jcwZog3OTJjY4Q0ebhl4Vm49LbuEA==>>
+ * SIGNED<<HSSME8ksshiVpdqBdJIkbW6OZaWAiP7JW6Et2w/HkooC7pXj7tPcX88rOHUbLmImFoKX6wZ6SM6pSY3uxObM5A==>>
  */
 
 import * as React from \\"react\\";
@@ -106,7 +106,7 @@ const _PaginationRelay: React.ComponentType = createPaginationContainer(
 );
 
 polyfill(_PaginationRelay);
-export const PaginationRelay: React.Component<IPaginationRelayProps> = _PaginationRelay;
+export const PaginationRelay: React.ComponentType = _PaginationRelay;
 "
 `;
 
@@ -154,7 +154,7 @@ exports[`refetchRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<DZ8CPgf3qSD63BC2iN5dsrRjhk5HAOowDYR0i6Ivqzo7RohXbxWzN79ZnfxDN81SzhfiIP7kLPWETzo06J5MVA==>>
+ * SIGNED<<U6ujaHwV0qKzFEsPOPlMECjbldmj/asFLL7mmKqsYNXkem+Wdwzkfe0r4m3WjdZwYK/D4bWRGEsSpT2kSJ1OMA==>>
  */
 
 import * as React from \\"react\\";
@@ -207,7 +207,7 @@ const _RefetchRelay: React.ComponentType = createRefetchContainer(
 );
 
 polyfill(_RefetchRelay);
-export const RefetchRelay: React.Component<IRefetchRelayProps, IRefetchRelayState> = _RefetchRelay;
+export const RefetchRelay: React.ComponentType = _RefetchRelay;
 "
 `;
 
