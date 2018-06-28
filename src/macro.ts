@@ -270,8 +270,8 @@ export function React(props: IReact): Module {
     ...content,
     (builder: Builder): void => {
       builder
-        .addThenNewline("// @ts-lint")
-        .addThenNewline(`export const ${props.name}: ${extendsType} = polyfill(_${props.name});`);
+        .addThenNewline(`polyfill(_${props.name});`)
+        .addThenNewline(`export const ${props.name}: ${extendsType} = _${props.name};`);
     },
   ];
 
