@@ -8,6 +8,7 @@ import { Method } from "./method";
 import { Module } from "./module";
 import { AnonymousRenderer, TRenderer } from "./renderer";
 import { Type } from "./type";
+import { Variable } from "./variable";
 
 interface IJestCall {
   functionName: string;
@@ -270,7 +271,7 @@ export function React(props: IReact): Module {
     ...content,
     Variable.newExported({
       type: Type.Required.new({
-        assignment: `_${props.name}`,
+        assignment: `polyfill(_${props.name})`,
         name: props.name,
         type: extendsType,
       }),
