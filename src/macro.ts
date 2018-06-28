@@ -108,7 +108,7 @@ function RelayContainerCall(props: IRelayContainerCall): AnonymousRenderer {
     builder
       .addThenNewline(`const ${props.name}: React.ComponentType = ${props.relayType}(`)
       .indent()
-      .addThenNewline(`${props.name}Impl,`);
+      .addThenNewline(`_${props.name},`);
     Bespoke
       .new({
         name: "relay",
@@ -244,7 +244,7 @@ export function React(props: IReact): Module {
         Class.Concrete.newInternal({
           content: classContent,
           extends: reactExtends,
-          name: `${props.name}Impl`,
+          name: `_${props.name}`,
         }),
       ];
       let relayImports: string[] = ["graphql", props.relayType];
