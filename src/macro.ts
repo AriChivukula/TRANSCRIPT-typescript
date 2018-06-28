@@ -106,7 +106,7 @@ interface IRelayContainerCall {
 function RelayContainerCall(props: IRelayContainerCall): AnonymousRenderer {
   return (builder: Builder): void => {
     builder
-      .addThenNewline(`export const ${props.name}: React.ComponentType = ${props.relayType}(`)
+      .addThenNewline(`const ${props.name}: React.ComponentType = ${props.relayType}(`)
       .indent()
       .addThenNewline(`${props.name}Impl,`);
     Bespoke
@@ -223,7 +223,7 @@ export function React(props: IReact): Module {
     if (props.relayType === undefined) {
       content = [
         ...content,
-        Class.Concrete.newExported({
+        Class.Concrete.newInternal({
           content: classContent,
           extends: reactExtends,
           name: props.name,
