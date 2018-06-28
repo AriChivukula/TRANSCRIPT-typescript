@@ -271,7 +271,7 @@ export function React(props: IReact): Module {
     ...content,
     (builder: Builder): void => {
       builder
-        .addThenNewline("// @ts-lint");
+        .add("// @ts-lint");
     },
     Variable.newExported({
       assignment: `polyfill(_${props.name})`,
