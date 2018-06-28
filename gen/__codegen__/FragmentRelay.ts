@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::fragmentRelayView>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<yqPisXWbWLx073IqpBYagw/Cejb+o2h3JGLIqvFjccj7/507vMXv1Ypnqytl9SPr+A+2ELqxzMtJ6Q/tS2XcWQ==>>
+ * SIGNED<<KCcRsWvI5VURL5ffx/hmd1wEjLt+Sikg5O2j2Pg2ModZl8inTRK8oijE91X/JyzUxuQOGa0krP0di9/zGEt6QQ==>>
  */
 
 import * as React from "react";
@@ -48,7 +48,7 @@ class FragmentRelayImpl extends React.Component<IFragmentRelayProps, IFragmentRe
   /* BESPOKE END <<implementation>> */
 }
 
-export const FragmentRelay: React.ComponentType = createFragmentContainer(
+const FragmentRelay: React.ComponentType = createFragmentContainer(
   FragmentRelayImpl,
   /* BESPOKE START <<relay>> */
   /* BESPOKE END <<relay>> */
