@@ -107,9 +107,9 @@ interface IRelayContainerCall {
 function RelayContainerCall(props: IRelayContainerCall): AnonymousRenderer {
   return (builder: Builder): void => {
     builder
-      .addThenNewline(`const ${props.name}: React.ComponentType = ${props.relayType}(`)
+      .addThenNewline(`const _${props.name}: React.ComponentType = ${props.relayType}(`)
       .indent()
-      .addThenNewline(`_${props.name},`);
+      .addThenNewline(`__${props.name},`);
     Bespoke
       .new({
         name: "relay",
@@ -161,7 +161,7 @@ export function React(props: IReact): Module {
           }),
         ],
         inTypes: [],
-        name: props.name,
+        name: `_${props.name},`,
         outType: Type.Anonymous.new({
           type: "JSX.Element",
         }),
@@ -228,7 +228,7 @@ export function React(props: IReact): Module {
         Class.Concrete.newInternal({
           content: classContent,
           extends: extendsType,
-          name: props.name,
+          name: `_${props.name},`,
         }),
       ];
       if (props.relayMutation === true) {
@@ -246,7 +246,7 @@ export function React(props: IReact): Module {
         Class.Concrete.newInternal({
           content: classContent,
           extends: extendsType,
-          name: `__${props.name}`,
+          name: `__${props.name},`,
         }),
       ];
       let relayImports: string[] = ["graphql", props.relayType];
