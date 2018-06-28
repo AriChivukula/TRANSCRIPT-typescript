@@ -9,7 +9,6 @@ jobs:
     install: yarn
     script:
     - yarn outdated
-    - yarn lint
     - yarn test
     - yarn build
   - stage: Deploy
