@@ -25,6 +25,8 @@ jobs:
         api_key: $API_KEY
         skip_cleanup: true
         tag: $NPM_TAG
+        on:
+          tags: true
   - stage: Actualize
     if: type = api
     install: yarn
