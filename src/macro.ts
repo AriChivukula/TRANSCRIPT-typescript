@@ -271,15 +271,9 @@ export function React(props: IReact): Module {
     ...content,
     (builder: Builder): void => {
       builder
-        .add("// @ts-lint");
+        .addThenNewline("// @ts-lint")
+        .addThenNewline(`export const ${props.name}: ${extendsType} = polyfill(_${props.name});`);
     },
-    Variable.newExported({
-      assignment: `polyfill(_${props.name})`,
-      type: Type.Required.new({
-        name: props.name,
-        type: extendsType,
-      }),
-    }),
   ];
 
   return Module.new({
