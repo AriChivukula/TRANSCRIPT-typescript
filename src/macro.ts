@@ -136,7 +136,7 @@ export interface IReact {
 }
 
 export function React(props: IReact): Module {
-  let extendsType: string = "React.ComponentType";
+  let needsPolyfill: boolean = true;
   let content: TRenderer[] = [
     Import.new({
       name: "react",
@@ -151,6 +151,7 @@ export function React(props: IReact): Module {
     }),
   ];
   if (props.props === undefined) {
+    needsPolyfill = false;
     content = [
       ...content,
       Function.Sync.newExported({
@@ -168,7 +169,7 @@ export function React(props: IReact): Module {
     ];
   } else {
     const propsName: string = `I${props.name}Props`;
-    extendsType = `React.Component<${propsName}`;
+    let extendsType = `React.Component<${propsName}`;
     content = [
       ...content,
       Interface.newExported({
@@ -252,7 +253,6 @@ export function React(props: IReact): Module {
       if (props.relayMutation === true) {
         relayImports = [...relayImports, "commitMutation"];
       }
-      extendsType = "React.ComponentType";
       content = [
         ...content,
         Import.new({
@@ -270,9 +270,10 @@ export function React(props: IReact): Module {
   content = [
     ...content,
     (builder: Builder): void => {
-      builder
-        .addThenNewline(`polyfill(_${props.name});`)
-        .addThenNewline(`export { _${props.name} as ${props.name} };`);
+      if (needsPolyfill) {
+        builder.addThenNewline(`polyfill(_${props.name});`);
+      }
+      builder.addThenNewline(`export { _${props.name} as ${props.name} };`);
     },
   ];
 
