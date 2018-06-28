@@ -1,5 +1,6 @@
 node_modules
 src
+gen
 bin/__tests__
 .babelrc
 .gitignore

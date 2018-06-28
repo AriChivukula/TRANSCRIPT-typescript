@@ -8,6 +8,7 @@ import { Method } from "./method";
 import { Module } from "./module";
 import { AnonymousRenderer, TRenderer } from "./renderer";
 import { Type } from "./type";
+import { Variable } from "./variable";
 
 interface IJestCall {
   functionName: string;
@@ -106,9 +107,9 @@ interface IRelayContainerCall {
 function RelayContainerCall(props: IRelayContainerCall): AnonymousRenderer {
   return (builder: Builder): void => {
     builder
-      .addThenNewline(`export const ${props.name}: React.ComponentType = ${props.relayType}(`)
+      .addThenNewline(`const ${props.name}: React.ComponentType = ${props.relayType}(`)
       .indent()
-      .addThenNewline(`${props.name}Impl,`);
+      .addThenNewline(`_${props.name},`);
     Bespoke
       .new({
         name: "relay",
@@ -136,10 +137,15 @@ export interface IReact {
 }
 
 export function React(props: IReact): Module {
+  let extendsType: string = "React.ComponentType";
   let content: TRenderer[] = [
     Import.new({
       name: "react",
       withAllAs: "React",
+    }),
+    Import.new({
+      name: "react-lifecycles-compat",
+      with: ["polyfill"],
     }),
     Bespoke.new({
       name: "imports",
@@ -163,7 +169,7 @@ export function React(props: IReact): Module {
     ];
   } else {
     const propsName: string = `I${props.name}Props`;
-    let reactExtends: string = `React.Component<${propsName}`;
+    extendsType = `React.Component<${propsName}`;
     content = [
       ...content,
       Interface.newExported({
@@ -174,7 +180,7 @@ export function React(props: IReact): Module {
     let constructor: TRenderer[] = [];
     if (props.state !== undefined) {
       const stateName: string = `I${props.name}State`;
-      reactExtends += `, ${stateName}>`;
+      extendsType += `, ${stateName}>`;
       content = [
         ...content,
         Interface.newExported({
@@ -196,7 +202,7 @@ export function React(props: IReact): Module {
         }),
       ];
     } else {
-      reactExtends += ">";
+      extendsType += ">";
     }
     const classContent: TRenderer[] = [
       ...constructor,
@@ -219,9 +225,9 @@ export function React(props: IReact): Module {
     if (props.relayType === undefined) {
       content = [
         ...content,
-        Class.Concrete.newExported({
+        Class.Concrete.newInternal({
           content: classContent,
-          extends: reactExtends,
+          extends: extendsType,
           name: props.name,
         }),
       ];
@@ -239,8 +245,8 @@ export function React(props: IReact): Module {
         ...content,
         Class.Concrete.newInternal({
           content: classContent,
-          extends: reactExtends,
-          name: `${props.name}Impl`,
+          extends: extendsType,
+          name: `__${props.name}`,
         }),
       ];
       let relayImports: string[] = ["graphql", props.relayType];
@@ -254,12 +260,23 @@ export function React(props: IReact): Module {
           with: relayImports,
         }),
         RelayContainerCall({
-          name: props.name,
+          name: `_${props.name}`,
           relayType: props.relayType,
         }),
       ];
     }
   }
+  
+  content = [
+    ...content,
+    Variable.newExported({
+      assignment: `polyfill(_${props.name})`,
+      type: Type.Required.new({
+        name: props.name,
+        type: extendsType,
+      }),
+    }),
+  ];
 
   return Module.new({
     content,

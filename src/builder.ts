@@ -36,19 +36,19 @@ export class Builder {
   ) {}
 
   public add(content: string): Builder {
-    return this.addImpl(content, false, false, false);
+    return this._add(content, false, false, false);
   }
 
   public addThenNewline(content: string): Builder {
-    return this.addImpl(content, false, true, false);
+    return this._add(content, false, true, false);
   }
 
   public await(content: string): Builder {
-    return this.addImpl(content, true, false, false);
+    return this._add(content, true, false, false);
   }
 
   public awaitThenNewline(content: string): Builder {
-    return this.addImpl(content, true, true, false);
+    return this._add(content, true, true, false);
   }
 
   public case(check: string): Builder {
@@ -146,11 +146,11 @@ export class Builder {
   }
 
   public ensureOnNewline(): Builder {
-    return this.ensureOnNewlineImpl(1);
+    return this._ensureOnNewline(1);
   }
 
   public ensureOnNewlineAfterEmptyline(): Builder {
-    return this.ensureOnNewlineImpl(2);
+    return this._ensureOnNewline(2);
   }
 
   public finally(): Builder {
@@ -197,7 +197,7 @@ export class Builder {
   }
 
   public indent(): Builder {
-    return this.indentImpl(1);
+    return this._indent(1);
   }
 
   public print(): string {
@@ -216,11 +216,11 @@ export class Builder {
   }
 
   public return(content: string): Builder {
-    return this.addImpl(content, false, true, true);
+    return this._add(content, false, true, true);
   }
 
   public returnAwait(content: string): Builder {
-    return this.addImpl(content, true, true, true);
+    return this._add(content, true, true, true);
   }
 
   public setHeader(header: string): Builder {
@@ -249,7 +249,7 @@ export class Builder {
   }
 
   public unindent(): Builder {
-    return this.indentImpl(-1);
+    return this._indent(-1);
   }
 
   public withBespokes(...bespokes: string[]): Builder {
@@ -264,7 +264,7 @@ export class Builder {
     return this;
   }
 
-  private addImpl(
+  private _add(
     content: string,
     isAsync: boolean,
     newlineAfter: boolean,
@@ -288,7 +288,7 @@ export class Builder {
     return this;
   }
 
-  private ensureOnNewlineImpl(newLinesWanted: number): Builder {
+  private _ensureOnNewline(newLinesWanted: number): Builder {
     if (this.built.length === 0) {
       return this;
     }
@@ -305,7 +305,7 @@ export class Builder {
     return this;
   }
 
-  private indentImpl(delta: number): Builder {
+  private _indent(delta: number): Builder {
     this.indentation += delta;
     this.verify(EBuilderVerifyMode.INDENT);
 

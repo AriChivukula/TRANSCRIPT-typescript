@@ -3,10 +3,13 @@
  *
  * SOURCE<<gen/views.ts::fragmentRelayView>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<eEGd/rFe0Cn5R7vxW1SJOgE+6QSkJZukrvR7pk4oaFMfAaYqRTwR8wPJJzDtE2oSh5yAreTQu0NKbMllv89myQ==>>
+ * SIGNED<<FKF1x3pKyZXBcDGs3mmHEdABzrjyODU6XZu+zMyw2iNVMtnnW/MHBI5ULy4kF6AYHBgBOmWlByTwkSTCuiTX0Q==>>
  */
 
 import * as React from "react";
+import {
+  polyfill,
+} from "react-lifecycles-compat";
 import {
   createFragmentContainer,
   graphql,
@@ -23,7 +26,7 @@ export interface IFragmentRelayState {
   test2?: string;
 }
 
-class FragmentRelayImpl extends React.Component<IFragmentRelayProps, IFragmentRelayState> {
+class __FragmentRelay extends React.Component<IFragmentRelayProps, IFragmentRelayState> {
 
   public constructor(
     props: IFragmentRelayProps,
@@ -45,8 +48,10 @@ class FragmentRelayImpl extends React.Component<IFragmentRelayProps, IFragmentRe
   /* BESPOKE END <<implementation>> */
 }
 
-export const FragmentRelay: React.ComponentType = createFragmentContainer(
-  FragmentRelayImpl,
+const _FragmentRelay: React.ComponentType = createFragmentContainer(
+  __FragmentRelay,
   /* BESPOKE START <<relay>> */
   /* BESPOKE END <<relay>> */
 );
+
+export const FragmentRelay: React.Component<IFragmentRelayProps, IFragmentRelayState> = polyfill(_FragmentRelay);

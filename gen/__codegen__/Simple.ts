@@ -3,10 +3,13 @@
  *
  * SOURCE<<gen/views.ts::simpleView>>
  * BESPOKE<<imports, render>>
- * SIGNED<<p55GFnlaW0jHBVxawVTLnzcLRSvrBpqq6/v60L8z5qr57bxoXJ6kkowwVvvalBaPP1zgbKkfw2zkXQpdgZW+Vg==>>
+ * SIGNED<<0x2wh3ZgggQ3AF2ahf1Zhpou69YqdEeE6qHMZwayleOVZwk/0cUIm0YwCxV3T7fztcDc0Fj2gHSsaUDkot+rhQ==>>
  */
 
 import * as React from "react";
+import {
+  polyfill,
+} from "react-lifecycles-compat";
 
 /* BESPOKE START <<imports>> */
 /* BESPOKE END <<imports>> */
@@ -16,3 +19,5 @@ export function Simple(
   /* BESPOKE START <<render>> */
   /* BESPOKE END <<render>> */
 }
+
+export const Simple: React.ComponentType = polyfill(_Simple);

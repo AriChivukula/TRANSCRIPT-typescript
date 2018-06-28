@@ -3,10 +3,13 @@
  *
  * SOURCE<<gen/views.ts::propsView>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<19CPtzlbKZScdME57aLVNuofS6zI22XxUYd+ROQyX32wuz3ENCmi5bOqxHP5hX0uCIpI97Kx+Yo99hSZWpGzgQ==>>
+ * SIGNED<<wBt2R86Ab6YKnlLeERYcxYzGB5mQsZY0TwLHvZF2K+qg17tXf7eoRTcxhUsqFi/CZsqowmzegD5idHVqhXwFQw==>>
  */
 
 import * as React from "react";
+import {
+  polyfill,
+} from "react-lifecycles-compat";
 
 /* BESPOKE START <<imports>> */
 /* BESPOKE END <<imports>> */
@@ -15,7 +18,7 @@ export interface IPropsProps {
   test1: string;
 }
 
-export class Props extends React.Component<IPropsProps> {
+class Props extends React.Component<IPropsProps> {
 
   public render(
   ): JSX.Element {
@@ -26,3 +29,5 @@ export class Props extends React.Component<IPropsProps> {
   /* BESPOKE START <<implementation>> */
   /* BESPOKE END <<implementation>> */
 }
+
+export const Props: React.Component<IPropsProps> = polyfill(_Props);
