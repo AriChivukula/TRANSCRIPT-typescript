@@ -136,6 +136,7 @@ export interface IReact {
 }
 
 export function React(props: IReact): Module {
+  let extendsType: string = "React.ComponentType";
   let content: TRenderer[] = [
     Import.new({
       name: "react",
@@ -167,7 +168,7 @@ export function React(props: IReact): Module {
     ];
   } else {
     const propsName: string = `I${props.name}Props`;
-    let reactExtends: string = `React.Component<${propsName}`;
+    extendsType = `React.Component<${propsName}`;
     content = [
       ...content,
       Interface.newExported({
@@ -178,7 +179,7 @@ export function React(props: IReact): Module {
     let constructor: TRenderer[] = [];
     if (props.state !== undefined) {
       const stateName: string = `I${props.name}State`;
-      reactExtends += `, ${stateName}>`;
+      extendsType += `, ${stateName}>`;
       content = [
         ...content,
         Interface.newExported({
@@ -200,7 +201,7 @@ export function React(props: IReact): Module {
         }),
       ];
     } else {
-      reactExtends += ">";
+      extendsType += ">";
     }
     const classContent: TRenderer[] = [
       ...constructor,
@@ -225,7 +226,7 @@ export function React(props: IReact): Module {
         ...content,
         Class.Concrete.newInternal({
           content: classContent,
-          extends: reactExtends,
+          extends: extendsType,
           name: props.name,
         }),
       ];
@@ -243,7 +244,7 @@ export function React(props: IReact): Module {
         ...content,
         Class.Concrete.newInternal({
           content: classContent,
-          extends: reactExtends,
+          extends: extendsType,
           name: `_${props.name}`,
         }),
       ];
@@ -264,6 +265,16 @@ export function React(props: IReact): Module {
       ];
     }
   }
+  
+  content = [
+    ...content,
+    Variable.newExported({
+      type: Type.Required.new({
+        name: props.name,
+        type: extendsType,
+      }),
+    }),
+  ];
 
   return Module.new({
     content,
