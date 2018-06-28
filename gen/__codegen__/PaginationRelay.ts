@@ -3,10 +3,13 @@
  *
  * SOURCE<<gen/views.ts::paginationRelayView>>
  * BESPOKE<<imports, render, implementation, relay>>
- * SIGNED<<KAOJPr9mlyxVJEKun1Uw0j9GnDOSeL4RDNb/31B0aigQSMbeuq5XSnmhAH8rxeyP/WbeZXOT6xof81JIZ+efnQ==>>
+ * SIGNED<<KARQpYyA42yhnRPatD15Jw+DCtA0XqsfxSnmxnM+K/qogkcTrofhXA2s7ryIuYST9FEpdrvGzG4mhFUDLed44w==>>
  */
 
 import * as React from "react";
+import {
+  polyfill,
+} from "react-lifecycles-compat";
 import {
   createPaginationContainer,
   graphql,

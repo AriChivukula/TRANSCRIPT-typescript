@@ -6,10 +6,13 @@ exports[`fragmentRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<eEGd/rFe0Cn5R7vxW1SJOgE+6QSkJZukrvR7pk4oaFMfAaYqRTwR8wPJJzDtE2oSh5yAreTQu0NKbMllv89myQ==>>
+ * SIGNED<<yqPisXWbWLx073IqpBYagw/Cejb+o2h3JGLIqvFjccj7/507vMXv1Ypnqytl9SPr+A+2ELqxzMtJ6Q/tS2XcWQ==>>
  */
 
 import * as React from \\"react\\";
+import {
+  polyfill,
+} from \\"react-lifecycles-compat\\";
 import {
   createFragmentContainer,
   graphql,
@@ -62,10 +65,13 @@ exports[`paginationRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, render, implementation, relay>>
- * SIGNED<<KAOJPr9mlyxVJEKun1Uw0j9GnDOSeL4RDNb/31B0aigQSMbeuq5XSnmhAH8rxeyP/WbeZXOT6xof81JIZ+efnQ==>>
+ * SIGNED<<KARQpYyA42yhnRPatD15Jw+DCtA0XqsfxSnmxnM+K/qogkcTrofhXA2s7ryIuYST9FEpdrvGzG4mhFUDLed44w==>>
  */
 
 import * as React from \\"react\\";
+import {
+  polyfill,
+} from \\"react-lifecycles-compat\\";
 import {
   createPaginationContainer,
   graphql,
@@ -104,10 +110,13 @@ exports[`propsView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<19CPtzlbKZScdME57aLVNuofS6zI22XxUYd+ROQyX32wuz3ENCmi5bOqxHP5hX0uCIpI97Kx+Yo99hSZWpGzgQ==>>
+ * SIGNED<<uDe/ZR1gsGwjJgB0p8vdvAnCQ18COcoJbf1KzWPYS5450aj7TEuuSpVcuL6HGmHG7Tph+RfLdOwQ7NOiMstNAg==>>
  */
 
 import * as React from \\"react\\";
+import {
+  polyfill,
+} from \\"react-lifecycles-compat\\";
 
 /* BESPOKE START <<imports>> */
 /* BESPOKE END <<imports>> */
@@ -136,10 +145,13 @@ exports[`refetchRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<YVgU3MlbwtcHTj4BF7tqLm1EEgIQiXyRoqmW+ktFY64e+X+hOfuJ8QGtJCZZqsz0YT7Zfukpc++RcC6vXZfwew==>>
+ * SIGNED<<8pSFiipVxCx6CIo2OZ+ENJv21rWqszSyMwnr4sw132zlCDCMC+UQeyeFJ0728tbsUgjhhTDZchx3wZw7ODeNOw==>>
  */
 
 import * as React from \\"react\\";
+import {
+  polyfill,
+} from \\"react-lifecycles-compat\\";
 import {
   commitMutation,
   createRefetchContainer,
@@ -193,10 +205,13 @@ exports[`simpleView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, render>>
- * SIGNED<<p55GFnlaW0jHBVxawVTLnzcLRSvrBpqq6/v60L8z5qr57bxoXJ6kkowwVvvalBaPP1zgbKkfw2zkXQpdgZW+Vg==>>
+ * SIGNED<<3a88lFatMjcrEeOvQGAmE/7xXhD6ihh/YpQ7RH/UQU82MXLmM4/qDSJI6Heu13H4YhRija7dsd9KspXjxKUIVA==>>
  */
 
 import * as React from \\"react\\";
+import {
+  polyfill,
+} from \\"react-lifecycles-compat\\";
 
 /* BESPOKE START <<imports>> */
 /* BESPOKE END <<imports>> */
@@ -215,10 +230,13 @@ exports[`stateView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, state, render, implementation>>
- * SIGNED<<Dkd+K9Uwk4r6bVlpyCKIcLHCuVeKqwmHf3y8HwPZaFW+ZKgAgcTEQDLgQiJb7bJUUmpGhTJvkmqKkjS0LepBcQ==>>
+ * SIGNED<<e1Dhv89k4gHzOvFGenaa1y7e1od0NCwZhGdmBtYmD5yvccBLyWSdazVPh3m17+r9G8zXMTufU90lyDU5Jpll4w==>>
  */
 
 import * as React from \\"react\\";
+import {
+  polyfill,
+} from \\"react-lifecycles-compat\\";
 import {
   commitMutation,
   graphql,

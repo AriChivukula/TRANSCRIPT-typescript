@@ -3,10 +3,13 @@
  *
  * SOURCE<<gen/views.ts::propsView>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<19CPtzlbKZScdME57aLVNuofS6zI22XxUYd+ROQyX32wuz3ENCmi5bOqxHP5hX0uCIpI97Kx+Yo99hSZWpGzgQ==>>
+ * SIGNED<<uDe/ZR1gsGwjJgB0p8vdvAnCQ18COcoJbf1KzWPYS5450aj7TEuuSpVcuL6HGmHG7Tph+RfLdOwQ7NOiMstNAg==>>
  */
 
 import * as React from "react";
+import {
+  polyfill,
+} from "react-lifecycles-compat";
 
 /* BESPOKE START <<imports>> */
 /* BESPOKE END <<imports>> */

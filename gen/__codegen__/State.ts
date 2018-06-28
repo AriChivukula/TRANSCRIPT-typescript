@@ -3,10 +3,13 @@
  *
  * SOURCE<<gen/views.ts::stateView>>
  * BESPOKE<<imports, state, render, implementation>>
- * SIGNED<<Dkd+K9Uwk4r6bVlpyCKIcLHCuVeKqwmHf3y8HwPZaFW+ZKgAgcTEQDLgQiJb7bJUUmpGhTJvkmqKkjS0LepBcQ==>>
+ * SIGNED<<e1Dhv89k4gHzOvFGenaa1y7e1od0NCwZhGdmBtYmD5yvccBLyWSdazVPh3m17+r9G8zXMTufU90lyDU5Jpll4w==>>
  */
 
 import * as React from "react";
+import {
+  polyfill,
+} from "react-lifecycles-compat";
 import {
   commitMutation,
   graphql,

@@ -3,10 +3,13 @@
  *
  * SOURCE<<gen/views.ts::simpleView>>
  * BESPOKE<<imports, render>>
- * SIGNED<<p55GFnlaW0jHBVxawVTLnzcLRSvrBpqq6/v60L8z5qr57bxoXJ6kkowwVvvalBaPP1zgbKkfw2zkXQpdgZW+Vg==>>
+ * SIGNED<<3a88lFatMjcrEeOvQGAmE/7xXhD6ihh/YpQ7RH/UQU82MXLmM4/qDSJI6Heu13H4YhRija7dsd9KspXjxKUIVA==>>
  */
 
 import * as React from "react";
+import {
+  polyfill,
+} from "react-lifecycles-compat";
 
 /* BESPOKE START <<imports>> */
 /* BESPOKE END <<imports>> */
