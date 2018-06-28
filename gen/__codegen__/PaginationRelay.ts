@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::paginationRelayView>>
  * BESPOKE<<imports, render, implementation, relay>>
- * SIGNED<<HSSME8ksshiVpdqBdJIkbW6OZaWAiP7JW6Et2w/HkooC7pXj7tPcX88rOHUbLmImFoKX6wZ6SM6pSY3uxObM5A==>>
+ * SIGNED<<nHE61Xqsscv0zU8VCx02C2Bm1+XlslJ0qwM86SMqAy+MZJdFDMU8oJJwmEIdFLMG9UGX0amXHR5aKOTJa28Zig==>>
  */
 
 import * as React from "react";
@@ -41,4 +41,4 @@ const _PaginationRelay: React.ComponentType = createPaginationContainer(
 );
 
 polyfill(_PaginationRelay);
-export const PaginationRelay: React.ComponentType = _PaginationRelay;
+export { _PaginationRelay as PaginationRelay };

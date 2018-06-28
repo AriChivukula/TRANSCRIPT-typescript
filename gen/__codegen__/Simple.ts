@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::simpleView>>
  * BESPOKE<<imports, render>>
- * SIGNED<<w/pl19nJI6rpBMgE9uIL/mzrw04fYJHavU3P+qMPM1rygnH+sxwnApRRc5kFXOHzuZf8KyFZWFxHsc61GBVltA==>>
+ * SIGNED<<oExBdQboIHZWIYHNCOSHnL2VuRaNYruVjQmmSwQsiAed2PW7zENnuWtu63l9wtiYeI/EtQsGdGX8/9ZlsMHIcQ==>>
  */
 
 import * as React from "react";
@@ -21,4 +21,4 @@ export function _Simple(
 }
 
 polyfill(_Simple);
-export const Simple: React.ComponentType = _Simple;
+export { _Simple as Simple };
