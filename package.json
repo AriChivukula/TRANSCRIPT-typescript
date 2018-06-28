@@ -1,6 +1,6 @@
 {
   "name": "typescriptase",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "TypeScript Codegen",
   "main": "bin/index.js",
   "types": "bin/index.d.ts",
@@ -22,20 +22,20 @@
     ]
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0-beta.49",
-    "yargs": "^11.0.0"
+    "@babel/polyfill": "7.0.0-beta.49",
+    "yargs": "11.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.49",
-    "@babel/core": "^7.0.0-beta.49",
-    "@babel/preset-env": "^7.0.0-beta.49",
-    "@types/jest": "^23.1.1",
-    "@types/node": "^10.1.4",
-    "@types/yargs": "^11.0.0",
-    "jest": "^23.1.0 ",
-    "ts-jest": "^22.4.6",
-    "ts-node": "^7.0.0",
-    "typescript": "^2.9.1"
+    "@babel/cli": "7.0.0-beta.49",
+    "@babel/core": "7.0.0-beta.49",
+    "@babel/preset-env": "7.0.0-beta.49",
+    "@types/jest": "23.1.1",
+    "@types/node": "10.1.4",
+    "@types/yargs": "11.0.0",
+    "jest": "23.1.0 ",
+    "ts-jest": "22.4.6",
+    "ts-node": "7.0.0",
+    "typescript": "2.9.1"
   },
   "bin": {
     "typescriptase": "bin/cli.js"
