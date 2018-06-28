@@ -161,7 +161,7 @@ export function React(props: IReact): Module {
           }),
         ],
         inTypes: [],
-        name: `_${props.name},`,
+        name: `_${props.name}`,
         outType: Type.Anonymous.new({
           type: "JSX.Element",
         }),
@@ -269,6 +269,10 @@ export function React(props: IReact): Module {
   
   content = [
     ...content,
+    (builder: Builder): void => {
+      builder
+        .addThenNewline("// @ts-lint");
+    },
     Variable.newExported({
       assignment: `polyfill(_${props.name})`,
       type: Type.Required.new({
