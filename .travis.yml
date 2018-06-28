@@ -6,7 +6,7 @@ cache: yarn
 jobs:
   include:
   - stage: Test
-    if: ( type = push ) AND ( tag IS NOT present )
+    if: ( type = pull_request) OR ( branch = master )
     install: yarn
     script:
     - yarn outdated
