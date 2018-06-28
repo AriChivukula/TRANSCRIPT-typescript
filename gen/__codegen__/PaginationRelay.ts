@@ -3,13 +3,10 @@
  *
  * SOURCE<<gen/views.ts::paginationRelayView>>
  * BESPOKE<<imports, render, implementation, relay>>
- * SIGNED<<k+Gs98ZMMIEAXTpGEbcclPnPbGAMzQ8dCDk0vZ7KdVCw+hhzjU5SBw8As3VxEvkm2Rvy8x8Lh9hradoprDPFHw==>>
+ * SIGNED<<T8JKBGS2XeFhofSVsROovFBC1lmdr0WaFzbu9qpRxdyNoSdrShWw2Otam1FWLXY+p/V20e0meaGvefF8JE4rfg==>>
  */
 
 import * as React from "react";
-import {
-  polyfill,
-} from "react-lifecycles-compat";
 import {
   createPaginationContainer,
   graphql,
@@ -34,7 +31,6 @@ class __PaginationRelay extends React.Component<IPaginationRelayProps> {
   /* BESPOKE END <<implementation>> */
 }
 
-polyfill(__PaginationRelay);
 const _PaginationRelay: React.ComponentType = createPaginationContainer(
   __PaginationRelay,
   /* BESPOKE START <<relay>> */

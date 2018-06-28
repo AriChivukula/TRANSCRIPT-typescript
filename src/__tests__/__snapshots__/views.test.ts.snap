@@ -6,13 +6,10 @@ exports[`fragmentRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<NP812t4mvoCx093wjA/g7IowO06DRRs/TddMD07shOlQEYDJudBQZQEXS4knG+l3iFQJci28OZRPv6pHYczlyQ==>>
+ * SIGNED<<suEtL7dVNshxoBJ69xN8vLx6/sAl9JPEQDTKPzkyiJDm33mRqm1nLyUWa/Y2fZG8mGPaQpxTuUVhqCoxTldJHw==>>
  */
 
 import * as React from \\"react\\";
-import {
-  polyfill,
-} from \\"react-lifecycles-compat\\";
 import {
   createFragmentContainer,
   graphql,
@@ -51,7 +48,6 @@ class __FragmentRelay extends React.Component<IFragmentRelayProps, IFragmentRela
   /* BESPOKE END <<implementation>> */
 }
 
-polyfill(__FragmentRelay);
 const _FragmentRelay: React.ComponentType = createFragmentContainer(
   __FragmentRelay,
   /* BESPOKE START <<relay>> */
@@ -68,13 +64,10 @@ exports[`paginationRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, render, implementation, relay>>
- * SIGNED<<k+Gs98ZMMIEAXTpGEbcclPnPbGAMzQ8dCDk0vZ7KdVCw+hhzjU5SBw8As3VxEvkm2Rvy8x8Lh9hradoprDPFHw==>>
+ * SIGNED<<T8JKBGS2XeFhofSVsROovFBC1lmdr0WaFzbu9qpRxdyNoSdrShWw2Otam1FWLXY+p/V20e0meaGvefF8JE4rfg==>>
  */
 
 import * as React from \\"react\\";
-import {
-  polyfill,
-} from \\"react-lifecycles-compat\\";
 import {
   createPaginationContainer,
   graphql,
@@ -99,7 +92,6 @@ class __PaginationRelay extends React.Component<IPaginationRelayProps> {
   /* BESPOKE END <<implementation>> */
 }
 
-polyfill(__PaginationRelay);
 const _PaginationRelay: React.ComponentType = createPaginationContainer(
   __PaginationRelay,
   /* BESPOKE START <<relay>> */
@@ -116,13 +108,10 @@ exports[`propsView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<3jzlKTjdXETQKC1JQCwYcQkF08Ylu6BPW24/xmWWQ9BelGbysTlRXNzRS6jQXBVpcpQXfviZqZquaBDDA65gnw==>>
+ * SIGNED<<caml9dUItSPsFfJ3V9qhlQQAwwiqFCAfQ7cKrjgkKFtXOLiTtP+BpdCzy+Suj89sxbPh4P9aQKOTZTq/7XfqDQ==>>
  */
 
 import * as React from \\"react\\";
-import {
-  polyfill,
-} from \\"react-lifecycles-compat\\";
 
 /* BESPOKE START <<imports>> */
 /* BESPOKE END <<imports>> */
@@ -143,7 +132,6 @@ class _Props extends React.Component<IPropsProps> {
   /* BESPOKE END <<implementation>> */
 }
 
-polyfill(_Props);
 export { _Props as Props };
 "
 `;
@@ -154,13 +142,10 @@ exports[`refetchRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<a+IkMIOo5CLX/x/s3P1klR+J/U17u2oUGcKZrIJVNAaoVh4fV5PtIimzXOHd12F1uEFMRsXmpgFSOmpvFTAy/w==>>
+ * SIGNED<<I/yl/DYb+Q/nFXPZD6v0/QeIgySMDEOshhHCUlDAVOutwH14iP4vHYvRiwUVZnO8WvUBq3Ro3ru52N9vRYQtjw==>>
  */
 
 import * as React from \\"react\\";
-import {
-  polyfill,
-} from \\"react-lifecycles-compat\\";
 import {
   commitMutation,
   createRefetchContainer,
@@ -200,7 +185,6 @@ class __RefetchRelay extends React.Component<IRefetchRelayProps, IRefetchRelaySt
   /* BESPOKE END <<implementation>> */
 }
 
-polyfill(__RefetchRelay);
 const _RefetchRelay: React.ComponentType = createRefetchContainer(
   __RefetchRelay,
   /* BESPOKE START <<relay>> */
@@ -217,13 +201,10 @@ exports[`simpleView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, render>>
- * SIGNED<<iWoj5aPNo4h8c5EFN6O0Blc8dPJPI0z9/Px+Ff411zyR0lTJUnC+xExswuXXtUVdd3GGvnWChN+ZUkBEsJu+NQ==>>
+ * SIGNED<<OP4XHu2vrhAcH6stZJW9411VTyzS/T8IFynmxi7ERPVpTXh/MDWuhsLSo5WihvzP4xn6h7F2NO5Jxf76enogeQ==>>
  */
 
 import * as React from \\"react\\";
-import {
-  polyfill,
-} from \\"react-lifecycles-compat\\";
 
 /* BESPOKE START <<imports>> */
 /* BESPOKE END <<imports>> */
@@ -244,13 +225,10 @@ exports[`stateView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, state, render, implementation>>
- * SIGNED<<Af3Eb+4K6aPSPGtmQFIXo5VQym4T76loKFR6jgCmqeQUBD8tfWQP4nbbhn/jNXZ43TslPbXEMUBTypoXVyJWVw==>>
+ * SIGNED<<DRz+3lXXxUR+qlURvEcRBKP/sKJkV8AAbz9Sx6fmEeL8DrqNXw0KjGuBya7e/mlzchZ7UuW+0Nja3sTcUVLpjg==>>
  */
 
 import * as React from \\"react\\";
-import {
-  polyfill,
-} from \\"react-lifecycles-compat\\";
 import {
   commitMutation,
   graphql,
@@ -289,7 +267,6 @@ class _State extends React.Component<IStateProps, IStateState> {
   /* BESPOKE END <<implementation>> */
 }
 
-polyfill(_State);
 export { _State as State };
 "
 `;

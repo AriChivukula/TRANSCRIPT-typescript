@@ -3,13 +3,10 @@
  *
  * SOURCE<<gen/views.ts::refetchRelayView>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<a+IkMIOo5CLX/x/s3P1klR+J/U17u2oUGcKZrIJVNAaoVh4fV5PtIimzXOHd12F1uEFMRsXmpgFSOmpvFTAy/w==>>
+ * SIGNED<<I/yl/DYb+Q/nFXPZD6v0/QeIgySMDEOshhHCUlDAVOutwH14iP4vHYvRiwUVZnO8WvUBq3Ro3ru52N9vRYQtjw==>>
  */
 
 import * as React from "react";
-import {
-  polyfill,
-} from "react-lifecycles-compat";
 import {
   commitMutation,
   createRefetchContainer,
@@ -49,7 +46,6 @@ class __RefetchRelay extends React.Component<IRefetchRelayProps, IRefetchRelaySt
   /* BESPOKE END <<implementation>> */
 }
 
-polyfill(__RefetchRelay);
 const _RefetchRelay: React.ComponentType = createRefetchContainer(
   __RefetchRelay,
   /* BESPOKE START <<relay>> */

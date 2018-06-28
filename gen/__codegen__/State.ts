@@ -3,13 +3,10 @@
  *
  * SOURCE<<gen/views.ts::stateView>>
  * BESPOKE<<imports, state, render, implementation>>
- * SIGNED<<Af3Eb+4K6aPSPGtmQFIXo5VQym4T76loKFR6jgCmqeQUBD8tfWQP4nbbhn/jNXZ43TslPbXEMUBTypoXVyJWVw==>>
+ * SIGNED<<DRz+3lXXxUR+qlURvEcRBKP/sKJkV8AAbz9Sx6fmEeL8DrqNXw0KjGuBya7e/mlzchZ7UuW+0Nja3sTcUVLpjg==>>
  */
 
 import * as React from "react";
-import {
-  polyfill,
-} from "react-lifecycles-compat";
 import {
   commitMutation,
   graphql,
@@ -48,5 +45,4 @@ class _State extends React.Component<IStateProps, IStateState> {
   /* BESPOKE END <<implementation>> */
 }
 
-polyfill(_State);
 export { _State as State };

@@ -3,13 +3,10 @@
  *
  * SOURCE<<gen/views.ts::fragmentRelayView>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<NP812t4mvoCx093wjA/g7IowO06DRRs/TddMD07shOlQEYDJudBQZQEXS4knG+l3iFQJci28OZRPv6pHYczlyQ==>>
+ * SIGNED<<suEtL7dVNshxoBJ69xN8vLx6/sAl9JPEQDTKPzkyiJDm33mRqm1nLyUWa/Y2fZG8mGPaQpxTuUVhqCoxTldJHw==>>
  */
 
 import * as React from "react";
-import {
-  polyfill,
-} from "react-lifecycles-compat";
 import {
   createFragmentContainer,
   graphql,
@@ -48,7 +45,6 @@ class __FragmentRelay extends React.Component<IFragmentRelayProps, IFragmentRela
   /* BESPOKE END <<implementation>> */
 }
 
-polyfill(__FragmentRelay);
 const _FragmentRelay: React.ComponentType = createFragmentContainer(
   __FragmentRelay,
   /* BESPOKE START <<relay>> */
