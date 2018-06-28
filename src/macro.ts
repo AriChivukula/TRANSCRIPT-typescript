@@ -272,7 +272,7 @@ export function React(props: IReact): Module {
     (builder: Builder): void => {
       builder
         .addThenNewline(`polyfill(_${props.name});`)
-        .addThenNewline(`export const ${props.name}: ${extendsType} = _${props.name};`);
+        .addThenNewline(`export { _${props.name} as ${props.name} };`);
     },
   ];
 
