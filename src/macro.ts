@@ -8,7 +8,6 @@ import { Method } from "./method";
 import { Module } from "./module";
 import { AnonymousRenderer, TRenderer } from "./renderer";
 import { Type } from "./type";
-import { Variable } from "./variable";
 
 interface IJestCall {
   functionName: string;
