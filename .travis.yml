@@ -1,6 +1,10 @@
 language: node_js
 node_js:
 - node
+before_install:
+- sudo apt-get update -y
+- sudo apt-get upgrade -y
+- sudo apt-get install yarn npm node
 cache: yarn
 jobs:
   include:
