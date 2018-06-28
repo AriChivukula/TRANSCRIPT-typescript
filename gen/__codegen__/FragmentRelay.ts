@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::fragmentRelayView>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<7vVsZVKjUMvdYiaWjWFE64ys8iWVCN1BJpfQOhPTWmtGAo1yNZuLv6Ugn49Jr+dAO7rrrS570TBGSWVsytFwXg==>>
+ * SIGNED<<FKF1x3pKyZXBcDGs3mmHEdABzrjyODU6XZu+zMyw2iNVMtnnW/MHBI5ULy4kF6AYHBgBOmWlByTwkSTCuiTX0Q==>>
  */
 
 import * as React from "react";
@@ -26,7 +26,7 @@ export interface IFragmentRelayState {
   test2?: string;
 }
 
-class __FragmentRelay, extends React.Component<IFragmentRelayProps, IFragmentRelayState> {
+class __FragmentRelay extends React.Component<IFragmentRelayProps, IFragmentRelayState> {
 
   public constructor(
     props: IFragmentRelayProps,
@@ -48,8 +48,8 @@ class __FragmentRelay, extends React.Component<IFragmentRelayProps, IFragmentRel
   /* BESPOKE END <<implementation>> */
 }
 
-const __FragmentRelay: React.ComponentType = createFragmentContainer(
-  ___FragmentRelay,
+const _FragmentRelay: React.ComponentType = createFragmentContainer(
+  __FragmentRelay,
   /* BESPOKE START <<relay>> */
   /* BESPOKE END <<relay>> */
 );

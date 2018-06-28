@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::propsView>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<2RC9M+PNlaraGQzR1oHGadux27J1D2n4CfR9qoWZK5jukgXIK4fzR8wS/+F2HJ3ckrt56ZpdjMHFjQH1thx9cg==>>
+ * SIGNED<<NC+uHzIG1BRfDV0SPCuls7F1y1WGLNK4Gl8DbWQcC+rG2uxBmlk+JzqpaVHHSVLog8yU+bRH27qmOozpX5q0RA==>>
  */
 
 import * as React from "react";
@@ -18,7 +18,7 @@ export interface IPropsProps {
   test1: string;
 }
 
-class _Props, extends React.Component<IPropsProps> {
+class _Props extends React.Component<IPropsProps> {
 
   public render(
   ): JSX.Element {

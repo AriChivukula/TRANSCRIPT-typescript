@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::stateView>>
  * BESPOKE<<imports, state, render, implementation>>
- * SIGNED<<dXC9uAswrVp9WfAQ24OvfoaSY5p4Ad0++8zva8ume86y395T+dNBsNNg9pEhrSJoxlcWHL4xY30BxBRYvRE1+w==>>
+ * SIGNED<<WyfAxz5km4M1wMXHRwxMzerVv74ff3GiwgS6KE2GK1IlnhRT/OXBETKfKtdu9Oh9/BkWegYqrYyTC2+FPnwaSg==>>
  */
 
 import * as React from "react";
@@ -26,7 +26,7 @@ export interface IStateState {
   test2?: string;
 }
 
-class _State, extends React.Component<IStateProps, IStateState> {
+class _State extends React.Component<IStateProps, IStateState> {
 
   public constructor(
     props: IStateProps,
