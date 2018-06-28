@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::simpleView>>
  * BESPOKE<<imports, render>>
- * SIGNED<<oExBdQboIHZWIYHNCOSHnL2VuRaNYruVjQmmSwQsiAed2PW7zENnuWtu63l9wtiYeI/EtQsGdGX8/9ZlsMHIcQ==>>
+ * SIGNED<<iWoj5aPNo4h8c5EFN6O0Blc8dPJPI0z9/Px+Ff411zyR0lTJUnC+xExswuXXtUVdd3GGvnWChN+ZUkBEsJu+NQ==>>
  */
 
 import * as React from "react";
@@ -20,5 +20,4 @@ export function _Simple(
   /* BESPOKE END <<render>> */
 }
 
-polyfill(_Simple);
 export { _Simple as Simple };
