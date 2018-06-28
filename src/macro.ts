@@ -246,7 +246,7 @@ export function React(props: IReact): Module {
         Class.Concrete.newInternal({
           content: classContent,
           extends: extendsType,
-          name: `_${props.name}`,
+          name: `__${props.name}`,
         }),
       ];
       let relayImports: string[] = ["graphql", props.relayType];
@@ -260,7 +260,7 @@ export function React(props: IReact): Module {
           with: relayImports,
         }),
         RelayContainerCall({
-          name: props.name,
+          name: `_${props.name}`,
           relayType: props.relayType,
         }),
       ];
