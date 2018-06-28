@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::stateView>>
  * BESPOKE<<imports, state, render, implementation>>
- * SIGNED<<hVFVu7DHOUrEUjFVfaCOk+XVCDs0UQFQOkU8ldjRU6kne+2s8EJiA3KOrXUk25c+aLNDpT9kxDmq3AwbTr/bvg==>>
+ * SIGNED<<0F95+rmjum5CPphgULozIcl0V5/ocxUJ6nJX6uscXIggfhtqRltgrfrg1BtrCLv8t3hB7U5e5bTLtSaBTPcswA==>>
  */
 
 import * as React from "react";
@@ -48,5 +48,5 @@ class _State extends React.Component<IStateProps, IStateState> {
   /* BESPOKE END <<implementation>> */
 }
 
-// @ts-lint
-export const State: React.Component<IStateProps, IStateState> = polyfill(_State);
+polyfill(_State);
+export const State: React.Component<IStateProps, IStateState> = _State;

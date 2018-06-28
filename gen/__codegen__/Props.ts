@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::propsView>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<vYhLdpkCE5z5nisTOFzgxHgxVmlXUM954EmkbQhrzCI5zmR9BtwW47MHGu1Bgxb6PCSzK5nzFsA4bAMkjbvjcw==>>
+ * SIGNED<<K3b0LOQePGCpA03AohkG3Go4BtfyRuppkToc6XNKXveOHagpAqaiKMjO1DJXnQxp7FHoaqcjuXqZMQoxbtnGAw==>>
  */
 
 import * as React from "react";
@@ -30,5 +30,5 @@ class _Props extends React.Component<IPropsProps> {
   /* BESPOKE END <<implementation>> */
 }
 
-// @ts-lint
-export const Props: React.Component<IPropsProps> = polyfill(_Props);
+polyfill(_Props);
+export const Props: React.Component<IPropsProps> = _Props;

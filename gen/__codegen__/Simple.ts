@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::simpleView>>
  * BESPOKE<<imports, render>>
- * SIGNED<<2o+BAkFkOw6aA83SjiIh5hsSrdkk755NjRgpV+0uJbWUhPT8qOqjOuBeyamZCfPqE/dT8JxmRf9+f+ALSKqLyQ==>>
+ * SIGNED<<w/pl19nJI6rpBMgE9uIL/mzrw04fYJHavU3P+qMPM1rygnH+sxwnApRRc5kFXOHzuZf8KyFZWFxHsc61GBVltA==>>
  */
 
 import * as React from "react";
@@ -20,5 +20,5 @@ export function _Simple(
   /* BESPOKE END <<render>> */
 }
 
-// @ts-lint
-export const Simple: React.ComponentType = polyfill(_Simple);
+polyfill(_Simple);
+export const Simple: React.ComponentType = _Simple;

@@ -6,7 +6,7 @@ exports[`fragmentRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<</EM4qc31h2vZ81iXbbbehB4oLrjhsHcyslJcEHKqDMe24U2vVNT6jWBOGE1tZW2NhAdYkYzsFUJJTmq16LQdMw==>>
+ * SIGNED<<K1xDe0eLeMtsyHbZ4J3q418McV+krxNRKlpDye6e0YD96xgAeMD6eLWOQpz90EQws+Mdvppy2Kbhya936VHxzg==>>
  */
 
 import * as React from \\"react\\";
@@ -57,8 +57,8 @@ const _FragmentRelay: React.ComponentType = createFragmentContainer(
   /* BESPOKE END <<relay>> */
 );
 
-// @ts-lint
-export const FragmentRelay: React.Component<IFragmentRelayProps, IFragmentRelayState> = polyfill(_FragmentRelay);
+polyfill(_FragmentRelay);
+export const FragmentRelay: React.Component<IFragmentRelayProps, IFragmentRelayState> = _FragmentRelay;
 "
 `;
 
@@ -68,7 +68,7 @@ exports[`paginationRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, render, implementation, relay>>
- * SIGNED<<JovL+LI7Tdgw8qoYTxzBBf3pkFvFPsV5DoPppMyCp+HuL0t+NERzuJIae88hfShm73zuxG/w8ZUI89eTV5Y/3Q==>>
+ * SIGNED<<GShg1XlwjwuYqa7//Mo3/nmMUXmHxirxytLn2paXPJ2lcpG+eNB42ZZ00jcwZog3OTJjY4Q0ebhl4Vm49LbuEA==>>
  */
 
 import * as React from \\"react\\";
@@ -105,8 +105,8 @@ const _PaginationRelay: React.ComponentType = createPaginationContainer(
   /* BESPOKE END <<relay>> */
 );
 
-// @ts-lint
-export const PaginationRelay: React.Component<IPaginationRelayProps> = polyfill(_PaginationRelay);
+polyfill(_PaginationRelay);
+export const PaginationRelay: React.Component<IPaginationRelayProps> = _PaginationRelay;
 "
 `;
 
@@ -116,7 +116,7 @@ exports[`propsView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<vYhLdpkCE5z5nisTOFzgxHgxVmlXUM954EmkbQhrzCI5zmR9BtwW47MHGu1Bgxb6PCSzK5nzFsA4bAMkjbvjcw==>>
+ * SIGNED<<K3b0LOQePGCpA03AohkG3Go4BtfyRuppkToc6XNKXveOHagpAqaiKMjO1DJXnQxp7FHoaqcjuXqZMQoxbtnGAw==>>
  */
 
 import * as React from \\"react\\";
@@ -143,8 +143,8 @@ class _Props extends React.Component<IPropsProps> {
   /* BESPOKE END <<implementation>> */
 }
 
-// @ts-lint
-export const Props: React.Component<IPropsProps> = polyfill(_Props);
+polyfill(_Props);
+export const Props: React.Component<IPropsProps> = _Props;
 "
 `;
 
@@ -154,7 +154,7 @@ exports[`refetchRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<GPiQ/Oqex2mp3K0Ma7UmWpNN/dGsL9hUk0AroCbDiY6b8M3iz4cOAFbw1a0nzUUzWLwTC0OM0AtDkstCFIhJWg==>>
+ * SIGNED<<DZ8CPgf3qSD63BC2iN5dsrRjhk5HAOowDYR0i6Ivqzo7RohXbxWzN79ZnfxDN81SzhfiIP7kLPWETzo06J5MVA==>>
  */
 
 import * as React from \\"react\\";
@@ -206,8 +206,8 @@ const _RefetchRelay: React.ComponentType = createRefetchContainer(
   /* BESPOKE END <<relay>> */
 );
 
-// @ts-lint
-export const RefetchRelay: React.Component<IRefetchRelayProps, IRefetchRelayState> = polyfill(_RefetchRelay);
+polyfill(_RefetchRelay);
+export const RefetchRelay: React.Component<IRefetchRelayProps, IRefetchRelayState> = _RefetchRelay;
 "
 `;
 
@@ -217,7 +217,7 @@ exports[`simpleView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, render>>
- * SIGNED<<2o+BAkFkOw6aA83SjiIh5hsSrdkk755NjRgpV+0uJbWUhPT8qOqjOuBeyamZCfPqE/dT8JxmRf9+f+ALSKqLyQ==>>
+ * SIGNED<<w/pl19nJI6rpBMgE9uIL/mzrw04fYJHavU3P+qMPM1rygnH+sxwnApRRc5kFXOHzuZf8KyFZWFxHsc61GBVltA==>>
  */
 
 import * as React from \\"react\\";
@@ -234,8 +234,8 @@ export function _Simple(
   /* BESPOKE END <<render>> */
 }
 
-// @ts-lint
-export const Simple: React.ComponentType = polyfill(_Simple);
+polyfill(_Simple);
+export const Simple: React.ComponentType = _Simple;
 "
 `;
 
@@ -245,7 +245,7 @@ exports[`stateView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, state, render, implementation>>
- * SIGNED<<hVFVu7DHOUrEUjFVfaCOk+XVCDs0UQFQOkU8ldjRU6kne+2s8EJiA3KOrXUk25c+aLNDpT9kxDmq3AwbTr/bvg==>>
+ * SIGNED<<0F95+rmjum5CPphgULozIcl0V5/ocxUJ6nJX6uscXIggfhtqRltgrfrg1BtrCLv8t3hB7U5e5bTLtSaBTPcswA==>>
  */
 
 import * as React from \\"react\\";
@@ -290,7 +290,7 @@ class _State extends React.Component<IStateProps, IStateState> {
   /* BESPOKE END <<implementation>> */
 }
 
-// @ts-lint
-export const State: React.Component<IStateProps, IStateState> = polyfill(_State);
+polyfill(_State);
+export const State: React.Component<IStateProps, IStateState> = _State;
 "
 `;

@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::fragmentRelayView>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<</EM4qc31h2vZ81iXbbbehB4oLrjhsHcyslJcEHKqDMe24U2vVNT6jWBOGE1tZW2NhAdYkYzsFUJJTmq16LQdMw==>>
+ * SIGNED<<K1xDe0eLeMtsyHbZ4J3q418McV+krxNRKlpDye6e0YD96xgAeMD6eLWOQpz90EQws+Mdvppy2Kbhya936VHxzg==>>
  */
 
 import * as React from "react";
@@ -54,5 +54,5 @@ const _FragmentRelay: React.ComponentType = createFragmentContainer(
   /* BESPOKE END <<relay>> */
 );
 
-// @ts-lint
-export const FragmentRelay: React.Component<IFragmentRelayProps, IFragmentRelayState> = polyfill(_FragmentRelay);
+polyfill(_FragmentRelay);
+export const FragmentRelay: React.Component<IFragmentRelayProps, IFragmentRelayState> = _FragmentRelay;
