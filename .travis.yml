@@ -6,7 +6,7 @@ cache: yarn
 jobs:
   include:
   - stage: Test
-    if: type = push
+    if: ( type = push ) AND ( tag IS NOT present )
     install: yarn
     script:
     - yarn outdated
