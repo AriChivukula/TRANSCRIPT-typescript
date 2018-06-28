@@ -141,6 +141,10 @@ export function React(props: IReact): Module {
       name: "react",
       withAllAs: "React",
     }),
+    Import.new({
+      name: "react-lifecycles-compat",
+      with: ["polyfill"],
+    }),
     Bespoke.new({
       name: "imports",
     }),
