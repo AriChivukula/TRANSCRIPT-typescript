@@ -252,6 +252,7 @@ export function React(props: IReact): Module {
       if (props.relayMutation === true) {
         relayImports = [...relayImports, "commitMutation"];
       }
+      extendsType = "React.ComponentType";
       content = [
         ...content,
         Import.new({
