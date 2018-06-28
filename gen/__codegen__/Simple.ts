@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::simpleView>>
  * BESPOKE<<imports, render>>
- * SIGNED<<0x2wh3ZgggQ3AF2ahf1Zhpou69YqdEeE6qHMZwayleOVZwk/0cUIm0YwCxV3T7fztcDc0Fj2gHSsaUDkot+rhQ==>>
+ * SIGNED<<QXFWDqUeKlHtfdZ3YqxaMmzn6WX65k28ogfn/MO82bgeUKmzW3CRnqf6KjCE9q4pU3VTaPLwurojjyRf7KIYbQ==>>
  */
 
 import * as React from "react";
@@ -14,7 +14,7 @@ import {
 /* BESPOKE START <<imports>> */
 /* BESPOKE END <<imports>> */
 
-export function Simple(
+export function _Simple,(
 ): JSX.Element {
   /* BESPOKE START <<render>> */
   /* BESPOKE END <<render>> */
