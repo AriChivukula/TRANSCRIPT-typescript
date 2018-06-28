@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::refetchRelayView>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<KzdICieyngONMGB4wSWKjEm6orIPuWjHW7+iPPZsw23fIBh4w27OODupZKnokNvGhz94c3/wAtte0JkauPgqWA==>>
+ * SIGNED<<X1dW+Lc7IB3tkVS/SQCw4vPJ8Fvhg6JVvk1uy7xlRsBqFg4I+gjoU4qlItT6tjGXlm5rE6Z3/DREMQMfEU5SSg==>>
  */
 
 import * as React from "react";
@@ -27,7 +27,7 @@ export interface IRefetchRelayState {
   test2?: string;
 }
 
-class RefetchRelayImpl extends React.Component<IRefetchRelayProps, IRefetchRelayState> {
+class _RefetchRelay extends React.Component<IRefetchRelayProps, IRefetchRelayState> {
 
   public constructor(
     props: IRefetchRelayProps,
@@ -50,7 +50,9 @@ class RefetchRelayImpl extends React.Component<IRefetchRelayProps, IRefetchRelay
 }
 
 const RefetchRelay: React.ComponentType = createRefetchContainer(
-  RefetchRelayImpl,
+  _RefetchRelay,
   /* BESPOKE START <<relay>> */
   /* BESPOKE END <<relay>> */
 );
+
+export const RefetchRelay: React.Component<IRefetchRelayProps, IRefetchRelayState> = polyfill(_RefetchRelay);

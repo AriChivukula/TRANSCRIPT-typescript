@@ -6,7 +6,7 @@ exports[`fragmentRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<4UYFarQS/jrq8vdAGz9thagRtTSsBtkmU4gTpnrkEWQc6KPPpPvU1nbyo6/vywjRGYWN5MR4XUiZmKytH4ynNA==>>
+ * SIGNED<<+jpzCqAzc1xlibtnOpTbClm60lvkQKq+rH/okp6Npp8knbbOuLgrBVc3dCulYYHW+3ZqniyAwexdhW4Rs9mNTA==>>
  */
 
 import * as React from \\"react\\";
@@ -57,7 +57,7 @@ const FragmentRelay: React.ComponentType = createFragmentContainer(
   /* BESPOKE END <<relay>> */
 );
 
-export const FragmentRelay: React.Component<IFragmentRelayProps, IFragmentRelayState>;
+export const FragmentRelay: React.Component<IFragmentRelayProps, IFragmentRelayState> = polyfill(_FragmentRelay);
 "
 `;
 
@@ -67,7 +67,7 @@ exports[`paginationRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, render, implementation, relay>>
- * SIGNED<<m26LdP/Ae7V8KT9z1CQfdQGasSf5ZT3f5C+T2qpzDOusslUCxCfVpVq+4+gLfk78oSxexJ1uiFTCsHiZFEIEQA==>>
+ * SIGNED<<mx3H8cOPb4FA9ZsgJvGdQ4J3fMY54o4ml5XQ5LKzb/2NRyy6pxEmfr9xbYTkmKLRLudiD5a2mJFi0vD5Bek0wg==>>
  */
 
 import * as React from \\"react\\";
@@ -104,7 +104,7 @@ const PaginationRelay: React.ComponentType = createPaginationContainer(
   /* BESPOKE END <<relay>> */
 );
 
-export const PaginationRelay: React.Component<IPaginationRelayProps>;
+export const PaginationRelay: React.Component<IPaginationRelayProps> = polyfill(_PaginationRelay);
 "
 `;
 
@@ -114,7 +114,7 @@ exports[`propsView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<9RXXEIiURPfjxF11hbvyp8XXx78+4rt/izJme/bpgIHp8s36DjR1CGKrCFbb3+yw+KH8fN29fQQVUMqzgXz2LA==>>
+ * SIGNED<<wBt2R86Ab6YKnlLeERYcxYzGB5mQsZY0TwLHvZF2K+qg17tXf7eoRTcxhUsqFi/CZsqowmzegD5idHVqhXwFQw==>>
  */
 
 import * as React from \\"react\\";
@@ -141,7 +141,7 @@ class Props extends React.Component<IPropsProps> {
   /* BESPOKE END <<implementation>> */
 }
 
-export const Props: React.Component<IPropsProps>;
+export const Props: React.Component<IPropsProps> = polyfill(_Props);
 "
 `;
 
@@ -151,7 +151,7 @@ exports[`refetchRelayView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<pcAvxbEIi5CerNpRDkMPlGrcxzvbnrZSVFoiVwNr+L7lXj/WH1kF8a540Qs0ygODKeLLkJ7dUPO3RRXGpyMhFw==>>
+ * SIGNED<<X1dW+Lc7IB3tkVS/SQCw4vPJ8Fvhg6JVvk1uy7xlRsBqFg4I+gjoU4qlItT6tjGXlm5rE6Z3/DREMQMfEU5SSg==>>
  */
 
 import * as React from \\"react\\";
@@ -203,7 +203,7 @@ const RefetchRelay: React.ComponentType = createRefetchContainer(
   /* BESPOKE END <<relay>> */
 );
 
-export const RefetchRelay: React.Component<IRefetchRelayProps, IRefetchRelayState>;
+export const RefetchRelay: React.Component<IRefetchRelayProps, IRefetchRelayState> = polyfill(_RefetchRelay);
 "
 `;
 
@@ -213,7 +213,7 @@ exports[`simpleView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, render>>
- * SIGNED<<kZEjAnAZkyoHnkuxgJtFJ3FntaxuGjJkLbcY3Ul/wRviZBDawaGRwBKuKBWkK5u5aYXxSyexlVziMtPATT+sJQ==>>
+ * SIGNED<<0x2wh3ZgggQ3AF2ahf1Zhpou69YqdEeE6qHMZwayleOVZwk/0cUIm0YwCxV3T7fztcDc0Fj2gHSsaUDkot+rhQ==>>
  */
 
 import * as React from \\"react\\";
@@ -230,7 +230,7 @@ export function Simple(
   /* BESPOKE END <<render>> */
 }
 
-export const Simple: React.ComponentType;
+export const Simple: React.ComponentType = polyfill(_Simple);
 "
 `;
 
@@ -240,7 +240,7 @@ exports[`stateView 1`] = `
  *
  * SOURCE<<DO_NOT_COMMIT::DO_NOT_COMMIT>>
  * BESPOKE<<imports, state, render, implementation>>
- * SIGNED<<KGXa7Fck3JJXuEsM67IT4tpNerqgHvH7nkcZQbsDxyh6gu/IT+1CAum0X7ADC4sxQo5o3bGaQZ53JXc4gA/Cag==>>
+ * SIGNED<<beADpxnh0mQk83s6PKN560gTo/jdKesmqDoLuDRTudjCDmcAy0AmU27CQwQZ8UdRTY4+HSRRc40Anfd0++BK/Q==>>
  */
 
 import * as React from \\"react\\";
@@ -285,6 +285,6 @@ class State extends React.Component<IStateProps, IStateState> {
   /* BESPOKE END <<implementation>> */
 }
 
-export const State: React.Component<IStateProps, IStateState>;
+export const State: React.Component<IStateProps, IStateState> = polyfill(_State);
 "
 `;

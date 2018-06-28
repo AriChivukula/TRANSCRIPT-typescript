@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::propsView>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<</x/CRORF5gap0d9piiEhMcr8RYXIXaMTry45H3iESbRtbvAFrSbTDR3x/DYrVtaLsDNkIfXa2555Z+CuV9cG1A==>>
+ * SIGNED<<wBt2R86Ab6YKnlLeERYcxYzGB5mQsZY0TwLHvZF2K+qg17tXf7eoRTcxhUsqFi/CZsqowmzegD5idHVqhXwFQw==>>
  */
 
 import * as React from "react";
@@ -29,3 +29,5 @@ class Props extends React.Component<IPropsProps> {
   /* BESPOKE START <<implementation>> */
   /* BESPOKE END <<implementation>> */
 }
+
+export const Props: React.Component<IPropsProps> = polyfill(_Props);
