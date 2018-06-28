@@ -136,22 +136,16 @@ export interface IReact {
 }
 
 export function React(props: IReact): Module {
-  let needsPolyfill: boolean = true;
   let content: TRenderer[] = [
     Import.new({
       name: "react",
       withAllAs: "React",
-    }),
-    Import.new({
-      name: "react-lifecycles-compat",
-      with: ["polyfill"],
     }),
     Bespoke.new({
       name: "imports",
     }),
   ];
   if (props.props === undefined) {
-    needsPolyfill = false;
     content = [
       ...content,
       Function.Sync.newExported({
@@ -253,7 +247,6 @@ export function React(props: IReact): Module {
       if (props.relayMutation === true) {
         relayImports = [...relayImports, "commitMutation"];
       }
-      needsPolyfill = false;
       content = [
         ...content,
         Import.new({
@@ -271,9 +264,6 @@ export function React(props: IReact): Module {
   content = [
     ...content,
     (builder: Builder): void => {
-      if (needsPolyfill) {
-        builder.addThenNewline(`polyfill(_${props.name});`);
-      }
       builder.addThenNewline(`export { _${props.name} as ${props.name} };`);
     },
   ];
