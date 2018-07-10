@@ -33,9 +33,6 @@
       "ESNext.AsyncIterable",
       "ESNext.Array"
     ],
-    "include": [
-      "src/*"
-    ],
     "inlineSourceMap": true,
     "module": "CommonJS",
     "moduleResolution": "Node",
@@ -43,5 +40,8 @@
     "removeComments": true,
     "strict": true,
     "target": "ES3"
-  }
+  },
+  "include": [
+    "src/*"
+  ]
 }
