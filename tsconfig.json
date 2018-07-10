@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "jsx": "React",
     "lib": [
       "ES5",
       "ES6",
