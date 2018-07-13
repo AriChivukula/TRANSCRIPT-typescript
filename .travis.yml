@@ -5,18 +5,13 @@ cache: yarn
 install:
 - npm install --global --upgrade yarn
 - yarn install
-- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-- chmod +x ./cc-test-reporter
 jobs:
   include:
   - stage: Test
     if: type = push
     script:
     - yarn outdated
-    - ./cc-test-reporter before-build
-    - yarn nyc ts-node src/cli.ts --expectNoChanges --files gen/*.ts
-    - yarn nyc report
-    - ./cc-test-reporter after-build
+    - yarn ts-node src/cli.ts --expectNoChanges --files gen/*.ts
     - yarn tsc
   - stage: Deploy
     if: tag IS present
