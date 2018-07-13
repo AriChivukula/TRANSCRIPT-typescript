@@ -10,15 +10,15 @@ jobs:
     install: yarn
     script:
     - yarn outdated
-    - yarn test
-    - yarn build
+    - yarn ts-node src/cli.ts --expectNoChanges --files gen/*.ts
+    - yarn tsc
   - stage: Deploy
     if: tag IS present
     script:
-    - npm run build
+    - yarn tsc
     - if [[ "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+-UNSTABLE$" ]] ; then export NPM_TAG="next" ; fi
     - if [[ "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+-STABLE$" ]] ; then export NPM_TAG="latest" ; fi
-    install: npm install
+    install: yarn
     deploy:
       - provider: npm
         email: $EMAIL
@@ -31,7 +31,7 @@ jobs:
     if: type = api
     install: yarn
     script:
-    - yarn codegen
+    - yarn ts-node src/cli.ts --files gen/*.ts
     - git remote add target "https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git"
     - git add -A
     - git commit -m "ACTUALIZE ${TRAVIS_BUILD_NUMBER}"
