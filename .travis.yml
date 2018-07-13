@@ -13,10 +13,10 @@ jobs:
     if: type = push
     script:
     - yarn outdated
-    - cc-test-reporter before-build
+    - ./cc-test-reporter before-build
     - yarn nyc ts-node src/cli.ts --expectNoChanges --files gen/*.ts
     - yarn nyc report
-    - cc-test-reporter after-build
+    - ./cc-test-reporter after-build
     - yarn tsc
   - stage: Deploy
     if: tag IS present
