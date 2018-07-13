@@ -1,12 +1,12 @@
 language: node_js
 node_js:
 - node
+cache: yarn
 install:
 - npm install --global --upgrade yarn
 - yarn install
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
-- cache: yarn
 jobs:
   include:
   - stage: Test
