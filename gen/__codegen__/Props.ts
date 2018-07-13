@@ -1,7 +1,7 @@
 /**
  * This file is partially generated; only edit bespoke sections.
  *
- * SOURCE<<gen/views.ts::propsView>>
+ * SOURCE<<gen/views.ts::Props>>
  * BESPOKE<<imports, render, implementation>>
  * SIGNED<<caml9dUItSPsFfJ3V9qhlQQAwwiqFCAfQ7cKrjgkKFtXOLiTtP+BpdCzy+Suj89sxbPh4P9aQKOTZTq/7XfqDQ==>>
  */

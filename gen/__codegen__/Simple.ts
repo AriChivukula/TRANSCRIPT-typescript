@@ -1,7 +1,7 @@
 /**
  * This file is partially generated; only edit bespoke sections.
  *
- * SOURCE<<gen/views.ts::simpleView>>
+ * SOURCE<<gen/views.ts::Simple>>
  * BESPOKE<<imports, render>>
  * SIGNED<<OP4XHu2vrhAcH6stZJW9411VTyzS/T8IFynmxi7ERPVpTXh/MDWuhsLSo5WihvzP4xn6h7F2NO5Jxf76enogeQ==>>
  */

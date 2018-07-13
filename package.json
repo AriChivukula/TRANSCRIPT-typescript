@@ -8,21 +8,16 @@
   "author": "Ari Chivukula <ari@chivuku.la>",
   "license": "MIT",
   "dependencies": {
-    "@babel/polyfill": "7.0.0-beta.52",
+    "@babel/polyfill": "7.0.0-beta.53",
     "yargs": "12.0.1"
   },
   "devDependencies": {
     "@types/node": "10.5.2",
-    "@types/yargs": "11.0.0",
+    "@types/yargs": "11.1.0",
     "ts-node": "7.0.0",
     "typescript": "2.9.2"
   },
   "bin": {
     "typescriptase": "bin/cli.js"
-  },
-  "scripts": {
-    "codegen": "ts-node src/cli.ts --files gen/*.ts",
-    "build": "tsc",
-    "test": "ts-node src/cli.ts --expectNoChanges --files gen/*.ts"
   }
 }
