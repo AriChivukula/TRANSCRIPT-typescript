@@ -5,12 +5,12 @@ import {
   Type,
 } from "../src/index";
 
-export const simpleView: Module = React({
+export const Simple: Module = React({
   destination: "gen/__codegen__/Simple.ts",
   name: "Simple",
 });
 
-export const propsView: Module = React({
+export const Props: Module = React({
   destination: "gen/__codegen__/Props.ts",
   name: "Props",
   props: [
@@ -21,7 +21,7 @@ export const propsView: Module = React({
   ],
 });
 
-export const stateView: Module = React({
+export const State: Module = React({
   destination: "gen/__codegen__/State.ts",
   name: "State",
   props: [
@@ -39,7 +39,7 @@ export const stateView: Module = React({
   ],
 });
 
-export const fragmentRelayView: Module = React({
+export const FragmentRelay: Module = React({
   destination: "gen/__codegen__/FragmentRelay.ts",
   name: "FragmentRelay",
   props: [
@@ -57,7 +57,7 @@ export const fragmentRelayView: Module = React({
   ],
 });
 
-export const paginationRelayView: Module = React({
+export const PaginationRelay: Module = React({
   destination: "gen/__codegen__/PaginationRelay.ts",
   name: "PaginationRelay",
   props: [
@@ -69,7 +69,7 @@ export const paginationRelayView: Module = React({
   relayType: ERelayType.PAGINATION,
 });
 
-export const refetchRelayView: Module = React({
+export const RefetchRelay: Module = React({
   destination: "gen/__codegen__/RefetchRelay.ts",
   name: "RefetchRelay",
   props: [
