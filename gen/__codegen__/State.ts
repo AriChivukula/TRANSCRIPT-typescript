@@ -1,7 +1,7 @@
 /**
  * This file is partially generated; only edit bespoke sections.
  *
- * SOURCE<<gen/views.ts::stateView>>
+ * SOURCE<<gen/views.ts::State>>
  * BESPOKE<<imports, state, render, implementation>>
  * SIGNED<<DRz+3lXXxUR+qlURvEcRBKP/sKJkV8AAbz9Sx6fmEeL8DrqNXw0KjGuBya7e/mlzchZ7UuW+0Nja3sTcUVLpjg==>>
  */

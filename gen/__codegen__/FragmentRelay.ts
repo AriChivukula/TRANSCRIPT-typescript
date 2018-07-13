@@ -1,7 +1,7 @@
 /**
  * This file is partially generated; only edit bespoke sections.
  *
- * SOURCE<<gen/views.ts::fragmentRelayView>>
+ * SOURCE<<gen/views.ts::FragmentRelay>>
  * BESPOKE<<imports, state, render, implementation, relay>>
  * SIGNED<<suEtL7dVNshxoBJ69xN8vLx6/sAl9JPEQDTKPzkyiJDm33mRqm1nLyUWa/Y2fZG8mGPaQpxTuUVhqCoxTldJHw==>>
  */

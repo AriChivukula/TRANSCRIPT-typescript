@@ -1,7 +1,7 @@
 /**
  * This file is partially generated; only edit bespoke sections.
  *
- * SOURCE<<gen/views.ts::refetchRelayView>>
+ * SOURCE<<gen/views.ts::RefetchRelay>>
  * BESPOKE<<imports, state, render, implementation, relay>>
  * SIGNED<<I/yl/DYb+Q/nFXPZD6v0/QeIgySMDEOshhHCUlDAVOutwH14iP4vHYvRiwUVZnO8WvUBq3Ro3ru52N9vRYQtjw==>>
  */
