@@ -31,7 +31,6 @@ jobs:
     if: type = api
     install: yarn
     script:
-    - yarn snap
     - yarn codegen
     - git remote add target "https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git"
     - git add -A
