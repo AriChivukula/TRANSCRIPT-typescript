@@ -2,12 +2,10 @@ node_modules
 src
 gen
 bin/__tests__
-.babelrc
 .gitignore
 .npmignore
 .travis.yml
 LICENSE
 README.md
 tsconfig.json
-tslint.json
 yarn.lock
