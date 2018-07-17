@@ -8,6 +8,13 @@
 
 ## API
 
+## Examples
+
+* [API](https://github.com/arichiv/typescriptase/blob/master/gen/examples.ts)
+* [Modules](https://github.com/arichiv/typescriptase/blob/master/gen/modules.ts)
+* [React Macros](https://github.com/arichiv/typescriptase/blob/master/gen/views.ts)
+* [Test Macros](https://github.com/arichiv/typescriptase/blob/master/gen/tests.ts)
+
 ### External
 
 * [Alias](https://github.com/arichiv/typescriptase/blob/master/src/alias.ts)
@@ -31,10 +38,3 @@
 * [Builder](https://github.com/arichiv/typescriptase/blob/master/src/builder.ts)
 * [CLI](https://github.com/arichiv/typescriptase/blob/master/src/cli.ts)
 * [Renderer](https://github.com/arichiv/typescriptase/blob/master/src/renderer.ts)
-
-## Examples
-
-* [API](https://github.com/arichiv/typescriptase/blob/master/gen/examples.ts)
-* [Modules](https://github.com/arichiv/typescriptase/blob/master/gen/modules.ts)
-* [React Macros](https://github.com/arichiv/typescriptase/blob/master/gen/views.ts)
-* [Test Macros](https://github.com/arichiv/typescriptase/blob/master/gen/tests.ts)
