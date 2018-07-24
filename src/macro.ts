@@ -241,7 +241,7 @@ export function React(props: IReact): Module {
         ...content,
         Class.Concrete.newInternal({
           content: classContent,
-          extends: extendsType,
+          extends: `React.Component${extendsType}`,
           name: `__${props.name}`,
         }),
       ];
