@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::FragmentRelay>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<suEtL7dVNshxoBJ69xN8vLx6/sAl9JPEQDTKPzkyiJDm33mRqm1nLyUWa/Y2fZG8mGPaQpxTuUVhqCoxTldJHw==>>
+ * SIGNED<<z9AMahRop2Y5JogZCCU6MCzdDFj12C3LelsL5cYgzGCWpyvlHJk55WJ42ishtlSMfRbczi8zfC+AAUffD9DFwA==>>
  */
 
 import * as React from "react";
@@ -45,7 +45,7 @@ class __FragmentRelay extends React.Component<IFragmentRelayProps, IFragmentRela
   /* BESPOKE END <<implementation>> */
 }
 
-const _FragmentRelay: React.ComponentType = createFragmentContainer(
+const _FragmentRelay: React.ComponentType<IFragmentRelayProps, IFragmentRelayState> = createFragmentContainer(
   __FragmentRelay,
   /* BESPOKE START <<relay>> */
   /* BESPOKE END <<relay>> */

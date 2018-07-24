@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::RefetchRelay>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<I/yl/DYb+Q/nFXPZD6v0/QeIgySMDEOshhHCUlDAVOutwH14iP4vHYvRiwUVZnO8WvUBq3Ro3ru52N9vRYQtjw==>>
+ * SIGNED<<ohwu6MJdtDG4GL7JL6nJZHk0ZigaBq2qVgMx7ccw6piFVgbakD6WTD3EAfGv3qTtcM1p9LPRO1dRYHCI1Ca1rg==>>
  */
 
 import * as React from "react";
@@ -46,7 +46,7 @@ class __RefetchRelay extends React.Component<IRefetchRelayProps, IRefetchRelaySt
   /* BESPOKE END <<implementation>> */
 }
 
-const _RefetchRelay: React.ComponentType = createRefetchContainer(
+const _RefetchRelay: React.ComponentType<IRefetchRelayProps, IRefetchRelayState> = createRefetchContainer(
   __RefetchRelay,
   /* BESPOKE START <<relay>> */
   /* BESPOKE END <<relay>> */
