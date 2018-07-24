@@ -101,6 +101,7 @@ function ReactConstructorCall(): AnonymousRenderer {
 interface IRelayContainerCall {
   name: string;
   relayType: ERelayType;
+  extendsType: string;
 }
 
 function RelayContainerCall(props: IRelayContainerCall): AnonymousRenderer {
