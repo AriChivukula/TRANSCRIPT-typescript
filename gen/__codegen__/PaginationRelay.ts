@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::PaginationRelay>>
  * BESPOKE<<imports, render, implementation, relay>>
- * SIGNED<<Jtj2Bqs8keXUAeP3yuOAf8wd+shRbvOjuklmoUdgRsngffdL8FmMRY9zuLAW1JjJF3p5yRuZ3Z3fxzhnV5IHFw==>>
+ * SIGNED<<zu7pLa5uhLG7DPbpCOMEpwv4iLzAxzQKR173dTzcDFHYj2/GvdcWcG0VQ/EFJhDV+0zHUVVqhA3Gvt6Sehmu6A==>>
  */
 
 import * as React from "react";
@@ -19,7 +19,7 @@ export interface IPaginationRelayProps {
   test1: string;
 }
 
-class __PaginationRelay extends <IPaginationRelayProps> {
+class __PaginationRelay extends React.Component<IPaginationRelayProps> {
 
   public render(
   ): JSX.Element {
