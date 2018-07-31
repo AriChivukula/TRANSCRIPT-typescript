@@ -101,13 +101,13 @@ function ReactConstructorCall(): AnonymousRenderer {
 interface IRelayContainerCall {
   name: string;
   relayType: ERelayType;
-  extendsType: string;
+  propOnlyExtendsType: string;
 }
 
 function RelayContainerCall(props: IRelayContainerCall): AnonymousRenderer {
   return (builder: Builder): void => {
     builder
-      .addThenNewline(`const _${props.name}: React.ComponentType${props.extendsType} = ${props.relayType}(`)
+      .addThenNewline(`const _${props.name}: React.ComponentType${props.propOnlyExtendsType} = ${props.relayType}(`)
       .indent()
       .addThenNewline(`__${props.name},`);
     Bespoke
@@ -138,6 +138,7 @@ export interface IReact {
 
 export function React(props: IReact): Module {
   let extendsType = ``;
+  let propOnlyExtendsType = ``;
   let content: TRenderer[] = [
     Import.new({
       name: "react",
@@ -166,6 +167,7 @@ export function React(props: IReact): Module {
   } else {
     const propsName: string = `I${props.name}Props`;
     extendsType += `<${propsName}`;
+    propOnlyExtendsType += `<${propsName}>`;
     content = [
       ...content,
       Interface.newExported({
@@ -258,7 +260,7 @@ export function React(props: IReact): Module {
         RelayContainerCall({
           name: props.name,
           relayType: props.relayType,
-          extendsType,
+          propOnlyExtendsType,
         }),
       ];
     }
