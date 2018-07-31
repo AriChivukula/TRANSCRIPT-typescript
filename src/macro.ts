@@ -101,13 +101,13 @@ function ReactConstructorCall(): AnonymousRenderer {
 interface IRelayContainerCall {
   name: string;
   relayType: ERelayType;
-  extendsType: string;
+  propOnlyExtendsType: string;
 }
 
 function RelayContainerCall(props: IRelayContainerCall): AnonymousRenderer {
   return (builder: Builder): void => {
     builder
-      .addThenNewline(`const _${props.name}: React.ComponentType${props.extendsType} = ${props.relayType}(`)
+      .addThenNewline(`const _${props.name}: React.ComponentType${props.propOnlyExtendsType} = ${props.relayType}(`)
       .indent()
       .addThenNewline(`__${props.name},`);
     Bespoke
