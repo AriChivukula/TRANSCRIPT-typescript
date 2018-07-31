@@ -138,6 +138,7 @@ export interface IReact {
 
 export function React(props: IReact): Module {
   let extendsType = ``;
+  let propOnlyExtendsType = ``;
   let content: TRenderer[] = [
     Import.new({
       name: "react",
@@ -166,6 +167,7 @@ export function React(props: IReact): Module {
   } else {
     const propsName: string = `I${props.name}Props`;
     extendsType += `<${propsName}`;
+    propOnlyExtendsType += `<${propsName}>`;
     content = [
       ...content,
       Interface.newExported({
@@ -258,7 +260,7 @@ export function React(props: IReact): Module {
         RelayContainerCall({
           name: props.name,
           relayType: props.relayType,
-          extendsType,
+          propOnlyExtendsType,
         }),
       ];
     }
