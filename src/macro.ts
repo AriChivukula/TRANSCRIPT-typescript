@@ -167,8 +167,8 @@ export function React(props: IReact): Module {
   } else {
     const propsName: string = `I${props.name}Props`;
     extendsType += `<${propsName}`;
-    propOnlyExtendsType += `<MappedFragmentProps<RemoveRelayProp<${propsName}>>>`;
     if (props.relayType === ERelayType.FRAGMENT) {
+      propOnlyExtendsType += `<MappedFragmentProps<RemoveRelayProp<${propsName}>>`;
       props.props = [
         ...props.props,
         Type.Required.new({
@@ -176,6 +176,8 @@ export function React(props: IReact): Module {
           type: `${props.name}Query`,
         }),
       ];
+    } else {
+      propOnlyExtendsType += `<${propsName}`;
     }
     content = [
       ...content,
