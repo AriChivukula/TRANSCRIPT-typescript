@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::FragmentRelay>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<VMRy1lxOJirygt8K3fRInJzOmTjmeCgBmwmaW/CYpH3w5TIm9k1PkrHNF2kBr2ANnfzF1AX/AJeopB2qEHw3hw==>>
+ * SIGNED<<2ZR0nJ49ay3y98rEaHcIuWSrCFFH4F74LbvCRomwRcVUnw2gC2G31yG7UCAsui2Nw2Df95faDde5DUYpy0jclw==>>
  */
 
 import * as React from "react";
@@ -19,7 +19,7 @@ import {
 
 export interface IFragmentRelayProps {
   test1: string;
-  data: MappedFragmentProps<RemoveRelayProp<FragmentRelay>>;
+  data: MappedFragmentProps<RemoveRelayProp<FragmentRelayQuery>>;
 }
 
 export interface IFragmentRelayState {
