@@ -3,12 +3,12 @@
  *
  * SOURCE<<gen/views.ts::FragmentRelay>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<EqV2jB8Cua6Dc0k72OExR03rj2eTA1uMMq0hO8xXZrfwLsGnCBB7pE48FF7Yp6ONdZ4gX167nCdHlM8UevonPg==>>
+ * SIGNED<<zPaNr9OENo7wpvD+//F97wnNnx6sHQZgPqCuRuxlzb4duZgh4l9L+Eit8ncwcl/Y41YUtMkLOQ/cDfDzRdNZQA==>>
  */
 
 import * as React from "react";
 import {
-  $FragmentRef,
+  _FragmentRefs,
   createFragmentContainer,
   graphql,
 } from "react-relay";
@@ -18,7 +18,7 @@ import {
 
 export interface IFragmentRelayProps {
   test1: string;
-  data: $FragmentRef<FragmentRelayQuery>;
+  data: _FragmentRefs<FragmentRelayQuery>;
 }
 
 export interface IFragmentRelayState {
@@ -49,8 +49,12 @@ class __FragmentRelay extends React.Component<IFragmentRelayProps, IFragmentRela
 
 const _FragmentRelay: React.ComponentType<IFragmentRelayProps> = createFragmentContainer(
   __FragmentRelay,
-  /* BESPOKE START <<relay>> */
-  /* BESPOKE END <<relay>> */
+  graphql`,
+    fragment FragmentRelayQuery on Query {
+    /* BESPOKE START <<relay>> */
+    /* BESPOKE END <<relay>> */
+    }
+  `,
 );
 
 export { _FragmentRelay as FragmentRelay };
