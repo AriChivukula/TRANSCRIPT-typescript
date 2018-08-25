@@ -173,7 +173,7 @@ export function React(props: IReact): Module {
         ...props.props,
         Type.Required.new({
           name: "data",
-          type: `_FragmentRefs<${props.name}Query>`,
+          type: `MappedFragmentProps<RemoveRelayProp<${props.name}>>`,
         }),
       ];
     }
@@ -261,7 +261,7 @@ export function React(props: IReact): Module {
         relayImports = [...relayImports, "commitMutation"];
       }
       if (props.relayType === ERelayType.FRAGMENT) {
-        relayImports = [...relayImports, "_FragmentRefs"];
+        relayImports = [...relayImports, "MappedFragmentProps", "RemoveRelayProp"];
       }
       content = [
         ...content,
