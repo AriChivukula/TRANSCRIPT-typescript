@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::PaginationRelay>>
  * BESPOKE<<imports, render, implementation, relay>>
- * SIGNED<<cDUmNd53Yqm6ltnkrJbqE6hGXwJNPnh1g2W18Z+GpwNmU8X1U8LNn7Br5BV6bHARubmVxxAlZpHXMotdYx1DmA==>>
+ * SIGNED<<zu7pLa5uhLG7DPbpCOMEpwv4iLzAxzQKR173dTzcDFHYj2/GvdcWcG0VQ/EFJhDV+0zHUVVqhA3Gvt6Sehmu6A==>>
  */
 
 import * as React from "react";
@@ -31,7 +31,7 @@ class __PaginationRelay extends React.Component<IPaginationRelayProps> {
   /* BESPOKE END <<implementation>> */
 }
 
-const _PaginationRelay: React.ComponentType<IPaginationRelayProps = createPaginationContainer(
+const _PaginationRelay: React.ComponentType<IPaginationRelayProps> = createPaginationContainer(
   __PaginationRelay,
   /* BESPOKE START <<relay>> */
   /* BESPOKE END <<relay>> */
