@@ -173,7 +173,7 @@ export function React(props: IReact): Module {
         ...props.props,
         Type.Required.new({
           name: "data",
-          type: `$FragmentRef<${props.name}Query>`,
+          type: `_FragmentRefs<${props.name}Query>`,
         }),
       ];
     }
@@ -261,7 +261,7 @@ export function React(props: IReact): Module {
         relayImports = [...relayImports, "commitMutation"];
       }
       if (props.relayType === ERelayType.FRAGMENT) {
-        relayImports = [...relayImports, "$FragmentRef"];
+        relayImports = [...relayImports, "_FragmentRefs"];
       }
       content = [
         ...content,
