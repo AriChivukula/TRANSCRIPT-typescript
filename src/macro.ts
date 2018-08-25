@@ -112,7 +112,7 @@ function RelayContainerCall(props: IRelayContainerCall): AnonymousRenderer {
       .addThenNewline(`__${props.name},`);
     if (props.relayType === ERelayType.FRAGMENT) {
       builder
-        .addThenNewline("graphql`,")
+        .addThenNewline("graphql`")
         .indent()
         .addThenNewline(`fragment ${props.name}Query on Query {`);
     }
