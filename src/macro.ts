@@ -173,7 +173,7 @@ export function React(props: IReact): Module {
         ...props.props,
         Type.Required.new({
           name: "data",
-          type: `MappedFragmentProps<RemoveRelayProp<${props.name}>>`,
+          type: `MappedFragmentProps<RemoveRelayProp<${props.name}Query>>`,
         }),
       ];
     }
