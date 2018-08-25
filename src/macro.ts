@@ -168,6 +168,15 @@ export function React(props: IReact): Module {
     const propsName: string = `I${props.name}Props`;
     extendsType += `<${propsName}`;
     propOnlyExtendsType += `<${propsName}>`;
+    if (props.relayType === ERelayType.FRAGMENT) {
+      props.props = [
+        ...props.props,
+        Type.Required.new({
+          name: "data",
+          type: `$FragmentRef<${props.name}Query>`,
+        }),
+      ];
+    }
     content = [
       ...content,
       Interface.newExported({
@@ -250,6 +259,9 @@ export function React(props: IReact): Module {
       let relayImports: string[] = ["graphql", props.relayType];
       if (props.relayMutation === true) {
         relayImports = [...relayImports, "commitMutation"];
+      }
+      if (props.relayType === ERelayType.FRAGMENT) {
+        relayImports = [...relayImports, "$FragmentRef"];
       }
       content = [
         ...content,
