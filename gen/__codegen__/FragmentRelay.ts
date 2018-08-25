@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::FragmentRelay>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<zPaNr9OENo7wpvD+//F97wnNnx6sHQZgPqCuRuxlzb4duZgh4l9L+Eit8ncwcl/Y41YUtMkLOQ/cDfDzRdNZQA==>>
+ * SIGNED<<F08UA1Jp3x/uFBrr+bqtSM7CiQcbBiwF1bZLwwBw45dU3NI/LTB0hDy6cwhw3+63jYV/FQ2qrmPfRQ3ZGzD8rQ==>>
  */
 
 import * as React from "react";
@@ -49,7 +49,7 @@ class __FragmentRelay extends React.Component<IFragmentRelayProps, IFragmentRela
 
 const _FragmentRelay: React.ComponentType<IFragmentRelayProps> = createFragmentContainer(
   __FragmentRelay,
-  graphql`,
+  graphql`
     fragment FragmentRelayQuery on Query {
     /* BESPOKE START <<relay>> */
     /* BESPOKE END <<relay>> */
