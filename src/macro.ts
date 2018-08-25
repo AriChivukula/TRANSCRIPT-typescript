@@ -258,9 +258,12 @@ export function React(props: IReact): Module {
           name: `__${props.name}`,
         }),
       ];
-      let relayImports: string[] = ["graphql", props.relayType, "MappedFragmentProps", "RemoveRelayProp"];
+      let relayImports: string[] = ["graphql", props.relayType];
       if (props.relayMutation === true) {
         relayImports = [...relayImports, "commitMutation"];
+      }
+      if (props.relayType === ERelayType.FRAGMENT) {
+        relayImports = [...relayImports, "MappedFragmentProps", "RemoveRelayProp"];
       }
       content = [
         ...content,
