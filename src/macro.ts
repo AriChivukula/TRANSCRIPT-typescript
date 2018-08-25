@@ -110,23 +110,11 @@ function RelayContainerCall(props: IRelayContainerCall): AnonymousRenderer {
       .addThenNewline(`const _${props.name}: React.ComponentType${props.propOnlyExtendsType} = ${props.relayType}(`)
       .indent()
       .addThenNewline(`__${props.name},`);
-    if (props.relayType === ERelayType.FRAGMENT) {
-      builder
-        .addThenNewline("graphql`")
-        .indent()
-        .addThenNewline(`fragment ${props.name}Query on Query {`);
-    }
     Bespoke
       .new({
         name: "relay",
       })
       .run(builder);
-    if (props.relayType === ERelayType.FRAGMENT) {
-      builder
-        .addThenNewline("}")
-        .unindent()
-        .addThenNewline("`,");
-    }
     builder
       .unindent()
       .addThenNewline(");");
