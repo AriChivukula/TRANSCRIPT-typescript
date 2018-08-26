@@ -1,6 +1,6 @@
 {
   "name": "typescriptase",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "TypeScript Codegen",
   "main": "bin/index.js",
   "types": "bin/index.d.ts",
