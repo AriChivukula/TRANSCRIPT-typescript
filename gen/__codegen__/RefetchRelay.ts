@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::RefetchRelay>>
  * BESPOKE<<imports, state, render, implementation, relay>>
- * SIGNED<<8I+6X9jTE5iGU9RHBveK20ZHiaEvQUxvv61KxZ8i5DE/FBVfDzCDRuImkd7fKSu6hqWSyzb6L3ZSjcA+SRi8uA==>>
+ * SIGNED<<N9Jri3M6GhBOE/Xrm4v4fnCYg5aq+3pkR4oTgNxOtNaLMAgEnIFr/ZKJYCb8Sj4gL83H90kqfTdrpKU2SZqdKw==>>
  */
 
 import * as React from "react";
@@ -11,6 +11,8 @@ import {
   commitMutation,
   createRefetchContainer,
   graphql,
+  MappedFragmentProps,
+  RemoveRelayProp,
 } from "react-relay";
 
 /* BESPOKE START <<imports>> */
@@ -18,6 +20,7 @@ import {
 
 export interface IRefetchRelayProps {
   test1: string;
+  data: RefetchRelayQuery;
 }
 
 export interface IRefetchRelayState {
@@ -46,7 +49,7 @@ class __RefetchRelay extends React.Component<IRefetchRelayProps, IRefetchRelaySt
   /* BESPOKE END <<implementation>> */
 }
 
-const _RefetchRelay: React.ComponentType<IRefetchRelayProps> = createRefetchContainer(
+const _RefetchRelay: React.ComponentType<MappedFragmentProps<RemoveRelayProp<IRefetchRelayProps>>> = createRefetchContainer(
   __RefetchRelay,
   /* BESPOKE START <<relay>> */
   /* BESPOKE END <<relay>> */
