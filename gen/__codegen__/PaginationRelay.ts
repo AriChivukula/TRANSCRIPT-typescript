@@ -3,13 +3,15 @@
  *
  * SOURCE<<gen/views.ts::PaginationRelay>>
  * BESPOKE<<imports, render, implementation, relay>>
- * SIGNED<<zu7pLa5uhLG7DPbpCOMEpwv4iLzAxzQKR173dTzcDFHYj2/GvdcWcG0VQ/EFJhDV+0zHUVVqhA3Gvt6Sehmu6A==>>
+ * SIGNED<<U4zNpbZCKuTGRuTTLg5QGwWM44HzrQbRgOu85BFoW7wrGHcHC8pDMNod41JjIoXLtBNtxrx/TtNy2qDqJU7/IA==>>
  */
 
 import * as React from "react";
 import {
   createPaginationContainer,
   graphql,
+  MappedFragmentProps,
+  RemoveRelayProp,
 } from "react-relay";
 
 /* BESPOKE START <<imports>> */
@@ -17,6 +19,7 @@ import {
 
 export interface IPaginationRelayProps {
   test1: string;
+  data: PaginationRelayQuery;
 }
 
 class __PaginationRelay extends React.Component<IPaginationRelayProps> {
@@ -31,7 +34,7 @@ class __PaginationRelay extends React.Component<IPaginationRelayProps> {
   /* BESPOKE END <<implementation>> */
 }
 
-const _PaginationRelay: React.ComponentType<IPaginationRelayProps> = createPaginationContainer(
+const _PaginationRelay: React.ComponentType<MappedFragmentProps<RemoveRelayProp<IPaginationRelayProps>>> = createPaginationContainer(
   __PaginationRelay,
   /* BESPOKE START <<relay>> */
   /* BESPOKE END <<relay>> */

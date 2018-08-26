@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::Props>>
  * BESPOKE<<imports, render, implementation>>
- * SIGNED<<caml9dUItSPsFfJ3V9qhlQQAwwiqFCAfQ7cKrjgkKFtXOLiTtP+BpdCzy+Suj89sxbPh4P9aQKOTZTq/7XfqDQ==>>
+ * SIGNED<<TgjDX2Ysy9Cc3WZS69kKdFkQXerLRX33VChHrAT7jQYnpSEgYUWoLT7JHsW/ANKyqRzuULo1Ig3+bUVZvl8Qzg==>>
  */
 
 import * as React from "react";
@@ -13,6 +13,7 @@ import * as React from "react";
 
 export interface IPropsProps {
   test1: string;
+  data: PropsQuery;
 }
 
 class _Props extends React.Component<IPropsProps> {
