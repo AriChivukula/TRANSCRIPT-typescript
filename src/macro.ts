@@ -167,18 +167,14 @@ export function React(props: IReact): Module {
   } else {
     const propsName: string = `I${props.name}Props`;
     extendsType += `<${propsName}`;
-    if (props.relayType === ERelayType.FRAGMENT) {
-      propOnlyExtendsType += `<MappedFragmentProps<RemoveRelayProp<${propsName}>>>`;
-      props.props = [
-        ...props.props,
-        Type.Required.new({
-          name: "data",
-          type: `${props.name}Query`,
-        }),
-      ];
-    } else {
-      propOnlyExtendsType += `<${propsName}>`;
-    }
+    propOnlyExtendsType += `<MappedFragmentProps<RemoveRelayProp<${propsName}>>>`;
+    props.props = [
+      ...props.props,
+      Type.Required.new({
+        name: "data",
+        type: `${props.name}Query`,
+      }),
+    ];
     content = [
       ...content,
       Interface.newExported({
@@ -262,9 +258,7 @@ export function React(props: IReact): Module {
       if (props.relayMutation === true) {
         relayImports = [...relayImports, "commitMutation"];
       }
-      if (props.relayType === ERelayType.FRAGMENT) {
-        relayImports = [...relayImports, "MappedFragmentProps", "RemoveRelayProp"];
-      }
+      relayImports = [...relayImports, "MappedFragmentProps", "RemoveRelayProp"];
       content = [
         ...content,
         Import.new({
