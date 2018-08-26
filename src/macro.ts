@@ -167,14 +167,18 @@ export function React(props: IReact): Module {
   } else {
     const propsName: string = `I${props.name}Props`;
     extendsType += `<${propsName}`;
-    propOnlyExtendsType += `<MappedFragmentProps<RemoveRelayProp<${propsName}>>>`;
-    props.props = [
-      ...props.props,
-      Type.Required.new({
-        name: "data",
-        type: `${props.name}Query`,
-      }),
-    ];
+    if (props.relayType === undefined) {
+      propOnlyExtendsType += `<${propsName}>`;
+    } else {
+      propOnlyExtendsType += `<MappedFragmentProps<RemoveRelayProp<${propsName}>>>`;
+      props.props = [
+        ...props.props,
+        Type.Required.new({
+          name: "data",
+          type: `${props.name}Query`,
+        }),
+      ];
+    }
     content = [
       ...content,
       Interface.newExported({
