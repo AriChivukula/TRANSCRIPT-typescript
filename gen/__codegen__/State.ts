@@ -3,7 +3,7 @@
  *
  * SOURCE<<gen/views.ts::State>>
  * BESPOKE<<imports, state, render, implementation>>
- * SIGNED<<fhVzFSd2UFcgAKF6mTJp1f0kzzNYAdamWVjHAo0eclgyI8V7Pua+e1jYiXfLMRMxou1MBh7WtLq/BBnrIMVIjQ==>>
+ * SIGNED<<DRz+3lXXxUR+qlURvEcRBKP/sKJkV8AAbz9Sx6fmEeL8DrqNXw0KjGuBya7e/mlzchZ7UuW+0Nja3sTcUVLpjg==>>
  */
 
 import * as React from "react";
@@ -17,7 +17,6 @@ import {
 
 export interface IStateProps {
   test1: string;
-  data: StateQuery;
 }
 
 export interface IStateState {
