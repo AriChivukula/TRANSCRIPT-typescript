@@ -9,11 +9,11 @@
   "license": "MIT",
   "dependencies": {
     "@babel/polyfill": "7.0.0",
-    "yargs": "12.0.2"
+    "yargs": "12.0.5"
   },
   "devDependencies": {
     "@types/node": "10.12.10",
-    "@types/yargs": "12.0.5",
+    "@types/yargs": "12.0.2",
     "picaresque": "0.0.0",
     "ts-node": "7.0.1",
     "typescript": "3.1.6"
