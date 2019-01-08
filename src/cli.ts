@@ -29,6 +29,7 @@ if (require.main === module) {
             describe: "Files",
           },
         ),
+      // tslint:disable-next-line
       (argv: yargs.Arguments): void => {
         // tslint:disable-next-line
         argv.files.forEach(
