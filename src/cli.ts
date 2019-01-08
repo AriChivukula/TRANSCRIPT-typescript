@@ -12,7 +12,7 @@ if (require.main === module) {
     .usage(
       "$0",
       true,
-      (y: yargs.Argv): yargs.Argv => y
+      (y: yargs.Argv<any>): yargs.Argv<any> => y
         .option(
           "expectNoChanges",
           {
@@ -28,10 +28,10 @@ if (require.main === module) {
             describe: "Files",
           },
         ),
-      (argv: yargs.Arguments<[]>): void => {
-        (<string[]> argv.files).forEach(
+      (argv: yargs.Arguments<any>): void => {
+        argv.files.forEach(
           (path: string): void => {
-            codegenFile(path, (<boolean> argv.expectNoChanges));
+            codegenFile(path, argv.expectNoChanges);
           },
         );
       },
