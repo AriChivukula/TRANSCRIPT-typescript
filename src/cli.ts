@@ -28,7 +28,7 @@ if (require.main === module) {
             describe: "Files",
           },
         ),
-      (argv: yargs.Arguments): void => {
+      (argv: yargs.Arguments<[]>): void => {
         argv.files.forEach(
           (path: string): void => {
             codegenFile(path, argv.expectNoChanges);
