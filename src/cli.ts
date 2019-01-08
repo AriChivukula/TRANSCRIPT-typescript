@@ -8,11 +8,10 @@ import * as yargs from "yargs";
 import { Builder, endTemplate, Module, startTemplate } from "./index";
 
 if (require.main === module) {
-  // tslint:disable-next-line
   yargs
     .usage(
       "$0",
-      "Typescript Codegen",
+      true,
       (y: yargs.Argv): yargs.Argv => y
         .option(
           "expectNoChanges",
@@ -30,11 +29,9 @@ if (require.main === module) {
           },
         ),
       (argv: yargs.Arguments<[]>): void => {
-        // tslint:disable-next-line
-        argv.files.forEach(
+        (<string[]> argv.files).forEach(
           (path: string): void => {
-            // tslint:disable-next-line
-            codegenFile(path, argv.expectNoChanges);
+            codegenFile(path, (<boolean> argv.expectNoChanges));
           },
         );
       },
