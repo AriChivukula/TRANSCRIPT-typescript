@@ -8,12 +8,11 @@ import * as yargs from "yargs";
 import { Builder, endTemplate, Module, startTemplate } from "./index";
 
 if (require.main === module) {
-  // tslint:disable-next-line
   yargs
     .usage(
       "$0",
-      "Typescript Codegen",
-      (y: yargs.Argv): yargs.Argv => y
+      true,
+      (y: yargs.Argv<any>): yargs.Argv<any> => y
         .option(
           "expectNoChanges",
           {
@@ -29,11 +28,9 @@ if (require.main === module) {
             describe: "Files",
           },
         ),
-      (argv: yargs.Arguments): void => {
-        // tslint:disable-next-line
+      (argv: yargs.Arguments<any>): void => {
         argv.files.forEach(
           (path: string): void => {
-            // tslint:disable-next-line
             codegenFile(path, argv.expectNoChanges);
           },
         );
@@ -47,13 +44,10 @@ export function codegenFile(
   path: string,
   expectNoChanges: boolean,
 ): void {
-  // tslint:disable-next-line
   let file: { [index: string]: any };
-  // tslint:disable-next-line
   file = require(`${process.cwd()}/${path}`);
   for (const name in file) {
     if (file[name] instanceof Module) {
-      // tslint:disable-next-line
       codegenModule(file[name], path, name, expectNoChanges);
     }
   }
